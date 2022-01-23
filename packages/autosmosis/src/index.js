@@ -1,3 +1,3 @@
 export default {
-  yo: 1,
+  osmosis: true
 };
