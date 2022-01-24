@@ -1,0 +1,29 @@
+{
+    "height": "2914187",
+    "result": [
+        {
+            "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
+            "amount": "1"
+        },
+        {
+            "denom": "ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED",
+            "amount": "30288"
+        },
+        {
+            "denom": "ibc/9712DBB13B9631EDFA9BF61B55F1B2D290B2ADB67E3A4EB3A875F3B6081B3B84",
+            "amount": "2588078"
+        },
+        {
+            "denom": "ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4",
+            "amount": "26090364"
+        },
+        {
+            "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+            "amount": "136315"
+        },
+        {
+            "denom": "uosmo",
+            "amount": "1656896"
+        }
+    ]
+}
