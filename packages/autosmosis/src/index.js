@@ -1,3 +1,4 @@
 export default {
-    autosmosis: true
+  autosmosis: true,
+  hereIsAnEdit2: true
 };
