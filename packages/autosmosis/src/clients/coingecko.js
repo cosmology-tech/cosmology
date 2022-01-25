@@ -78,7 +78,3 @@ export async function getPrice() {
     return null;
   }
 }
-
-(async () => {
-  const promise = await getPrice();
-})();
