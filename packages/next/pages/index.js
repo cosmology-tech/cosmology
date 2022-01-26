@@ -1,9 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import autosmosis from 'autosmosis';
+import axios from 'axios';
 
 export default function Home() {
+
+  function handleTest() {
+    axios.get('/api/go')
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,6 +18,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <button onClick={() =>handleTest()}>click me</button>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
@@ -20,7 +26,7 @@ export default function Home() {
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
-          {JSON.stringify(autosmosis, null, 2)}
+          {/* {JSON.stringify(autosmosis, null, 2)} */}
         </p>
 
         <div className={styles.grid}>

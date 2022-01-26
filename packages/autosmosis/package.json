@@ -32,6 +32,7 @@
     "prepare": "npm run build",
     "lint": "eslint src --fix",
     "dev": "cross-env NODE_ENV=development babel-node src/autosmosis",
+    "mytest": "cross-env NODE_ENV=development babel-node src/my-test",
     "watch": "cross-env NODE_ENV=development babel-watch src/autosmosis",
     "file": "cross-env NODE_ENV=development babel-watch src/file",
     "make:commands": "cross-env NODE_ENV=development node ./bin/build.js",
@@ -67,9 +68,15 @@
   "dependencies": {
     "@babel/runtime": "^7.4.2",
     "@cosmjs/amino": "0.27.0",
+    "@cosmjs/launchpad": "0.27.0",
+    "@cosmjs/proto-signing": "0.27.0",
+    "@cosmjs/stargate": "0.27.0",
     "axios": "0.25.0",
+    "bent": "7.3.12",
+    "cosmjs-types": "0.4.1",
     "fuzzy": "0.1.3",
     "inquirerer": "0.1.3",
-    "minimist": "1.2.5"
+    "minimist": "1.2.5",
+    "protobufjs": "6.11.2"
   }
 }
