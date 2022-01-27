@@ -1,5 +1,5 @@
 {
-  "version": "0.0.0-yolo.0",
+  "version": "0.0.0-yolo.1",
   "name": "next",
   "private": true,
   "scripts": {
@@ -13,7 +13,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/react-fontawesome": "^0.1.16",
-    "autosmosis": "^0.0.7",
+    "autosmosis": "^0.0.8",
     "font-awesome": "^4.7.0",
     "next": "12.0.8",
     "react": "17.0.2",
