@@ -1,4 +1,3 @@
-import { CoinGeckoToken, geckoPrice } from '../clients/coingecko'
 import { Token } from '../model/Token'
 import { DriverClient } from './driverclient'
 
@@ -33,7 +32,7 @@ export function executeSwapsAndAllocate (allocationsAndWeights, swaps) {
  * @param {*} allocationsAndWeights is a list of desired final pools/coins and their weights
  * @returns a list of swaps
  */
-export function getAllSwaps (allocationsAndWeights) {
+export async function getAllSwaps (allocationsAndWeights) {
   var swaps = []
 
   // 1. get the wallet balances
@@ -43,7 +42,7 @@ export function getAllSwaps (allocationsAndWeights) {
   var coinsForAllocation = getCoinsForAllocation(allocationsAndWeights)
 
   // 3. fetch all the needed prices
-  var prices = getNeededPrices(coinsForAllocation, walletBalances)
+  var prices = await getNeededPrices(coinsForAllocation, walletBalances)
 
   // 4. calculate my wallet's total balance
   var totalBalance = 0
@@ -96,14 +95,14 @@ function getCoinsForAllocation (allocationsAndWeights) {
   return coinsForAllocation
 }
 
-function getNeededPrices (coinsForAllocation, walletBalances) {
+async function getNeededPrices (coinsForAllocation, walletBalances) {
   var neededPrices = coinsForAllocation
 
   for (const [coin, _] of Object.entries(walletBalances)) {
     neededPrices.push(coin)
   }
 
-  return DriverClient.getPrices(neededPrices)
+  return await DriverClient.getPrices(neededPrices)
 }
 
 function getFinalNeededCoinAmounts (allocationsAndWeights, totalBalance) {
