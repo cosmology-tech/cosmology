@@ -8,7 +8,8 @@
   "main": "main/index.js",
   "module": "module/index.js",
   "bin": {
-    "autosmosis": "main/autosmosis.js"
+    "autosmosis": "main/autosmosis.js",
+    "cosmosis": "main/autosmosis.js"
   },
   "directories": {
     "lib": "src",
@@ -71,6 +72,7 @@
     "@cosmjs/launchpad": "0.27.0",
     "@cosmjs/proto-signing": "0.27.0",
     "@cosmjs/stargate": "0.27.0",
+    "@pyramation/cosmos-registry": "0.1.3",
     "axios": "0.25.0",
     "bent": "7.3.12",
     "cosmjs-types": "0.4.1",
