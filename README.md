@@ -1,5 +1,12 @@
 # autosmosis
 
+## TODO for demo
+
+- UI to call driver code
+- driver logic completion
+- implement data fetching / cosmos calls (DriverClient)
+- research what RPC methods correspond to deposit for LP, bond, and then maybe IPC out of osmosis to hold UST. The RPC method is what calls whenever you do a swap, bond, or IPC
+
 ## testing
 
 first start the tests

@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-const config = {
-  fetchUrl:
-    'https://api.coingecko.com/api/v3/simple/price?ids=cosmos,osmosis,ion,akash-network,sentinel,iris-network,crypto-com-chain,persistence,regen,starname,e-money,e-money-eur,juno-network,likecoin,terrausd,terra-luna,bitcanna,terra-krw,secret,medibloc,comdex,cheqd-network,vidulum&vs_currencies=usd'
-};
-
 /**
  * @typedef {('cosmos'|
  * 'osmosis'|
@@ -62,12 +57,15 @@ export const CoinGeckoToken = {
 };
 
 /**
- *
- * @returns {Promise<TokenPricesUSDResponse>}
+ * 
+ * @param {*} coins is a list of coins to check
+ * @returns 
  */
-export async function getPrice() {
+export async function geckoPrice(coins) {
+  //'https://api.coingecko.com/api/v3/simple/price?ids=cosmos,osmosis,ion,akash-network,sentinel,iris-network,crypto-com-chain,persistence,regen,starname,e-money,e-money-eur,juno-network,likecoin,terrausd,terra-luna,bitcanna,terra-krw,secret,medibloc,comdex,cheqd-network,vidulum&vs_currencies=usd'
+  var fetchUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${coins.join()}&vs_currencies=usd`
   try {
-    const response = await axios.get(config.fetchUrl);
+    const response = await axios.get(fetchUrl);
 
     return response.data;
   } catch (e) {
