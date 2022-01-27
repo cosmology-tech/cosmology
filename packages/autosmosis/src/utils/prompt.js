@@ -37,3 +37,19 @@ export const prompt = async (questions = [], argv = {}) => {
   questions = transform(questions);
   return await inquirerer(questions, argv);
 };
+
+export const promptMnemonic = async (argv = {}) => {
+  if (process.env.MNEMONIC) {
+    argv.mnemonic = process.env.MNEMONIC;
+  }
+  return await prompt(
+    [
+      {
+        type: 'password',
+        name: 'mnemonic',
+        message: 'mnemonic'
+      }
+    ],
+    argv
+  );
+};

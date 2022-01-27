@@ -1,0 +1,4497 @@
+[
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "agoric",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Agoric",
+    "chain_id": "agoric-3",
+    "bech32_prefix": "agoric",
+    "daemon_name": "ag0",
+    "node_home": "$HOME/.agoric",
+    "genesis": {
+      "genesis_url": "https://main.agoric.net/genesis.json"
+    },
+    "slip44": 564,
+    "explorers": [
+      {
+        "name": "agoric-big-dipper",
+        "url": "https://main.explorer.agoric.net/"
+      }
+    ],
+    "codebase": {
+      "git_repo": "https://github.com/Agoric/ag0/",
+      "recommended_version": "agoric-3.1",
+      "compatible_versions": [
+        "agoric-3.1"
+      ]
+    },
+    "peers": {
+      "seeds": [],
+      "persistent_peers": [
+        {
+          "id": "a26158a5cbb1df581dd6843ac427191af76d6d5d",
+          "address": "104.154.240.50:26656"
+        },
+        {
+          "id": "6e26a1b4afa6889f841d7957e8c2b5d50d32d485",
+          "address": "95.216.53.26:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://main.rpc.agoric.net:443"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://main.api.agoric.net:443"
+        }
+      ],
+      "grpc": [
+        {
+          "address": "https://main.grpc.agoric.net:443"
+        }
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "akash",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Akash",
+    "chain_id": "akashnet-2",
+    "bech32_prefix": "akash",
+    "daemon_name": "akash",
+    "node_home": "$HOME/.akash",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/ovrclk/net/master/mainnet/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/ovrclk/akash/",
+      "recommended_version": "v0.12.1",
+      "compatible_versions": [
+        "v0.12.1"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/ovrclk/akash/releases/download/v0.12.1/akash_0.12.1_linux_amd64.zip"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "27eb432ccd5e895c5c659659120d68b393dd8c60",
+          "address": "35.247.65.183:26656"
+        },
+        {
+          "id": "8e2f56098f182ffe2f6fb09280bafe13c63eb42f",
+          "address": "46.101.176.149:26656"
+        },
+        {
+          "id": "fff99a2e8f3c9473e4e5ee9a99611a2e599529fd",
+          "address": "46.166.138.218:26656",
+          "provider": "simplyvc"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "27eb432ccd5e895c5c659659120d68b393dd8c60",
+          "address": "35.247.65.183:26656"
+        },
+        {
+          "id": "9180b99a5be3443677e0f57fc5f40e8f071bdcd8",
+          "address": "161.35.239.0:51656"
+        },
+        {
+          "id": "47c9acc0e7d9b244a6404458e76d50b6284bfbbb",
+          "address": "142.93.77.25:26656"
+        },
+        {
+          "id": "ab7b55588ea3f4f7a477e852aa262959e54117cd",
+          "address": "3.235.249.94:26656"
+        },
+        {
+          "id": "4acf579e2744268f834c713e894850995bbf0ffa",
+          "address": "50.18.31.225:26656"
+        },
+        {
+          "id": "3691ac1f56389ffec8579c13a6eb8eca41cf8ae3",
+          "address": "54.219.88.246:26656"
+        },
+        {
+          "id": "86afe23f116ba4754a19819a55d153008eb74b48",
+          "address": "15.164.87.75:26656"
+        },
+        {
+          "id": "6fbc3808f7d6c961e84944ae2d8c800a8bbffbb4",
+          "address": "138.201.159.100:26656"
+        },
+        {
+          "id": "a2a3ffe7ac122a218e1f59c32a670f04b8fd3033",
+          "address": "165.22.69.102:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "http://135.181.60.250:26657"
+        },
+        {
+          "address": "http://rpc.akash.forbole.com:80",
+          "provider": "forbole"
+        },
+        {
+          "address": "http://akash-sentry01.skynetvalidators.com:26657",
+          "provider": "skynet"
+        },
+        {
+          "address": "https://akash.technofractal.com:443",
+          "provider": "strangelove-ventures"
+        },
+        {
+          "address": "http://162.55.94.246:28957"
+        },
+        {
+          "address": "http://135.181.181.120:28957"
+        },
+        {
+          "address": "http://135.181.181.119:28957"
+        },
+        {
+          "address": "http://135.181.181.121:28957"
+        },
+        {
+          "address": "http://135.181.181.122:28957"
+        },
+        {
+          "address": "http://135.181.181.123:28957"
+        }
+      ],
+      "rest": [
+        {
+          "address": "http://135.181.60.250:1317"
+        },
+        {
+          "address": "http://135.181.181.120:1518"
+        },
+        {
+          "address": "http://135.181.181.119:1518"
+        },
+        {
+          "address": "http://135.181.181.121:1518"
+        },
+        {
+          "address": "http://135.181.181.122:1518"
+        },
+        {
+          "address": "http://135.181.181.123:1518"
+        }
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "arkh",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Arkhadian",
+    "chain_id": "arkh",
+    "bech32_prefix": "arkh",
+    "daemon_name": "arkhd",
+    "node_home": "$HOME/.arkhd",
+    "genesis": {
+      "genesis_url": "https://github.com/vincadian/arkh-blockchain/blob/master/genesis/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "uarkh",
+          "fixed_min_gas_price": 1e-9
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/vincadian/arkh-blockchain",
+      "recommended_version": "v1.0.0",
+      "compatible_versions": [
+        "v1.0.0"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/vincadian/arkh-blockchain/releases/download/latest/arkh-blockchain_latest_linux_amd64.tar.gz",
+        "darwin/amd64": "https://github.com/vincadian/arkh-blockchain/releases/download/latest/arkh-blockchain_latest_darwin_amd64.tar.gz"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "808f01d4a7507bf7478027a08d95c575e1b5fa3c",
+          "address": "asc-dataseed.arkhadian.com:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://asc-dataseed.arkhadian.com/",
+          "provider": "arkhnetwork"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://asc-blockchain-api.arkhadian.com/",
+          "provider": "arkhnetwork"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "Ping",
+        "url": "https://testnet.ping.pub/arkh",
+        "tx_page": "https://testnet.ping.pub/arkh/tx/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "bandchain",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "BandChain",
+    "chain_id": "laozi-mainnet",
+    "daemon_name": "bandd",
+    "node_home": "$HOME/.band",
+    "bech32_prefix": "band",
+    "slip44": 494,
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/bandprotocol/launch/master/laozi-mainnet/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/bandprotocol/chain",
+      "recommended_version": "v2.3.2",
+      "compatible_versions": [
+        "v2.3.2"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "8d42bdcb6cced03e0b67fa3957e4e9c8fd89015a",
+          "address": "34.87.86.195:26656"
+        },
+        {
+          "id": "543e0cab9c3016a0e99775443a17bcf163038912",
+          "address": "34.150.156.78:26656"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "98823087b61d442a4ab86998709c77b2e517ee78",
+          "address": "35.240.152.216:26656"
+        },
+        {
+          "id": "3ea84babead3d6bc488810a0f2cf0744cf5c68fe",
+          "address": "34.86.22.251:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "http://rpc.laozi1.bandchain.org:80",
+          "provider": "bandprotocol"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://laozi1.bandchain.org/api",
+          "provider": "bandprotocol"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "cosmoscan",
+        "url": "https://cosmoscan.io",
+        "tx_page": "https://cosmoscan.io/tx/{txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "bitcanna",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "BitCanna",
+    "chain_id": "bitcanna-1",
+    "bech32_prefix": "bcna",
+    "daemon_name": "bcnad",
+    "node_home": "$HOME/.bcna",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/BitCannaGlobal/bcna/main/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "ubcna",
+          "fixed_min_gas_price": 0.001
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/BitCannaGlobal/bcna",
+      "recommended_version": "v1.2",
+      "compatible_versions": [
+        "v1.2"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/BitCannaGlobal/bcna/releases/download/v1.2/bcnad"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "d6aa4c9f3ccecb0cc52109a95962b4618d69dd3f",
+          "address": "seed1.bitcanna.io:26656",
+          "provider": "bitcanna"
+        },
+        {
+          "id": "23671067d0fd40aec523290585c7d8e91034a771",
+          "address": "seed2.bitcanna.io:26656",
+          "provider": "bitcanna"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "7b2d10d188926ea25eb209f037fe4e67e16e06b6",
+          "address": "92.222.25.18:26656",
+          "provider": "StakeLab"
+        },
+        {
+          "id": "5eb75c20a77ccf960df396b187b86d6324b40123",
+          "address": "51.68.226.61:26656",
+          "provider": "StakeLab"
+        },
+        {
+          "id": "6bd989f063b89be680fb3c55c4cf1720a892b12c",
+          "address": "161.97.96.253:26656",
+          "provider": "StakeLab"
+        },
+        {
+          "id": "3cdfe02efd4432280707d2949e064a9d8db412b3",
+          "address": "178.62.98.158:26656",
+          "provider": "Stakely"
+        },
+        {
+          "id": "d806bb39349751c142627a547c23c586a787ef26",
+          "address": "138.68.78.210:26656",
+          "provider": "Stakely"
+        },
+        {
+          "id": "ddb620e7c7a6b5a8a53352037cde927681012ab4",
+          "address": "65.21.229.209:37656",
+          "provider": "Blockscope"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.bitcanna.io/",
+          "provider": "bitcanna"
+        },
+        {
+          "address": "https://rpc-bitcanna.itastakers.com/",
+          "provider": "itastaker"
+        }
+      ],
+      "grpc": [
+        {
+          "address": "https://grpc.bitcanna.io",
+          "provider": "bitcanna"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd.bitcanna.io",
+          "provider": "bitcanna"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "forbole",
+        "url": "https://cosmos-explorer.bitcanna.io",
+        "tx_page": "https://cosmos-explorer.bitcanna.io/transactions/${txHash}"
+      },
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/bitcanna/",
+        "tx_page": "https://www.mintscan.io/bitcanna/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "bitsong",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "BitSong",
+    "chain_id": "bitsong-2b",
+    "bech32_prefix": "bitsong",
+    "slip44": 639,
+    "daemon_name": "bitsongd",
+    "node_home": "$HOME/.bitsongd",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/bitsongofficial/networks/master/bitsong-2b/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/bitsongofficial/go-bitsong",
+      "recommended_version": "v0.8.0",
+      "compatible_versions": [
+        "v0.8.0"
+      ]
+    },
+    "peers": {
+      "persistent_peers": [
+        {
+          "id": "a62038142844828483dbf16fa6dd159f6857c81b",
+          "address": "173.212.247.98:26656"
+        },
+        {
+          "id": "e9fea0509b1a2d16a10ef9fdea0a4e3edc7ca485",
+          "address": "185.144.83.158:26656"
+        },
+        {
+          "id": "8208adac8b09f3e2499dfaef24bb89a2d190a7a3",
+          "address": "164.68.109.246:26656"
+        },
+        {
+          "id": "cf031ac1cf44c9c311b5967712899391a434da9a",
+          "address": "161.97.97.61:26656"
+        },
+        {
+          "id": "d6b2ae82c38927fa7b7630346bd84772e632983a",
+          "address": "157.90.95.104:15631"
+        },
+        {
+          "id": "a5885669c1f7860bfe28071a7ec00cc45b2fcbc3",
+          "address": "144.91.85.56:26656"
+        },
+        {
+          "id": "325a5920a614e2375fea90f8a08d8b8d612fdd1e",
+          "address": "137.74.18.30:26656"
+        },
+        {
+          "id": "ae2787a337c3599b16410f3ac09d6918da2e5c37",
+          "address": "46.101.238.149:26656"
+        },
+        {
+          "id": "9336f75cd99ff6e5cdb6335e8d1a2c91b81d84b9",
+          "address": "65.21.0.232:26656"
+        },
+        {
+          "id": "9c6e52e78f112a55146b09110d1d1be47702df27",
+          "address": "135.181.211.184:36656"
+        }
+      ],
+      "seeds": [
+        {
+          "id": "ffa27441ca78a5d41a36f6d505b67a145fd54d8a",
+          "address": "95.217.156.228:26656"
+        },
+        {
+          "id": "efd52c1e56b460b1f37d73c8d2bd5f860b41d2ba",
+          "address": "65.21.62.83:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-bitsong.itastakers.com",
+          "provider": "itastakers"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd-bitsong.itastakers.com",
+          "provider": "itastakers"
+        }
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "bostrom",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "bostrom",
+    "chain_id": "bostrom",
+    "bech32_prefix": "bostrom",
+    "daemon_name": "cyber",
+    "node_home": "$HOME/.cyber",
+    "genesis": {
+      "genesis_url": "https://cloudflare-ipfs.com/ipfs/QmYubyVNfghD4xCrTFj26zBwrF9s5GJhi1TmxvrwmJCipr"
+    },
+    "slip44": 118,
+    "codebase": {
+      "git_repo": "https://github.com/cybercongress/go-cyber",
+      "recommended_version": "v0.2.0",
+      "compatible_versions": [
+        "v0.2.0"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/cybercongress/go-cyber/releases/download/v0.2.0/cyber_v0.2.0_linux-amd64.tar.gz",
+        "darwin/amd64": "https://github.com/cybercongress/go-cyber/releases/download/v0.2.0/cyber_v0.2.0_darwin-amd64.tar.gz"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "d0518ce9881a4b0c5872e5e9b7c4ea8d760dad3f",
+          "address": "85.10.207.173:26656",
+          "provider": "cybercongress"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "5d542c0eb40ae48dc2cac0c140aedb605ded77dc",
+          "address": "195.201.105.229:26656"
+        },
+        {
+          "id": "c72de1e20beed51b779d89b1cf08d8146016eec4",
+          "address": "185.186.208.37:26656"
+        },
+        {
+          "id": "4c130ed1c58f6d6be981c59a748511e581969c51",
+          "address": "93.180.175.201:36656"
+        },
+        {
+          "id": "df79a86dc236b8dff250c402e95cd6853e8ad7c4",
+          "address": "46.166.165.4:26656"
+        },
+        {
+          "id": "39a20a7d84c6e91c6638f5a685a13f655e050ee0",
+          "address": "176.37.214.146:26656"
+        },
+        {
+          "id": "77d27615009fc703ece46901792cc8750cccd0de",
+          "address": "185.230.90.71:26656"
+        },
+        {
+          "id": "dd22cffccafaece970cfa9e7eb3c8468f6fa1c84",
+          "address": "46.166.165.14:26656"
+        },
+        {
+          "id": "5e8522bef5ceca507e05aa0d5f67f37a70222c73",
+          "address": "185.230.90.202:26656"
+        },
+        {
+          "id": "55937c36959ea3984cc6e6ebd3354d73bbbdbcda",
+          "address": "95.165.24.115:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.bostrom.cybernode.ai",
+          "provider": "cybercongress"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd.bostrom.cybernode.ai",
+          "provider": "cybercongress"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "cyb",
+        "url": "https://cyb.ai/",
+        "tx_page": "https://cyb.ai/network/bostrom/tx/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "cheqd",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "cheqd",
+    "chain_id": "cheqd-mainnet-1",
+    "bech32_prefix": "cheqd",
+    "daemon_name": "cheqd-noded",
+    "node_home": "$HOME/.cheqdnode",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/cheqd/cheqd-node/main/persistent_chains/mainnet/genesis.json"
+    },
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "ncheq",
+          "fixed_min_gas_price": 0
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/cheqd/cheqd-node",
+      "recommended_version": "v0.3.1",
+      "compatible_versions": [
+        "v0.3.1"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/cheqd/cheqd-node/releases/download/v0.3.1/cheqd-node_0.3.1_amd64.deb"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "258a9bfb822637bfca87daaab6181c10e7fd0910",
+          "address": "seed1.eu.cheqd.net:26656",
+          "provider": "cheqd"
+        },
+        {
+          "id": "f565ff792b20977face9817df6acb268d41d4092",
+          "address": "seed2.eu.cheqd.net:26656",
+          "provider": "cheqd"
+        },
+        {
+          "id": "388947cc7d901c5c06fedc4c26751634564d68e6",
+          "address": "seed3.eu.cheqd.net:26656",
+          "provider": "cheqd"
+        },
+        {
+          "id": "9b30307a2a2819790d68c04bb62f5cf4028f447e",
+          "address": "seed1.ap.cheqd.net:26656",
+          "provider": "cheqd"
+        },
+        {
+          "id": "debcb3fa7d40e681d98bcc7d22278fd58a34b73a",
+          "address": "144.76.183.180:1234",
+          "provider": "notional"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "d1ebb60825e2c29181b499f93493dd440fb87997",
+          "address": "sentry1.eu.cheqd.net:26656",
+          "provider": "cheqd"
+        },
+        {
+          "id": "513d334bb044296796939e57b522fef7fd4b9c6c",
+          "address": "sentry2.eu.cheqd.net:26656",
+          "provider": "cheqd"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.cheqd.net",
+          "provider": "cheqd"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://api.cheqd.net",
+          "provider": "cheqd"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "bigdipper",
+        "url": "https://explorer.cheqd.io/",
+        "tx_page": "https://explorer.cheqd.io/transactions/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "chihuahua",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Chihuahua",
+    "chain_id": "chihuahua-1",
+    "bech32_prefix": "chihuahua",
+    "daemon_name": "chihuahuad",
+    "node_home": "$HOME/.chihuahua",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/ChihuahuaChain/mainnet/main/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/ChihuahuaChain/chihuahua/",
+      "recommended_version": "v1.0.0",
+      "compatible_versions": [
+        "v1.0.0"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "4936e377b4d4f17048f8961838a5035a4d21240c",
+          "address": "chihuahua-seed-01.mercury-nodes.net:29540"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "b140eb36b20f3d201936c4757d5a1dcbf03a42f1",
+          "address": "216.238.79.138:26656",
+          "provider": "artifact"
+        },
+        {
+          "id": "19900e1d2b10be9c6672dae7abd1827c8e1aad1e",
+          "address": "161.97.96.253:26656",
+          "provider": "StakeLab"
+        },
+        {
+          "id": "c382a9a0d4c0606d785d2c7c2673a0825f7c53b2",
+          "address": "88.99.94.120:26656",
+          "provider": "Chihuahua"
+        },
+        {
+          "id": "a5dfb048e4ed5c3b7d246aea317ab302426b37a1",
+          "address": "137.184.250.180:26656",
+          "provider": "CHILL"
+        },
+        {
+          "id": "3bad0326026ca4e29c64c8d206c90a968f38edbe",
+          "address": "128.199.165.78:26656",
+          "provider": "KingNodes"
+        },
+        {
+          "id": "89b576c3eb72a4f0c66dc0899bec7c21552ea2a5",
+          "address": "23.88.7.73:29538",
+          "provider": "Mercury"
+        },
+        {
+          "id": "38547b7b6868f93af1664d9ab0e718949b8853ec",
+          "address": "54.184.20.240:30758",
+          "provider": "0base.vc"
+        },
+        {
+          "id": "a9640eb569620d1f7be018a9e1919b0357a18b8c",
+          "address": "38.146.3.160:26656",
+          "provider": "RHINO"
+        },
+        {
+          "id": "7e2239a0d4a0176fe4daf7a3fecd15ac663a8eb6",
+          "address": "144.91.126.23:26656",
+          "provider": "LavenderFive"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.chihuahua.wtf/",
+          "provider": "Chihuahua"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://api.chihuahua.wtf/",
+          "provider": "Chihuahua"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "ping.pub",
+        "url": "https://ping.pub/chihuahua",
+        "tx_page": "https://ping.pub/chihuahua/tx/${txHash}"
+      },
+      {
+        "kind": "mintscan",
+        "url": "https://mintscan.io/chihuahua",
+        "tx_page": "https://mintscan.io/chihuahua/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "comdex",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Comdex",
+    "chain_id": "comdex-1",
+    "bech32_prefix": "comdex",
+    "slip44": 118,
+    "genesis": {
+      "genesis_url": "https://comdex-mainnet-genesis.s3.ap-southeast-1.amazonaws.com/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/comdex-official/comdex",
+      "recommended_version": "v0.0.4",
+      "compatible_versions": [
+        "v0.0.4"
+      ]
+    },
+    "daemon_name": "comdex",
+    "node_home": "$HOME/.comdex",
+    "key_algos": [
+      "secp256k1"
+    ],
+    "peers": {
+      "seeds": [
+        {
+          "id": "aef35f45db2d9f5590baa088c27883ac3d5e0b33",
+          "address": "3.108.102.92:26656"
+        },
+        {
+          "id": "7ca14a1d156299999eba9c394ca060368022d52f",
+          "address": "54.194.178.110:26656"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "f74518ad134630da8d2405570f6a3639954c985f",
+          "address": "65.0.173.217:26656"
+        },
+        {
+          "id": "d478882a80674fa10a32da63cc20cae13e3a2a57",
+          "address": "43.204.0.243:26656"
+        },
+        {
+          "id": "61d743ea796ad1e1ff838c9e84adb38dfffd1d9d",
+          "address": "15.235.9.222:26656"
+        },
+        {
+          "id": "b8468f64788a17dbf34a891d9cd29d54b2b6485d",
+          "address": "194.163.178.25:26656"
+        },
+        {
+          "id": "d8b74791ee56f1b345d822f62bd9bc969668d8df",
+          "address": "194.163.128.55:36656"
+        },
+        {
+          "id": "81444353d70bab79742b8da447a9564583ed3d6a",
+          "address": "164.68.105.248:26656"
+        },
+        {
+          "id": "5b1ceb8110da4e90c38c794d574eb9418a7574d6",
+          "address": "43.254.41.56:26656"
+        },
+        {
+          "id": "98b4522a541a69007d87141184f146a8f04be5b9",
+          "address": "40.112.90.170:26656"
+        },
+        {
+          "id": "9a59b6dc59903d036dd476de26e8d2b9f1acf466",
+          "address": "195.201.195.111:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://api.comdex.audit.one/rpc",
+          "provider": "audit"
+        },
+        {
+          "address": "https://rpc.comdex.one",
+          "provider": "comdex"
+        },
+        {
+          "address": "http://comdex.node.vitwit.com:26657/",
+          "provider": "vitwit"
+        },
+        {
+          "address": "https://rpc-comdex.zenchainlabs.io/",
+          "provider": "zenchainlabs"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://api.comdex.audit.one/rest",
+          "provider": "audit"
+        },
+        {
+          "address": "https://rest.comdex.one",
+          "provider": "comdex"
+        },
+        {
+          "address": "http://comdex.node.vitwit.com:1317/",
+          "provider": "vitwit"
+        },
+        {
+          "address": "https://api-comdex.zenchainlabs.io/",
+          "provider": "zenchainlabs"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/comdex",
+        "tx_page": "https://www.mintscan.io/comdex/txs/${txHash}"
+      },
+      {
+        "kind": "aneka",
+        "url": "https://comdex.aneka.io/",
+        "tx_page": "https://comdex.aneka.io/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "cosmoshub",
+    "chain_id": "cosmoshub-4",
+    "pretty_name": "Cosmos Hub",
+    "status": "live",
+    "network_type": "mainnet",
+    "bech32_prefix": "cosmos",
+    "genesis": {
+      "genesis_url": "https://github.com/cosmos/mainnet/raw/master/genesis.cosmoshub-4.json.gz"
+    },
+    "daemon_name": "gaiad",
+    "node_home": "$HOME/.gaia",
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "uatom",
+          "fixed_min_gas_price": 0
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/cosmos/gaia",
+      "recommended_version": "v6.0.0",
+      "compatible_versions": [
+        "v6.0.0"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/cosmos/gaia/releases/download/v6.0.0/gaiad-v6.0.0-linux-amd64",
+        "linux/arm64": "https://github.com/cosmos/gaia/releases/download/v6.0.0/gaiad-v6.0.0-linux-arm64",
+        "darwin/amd64": "https://github.com/cosmos/gaia/releases/download/v6.0.0/gaiad-v6.0.0-darwin-amd64",
+        "windows/amd64": "https://github.com/cosmos/gaia/releases/download/v6.0.0/gaiad-v6.0.0-windows-amd64.exe"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "bf8328b66dceb4987e5cd94430af66045e59899f",
+          "address": "public-seed.cosmos.vitwit.com:26656",
+          "provider": "vitwit"
+        },
+        {
+          "id": "cfd785a4224c7940e9a10f6c1ab24c343e923bec",
+          "address": "164.68.107.188:26656"
+        },
+        {
+          "id": "d72b3011ed46d783e369fdf8ae2055b99a1e5074",
+          "address": "173.249.50.25:26656"
+        },
+        {
+          "id": "ba3bacc714817218562f743178228f23678b2873",
+          "address": "public-seed-node.cosmoshub.certus.one:26656",
+          "provider": "certusone"
+        },
+        {
+          "id": "3c7cad4154967a294b3ba1cc752e40e8779640ad",
+          "address": "84.201.128.115:26656"
+        },
+        {
+          "id": "366ac852255c3ac8de17e11ae9ec814b8c68bddb",
+          "address": "51.15.94.196:26656"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "ee27245d88c632a556cf72cc7f3587380c09b469",
+          "address": "45.79.249.253:26656"
+        },
+        {
+          "id": "538ebe0086f0f5e9ca922dae0462cc87e22f0a50",
+          "address": "34.122.34.67:26656"
+        },
+        {
+          "id": "d3209b9f88eec64f10555a11ecbf797bb0fa29f4",
+          "address": "34.125.169.233:26656"
+        },
+        {
+          "id": "bdc2c3d410ca7731411b7e46a252012323fbbf37",
+          "address": "34.83.209.166:26656"
+        },
+        {
+          "id": "585794737e6b318957088e645e17c0669f3b11fc",
+          "address": "54.160.123.34:26656"
+        },
+        {
+          "id": "11dfe200894f38e411beca77928e9dd118e66813",
+          "address": "94.130.98.157:26656"
+        },
+        {
+          "id": "5b4ed476e01c49b23851258d867cc0cfc0c10e58",
+          "address": "206.189.4.227:26656"
+        },
+        {
+          "id": "654f47a762c8f9257aef4a44c1fb5014916d8b20",
+          "address": "99.79.60.15:26656"
+        },
+        {
+          "id": "366ac852255c3ac8de17e11ae9ec814b8c68bddb",
+          "address": "51.15.94.196:26656"
+        },
+        {
+          "id": "d6318b3bd51a5e2b8ed08f2e520d50289ed32bf1",
+          "address": "52.79.43.100:26656"
+        },
+        {
+          "id": "1bfda3d59e70290a3dada9bb809dd954371850d3",
+          "address": "54.180.225.240:26656"
+        },
+        {
+          "id": "6ee94c2093505e8790442c054e6e1e0211d36583",
+          "address": "44.239.140.195:26656"
+        },
+        {
+          "id": "ec779a2741da6dd2ccdaa6dfc0bebb10e595dfa4",
+          "address": "50.18.113.67:26656"
+        },
+        {
+          "id": "cfd785a4224c7940e9a10f6c1ab24c343e923bec",
+          "address": "164.68.107.188:26656"
+        },
+        {
+          "id": "d72b3011ed46d783e369fdf8ae2055b99a1e5074",
+          "address": "173.249.50.25:26656"
+        },
+        {
+          "id": "047f723806ee702b211e7227f89eacd829aabd86",
+          "address": "52.9.212.125:26656"
+        },
+        {
+          "id": "b0e746acb6fbed7a0311fe21cfb2ee94581ca3bc",
+          "address": "51.79.21.187:26656"
+        },
+        {
+          "id": "82772547c4575c18dfe6e75aafe521cf7d4dc8de",
+          "address": "142.93.157.186:26656"
+        },
+        {
+          "id": "3c7cad4154967a294b3ba1cc752e40e8779640ad",
+          "address": "84.201.128.115:26656"
+        },
+        {
+          "id": "f122129f53b7c584df6cee77716dcc636d5c5e18",
+          "address": "167.172.59.196:26656"
+        },
+        {
+          "id": "241b17dba97a2ed3c3747d12781fb86c9706e2d4",
+          "address": "95.179.136.131:26656"
+        },
+        {
+          "id": "f1b16c603f3a0e59f0ce5179dc80f549a7ecd0e2",
+          "address": "sentries.us-east1.iqext.net:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-cosmoshub.keplr.app",
+          "provider": "chainapsis"
+        },
+        {
+          "address": "https://cosmoshub.validator.network/",
+          "provider": "validatornetwork"
+        },
+        {
+          "address": "https://cosmoshub-4.technofractal.com:443",
+          "provider": "strangelove-ventures"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd-cosmoshub.keplr.app",
+          "provider": "chainapsis"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/cosmos",
+        "tx_page": "https://www.mintscan.io/cosmos/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "cryptoorgchain",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Crypto.org",
+    "chain_id": "crypto-org-chain-mainnet-1",
+    "bech32_prefix": "cro",
+    "node_home": "$HOME/.chain-maind",
+    "genesis": {
+      "genesis_url": "https://github.com/crypto-org-chain/mainnet/raw/main/crypto-org-chain-mainnet-1/genesis.json"
+    },
+    "slip44": 394,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "basecro"
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/crypto-org-chain/chain-main",
+      "recommended_version": "v3.3.3",
+      "compatible_versions": [
+        "v3.3.3"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Linux_x86_64.tar.gz",
+        "linux/arm64": "https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Linux_arm64.tar.gz",
+        "darwin/amd64": "https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Darwin_x86_64.tar.gz",
+        "darwin/arm64": "https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Darwin_arm64.tar.gz",
+        "windows/amd64": "https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Windows_x86_64.zip"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "87c3adb7d8f649c51eebe0d3335d8f9e28c362f2",
+          "address": "seed-0.crypto.org:26656",
+          "provider": "crypto-org"
+        },
+        {
+          "id": "e1d7ff02b78044795371beb1cd5fb803f9389256",
+          "address": "seed-1.crypto.org:26656",
+          "provider": "crypto-org"
+        },
+        {
+          "id": "2c55809558a4e491e9995962e10c026eb9014655",
+          "address": "seed-2.crypto.org:26656",
+          "provider": "crypto-org"
+        },
+        {
+          "id": "8dc1863d1d23cf9ad7cbea215c19bcbe8bf39702",
+          "address": "p2p.baaa7e56-cc71-4ae4-b4b3-c6a9d4a9596a.cryptodotorg.bison.run:26656",
+          "provider": "bison-trails"
+        },
+        {
+          "id": "8a7922f3fb3fb4cfe8cb57281b9d159ca7fd29c6",
+          "address": "p2p.aef59b2a-d77e-4922-817a-d1eea614aef4.cryptodotorg.bison.run:26656",
+          "provider": "bison-trails"
+        },
+        {
+          "id": "494d860a2869b90c458b07d4da890539272785c9",
+          "address": "p2p.fabc23d9-e0a1-4ced-8cd7-eb3efd6d9ef3.cryptodotorg.bison.run:26656",
+          "provider": "bison-trails"
+        },
+        {
+          "id": "dc2540dabadb8302da988c95a3c872191061aed2",
+          "address": "p2p.7d1b53c0-b86b-44c8-8c02-e3b0e88a4bf7.cryptodotorg.herd.run:26656",
+          "provider": "bison-trails"
+        },
+        {
+          "id": "33b15c14f54f71a4a923ac264761eb3209784cf2",
+          "address": "p2p.0d20d4b3-6890-4f00-b9f3-596ad3df6533.cryptodotorg.herd.run:26656",
+          "provider": "bison-trails"
+        },
+        {
+          "id": "d2862ef8f86f9976daa0c6f59455b2b1452dc53b",
+          "address": "p2p.a088961f-5dfd-4007-a15c-3a706d4be2c0.cryptodotorg.herd.run:26656",
+          "provider": "bison-trails"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "87c3adb7d8f649c51eebe0d3335d8f9e28c362f2",
+          "address": "seed-0.crypto.org:26656",
+          "provider": "crypto-org"
+        },
+        {
+          "id": "e1d7ff02b78044795371beb1cd5fb803f9389256",
+          "address": "seed-1.crypto.org:26656",
+          "provider": "crypto-org"
+        },
+        {
+          "id": "2c55809558a4e491e9995962e10c026eb9014655",
+          "address": "seed-2.crypto.org:26656",
+          "provider": "crypto-org"
+        },
+        {
+          "id": "8dc1863d1d23cf9ad7cbea215c19bcbe8bf39702",
+          "address": "p2p.baaa7e56-cc71-4ae4-b4b3-c6a9d4a9596a.cryptodotorg.bison.run:26656",
+          "provider": "bison-trails"
+        },
+        {
+          "id": "8a7922f3fb3fb4cfe8cb57281b9d159ca7fd29c6",
+          "address": "p2p.aef59b2a-d77e-4922-817a-d1eea614aef4.cryptodotorg.bison.run:26656",
+          "provider": "bison-trails"
+        },
+        {
+          "id": "d2862ef8f86f9976daa0c6f59455b2b1452dc53b",
+          "address": "p2p.a088961f-5dfd-4007-a15c-3a706d4be2c0.cryptodotorg.herd.run:26656",
+          "provider": "bison-trails"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://mainnet.crypto.org/",
+          "provider": "crypto.org"
+        },
+        {
+          "address": "https://rpc-crypto-org.keplr.app/",
+          "provider": "chainapsis"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://mainnet.crypto.org/",
+          "provider": "crypto.org"
+        },
+        {
+          "address": "https://lcd-crypto-org.keplr.app/",
+          "provider": "chainapsis"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/crypto-org",
+        "tx_page": "https://www.mintscan.io/crypto-org/txs/${txHash}"
+      },
+      {
+        "kind": "crypto.org",
+        "url": "https://crypto.org/explorer",
+        "tx_page": "https://crypto.org/explorer/tx/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "desmos",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Desmos",
+    "chain_id": "desmos-mainnet",
+    "bech32_prefix": "desmos",
+    "daemon_name": "desmos",
+    "node_home": "$HOME/.desmos",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/desmos-labs/mainnet/main/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 852,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "udsm",
+          "fixed_min_gas_price": 0.001
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/desmos-labs/desmos",
+      "recommended_version": "v2.3.1",
+      "compatible_versions": [
+        "v2.3.1"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/desmos-labs/desmos/releases/download/v2.3.1/desmos-2.3.1-linux-amd64",
+        "linux/arm64": "https://github.com/desmos-labs/desmos/releases/download/v2.3.1/desmos-2.3.1-linux-arm64",
+        "darwin/amd64": "https://github.com/desmos-labs/desmos/releases/download/v2.3.1/desmos-2.3.1-darwin-amd64",
+        "windows/amd64": "https://github.com/desmos-labs/desmos/releases/download/v2.3.1/desmos-2.3.1-windows-amd64.exe"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "9bde6ab4e0e00f721cc3f5b4b35f3a0e8979fab5",
+          "address": "seed-1.mainnet.desmos.network:26656",
+          "provider": "desmos"
+        },
+        {
+          "id": "5c86915026093f9a2f81e5910107cf14676b48fc",
+          "address": "seed-2.mainnet.desmos.network:26656",
+          "provider": "desmos"
+        },
+        {
+          "id": "45105c7241068904bdf5a32c86ee45979794637f",
+          "address": "seed-3.mainnet.desmos.network:26656",
+          "provider": "desmos"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.mainnet.desmos.network",
+          "provider": "desmos"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://api.mainnet.desmos.network",
+          "provider": "desmos"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "big-dipper",
+        "url": "https://explorer.desmos.network",
+        "tx_page": "https://explorer.desmos.network/transactions/${txHash}"
+      },
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/desmos",
+        "tx_page": "https://www.mintscan.io/desmos/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "dig",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Dig Chain",
+    "chain_id": "dig-1",
+    "bech32_prefix": "dig",
+    "daemon_name": "digd",
+    "node_home": "$HOME/.dig",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/notional-labs/dig/master/networks/mainnets/dig-1/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1",
+      "ethsecp256k1"
+    ],
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "udig"
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/notional-labs/dig",
+      "recommended_version": "v1.0.0",
+      "compatible_versions": [
+        "v1.0.0"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "37b2839da4463b22a51b1fe20d97992164270eba",
+          "address": "62.171.157.192:26656"
+        },
+        {
+          "id": "e2c96b96d4c3a461fb246edac3b3cdbf47768838",
+          "address": "65.21.202.37:6969"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "33f4788e1c6a378b929c66f31e8d253b9fd47c47",
+          "address": "194.163.154.251:26656"
+        },
+        {
+          "id": "64eccffdc60a206227032d3a021fbf9dfc686a17",
+          "address": "194.163.156.84:26656"
+        },
+        {
+          "id": "be7598b2d56fb42a27821259ad14aff24c40f3d2",
+          "address": "172.16.152.118:26656"
+        },
+        {
+          "id": "f446e37e47297ce9f8951957d17a2ae9a16db0b8",
+          "address": "137.184.67.162:26656"
+        },
+        {
+          "id": "ab2fa2789f481e2856a5d83a2c3028c5b215421d",
+          "address": "144.91.117.49:26656"
+        },
+        {
+          "id": "e9e89250b40b4512237c77bd04dc76c06a3f8560",
+          "address": "185.214.135.205:26656"
+        },
+        {
+          "id": "1539976f4ee196f172369e6f348d60a6e3ec9e93",
+          "address": "159.69.147.189:26656"
+        },
+        {
+          "id": "85316823bee88f7b05d0cfc671bee861c0237154",
+          "address": "95.217.198.243:26656"
+        },
+        {
+          "id": "eb55b70c9fd8fc0d5530d0662336377668aab3f9",
+          "address": "185.194.219.128:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-1-dig.notional.ventures"
+        },
+        {
+          "address": "https://rpc-2-dig.notional.ventures"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://api-1-dig.notional.ventures"
+        },
+        {
+          "address": "https://api-2-dig.notional.ventures"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "ping.pub",
+        "url": "https://ping.pub/dig",
+        "tx_page": "https://ping.pub/dig/tx/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "emoney",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "e-Money",
+    "chain_id": "emoney-3",
+    "bech32_prefix": "emoney",
+    "daemon_name": "emd",
+    "node_home": "$HOME/.emd",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/e-money/networks/master/emoney-3/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "ungm"
+        },
+        {
+          "denom": "eeur"
+        },
+        {
+          "denom": "echf"
+        },
+        {
+          "denom": "edkk"
+        },
+        {
+          "denom": "enok"
+        },
+        {
+          "denom": "esek"
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/e-money/em-ledger",
+      "recommended_version": "v1.1.3",
+      "compatible_versions": [
+        "v1.1.3"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "708e559271d4d75d7ea2c3842e87d2e71a465684",
+          "address": "seed-1.emoney.validator.network:28656",
+          "provider": "validator.network"
+        },
+        {
+          "id": "336cdb655ea16413a8337e730683ddc0a24af9de",
+          "address": "seed-2.emoney.validator.network:28656",
+          "provider": "validator.network"
+        },
+        {
+          "id": "ecec8933d80da5fccda6bdd72befe7e064279fc1",
+          "address": "207.180.213.123:26676",
+          "provider": "easy2stake"
+        },
+        {
+          "id": "0ad7bc7687112e212bac404670aa24cd6116d097",
+          "address": "50.18.83.75:26656",
+          "provider": "B-Harvest"
+        },
+        {
+          "id": "1723e34f45f54584f44d193ce9fd9c65271ca0b3",
+          "address": "13.124.62.83:26656",
+          "provider": "B-Harvest"
+        },
+        {
+          "id": "34eca4a9142bf9c087a987b572c114dad67a8cc5",
+          "address": "172.105.148.191:26656",
+          "provider": "Cat Boss"
+        },
+        {
+          "id": "0b186517e4d82eb4c000a567e486b7b96bf19752",
+          "address": "44.195.95.22:26656",
+          "provider": "Cat Boss"
+        },
+        {
+          "id": "0b186517e4d82eb4c000a567e486b7b96bf19752",
+          "address": "44.195.95.22:26656",
+          "provider": "Mr K"
+        },
+        {
+          "id": "eed66085c975189e3d498fe61af2fcfb3da34924",
+          "address": "217.79.184.40:26656",
+          "provider": "MissionControl"
+        },
+        {
+          "id": "226d713acb10a1cd09b3b890406b886d7b071cf2",
+          "address": "10.105.2.101:26656",
+          "provider": "ATEAM"
+        },
+        {
+          "id": "552cb87c40f879c8c41005eeb36030502671e7a4",
+          "address": "18.156.91.213:26656",
+          "provider": "ATEAM"
+        },
+        {
+          "id": "170255a4a9b120786d2d6c3931ebf0125087cca0",
+          "address": "62.171.171.139:26656",
+          "provider": "KalpaTech"
+        },
+        {
+          "id": "d12ac664ff9766e0535c836173111e3eed462e79",
+          "address": "185.144.83.157:26656",
+          "provider": "Inotel"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-emoney.keplr.app",
+          "provider": "chainapsis"
+        },
+        {
+          "address": "https://emoney.validator.network",
+          "provider": "e-Money"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd-emoney.keplr.app",
+          "provider": "chainapsis"
+        },
+        {
+          "address": "https://emoney.validator.network/api/",
+          "provider": "e-Money"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "bigdipper",
+        "url": "https://emoney.bigdipper.live/",
+        "tx_page": "https://emoney.bigdipper.live/transactions/${txHash}"
+      },
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/emoney",
+        "tx_page": "https://www.mintscan.io/emoney/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "fetchhub",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Fetch Hub",
+    "chain_id": "fetchhub-2",
+    "bech32_prefix": "fetch",
+    "daemon_name": "fetchd",
+    "node_home": "$HOME/.fetchd",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/fetchai/genesis-fetchhub/14c62009a35486b233fcb3de48f3dcd006dab240/data/genesis.json"
+    },
+    "slip44": 118,
+    "codebase": {
+      "git_repo": "https://github.com/fetchai/fetchd",
+      "recommended_version": "v0.8.7",
+      "compatible_versions": [
+        "v0.8.7"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "c240ca38b990a7d3f25621eb848d0222d5b50278",
+          "address": "connect-fetchhub.fetch.ai:36656",
+          "provider": "fetch.ai"
+        },
+        {
+          "id": "3e19e092c5ddd19a6aa8ba87fa8a37566d4f7f38",
+          "address": "connect-fetchhub.fetch.ai:36657",
+          "provider": "fetch.ai"
+        },
+        {
+          "id": "b75b1ed0a1257e99d41b48d0704a605854d80514",
+          "address": "connect-fetchhub.fetch.ai:36658",
+          "provider": "fetch.ai"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "d70030b25de2317e7d6bad482d4cb186c72a5e39",
+          "address": "sentries-fetchhub.fetch.ai:36600",
+          "provider": "fetch.ai"
+        },
+        {
+          "id": "42f2879b8feec50937234a20a54a87d5c350d680",
+          "address": "sentries-fetchhub.fetch.ai:36601",
+          "provider": "fetch.ai"
+        },
+        {
+          "id": "56f1049931e9ce9777180460fed912b708205ed5",
+          "address": "sentries-fetchhub.fetch.ai:36602",
+          "provider": "fetch.ai"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-fetchhub.fetch.ai:443",
+          "provider": "fetch.ai"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://rest-fetchhub.fetch.ai",
+          "provider": "fetch.ai"
+        }
+      ],
+      "grpc": [
+        {
+          "address": "https://grpc-fetchhub.fetch.ai:443",
+          "provider": "fetch.ai"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/fetchai",
+        "tx_page": "https://www.mintscan.io/fetchai/txs/${txHash}"
+      },
+      {
+        "kind": "bigdipper",
+        "url": "https://explore-fetchhub.fetch.ai",
+        "tx_page": "https://explore-fetchhub.fetch.ai/transactions/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "gravitybridge",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Gravity Bridge",
+    "chain_id": "gravity-bridge-2",
+    "bech32_prefix": "gravity",
+    "daemon_name": "gravity",
+    "node_home": "$HOME/.gravity",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/Gravity-Bridge/Gravity-Docs/main/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "ugraviton",
+          "fixed_min_gas_price": 0
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/Gravity-Bridge/Gravity-Bridge",
+      "recommended_version": "v1.2.1",
+      "compatible_versions": [
+        "v1.2.0",
+        "v1.2.1"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.2.1/gravity-linux-amd64",
+        "linux/arm64": "https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.2.1/gravity-linux-arm64",
+        "darwin/amd64": "https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.2.1/gravity-darwin-amd64",
+        "windows/amd64": "https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.2.1/gravity-windows-amd64.exe"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "2b089bfb4c7366efb402b48376a7209632380c9c",
+          "address": "65.19.136.133:26656",
+          "provider": "althea"
+        },
+        {
+          "id": "63e662f5e048d4902c7c7126291cf1fc17687e3c",
+          "address": "95.211.103.175:26656",
+          "provider": "amhost"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "21be3f7686c24f8bd9442b325a50f5b5227777a7",
+          "address": "202.61.231.15:26656",
+          "provider": "SkyNet"
+        },
+        {
+          "id": "9aa7e0c250466a2a147f8b7d2b886b0d45d44ca0",
+          "address": "45.138.49.222:26656",
+          "provider": "ps350"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://gravitychain.io:26657",
+          "provider": "althea"
+        },
+        {
+          "address": "http://gravity-rpc.qwoyn.com:26657",
+          "provider": "qwoyn"
+        },
+        {
+          "address": "gravity-bridge-1-08.nodes.amhost.net:26657",
+          "provider": "amhost"
+        },
+        {
+          "address": "45.138.49.222:26657",
+          "provider": "ps350"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://gravitychain.io:1317",
+          "provider": "althea"
+        },
+        {
+          "address": "http://gravity-rpc.qwoyn.com:1317",
+          "provider": "qwoyn"
+        }
+      ],
+      "grpc": [
+        {
+          "address": "https://gravitychain.io:9090",
+          "provider": "althea"
+        },
+        {
+          "address": "gravity-bridge-1-08.nodes.amhost.net:9090",
+          "provider": "amhost"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/gravity-bridge",
+        "tx_page": "https://www.mintscan.io/gravity-bridge/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "impacthub",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Impact Hub",
+    "chain_id": "impacthub-3",
+    "bech32_prefix": "ixo",
+    "daemon_name": "ixod",
+    "node_home": "$HOME/.ixod",
+    "genesis": {
+      "genesis_url": "https://github.com/ixofoundation/genesis/raw/master/impacthub-3/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1",
+      "ed25519"
+    ],
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "uixo",
+          "fixed_min_gas_price": 0.025
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/ixofoundation/ixo-blockchain",
+      "recommended_version": "v1.6.0",
+      "compatible_versions": [
+        "v1.6.0"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v1.6.0/ixod-1.6.0-linux-amd64",
+        "linux/arm64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v1.6.0/ixod-1.6.0-linux-arm64",
+        "darwin/amd64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v1.6.0/ixod-1.6.0-darwin-amd64",
+        "windows/arm64": "https://github.com/ixofoundation/ixo-blockchain/releases/download/v1.6.0/ixod-1.6.0-windows-amd64.exe"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "36e4738c7efcf353d3048e5e6073406d045bae9d",
+          "address": "80.64.208.43:26656",
+          "provider": "simplyvc"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "cbe8c6a5a77f861db8edb1426b734f2cf1fa4020",
+          "address": "18.166.133.210:26656",
+          "provider": "shanzhaicity"
+        },
+        {
+          "id": "36e4738c7efcf353d3048e5e6073406d045bae9d",
+          "address": "80.64.208.43:26656",
+          "provider": "simplyvc"
+        },
+        {
+          "id": "f0d4546fa5e0c2d84a4244def186b9da3c12ba1a",
+          "address": "46.166.138.214:26656",
+          "provider": "ixoworld"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-impacthub.keplr.app",
+          "provider": "chainapsis"
+        },
+        {
+          "address": "https://proxies.sifchain.finance/api/impacthub-3/rpc",
+          "provider": "sifchain"
+        },
+        {
+          "address": "http://18.220.101.192:26657/",
+          "provider": "regen"
+        },
+        {
+          "address": "https://impacthub.ixo.world/rpc/",
+          "provider": "ixoworld"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd-impacthub.keplr.app",
+          "provider": "chainapsis"
+        },
+        {
+          "address": "https://proxies.sifchain.finance/api/impacthub-3/rest",
+          "provider": "sifchain"
+        },
+        {
+          "address": "http://18.220.101.192:1317/",
+          "provider": "regen"
+        },
+        {
+          "address": "https://impacthub.ixo.world/rest/",
+          "provider": "ixoworld"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "bigdipper",
+        "url": "https://blockscan.ixo.world",
+        "tx_page": "https://blockscan.ixo.world/transactions/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "injective",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Injective",
+    "chain_id": "injective-1",
+    "bech32_prefix": "inj",
+    "slip44": 60,
+    "daemon_name": "injectived",
+    "node_home": "$HOME/.injectived",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/InjectiveLabs/mainnet-config/master/10001/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/InjectiveLabs/injective-chain-releases",
+      "recommended_version": "v1.1.1-1637059884",
+      "compatible_versions": [
+        "v1.1.1-1637059884"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/InjectiveLabs/injective-chain-releases/releases/download/v1.1.1-1637059884/linux-amd64.zip",
+        "darwin/amd64": "https://github.com/InjectiveLabs/injective-chain-releases/releases/download/v1.1.1-1637059884/darwin-amd64.zip"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "2ee7586d8e5a4a2020dafddf68efdfdaa3606cc3",
+          "address": "145.40.67.249:26656",
+          "provider": "injectiveprotocol"
+        },
+        {
+          "id": "7bb20f8e9fa73e34d0d21862528d5fba839eeb56",
+          "address": "145.40.73.39:26656",
+          "provider": "injectiveprotocol"
+        },
+        {
+          "id": "de25916e19083d44d67e0c336199b215523f1578",
+          "address": "145.40.68.223:26656",
+          "provider": "injectiveprotocol"
+        },
+        {
+          "id": "1a2ccd9c436eae54d6c767ad566c58dce78f8be2",
+          "address": "145.40.68.125:26656",
+          "provider": "injectiveprotocol"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "2ee7586d8e5a4a2020dafddf68efdfdaa3606cc3",
+          "address": "2ee7586d8e5a4a2020dafddf68efdfdaa3606cc3@145.40.67.249:26656",
+          "provider": "injectiveprotocol"
+        },
+        {
+          "id": "30e81e1b785eaf82d2260e932251c02c95787740",
+          "address": "30e81e1b785eaf82d2260e932251c02c95787740@86.109.11.215:26656",
+          "provider": "injectiveprotocol"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://public.api.injective.network",
+          "provider": "injectiveprotocol"
+        },
+        {
+          "address": "https://injective-rpc.api.chainlayer.network/",
+          "provider": "chainlayer"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://public.lcd.injective.network",
+          "provider": "injectiveprotocol"
+        },
+        {
+          "address": "https://injective-lcd.api.chainlayer.network/",
+          "provider": "chainlayer"
+        }
+      ],
+      "grpc": [
+        {
+          "address": "https://public.grpc.injective.network",
+          "provider": "injectiveprotocol"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "injectiveprotocol",
+        "url": "https://explorer.injective.network/",
+        "tx_page": "https://explorer.injective.network/transaction/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "irisnet",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Irisnet",
+    "chain_id": "irishub-1",
+    "bech32_prefix": "iris",
+    "daemon_name": "irisd",
+    "node_home": "$HOME/.irisd",
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 118,
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/irisnet/mainnet/master/config/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/irisnet/irishub",
+      "recommended_version": "v1.2.1",
+      "compatible_versions": [
+        "v1.2.1"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "6a6de770deaa4b8c061dffd82e9c7f4d40c2165d",
+          "address": "seed-1.mainnet.irisnet.org:26656"
+        },
+        {
+          "id": "a17d7923293203c64ba75723db4d5f28e642f469",
+          "address": "seed-2.mainnet.irisnet.org:26656"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "fdc0406afdd3acc63f74f5439e09104f663a7c1f",
+          "address": "44.241.177.178:26656",
+          "provider": "cosmostation"
+        },
+        {
+          "id": "090bcbe5302e6104821a96c4899912870db04cb9",
+          "address": "52.11.128.123:26656",
+          "provider": "cosmostation"
+        },
+        {
+          "id": "83b3f989f3ce089afdf733f8aa06e792d7e00c08",
+          "address": "3.34.6.30:26656",
+          "provider": "cosmostation"
+        },
+        {
+          "id": "87f18756b93d835c59fe5ce2a8da51858837eb5b",
+          "address": "54.180.15.28:26656",
+          "provider": "Node-A-Team"
+        },
+        {
+          "id": "90e48220190b16cad95145b6213d512d703e5617",
+          "address": "138.197.158.189:26656",
+          "provider": "Figment"
+        },
+        {
+          "id": "ebfb43ca1b592b5f8a1faf3e2aa1a34e8e1099cc",
+          "address": "iris01.dokia.cloud:26656",
+          "provider": "Dokia"
+        },
+        {
+          "id": "92fadc989ed29aee0d46afce3226f8565d1f36cb",
+          "address": "144.91.116.17:46656",
+          "provider": "syncnode"
+        },
+        {
+          "id": "4ac6200974d3fd80a8e49d145a2c254ed37a9b9a",
+          "address": "159.69.106.156:26656",
+          "provider": "P2P.ORG"
+        },
+        {
+          "id": "4e02a4b4f4350ea2b770cd03dc41fedcadb13176",
+          "address": "159.69.55.206:26656",
+          "provider": "P2P.ORG"
+        },
+        {
+          "id": "84cc32adca3986b35953886ad075431d318a98b5",
+          "address": "52.214.130.28:46656",
+          "provider": "stake.fish"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-iris.keplr.app",
+          "provider": "chainapsis"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd-iris.keplr.app",
+          "provider": "chainapsis"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/iris",
+        "tx_page": "https://www.mintscan.io/iris/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "juno",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Juno",
+    "chain_id": "juno-1",
+    "bech32_prefix": "juno",
+    "slip44": 118,
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-juno.itastakers.com",
+          "provider": "itastakers"
+        },
+        {
+          "address": "https://juno-1.technofractal.com:443",
+          "provider": "strangelove-ventures"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd-juno.itastakers.com",
+          "provider": "itastakers"
+        },
+        {
+          "address": "https://lcd.juno-1.technofractal.com/",
+          "provider": "strangelove-ventures"
+        }
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "kava",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Kava",
+    "chain_id": "kava-7",
+    "bech32_prefix": "kava",
+    "daemon_name": "kvd",
+    "node_home": "$HOME/.kvd",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/Kava-Labs/launch/master/kava-7/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/kava-Labs/kava/",
+      "recommended_version": "v0.14.1",
+      "compatible_versions": [
+        "v0.14.1"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "5c56fc779cd75c0c4d8225b8afe5259a076608dd",
+          "address": "18.206.28.123:26656"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "7827de7a17483f79a914f790cc8ca8431b2764d7",
+          "address": "3.221.174.66:26656"
+        },
+        {
+          "id": "1b5be4ece049083399e1d467c219c8978ed8d3ca",
+          "address": "3.217.223.43:26656"
+        },
+        {
+          "id": "e5d74b3f06226fb0798509e36021e81b7bce934d",
+          "address": "3.209.43.104:26656"
+        },
+        {
+          "id": "fb4a0dbe6947540bc94f4f2f11ce7c70b8fcffc9",
+          "address": "54.92.246.92:26656"
+        },
+        {
+          "id": "8b5c4a890c8ae7efbbe3360af71be1c3c3a9e12e",
+          "address": "121.78.241.68:46656"
+        },
+        {
+          "id": "1291ef230910953545fb3d83c4e989578da978a1",
+          "address": "35.157.56.248:26656"
+        },
+        {
+          "id": "06d11b66eac77ad7b149773cf974a595dd947398",
+          "address": "35.247.175.128:50056"
+        },
+        {
+          "id": "11f965df6fb3091e0fa3a1e4c129ff697939b827",
+          "address": "52.26.236.235:26656"
+        },
+        {
+          "id": "5a9de901ce9b6961f22cf829f4aefb66dff77d3a",
+          "address": "54.177.121.234:26656"
+        },
+        {
+          "id": "9084eab1fa9414abad5e41416482fe75f39b2071",
+          "address": "54.215.73.103:26656"
+        },
+        {
+          "id": "418cc8f69fa0212503dd5b2a9ac3ce0dd3b33e72",
+          "address": "13.209.245.58:26656"
+        },
+        {
+          "id": "f3a64f5d1a992d327a5d2b3282d7df294d787832",
+          "address": "173.212.197.110:26666"
+        },
+        {
+          "id": "1074a6f31d2c7df6e21ce0e574a5cb75f1763be1",
+          "address": "13.56.31.21:26656"
+        }
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "kichain",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Ki",
+    "chain_id": "kichain-2",
+    "bech32_prefix": "ki",
+    "daemon_name": "kid",
+    "node_home": "$HOME/.kid",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/KiFoundation/ki-networks/v0.1/Mainnet/kichain-2/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "uxki",
+          "fixed_min_gas_price": 0.025
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/KiFoundation/ki-tools",
+      "recommended_version": "2.0.1",
+      "compatible_versions": [
+        "2.0.1"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "24cbccfa8813accd0ebdb09e7cdb54cff2e8fcd9",
+          "address": "51.89.166.197:26656",
+          "provider": "kifoundation"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "81396d4703a2e3cbd136c7324e4df5686fd48218",
+          "address": "35.180.8.214:26656",
+          "provider": "kifoundation"
+        },
+        {
+          "id": "c597db55d9a609b8b77c3d37ecf1fa9a67117cc0",
+          "address": "144.217.82.4:26656",
+          "provider": "kifoundation"
+        },
+        {
+          "id": "50af457247b59aa558a26a14bd7ac4bf86eeae70",
+          "address": "195.201.164.223:26656",
+          "provider": "everstake"
+        },
+        {
+          "id": "81eef39d2ca9a07490857d197423da4ba5e01879",
+          "address": "15.188.134.35:26656",
+          "provider": "cosmostation"
+        },
+        {
+          "id": "5adb5ad6a6fcef624866cefdb551dafdc07f7e78",
+          "address": "15.188.198.188:26656",
+          "provider": "cosmostation"
+        },
+        {
+          "id": "41b321292cbe50c5c30017cc71c404481be0e20b",
+          "address": "3.38.12.5:26656",
+          "provider": "cosmostation"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-mainnet.blockchain.ki",
+          "provider": "kifoundation"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://api-mainnet.blockchain.ki",
+          "provider": "kifoundation"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/ki-chain",
+        "tx_page": "https://www.mintscan.io/ki-chain/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "darchub",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Konstellation Network",
+    "chain_id": "darchub",
+    "bech32_prefix": "darc",
+    "daemon_name": "knstld",
+    "node_home": "$HOME/.knstld",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/Konstellation/konstellation/master/config/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/konstellation/konstellation",
+      "recommended_version": "v0.4.3",
+      "compatible_versions": [
+        "v0.4.3",
+        "v0.4.2",
+        "v0.4.1"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "1bd4b89e05e5d7ea5d2dba89c799c2e624cb35d7",
+          "address": "node1.konstellation.tech:26656"
+        },
+        {
+          "id": "a32dda75cf5ffe4ab0ff9a0969e525807e01f2e5",
+          "address": "node2.konstellation.tech:26656"
+        },
+        {
+          "id": "06fed4bbe81ead6073a7254e860331179af74f4c",
+          "address": "node3.konstellation.tech:26656"
+        },
+        {
+          "id": "d4a713a657883cca49d71b1b2cab4ab5e94b0843",
+          "address": "node4.konstellation.tech:26656"
+        },
+        {
+          "id": "1c9aff1ea9d1cafd584aa61a70582e7c4b0c8675",
+          "address": "node5.konstellation.tech:26656"
+        },
+        {
+          "id": "0f4eef8db37ec7ef9f6d3324689db2847ee8f795",
+          "address": "node10.konstellation.tech:26656"
+        },
+        {
+          "id": "7e8119050ecb80450ad476b50423b9230c10c8d0",
+          "address": "node11.konstellation.tech:26656"
+        },
+        {
+          "id": "dbb7589202f6c751f2b93c6bbcd0e660676ab91c",
+          "address": "node12.konstellation.tech:26656"
+        },
+        {
+          "id": "f2c2ebec24507d54fea88976e9f93f0fbfa0d6d0",
+          "address": "node13.konstellation.tech:26656"
+        },
+        {
+          "id": "00f7f4506d84f9d1458201946e1194564b444ce0",
+          "address": "node14.konstellation.tech:26656"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "1bd4b89e05e5d7ea5d2dba89c799c2e624cb35d7",
+          "address": "node1.konstellation.tech:26656"
+        },
+        {
+          "id": "a32dda75cf5ffe4ab0ff9a0969e525807e01f2e5",
+          "address": "node2.konstellation.tech:26656"
+        },
+        {
+          "id": "06fed4bbe81ead6073a7254e860331179af74f4c",
+          "address": "node3.konstellation.tech:26656"
+        },
+        {
+          "id": "d4a713a657883cca49d71b1b2cab4ab5e94b0843",
+          "address": "node4.konstellation.tech:26656"
+        },
+        {
+          "id": "1c9aff1ea9d1cafd584aa61a70582e7c4b0c8675",
+          "address": "node5.konstellation.tech:26656"
+        },
+        {
+          "id": "0f4eef8db37ec7ef9f6d3324689db2847ee8f795",
+          "address": "node10.konstellation.tech:26656"
+        },
+        {
+          "id": "7e8119050ecb80450ad476b50423b9230c10c8d0",
+          "address": "node11.konstellation.tech:26656"
+        },
+        {
+          "id": "dbb7589202f6c751f2b93c6bbcd0e660676ab91c",
+          "address": "node12.konstellation.tech:26656"
+        },
+        {
+          "id": "f2c2ebec24507d54fea88976e9f93f0fbfa0d6d0",
+          "address": "node13.konstellation.tech:26656"
+        },
+        {
+          "id": "00f7f4506d84f9d1458201946e1194564b444ce0",
+          "address": "node14.konstellation.tech:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://node1.konstellation.tech:26657",
+          "provider": "konstellation"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://node1.konstellation.tech:1318",
+          "provider": "konstellation"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "konstellation",
+        "url": "https://explorer.konstellation.tech/",
+        "tx_page": "https://explorer.konstellation.tech/tx/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "likecoin",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "LikeCoin",
+    "chain_id": "likecoin-mainnet-2",
+    "bech32_prefix": "cosmos",
+    "daemon_name": "liked",
+    "node_home": "$HOME/.liked",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/likecoin/mainnet/982c14399089950a59d3ebbedcbbc7ead6040457/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "nanolike"
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/likecoin/likecoin-chain",
+      "recommended_version": "fotan-1",
+      "compatible_versions": [
+        "fotan-1"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "913bd0f4bea4ef512ffba39ab90eae84c1420862",
+          "address": "34.82.131.35:26656",
+          "provider": "likecoin"
+        },
+        {
+          "id": "e44a2165ac573f84151671b092aa4936ac305e2a",
+          "address": "nnkken.dev:26656",
+          "provider": "nnkken"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "75822abfbcc23dcefd025e245b46e2dec5357f75",
+          "address": "207.246.101.4:26656",
+          "provider": "forbole"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://mainnet-node.like.co/rpc/",
+          "provider": "likecoin"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://mainnet-node.like.co",
+          "provider": "likecoin"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "bigdipper",
+        "url": "https://likecoin.bigdipper.live/",
+        "tx_page": "https://likecoin.bigdipper.live/transactions/${txHash}"
+      },
+      {
+        "kind": "lunie-ng",
+        "url": "https://stake.like.co/"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "lumnetwork",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Lum Network",
+    "chain_id": "lum-network-1",
+    "bech32_prefix": "lum",
+    "daemon_name": "lumd",
+    "node_home": "$HOME/.lumd",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/lum-network/mainnet/master/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 880,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "ulum",
+          "fixed_min_gas_price": 0.001
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/lum-network/chain",
+      "recommended_version": "v1.0.5",
+      "compatible_versions": [
+        "v1.0.5"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "19ad16527c98b782ee35df56b65a3a251bd99971",
+          "address": "peer-1.mainnet.lum.network:26656",
+          "provider": "lum foundation"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "b47626b9d78ed7ed3c413304387026f907c70cbe",
+          "address": "peer-0.mainnet.lum.network:26656",
+          "provider": "lum foundation"
+        },
+        {
+          "id": "e12fcc7d9fc9b8b2901aec950f161418794cccf0",
+          "address": "65.108.77.38:26656",
+          "provider": "everstake"
+        },
+        {
+          "id": "4166de0e7721b6eec9c776abf2c38c40e7f820c5",
+          "address": "202.61.239.130:26656",
+          "provider": "stakecito"
+        },
+        {
+          "id": "fbaeeff89ec94a4f6c4a2a61e24af7d06b3be0c8",
+          "address": "46.166.140.180:26656",
+          "provider": "simply staking"
+        },
+        {
+          "id": "5a29947212a2615e43dac54deb55356a162e173a",
+          "address": "35.181.76.160:26656",
+          "provider": "imperator"
+        },
+        {
+          "id": "5ea36d78ae774c9086c2d3fc8b91f12aa4bf3029",
+          "address": "46.101.251.76:26656",
+          "provider": "cryptocrew"
+        },
+        {
+          "id": "433c60a5bc0a693484b7af26208922b84773117e",
+          "address": "34.209.132.0:26656",
+          "provider": "cosmostation"
+        },
+        {
+          "id": "9afac13ba62fbfaf8d06867c30007162511093c0",
+          "address": "54.214.134.223:26656",
+          "provider": "cosmostation"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://node0.mainnet.lum.network/rpc",
+          "provider": "Lum Foundation"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://node0.mainnet.lum.network/rest",
+          "provider": "Lum Foundation"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/lum",
+        "tx_page": "https://www.mintscan.io/lum/txs/${txHash}"
+      },
+      {
+        "kind": "lum-network",
+        "url": "https://explorer.lum.network",
+        "tx_page": "https://explorer.lum.network/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "microtick",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Microtick",
+    "chain_id": "microtick-1",
+    "bech32_prefix": "micro",
+    "daemon_name": "mtm",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/microtick/stargate-genesis/master/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/microtick/mtzone",
+      "recommended_version": "mtm-v2.0.4",
+      "compatible_versions": [
+        "mtm-v2.0.4"
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "oraichain",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Oraichain",
+    "chain_id": "Oraichain",
+    "bech32_prefix": "orai",
+    "daemon_name": "oraid",
+    "node_home": "$WORKSPACE/.oraid",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/oraichain/oraichain-static-files/master/mainnet-static-files/genesis.json"
+    },
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "orai",
+          "fixed_min_gas_price": 0
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/oraichain/orai",
+      "recommended_version": "v0.40.1",
+      "compatible_versions": [
+        "v0.40.1"
+      ],
+      "binaries": {
+        "linux/amd64": "https://gateway.ipfs.io/ipfs/QmfTWvw7jGcigT7tpD4scSzhgshJtawazgYEPUgzd4tgL8"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "0baa806b3a4dd17be6e06369d899f140c3897d6e",
+          "address": "18.223.242.70:26656",
+          "provider": "oraichain-team"
+        },
+        {
+          "id": "9749da4a81526266d7b8fe9a03d260cd3db241ad",
+          "address": "18.116.209.76:26656",
+          "provider": "oraichain-team"
+        },
+        {
+          "id": "59d49e39d507bb190e746bcf5590d65879c132e2",
+          "address": "13.79.247.74:26656",
+          "provider": "vaiot"
+        },
+        {
+          "id": "35c1f999d67de56736b412a1325370a8e2fdb34a",
+          "address": "5.189.169.99:26656",
+          "provider": "ORAI Vanguard"
+        },
+        {
+          "id": "5ad3b29bf56b9ba95c67f282aa281b6f0903e921",
+          "address": "64.225.53.108:26656",
+          "provider": "oraichain-team"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "0baa806b3a4dd17be6e06369d899f140c3897d6e",
+          "address": "18.223.242.70:26656"
+        },
+        {
+          "id": "9749da4a81526266d7b8fe9a03d260cd3db241ad",
+          "address": "18.116.209.76:26656"
+        },
+        {
+          "id": "59d49e39d507bb190e746bcf5590d65879c132e2",
+          "address": "13.79.247.74:26656"
+        },
+        {
+          "id": "35c1f999d67de56736b412a1325370a8e2fdb34a",
+          "address": "5.189.169.99:26656"
+        },
+        {
+          "id": "5ad3b29bf56b9ba95c67f282aa281b6f0903e921",
+          "address": "64.225.53.108:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.orai.io",
+          "provider": "oraichain-team"
+        }
+      ],
+      "rest": [
+        {
+          "address": "http://lcd.orai.io",
+          "provider": "oraichain-team"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "oraiscan",
+        "url": "https://scan.orai.io",
+        "tx_page": "https://scan.orai.io/txs/{txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "osmosis",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Osmosis",
+    "chain_id": "osmosis-1",
+    "bech32_prefix": "osmo",
+    "daemon_name": "osmosisd",
+    "node_home": "$HOME/.osmosisd",
+    "genesis": {
+      "genesis_url": "https://github.com/osmosis-labs/networks/raw/main/osmosis-1/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 118,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "uosmo",
+          "fixed_min_gas_price": 0
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/osmosis-labs/osmosis",
+      "recommended_version": "v5.0.0",
+      "compatible_versions": [
+        "v5.0.0"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v5.0.0/osmosisd-5.0.0-linux-amd64",
+        "linux/arm64": "https://github.com/osmosis-labs/osmosis/releases/download/v5.0.0/osmosisd-5.0.0-linux-arm64",
+        "darwin/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v5.0.0/osmosisd-5.0.0-darwin-amd64",
+        "windows/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v5.0.0/osmosisd-5.0.0-windows-amd64.exe"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "83adaa38d1c15450056050fd4c9763fcc7e02e2c",
+          "address": "ec2-44-234-84-104.us-west-2.compute.amazonaws.com:26656",
+          "provider": "notional"
+        },
+        {
+          "id": "23142ab5d94ad7fa3433a889dcd3c6bb6d5f247d",
+          "address": "95.217.193.163:26656",
+          "provider": "notional"
+        },
+        {
+          "id": "f82d1a360dc92d4e74fdc2c8e32f4239e59aebdf",
+          "address": "95.217.121.243:26656",
+          "provider": "notional"
+        },
+        {
+          "id": "e437756a853061cc6f1639c2ac997d9f7e84be67",
+          "address": "144.76.183.180:26656",
+          "provider": "notional"
+        },
+        {
+          "id": "f515a8599b40f0e84dfad935ba414674ab11a668",
+          "address": "osmosis.blockpane.com:26656",
+          "provider": "blockpane"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "8f67a2fcdd7ade970b1983bf1697111d35dfdd6f",
+          "address": "52.79.199.137:26656",
+          "provider": "cosmostation"
+        },
+        {
+          "id": "00c328a33578466c711874ec5ee7ada75951f99a",
+          "address": "35.82.201.64:26656",
+          "provider": "cosmostation"
+        },
+        {
+          "id": "cfb6f2d686014135d4a6034aa6645abd0020cac6",
+          "address": "52.79.88.57:26656",
+          "provider": "cosmostation"
+        },
+        {
+          "id": "8d9967d5f865c68f6fe2630c0f725b0363554e77",
+          "address": "134.255.252.173:26656",
+          "provider": "divecrypto"
+        },
+        {
+          "id": "785bc83577e3980545bac051de8f57a9fd82695f",
+          "address": "194.233.164.146:26656",
+          "provider": "forbole"
+        },
+        {
+          "id": "778fdedf6effe996f039f22901a3360bc838b52e",
+          "address": "161.97.187.189:36657",
+          "provider": "kalpatech"
+        },
+        {
+          "id": "64d36f3a186a113c02db0cf7c588c7c85d946b5b",
+          "address": "209.97.132.170:26656",
+          "provider": "solidstake"
+        },
+        {
+          "id": "4d9ac3510d9f5cfc975a28eb2a7b8da866f7bc47",
+          "address": "37.187.38.191:26656",
+          "provider": "stakelab"
+        },
+        {
+          "id": "2115945f074ddb038de5d835e287fa03e32f0628",
+          "address": "95.217.43.85:26656",
+          "provider": "stakerspace"
+        },
+        {
+          "id": "bf2c480eff178d2647ba1adfeee8ced568fe752c",
+          "address": "91.65.128.44:26656",
+          "provider": "stakerus"
+        },
+        {
+          "id": "2f9c16151400d8516b0f58c030b3595be20b804c",
+          "address": "37.120.245.167:26656",
+          "provider": "syncnode"
+        },
+        {
+          "id": "bada684070727cb3dda430bcc79b329e93399665",
+          "address": "173.212.240.91:26656",
+          "provider": "qf3l3k"
+        },
+        {
+          "id": "3fea02d121cb24503d5fbc53216a527257a9ab55",
+          "address": "143.198.145.208:26656",
+          "provider": "witval"
+        },
+        {
+          "id": "7de029fa5e9c1f39557c0e3523c1ae0b07c58be0",
+          "address": "78.141.219.223:26656",
+          "provider": "artifactstaking"
+        },
+        {
+          "id": "7024d1ca024d5e33e7dc1dcb5ed08349768220b9",
+          "address": "134.122.42.20:26656",
+          "provider": "figment"
+        },
+        {
+          "id": "d326ad6dffa7763853982f334022944259b4e7f4",
+          "address": "143.110.212.33:26656",
+          "provider": "figment"
+        },
+        {
+          "id": "e7916387e05acd53d1b8c0f842c13def365c7bb6",
+          "address": "176.9.64.212:26666",
+          "provider": "medusanode"
+        },
+        {
+          "id": "55eea69c21b46000c1594d8b4a448563b075d9e3",
+          "address": "34.107.19.235:26656",
+          "provider": "binaryholdings"
+        },
+        {
+          "id": "9faf468b90a3b2b85ffd88645a15b3715f68bb0b",
+          "address": "195.201.122.100:26656",
+          "provider": "chainflow"
+        },
+        {
+          "id": "ffc82412c0261a94df122b9cc0ce1de81da5246b",
+          "address": "15.222.240.16:26656",
+          "provider": "cephalopod"
+        },
+        {
+          "id": "5b90a530464885fd28c31f698c81694d0b4a1982",
+          "address": "35.183.238.70:26656",
+          "provider": "cephalopod"
+        },
+        {
+          "id": "7b6689cb18d625bbc069aa99d9d5521293db442c",
+          "address": "51.158.97.192:26656",
+          "provider": "mp20"
+        },
+        {
+          "id": "fda06dcebe2acd17857a6c9e9a7b365da3771ceb",
+          "address": "52.206.252.176:26656",
+          "provider": "stargaze"
+        },
+        {
+          "id": "8d9fd90a009e4b6e9572bf9a84b532a366790a1d",
+          "address": "193.26.156.221:26656",
+          "provider": "validatus"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://osmosis.validator.network/",
+          "provider": "validatornetwork"
+        },
+        {
+          "address": "https://osmosis-1.technofractal.com:443",
+          "provider": "strangelove-ventures"
+        },
+        {
+          "address": "https://rpc-osmosis.keplr.app",
+          "provider": "chainapsis"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd-osmosis.keplr.app",
+          "provider": "chainapsis"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/osmosis",
+        "tx_page": "https://www.mintscan.io/osmosis/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "panacea",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Panacea",
+    "chain_id": "panacea-3",
+    "bech32_prefix": "panacea",
+    "daemon_name": "panacead",
+    "node_home": "$HOME/.panacead",
+    "genesis": {
+      "genesis_url": "https://github.com/medibloc/panacea-mainnet/raw/master/panacea-3/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 371,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "umed",
+          "fixed_min_gas_price": 5
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/medibloc/panacea-core",
+      "recommended_version": "v2.0.2",
+      "compatible_versions": [
+        "v2.0.2"
+      ],
+      "binaries": {}
+    },
+    "peers": {
+      "persistent_peers": [
+        {
+          "id": "e93f5df69cc1b9bda230b3efcf162d4672293ded",
+          "address": "3.35.82.40:26656",
+          "provider": "medibloc"
+        },
+        {
+          "id": "0e0db1c7ab1e37c76f2ceced0bb72e1c60ef17a6",
+          "address": "13.124.96.254:26656",
+          "provider": "medibloc"
+        },
+        {
+          "id": "a83232db3a40e486b54b1463a43431e8490b808b",
+          "address": "52.79.108.35:26656",
+          "provider": "medibloc"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.gopanacea.org",
+          "provider": "medibloc"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://api.gopanacea.org",
+          "provider": "medibloc"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/medibloc",
+        "tx_page": "https://www.mintscan.io/medibloc/txs/${txHash}"
+      },
+      {
+        "kind": "bigdipper",
+        "url": "https://explorer.gopanacea.org",
+        "tx_page": "https://explorer.gopanacea.org/transactions/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "persistence",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Persistence",
+    "chain_id": "core-1",
+    "bech32_prefix": "persistence",
+    "daemon_name": "persistenceCore",
+    "node_home": "$HOME/.persistenceCore",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/persistenceOne/genesisTransactions/master/core-1/final_genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/persistenceOne/persistenceCore",
+      "recommended_version": "v0.1.3",
+      "compatible_versions": [
+        "v0.1.3"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/persistenceOne/persistenceCore/releases/download/v0.1.3/persistenceCore-linux-amd64.tar.gz"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "27eb432ccd5e895c5c659659120d68b393dd8c60",
+          "address": "35.247.65.183:26656"
+        },
+        {
+          "id": "8e2f56098f182ffe2f6fb09280bafe13c63eb42f",
+          "address": "46.101.176.149:26656"
+        },
+        {
+          "id": "fff99a2e8f3c9473e4e5ee9a99611a2e599529fd",
+          "address": "46.166.138.218:26656"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "876946a947850952383347724206d067d7032b22",
+          "address": "3.137.86.151:26656"
+        },
+        {
+          "id": "ecc00c5a7abd057ea5ca4a94c48d1d937bbab34a",
+          "address": "34.118.19.56:26656"
+        },
+        {
+          "id": "ac7e6aab726e842b92c06b8ebbf5a3616872ee80",
+          "address": "128.1.133.107:26656"
+        },
+        {
+          "id": "b9dab7a1a5ffd16d43b19e40a8020db84e8dfffd",
+          "address": "3.14.116.246:44456"
+        },
+        {
+          "id": "60385a36ea72a2985bd8450c95b8df8be2adebb8",
+          "address": "54.95.235.242:26656"
+        },
+        {
+          "id": "a92ff1da2020e5cbc9b05527e9e39c34a84e8a27",
+          "address": "34.72.57.218:26656"
+        },
+        {
+          "id": "e15524629aee25fea01f62d26c4e062bfda94b70",
+          "address": "35.247.171.7:26656"
+        },
+        {
+          "id": "7c106099b8d07085431a97387e5a5db2d1ecd71d",
+          "address": "18.223.209.36:26656"
+        },
+        {
+          "id": "b19a3cf4d9938b41539729d027bf2e3c1a4e1fbb",
+          "address": "85.214.130.157:26656"
+        },
+        {
+          "id": "7cc92a9e3dcad37e5e7b3adf7814c37070fa9787",
+          "address": "161.97.187.189:26656"
+        },
+        {
+          "id": "7b9839cd3e994c44cbd747d1ddc51ee695f60e58",
+          "address": "157.90.134.48:26656"
+        },
+        {
+          "id": "cfb529bd0325fc884296518655f1f315bc42dd0c",
+          "address": "185.144.83.165:26656"
+        },
+        {
+          "id": "01102f3c84e6602e30e1e39498e242cbb60a0b73",
+          "address": "178.62.103.7:26656"
+        }
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "provenance",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Provenance Blockchain",
+    "chain_id": "pio-mainnet-1",
+    "bech32_prefix": "pb",
+    "daemon_name": "provenanced",
+    "node_home": "$HOME/Provenance",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/provenance-io/mainnet/main/pio-mainnet-1/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 505,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "nhash",
+          "fixed_min_gas_price": 1905
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/provenance-io/provenance",
+      "recommended_version": "v1.7.6",
+      "compatible_versions": [
+        "v1.7.5",
+        "v1.7.6"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/provenance-io/provenance/releases/download/v1.7.6/provenance-linux-amd64-v1.7.6.zip",
+        "darwin/amd64": "https://github.com/provenance-io/provenance/releases/download/v1.7.6/provenance-darwin-amd64-v1.7.6.zip"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "4bd2fb0ae5a123f1db325960836004f980ee09b4",
+          "address": "seed-0.provenance.io:26656",
+          "provider": "figure"
+        },
+        {
+          "id": "048b991204d7aac7209229cbe457f622eed96e5d",
+          "address": "seed-1.provenance.io:26656",
+          "provider": "figure"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.provenance.io/",
+          "provider": "figure"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://api.provenance.io",
+          "provider": "figure"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "provenance",
+        "url": "https://explorer.provenance.io",
+        "tx_page": "https://explorer.provenance.io/tx/${txHash}"
+      },
+      {
+        "kind": "bigdipper",
+        "url": "https://bigdipper.provenance.io",
+        "tx_page": "https://bigdipper.provenance.io/transactions/${txHash}"
+      },
+      {
+        "kind": "hubble",
+        "url": "https://hubble.figment.io/provenance/chains/pio-mainnet-1",
+        "tx_page": "https://hubble.figment.io/provenance/chains/pio-mainnet-1/${block}/transactions/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "regen",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Regen Network",
+    "chain_id": "regen-1",
+    "bech32_prefix": "regen",
+    "daemon_name": "regen",
+    "node_home": "$HOME/.regen",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/regen-network/mainnet/main/regen-1/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/regen-network/regen-ledger",
+      "recommended_version": "v2.1.0",
+      "compatible_versions": [
+        "v2.1.0"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "aebb8431609cb126a977592446f5de252d8b7fa1",
+          "address": "104.236.201.138:26656"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "69975e7afdf731a165e40449fcffc75167a084fc",
+          "address": "104.131.169.70:26656"
+        },
+        {
+          "id": "d35d652b6cb3bf7d6cb8d4bd7c036ea03e7be2ab",
+          "address": "116.203.182.185:26656"
+        },
+        {
+          "id": "ffacd3202ded6945fed12fa4fd715b1874985b8c",
+          "address": "3.98.38.91:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "http://public-rpc.regen.vitwit.com:26657",
+          "provider": "vitwit"
+        },
+        {
+          "address": "https://regen.stakesystems.io:2053",
+          "provider": "stakesystems"
+        },
+        {
+          "address": "http://rpc.regen.forbole.com:80",
+          "provider": "forbole"
+        }
+      ],
+      "grpc": [
+        {
+          "address": "regen.stakesystems.io:2083",
+          "provider": "stakesystems"
+        }
+      ],
+      "rest": [
+        {
+          "address": "http://public-rpc.regen.vitwit.com:1317",
+          "provider": "vitwit"
+        },
+        {
+          "address": "https://regen.stakesystems.io",
+          "provider": "stakesystems"
+        }
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "rizon",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "RIZON",
+    "chain_id": "titan-1",
+    "bech32_prefix": "rizon",
+    "slip44": 118,
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/rizon-world/mainnet/master/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/rizon-world/rizon",
+      "recommended_version": "v0.2.8",
+      "compatible_versions": [
+        "v0.2.8"
+      ]
+    },
+    "daemon_name": "rizond",
+    "node_home": "$HOME/.rizon",
+    "key_algos": [
+      "secp256k1"
+    ],
+    "peers": {
+      "seeds": [
+        {
+          "id": "83c9cdc2db2b4eff4acc9cd7d664ad5ae6191080",
+          "address": "seed-1.mainnet.rizon.world:26656"
+        },
+        {
+          "id": "ae1476777536e2be26507c4fbcf86b67540adb64",
+          "address": "seed-2.mainnet.rizon.world:26656"
+        },
+        {
+          "id": "8abf316257a264dc8744dee6be4981cfbbcaf4e4",
+          "address": "seed-3.mainnet.rizon.world:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "http://seed-1.mainnet.rizon.world:26657",
+          "provider": "HDAC Technology AG"
+        }
+      ],
+      "rest": [
+        {
+          "address": "http://seed-1.mainnet.rizon.world:1317",
+          "provider": "HDAC Technology AG"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/rizon",
+        "tx_page": "https://www.mintscan.io/rizon/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "secretnetwork",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Secret Network",
+    "chain_id": "secret-4",
+    "bech32_prefix": "secret",
+    "daemon_name": "secretd",
+    "node_home": "$HOME/.secretd",
+    "genesis": {
+      "genesis_url": "https://github.com/scrtlabs/SecretNetwork/releases/download/v1.2.0/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 529,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "uscrt",
+          "fixed_min_gas_price": 0.25
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/scrtlabs/SecretNetwork",
+      "recommended_version": "v1.2.0",
+      "binaries": {
+        "linux/amd64": "https://github.com/scrtlabs/SecretNetwork/releases/download/v1.2.0/secretnetwork_1.2.0_amd64.deb"
+      },
+      "compatible_versions": [
+        "v1.2.1",
+        "v1.2.2"
+      ]
+    },
+    "peers": {
+      "persistent_peers": [
+        {
+          "id": "971911193b09a17c347565d311a3cc4f6004156d",
+          "address": "peer.node.scrtlabs.com:26656",
+          "provider": "SCRT Labs"
+        },
+        {
+          "id": "7649dcfda0eb77b38fde8e817da8071faea3cd13",
+          "address": "bootstrap.scrt.network:26656",
+          "provider": "SCRT Labs"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-secret.scrtlabs.com/secret-4/rpc/",
+          "provider": "SCRT Labs"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd-secret.scrtlabs.com/",
+          "provider": "SCRT Labs"
+        },
+        {
+          "address": "https://api.secretapi.io/",
+          "provider": "chainofsecrets"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "secret nodes",
+        "url": "https://secretnodes.com/secret/chains/secret-4",
+        "tx_page": "https://secretnodes.com/secret/chains/secret-4/transactions/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "sentinel",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Sentinel",
+    "chain_id": "sentinelhub-2",
+    "bech32_prefix": "sent",
+    "slip44": 750,
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/sentinel-official/networks/main/sentinelhub-2/genesis.zip"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/sentinel-official/hub",
+      "recommended_version": "v0.6.2",
+      "compatible_versions": [
+        "v0.6.2"
+      ]
+    },
+    "daemon_name": "sentinelhub",
+    "node_home": "$HOME/.sentinelhub",
+    "key_algos": [
+      "secp256k1"
+    ],
+    "peers": {
+      "seeds": [
+        {
+          "id": "c3aa0ff9b3eb17be1b0a26d7c8a5683e8e528e1a",
+          "address": "159.89.192.105:26656"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "05fe2a7847fd27345250915fd06752c424f40651",
+          "address": "85.222.234.135:26656"
+        },
+        {
+          "id": "387027e3b1180d3a619cbbf3462704a490785963",
+          "address": "54.176.90.228:26656"
+        },
+        {
+          "id": "63bd9cfce0f0d274aad5b166dd06d829021aec43",
+          "address": "121.78.247.243:56656"
+        },
+        {
+          "id": "855807cc6a919c22ec943050ebb5c80b23724ed0",
+          "address": "3.239.11.246:26656"
+        },
+        {
+          "id": "8caefbf8f4318ecc93f2c901cf11470e4a16c818",
+          "address": "161.97.135.122:26656"
+        },
+        {
+          "id": "9174af5f16f74660cccf49f893d243949af45f7f",
+          "address": "54.177.29.46:26656"
+        },
+        {
+          "id": "9fa528bd2b9e7c80724a1d8a4e1a2a8a83e7d123",
+          "address": "142.93.72.221:26656"
+        },
+        {
+          "id": "a77f6a094578dad899e2f40e0626b4c6d4705311",
+          "address": "3.36.165.232:26656"
+        },
+        {
+          "id": "bd45a11390d16d128a9eeea3935b53d7a1a3c120",
+          "address": "15.236.127.69:26656"
+        },
+        {
+          "id": "cdb8dd7628460a546ce1594ca0bc0c20366514cf",
+          "address": "34.72.64.178:26656"
+        },
+        {
+          "id": "d1efceccb04ded9a604e5235f76da86872157d68",
+          "address": "161.97.149.223:26656"
+        },
+        {
+          "id": "e00b23444cc8dbb353d5faa765ab36cfc0116b57",
+          "address": "83.60.98.134:28685"
+        },
+        {
+          "id": "e5ee89bd4fc371c6a0e66d2b8daefd891b6b87b5",
+          "address": "157.90.117.58:26656"
+        },
+        {
+          "id": "f7ceb735606f90df7eb6cd987641876955b6e325",
+          "address": "46.4.55.150:36656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-sentinel.keplr.app",
+          "provider": "chainapsis"
+        },
+        {
+          "address": "https://sentinelhub-2.technofractal.com:443",
+          "provider": "strangelove-ventures"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd-sentinel.keplr.app",
+          "provider": "chainapsis"
+        }
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "shentu",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Shentu",
+    "chain_id": "shentu-2.2",
+    "bech32_prefix": "certik",
+    "daemon_name": "certik",
+    "node_home": "$HOME/.certik",
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/certikfoundation/mainnet/main/shentu-2.2/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/certikfoundation/shentu",
+      "recommended_version": "v2.2.0",
+      "compatible_versions": [
+        "v2.2.0"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/certikfoundation/shentu/releases/download/v2.2.0/certik_2.2.0.0908_linux_amd64",
+        "darwin/amd64": "https://github.com/certikfoundation/shentu/releases/download/v2.2.0/certik_2.2.0.0908_macos",
+        "windows/amd64": "https://github.com/certikfoundation/shentu/releases/download/v2.2.0/certik_2.2.0.0908_win_x86_64.exe"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "b3192e1ab0cbb9f439b15c82605379018d96b4f2",
+          "address": "3.209.12.186:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "23419a3d9deedabce1a3cbfa0d1a3e55ef2364a7",
+          "address": "34.229.203.57:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "6647bdb863cb9b862a00f0ec29337f3d7ed30e57",
+          "address": "34.232.46.41:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "78d1ea146833d979517a28a0c50dac5ca443e279",
+          "address": "54.197.5.155:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "90e6f3ff63147553604ed6fb3c64425c9ee139f6",
+          "address": "18.206.119.13:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "bfd878cfb358f28204ca9009c7dc63b723dc6b98",
+          "address": "52.91.51.227:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "a48d2e1def5c705b31d77651cd18df0a1aded9b8",
+          "address": "3.82.105.31:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "95c818abe0e7b72e66903835775d5afa884ee1f0",
+          "address": "54.224.14.1:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "0d0b19bca0f30fbdaadd20f1a38b2ea35305169e",
+          "address": "100.26.242.20:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "ff0f27a5db14928ab12059069702689dff1bc6d7",
+          "address": "3.238.117.221:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "2332ea32eb9a640138c65f72b3bb6e48beafa9e8",
+          "address": "54.211.82.176:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "a3432f605de8692acd2a22ba99c6a84eae09a0de",
+          "address": "3.89.246.155:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "80a86a88a7dfab4d03bad367e3fe27e3d91a9801",
+          "address": "35.172.164.222:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "41e0c490d87266f7c9e78b0e9b0adafd8d06fca5",
+          "address": "3.236.161.42:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "8eb0e830eb7d166a919747c2b9e0d46fe1447802",
+          "address": "54.236.61.32:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "e4f9776fdf1b37bba6d0400092952666820991c7",
+          "address": "3.227.241.190:26656",
+          "provider": "Shentu"
+        },
+        {
+          "id": "a353c0c82f83276f73818a1832aa7223b0f6ca0a",
+          "address": "54.89.166.108:26656",
+          "provider": "Shentu"
+        }
+      ],
+      "persistent_peers": []
+    },
+    "apis": {
+      "rest": [
+        {
+          "address": "https://azuredragon.noopsbycertik.com/",
+          "provider": "Shentu"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/certik",
+        "tx_page": "https://www.mintscan.io/certik/txs/${txHash}"
+      },
+      {
+        "kind": "Shentu Explorer",
+        "url": "https://explorer.certik.foundation/?net=shentu-2.2",
+        "tx_page": "https://explorer.certik.foundation/transactions/${txHash}?net=shentu-2.2"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "sifchain",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Sifchain",
+    "chain_id": "sifchain-1",
+    "bech32_prefix": "sif",
+    "daemon_name": "sifnoded",
+    "node_home": "$HOME/.sifnoded",
+    "genesis": {
+      "genesis_url": "https://github.com/Sifchain/networks/blob/master/betanet/sifchain-1/genesis.json.gz?raw=true"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/Sifchain/sifnode.git",
+      "recommended_version": "betanet-0.9.12",
+      "compatible_versions": [
+        "betanet-0.9.12"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/Sifchain/sifnode/releases/download/betanet-0.9.12/sifnoded-betanet-0.9.12-linux-amd64.zip"
+      }
+    },
+    "peers": {
+      "persistent_peers": [
+        {
+          "id": "0d4981bdaf4d5d73bad00af3b1fa9d699e4d3bc0",
+          "address": "44.235.108.41:26656"
+        },
+        {
+          "id": "bcc2d07a14a8a0b3aa202e9ac106dec0bef91fda",
+          "address": "13.55.247.60:26656"
+        },
+        {
+          "id": "663dec65b754aceef5fcccb864048305208e7eb2",
+          "address": "34.248.110.88:26656"
+        },
+        {
+          "id": "0120f0a48e7e81cc98829ef4f5b39480f11ecd5a",
+          "address": "52.76.185.17:26656"
+        },
+        {
+          "id": "6535497f0152293d773108774a705b86c2249a9c",
+          "address": "44.238.121.65:26656"
+        },
+        {
+          "id": "fdf5cffc2b20a20fab954d3b6785e9c382762d14",
+          "address": "34.255.133.248:26656"
+        },
+        {
+          "id": "8c240f71f9e060277ce18dc09d82d3bbb05d1972",
+          "address": "13.211.43.177:26656"
+        },
+        {
+          "id": "9fbcb6bd5a7f20a716564157c4f6296d2faf5f64",
+          "address": "18.138.208.95:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.sifchain.finance:80"
+        },
+        {
+          "address": "https://rpc-archive.sifchain.finance:80"
+        }
+      ],
+      "grpc": [
+        {
+          "address": "https://grpc.sifchain.finance:80"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://api.sifchain.finance:80"
+        }
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "stargaze",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Stargaze",
+    "chain_id": "stargaze-1",
+    "bech32_prefix": "stars",
+    "daemon_name": "starsd",
+    "node_home": "$HOME/.starsd",
+    "slip44": 118,
+    "genesis": {
+      "genesis_url": "https://raw.githubusercontent.com/public-awesome/mainnet/main/stargaze-1/genesis.tar.gz"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/public-awesome/stargaze",
+      "recommended_version": "v1.0.0",
+      "compatible_versions": [
+        "v1.0.0"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "70ed826888f102c7c1ceb4d07287956628a53508",
+          "address": "174.138.124.7:36656"
+        },
+        {
+          "id": "722079345d941cd2da3daedea548c909d9b83ec5",
+          "address": "104.248.101.113:36656"
+        },
+        {
+          "id": "d5fc4f479c4e212c96dff5704bb2468ea03b8ae3",
+          "address": "sg-seed.blockpane.com:26656",
+          "provider": "[ block pane ]"
+        },
+        {
+          "id": "babc3f3f7804933265ec9c40ad94f4da8e9e0017",
+          "address": "stargaze.seed.rhinostake.com:16656",
+          "provider": "RHINO"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "1d73521c565b37a53038fc730bcd207a3db361b6",
+          "address": "144.91.91.30:26656",
+          "provider": "0xSR"
+        },
+        {
+          "id": "524dd60331c56d198deabbb70238c2cc69119cca",
+          "address": "161.97.122.216:36656",
+          "provider": "Army IDs"
+        },
+        {
+          "id": "0c9ebd7b36f96d0279dbf6dc38572f5797c096c1",
+          "address": "65.108.42.168:26656",
+          "provider": "ramuchi.tech"
+        },
+        {
+          "id": "320e4b81ab327dd2593a39de0d3ae718fdb9347c",
+          "address": "176.9.168.220:26656",
+          "provider": "Staketab"
+        },
+        {
+          "id": "b8eeb6d99594c218c0373d8ec4c1e81031b92198",
+          "address": "68.183.92.46:26656",
+          "provider": "KingSuper"
+        },
+        {
+          "id": "387c32677c54dd4627366ffdf8e2dda68e71af69",
+          "address": "54.193.168.147:26656",
+          "provider": "Cosmostation"
+        },
+        {
+          "id": "e28635dc537dce1d6f1cf44b7b335a530d923fa1",
+          "address": "15.165.94.246:26656",
+          "provider": "Cosmostation"
+        },
+        {
+          "id": "413562a502b4a47ec3375bfae6aa01bc47bc6979",
+          "address": "204.236.141.188:26656",
+          "provider": "Cosmostation"
+        },
+        {
+          "id": "ca93b9bed1a98184f36ca31a6cc6dad2e289a2d4",
+          "address": "94.130.165.103:26656",
+          "provider": "OranG3cluB"
+        },
+        {
+          "id": "0c7e82641f81754fc30158587c7e4a30ddb5c967",
+          "address": "54.216.187.98:26656",
+          "provider": "needlecast"
+        },
+        {
+          "id": "1de5e685e687d0df35e6f3734ee04aff956d5c0f",
+          "address": "75.119.154.98:26656",
+          "provider": "StakeLab"
+        },
+        {
+          "id": "6353ff1783e076a70ab444c4229c01ed6df6b477",
+          "address": "65.21.193.190:26656",
+          "provider": "sashamaxymchuk[MantiCore]"
+        },
+        {
+          "id": "5eb7bcdd83b47744b652f11ecd8495a670612643",
+          "address": "135.181.176.62:26656",
+          "provider": "StakeCraft"
+        },
+        {
+          "id": "75ea9c7b04be4a5779853b6e17c773ab092652c8",
+          "address": "91.230.111.50:26656",
+          "provider": "EmreNOP | BlockSeal"
+        },
+        {
+          "id": "9f860496d2a346cc7888d7b4a7887f6bfc0fc0e4",
+          "address": "162.55.39.33:26656",
+          "provider": "Blackhox"
+        },
+        {
+          "id": "f89e655de3e6804e6448de3de3428bea1fd0fa97",
+          "address": "135.181.21.55:36656",
+          "provider": "Alex (Bambarello) Validator"
+        },
+        {
+          "id": "1c8aabb166c7757c26cdbb1bfc380146ca59bc4e",
+          "address": "135.181.179.49:26356",
+          "provider": "Bloqhub"
+        },
+        {
+          "id": "2783a2b3bf3f84947c919588e8b0ca2c05e8053d",
+          "address": "167.99.238.45:26656"
+        },
+        {
+          "id": "64d19582ff31ac88245ac604dc18d48b41470f48",
+          "address": "167.99.238.45:26656"
+        },
+        {
+          "id": "c636bf9ad65959b738c15eb5458a89a88cba32a4",
+          "address": "135.181.102.205:26656",
+          "provider": "tsundokum"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.stargaze.publicawesome.dev/",
+          "provider": "Public Awesome"
+        },
+        {
+          "address": "https://rpc.stargaze.ezstaking.io/",
+          "provider": "EZStaking.io"
+        },
+        {
+          "address": "https://rpc.stars.kingnodes.com/",
+          "provider": "kingnodes"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://rest.stargaze.publicawesome.dev/",
+          "provider": "Public Awesome"
+        },
+        {
+          "address": "https://api.stargaze.ezstaking.io/",
+          "provider": "EZStaking.io"
+        },
+        {
+          "address": "https://api.stars.kingnodes.com/",
+          "provider": "kingnodes"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/stargaze/",
+        "tx_page": "https://www.mintscan.io/stargaze/txs/${txHash}"
+      },
+      {
+        "kind": "bigdipper2.0",
+        "url": "https://explore.stargaze.zone",
+        "tx_page": "https://explore.stargaze.zone/transactions/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "starname",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Starname",
+    "chain_id": "iov-mainnet-ibc",
+    "bech32_prefix": "star",
+    "slip44": 234,
+    "genesis": {
+      "genesis_url": "https://gist.githubusercontent.com/davepuchyr/6bea7bf369064d118195e9b15ea08a0f/raw/genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/iov-one/starnamed",
+      "recommended_version": "v0.10.18",
+      "compatible_versions": [
+        "v0.10.17",
+        "v0.10.18"
+      ]
+    },
+    "peers": {
+      "persistent_peers": [
+        {
+          "id": "ca133187b37b59d2454812cfcf31b6211395adec",
+          "address": "167.99.194.126:16656"
+        },
+        {
+          "id": "1c7e014b65f7a3ea2cf48bffce78f5cbcad2a0b7",
+          "address": "13.37.85.253:26656"
+        },
+        {
+          "id": "8c64a2127cc07d4570756b61f83af60d34258398",
+          "address": "13.37.61.32:26656"
+        },
+        {
+          "id": "9aabe0ac122f3104d8fc098e19c66714c6f1ace9",
+          "address": "3.37.140.5:26656"
+        },
+        {
+          "id": "faedef1969911d24bf72c56fc01326eb891fa3b7",
+          "address": "63.250.53.45:16656"
+        },
+        {
+          "id": "94ac1c02b4e2ca3fb2706c91a68b8030ed3615a1",
+          "address": "35.247.175.128:16656"
+        },
+        {
+          "id": "be2235996b1c785a9f57eed25fd673ca111f0bae",
+          "address": "52.52.89.64:26656"
+        },
+        {
+          "id": "f63d15ab7ed55dc75f332d0b0d2b01d529d5cbcd",
+          "address": "212.71.247.11:26656"
+        },
+        {
+          "id": "f5597a7ed33bc99eb6ba7253eb8ac76af27b4c6d",
+          "address": "138.201.20.147:26656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc-iov.keplr.app",
+          "provider": "chainapsis"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://lcd-iov.keplr.app",
+          "provider": "chainapsis"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "mintscan",
+        "url": "https://www.mintscan.io/starname",
+        "tx_page": "https://www.mintscan.io/starname/txs/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "terra",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Terra",
+    "chain_id": "columbus-5",
+    "daemon_name": "terrad",
+    "node_home": "$HOME/.terra",
+    "bech32_prefix": "terra",
+    "genesis": {
+      "genesis_url": "https://columbus-genesis.s3.ap-northeast-1.amazonaws.com/columbus-5-genesis.json"
+    },
+    "codebase": {
+      "git_repo": "https://github.com/terra-money/core/",
+      "recommended_version": "v0.5.9",
+      "compatible_versions": [
+        "v0.5.9"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/terra-money/core/releases/download/v0.5.9/terra_0.5.9_Linux_x86_64.tar.gz"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "e999fc20aa5b87c1acef8677cf495ad85061cfb9",
+          "address": "seed.terra.delightlabs.io:26656"
+        },
+        {
+          "id": "6d8e943c049a80c161a889cb5fcf3d184215023e",
+          "address": "public-seed2.terra.dev:26656"
+        },
+        {
+          "id": "87048bf71526fb92d73733ba3ddb79b7a83ca11e",
+          "address": "public-seed.terra.dev:26656"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "3ddf51347ba7c2bc4a8e1e26ee9d1cbf81034516",
+          "address": "162.55.244.250:27656"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://terra-rpc.easy2stake.com:443",
+          "provider": "Easy2stake"
+        },
+        {
+          "address": "http://64.227.72.101:26657",
+          "provider": "cryptocrew"
+        },
+        {
+          "address": "http://public-node.terra.dev:26657",
+          "provider": "Terra"
+        },
+        {
+          "address": "https://terra.technofractal.com:443",
+          "provider": "strangelove-ventures"
+        }
+      ],
+      "rest": [
+        {
+          "address": "http://64.227.72.101:1317",
+          "provider": "cryptocrew"
+        },
+        {
+          "address": "https://blockdaemon-terra-lcd.api.bdnodes.net:1317",
+          "provider": "Blockdaemon"
+        }
+      ]
+    }
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "thorchain",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "THORChain",
+    "chain_id": "thor-1",
+    "bech32_prefix": "thor",
+    "daemon_name": "thord",
+    "node_home": "$HOME/.thornode",
+    "slip44": 931,
+    "genesis": {
+      "genesis_url": "https://rpc.thorchain.info/genesis"
+    },
+    "codebase": {
+      "git_repo": "https://gitlab.com/thorchain/thornode",
+      "recommended_version": "chaosnet-multichain",
+      "compatible_versions": [
+        "chaosnet-multichain"
+      ]
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "eef0b258a711fc2be06da8eb25a53ebd8e16da62",
+          "address": "13.36.197.238:27146"
+        },
+        {
+          "id": "02041c659d8588f225b3352df8636e05dcd239f7",
+          "address": "18.169.114.61:27146"
+        },
+        {
+          "id": "88783fa86645c41aaaf031f31df2ee1d74413880",
+          "address": "18.202.205.93:27146"
+        },
+        {
+          "id": "00783ce232787999a7b3ccdfdbd493f371203e60",
+          "address": "51.136.76.139:27146"
+        },
+        {
+          "id": "c3f3f920a7003585ea6489344b41dd248ffa1e8f",
+          "address": "188.166.204.206:27146"
+        },
+        {
+          "id": "46040fd7b9450772c43fa406ef821d5eb3f79114",
+          "address": "134.209.136.64:27146"
+        },
+        {
+          "id": "7581fbca995486787ac3619cddf4137e110aff11",
+          "address": "143.198.247.31:27146"
+        },
+        {
+          "id": "dcd52d42ee465dd23b5806b30eca8df8e9e76c5d",
+          "address": "138.197.48.191:27146"
+        },
+        {
+          "id": "3a520c0e7c2af48d33cfb425af9ea9caa5917b1e",
+          "address": "18.214.28.114:27146"
+        },
+        {
+          "id": "48b675fbb3bf968ebee7e366d72bb5580aa8162e",
+          "address": "139.59.217.54:27146"
+        },
+        {
+          "id": "f1513684dd9d574715304bf3dd3b53fbcce65909",
+          "address": "34.145.173.217:27146"
+        },
+        {
+          "id": "2dde4b30bf913c9b9adecb6b835b2654b50c5698",
+          "address": "3.124.212.184:27146"
+        },
+        {
+          "id": "97ab3ae9df723ef763d90128663e7de0f0568dbe",
+          "address": "54.217.4.198:27146"
+        },
+        {
+          "id": "7c3b0a1fd70c5c0154e40f6e1276f8dd171117e5",
+          "address": "136.244.65.26:27146"
+        },
+        {
+          "id": "79b84e53bd5e4c1a3ef309346136cc7528ba0bdf",
+          "address": "64.225.81.243:27146"
+        },
+        {
+          "id": "d8628418e84acf19a330dddbed3173cfb4a020a9",
+          "address": "138.197.48.59:27146"
+        },
+        {
+          "id": "7c884bbc48abbadbb0fb85bfaa1dff9e94eac401",
+          "address": "143.244.211.46:27146"
+        },
+        {
+          "id": "8757a66381b4182f74809461fd8a3fcaf203a820",
+          "address": "34.212.187.195:27146"
+        },
+        {
+          "id": "6a35ed1a50ee76f72d1cd5c688f2e5f7fbc5da25",
+          "address": "52.228.231.228:27146"
+        },
+        {
+          "id": "5842bbfc26cf87c2ae3db418a835511ef2a39277",
+          "address": "3.96.249.116:27146"
+        },
+        {
+          "id": "83d3c662b1287bc9292d75b4909cff63b119cc78",
+          "address": "18.206.141.33:27146"
+        },
+        {
+          "id": "14d576eb4a1a5a2e319511abd5ce2c6e20f51c31",
+          "address": "13.36.138.187:27146"
+        },
+        {
+          "id": "107d49ada5acf1dbfcc27b3f5f387d035421ccca",
+          "address": "52.214.221.72:27146"
+        },
+        {
+          "id": "ca15ae8f0e17112b63786482cca300ff473f41fd",
+          "address": "3.140.128.35:27146"
+        },
+        {
+          "id": "5e89caf0ca79e0fb3371d5892efd96d66042d0d6",
+          "address": "157.90.34.75:27146"
+        },
+        {
+          "id": "1c88aa9509832a592453bd7d30736db055a279d1",
+          "address": "34.83.232.180:27146"
+        },
+        {
+          "id": "de7c36a34d8e9a48106488de1bac21b172c2dd49",
+          "address": "157.245.16.34:27146"
+        },
+        {
+          "id": "3de5f5bff746dc9349b044d83ccb906924b8cf03",
+          "address": "188.166.138.88:27146"
+        },
+        {
+          "id": "3ede6d36ede3b7e1dec522c827ab6db94bfae749",
+          "address": "34.145.160.5:27146"
+        },
+        {
+          "id": "58a28719fdd46ea629859d85a1d5bc6a6363c185",
+          "address": "159.65.212.234:27146"
+        },
+        {
+          "id": "70dd6252ff95d8af7f3f488fdb98dde5d467213b",
+          "address": "18.117.49.201:27146"
+        },
+        {
+          "id": "6c7d780bb7384142f6943543ed4c3ba537f4a411",
+          "address": "138.197.59.244:27146"
+        },
+        {
+          "id": "523a3df9384190d1b30ff55d1783b4baed32165c",
+          "address": "18.208.113.188:27146"
+        },
+        {
+          "id": "c64b58f2498a29330e4927ba90dd6fb2955a7a56",
+          "address": "159.89.210.106:27146"
+        },
+        {
+          "id": "e592368bf73a32dbcc28def417f2fdb151f26da6",
+          "address": "3.139.117.117:27146"
+        },
+        {
+          "id": "19ab508b32a6518a450058c2c7a99b7a5cc4299f",
+          "address": "13.237.27.250:27146"
+        },
+        {
+          "id": "4e41bd4f8d1ec95ff4a305f0739c82e818664c12",
+          "address": "135.181.58.7:27146"
+        },
+        {
+          "id": "2d25606076036716a31611185d39880fe8237e97",
+          "address": "3.230.67.253:27146"
+        },
+        {
+          "id": "5a6e66f9f6c84d55de8f1170086f28d69d242ad4",
+          "address": "78.141.210.66:27146"
+        },
+        {
+          "id": "f296c1e1b03ab875925208aabb5b9c5b1626427e",
+          "address": "52.32.91.52:27146"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://rpc.thorchain.info",
+          "provider": "thorchain"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://thornode.thorchain.info",
+          "provider": "thorchain"
+        }
+      ],
+      "sidechains_rpc": [
+        {
+          "address": "https://btc.thorchain.info",
+          "provider": "btc"
+        },
+        {
+          "address": "https://bch.thorchain.info",
+          "provider": "bch"
+        },
+        {
+          "address": "https://ltc.thorchain.info",
+          "provider": "ltc"
+        },
+        {
+          "address": "https://bnb.thorchain.info",
+          "provider": "bnb"
+        },
+        {
+          "address": "https://eth.thorchain.info",
+          "provider": "eth"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "THORChain explorer",
+        "url": "https://thorchain.net",
+        "tx_page": "https://thorchain.net/#/txs/${txHash}"
+      },
+      {
+        "kind": "viewblock",
+        "url": "https://viewblock.io/thorchain",
+        "tx_page": "https://viewblock.io/thorchain/tx/${txHash}"
+      }
+    ]
+  },
+  {
+    "$schema": "../chain.schema.json",
+    "chain_name": "vidulum",
+    "status": "live",
+    "network_type": "mainnet",
+    "pretty_name": "Vidulum",
+    "chain_id": "vidulum-1",
+    "bech32_prefix": "vdl",
+    "daemon_name": "vidulumd",
+    "node_home": "$HOME/.vidulum",
+    "genesis": {
+      "genesis_url": "https://github.com/vidulum/mainnet/blob/main/genesis.json"
+    },
+    "key_algos": [
+      "secp256k1"
+    ],
+    "slip44": 370,
+    "fees": {
+      "fee_tokens": [
+        {
+          "denom": "uvdl",
+          "fixed_min_gas_price": 0
+        }
+      ]
+    },
+    "codebase": {
+      "git_repo": "https://github.com/vidulum/mainnet",
+      "recommended_version": "v1.0.0",
+      "compatible_versions": [
+        "v1.0.0"
+      ],
+      "binaries": {
+        "linux/amd64": "https://github.com/vidulum/mainnet/releases/download/v1.0.0/vidulum_linux_amd64.tar.gz",
+        "linux/arm64": "https://github.com/vidulum/mainnet/releases/download/v1.0.0/vidulum_linux_arm64.tar.gz",
+        "darwin/amd64": "https://github.com/vidulum/mainnet/releases/download/v1.0.0/vidulum_darwin_amd64.tar.gz",
+        "windows/amd64": "https://github.com/vidulum/mainnet/releases/download/v1.0.0/vidulum_windows_amd64.zip"
+      }
+    },
+    "peers": {
+      "seeds": [
+        {
+          "id": "883ec7d5af7222c206674c20c997ccc5c242b38b",
+          "address": "ec2-3-82-120-39.compute-1.amazonaws.com:26656",
+          "provider": "notional"
+        }
+      ],
+      "persistent_peers": [
+        {
+          "id": "3bf3d98dfd4000dd5ff8189882a9f96848b99b87",
+          "address": "137.220.60.196:26656",
+          "provider": "vidulum"
+        },
+        {
+          "id": "7a44ea6ecb59b0e4bd01b58a75163ec64b164bb4",
+          "address": "63.210.148.24:26656",
+          "provider": "vidulum"
+        },
+        {
+          "id": "52051fef449e76eb399966312f523e8e5e27490b",
+          "address": "95.217.118.211:26656",
+          "provider": "minerpool"
+        },
+        {
+          "id": "cae7d9d21c1752300277eab72d861b0c6638b2e3",
+          "address": "164.68.119.151:26656",
+          "provider": "bluebird"
+        },
+        {
+          "id": "209688f5bccb88f6397a97cc11ab545a014aa559",
+          "address": "137.184.92.115:26656",
+          "provider": "1square"
+        }
+      ]
+    },
+    "apis": {
+      "rpc": [
+        {
+          "address": "https://mainnet-rpc.vidulum.app/",
+          "provider": "vidulum"
+        }
+      ],
+      "rest": [
+        {
+          "address": "https://mainnet-lcd.vidulum.app",
+          "provider": "vidulum"
+        }
+      ]
+    },
+    "explorers": [
+      {
+        "kind": "Ping",
+        "url": "https://explorers.vidulum.app/vidulum",
+        "tx_page": "https://explorers.vidulum.app/vidulum/tx/${txHash}"
+      },
+      {
+        "kind": "Ping",
+        "url": "https://ping.pub/vidulum",
+        "tx_page": "https://ping.pub/vidulum/tx/${txHash}"
+      }
+    ]
+  }
+]

@@ -1,4 +1,4 @@
-import { Secp256k1HdWallet } from '@cosmjs/launchpad';
+import { Secp256k1HdWallet } from '@cosmjs/amino';
 import axios from 'axios';
 import { getClient, signAndBroadcast } from './messages';
 import { messages } from './messages/create';

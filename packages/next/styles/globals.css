@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-text.min.css");
+
 html,
 body {
+  color: #FFF;
+  background-color: #111628;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -13,4 +18,283 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  font-family: 'Plus Jakarta Sans';
+}
+
+.main-text {
+  font-family: 'Plus Jakarta Text' !important;
+  font-weight: 800 !important;
+}
+
+.detail-text {
+  font-family: 'Quicksand' !important;
+  font-weight: 400 !important;
+  opacity: 85%;
+  font-size: 14px;
+}
+
+.main-text-inverted {
+  font-family: 'Plus Jakarta Text' !important;
+  font-weight: 800 !important;
+  color: #FFF !important;
+}
+
+.detail-text-inverted {
+  font-family: 'Quicksand' !important;
+  font-weight: 400 !important;
+  color: #FFF !important;
+  opacity: 50%;
+}
+
+.action-button {
+  background-color: #0089FF;
+  color: var(--alt-bg-color);
+  border: 1px solid #0089FF;
+  border-radius: 8px;
+  transition: all 0.2s ease-out;
+  text-decoration: none;
+  text-transform: none;
+  font-size: 1.2em;
+  font-weight: 800;
+  padding: 8px 24px;
+  border-radius: 20px;
+}
+
+.action-button:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--alt-bg-color);
+}
+
+.action-button.disabled {
+  background-color: #E8E8E8;
+  color: #222222;
+  border: 1px solid transparent;
+}
+
+.secondary-button {
+  background-color: transparent;
+  color: #FFF;
+  border: 0px solid #212838;
+  transition: all 0.2s ease-out;
+  text-decoration: none;
+  text-transform: none;
+  font-size: 1em;
+  font-weight: 300;
+  padding: 8px 24px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.secondary-button:hover {
+  background-color: #212838;
+}
+
+.light-border {
+  border: 1px solid #212838;
+}
+
+.container {
+  margin: 0 16px;
+}
+
+.maxwidth-sm {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.maxwidth-xs {
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.grid-container {
+  display: flex;
+  padding: 32px;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.paragraph {
+  margin-bottom: 12px;
+}
+
+.pool-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.pool {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  height: 40px;
+  flex: 1;
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.delete {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  transform: translate(0, -50%);
+  background-color: #F83344;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50px;
+  display: none;
+  cursor: pointer;
+}
+
+.pool:hover .delete {
+  display: flex;
+}
+
+.pool>* {
+  margin: 0 8px;
+}
+
+.pool .icon {
+  height: 24px;
+  width: 24px;
+  flex: 0;
+}
+
+.horizontal-slider {
+  width: 100%;
+  height: 50px;
+}
+
+.horizontal-slider .example-track {
+  top: 20px;
+  height: 10px;
+}
+
+.example-track {
+  position: relative;
+  background: #0089FF;
+  border-radius: 50px;
+}
+
+.example-track.example-track-1 {
+  background: #212838;
+  border-radius: 50px;
+}
+
+.horizontal-slider .example-thumb {
+  top: 14px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgb(0 195 255 / 20%);
+}
+
+.example-thumb {
+  font-size: 0.9em;
+  text-align: center;
+  background-color: #0089FF;
+  color: white;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 50px;
+}
+
+.percentage-input {
+  background: transparent;
+  border: none;
+  color: #FFF;
+  font-family: 'Quicksand';
+  max-width: 40px;
+  border: 1px solid #111628;
+  border-radius: 3px;
+  transition: all 0.2s ease-out;
+}
+
+.percentage-input:hover {
+  border: 1px solid #212838
+}
+
+.pool-adder__root {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.pool-adder__input-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.pool-adder__input {
+  border-radius: 50px;
+  background: #212838;
+  height: 28px;
+  border: none;
+  padding-left: 32px;
+  color: #fff;
+}
+
+.pool-adder__icon {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+}
+
+.pool-adder__table__container {
+  height: 120px;
+  border: 1px solid #212838;
+  border-radius: 8px;
+  overflow: scroll;
+  margin-bottom: 8px;
+  position: relative;
+  align-self: stretch;
+}
+
+.pool-adder__table__toolbar {
+  border-radius: 8px 8px 0px 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 26px;
+  background-color: #212838;
 }

@@ -1,56 +1,24 @@
 import bent from 'bent';
-import {
-  assertIsBroadcastTxSuccess,
-  SigningStargateClient,
-  StargateClient
-} from '@cosmjs/stargate';
-import { Registry } from '@cosmjs/proto-signing';
-
-import * as messages from './messages';
+import { getClient } from '../messages/utils';
+// import { messages } from '../messages/create';
 
 export class OsmosisClient {
   constructor({ url = 'https://lcd-osmosis.keplr.app/', rpcEndpoint, wallet }) {
-    this.url = url;
+    this.url = url.endsWith('/') ? url : `${url}/`;
     this.rpcEndpoint = rpcEndpoint;
     this.wallet = wallet;
   }
   async init() {
-    const [{ address }] = await this.wallet.getAccounts();
-    const registry = new Registry();
-    this.client = await SigningStargateClient.connectWithSigner(
-      this.rpcEndpoint,
-      this.wallet,
-      { registry: registry }
-    );
-  }
-
-  async swapExactAmountIn({ sender, routes, tokenIn, tokenOutMinAmount }) {
-    const payload = messages.swapExactAmountIn({
-      sender,
-      routes,
-      tokenIn,
-      tokenOutMinAmount
+    this.client = getClient({
+      rpcEndpoint: this.rpcEndpoint,
+      wallet: this.wallet
     });
-    return payload;
-    // return await this.sign(payload);
-  }
-
-  async sign(payload) {
-    const signed = await this.client.sign(payload.msgs, payload.fee);
-    return signed;
-  }
-
-  async broadcast(signed) {
-    // We can broadcast it manually later on
-    const result = await this.client.broadcastTx(signed);
-    console.log('Broadcasting result:', result);
   }
 }
 
 export class OsmosisApiClient {
-  constructor({ url = 'https://lcd-osmosis.keplr.app/', rpcEndpoint, wallet }) {
-    this.url = url;
-    this.wallet = wallet;
+  constructor({ url = 'https://lcd-osmosis.keplr.app/' } = {}) {
+    this.url = url.endsWith('/') ? url : `${url}/`;
   }
 
   async getBalances(address) {

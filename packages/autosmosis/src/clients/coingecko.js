@@ -57,13 +57,12 @@ export const CoinGeckoToken = {
 };
 
 /**
- * 
  * @param {*} coins is a list of coins to check
- * @returns 
  */
-export async function geckoPrice(coins) {
+
+export const getPrices = async (coins = ['osmosis']) => {
   //'https://api.coingecko.com/api/v3/simple/price?ids=cosmos,osmosis,ion,akash-network,sentinel,iris-network,crypto-com-chain,persistence,regen,starname,e-money,e-money-eur,juno-network,likecoin,terrausd,terra-luna,bitcanna,terra-krw,secret,medibloc,comdex,cheqd-network,vidulum&vs_currencies=usd'
-  var fetchUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${coins.join()}&vs_currencies=usd`
+  const fetchUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${coins.join()}&vs_currencies=usd`;
   try {
     const response = await axios.get(fetchUrl);
 
@@ -75,4 +74,4 @@ export async function geckoPrice(coins) {
     );
     return null;
   }
-}
+};

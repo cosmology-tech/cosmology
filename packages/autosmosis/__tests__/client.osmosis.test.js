@@ -1,7 +1,7 @@
 import { OsmosisClient, OsmosisApiClient } from '../src/clients/osmosis';
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 
-import { Secp256k1HdWallet, SigningCosmosClient } from '@cosmjs/launchpad';
+import { Secp256k1HdWallet } from '@cosmjs/launchpad';
 
 const TEST_ADDR1 = 'osmo18scnpvh8vkdwhura6r8372v9halwmy34evxr2e';
 // const client = new OsmosisClient('http://10.0.0.15:1317');
