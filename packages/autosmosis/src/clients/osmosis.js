@@ -1,7 +1,6 @@
 import bent from 'bent';
 import { getClient } from '../messages/utils';
 // import { messages } from '../messages/create';
-
 export class OsmosisClient {
   constructor({ url = 'https://lcd-osmosis.keplr.app/', rpcEndpoint, wallet }) {
     this.url = url.endsWith('/') ? url : `${url}/`;
