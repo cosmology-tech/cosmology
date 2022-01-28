@@ -42,7 +42,7 @@ input:focus {
 }
 
 button {
-  font-family: 'Plus Jakarta Sans';
+  font-family: 'Plus Jakarta Text';
 }
 
 .main-text {
@@ -87,6 +87,7 @@ button {
 .action-button:hover {
   cursor: pointer;
   background-color: transparent;
+  border-color: #415082;
   color: var(--alt-bg-color);
 }
 
@@ -114,12 +115,35 @@ button {
   background-color: #212838;
 }
 
+.secondary-button-darker {
+  background-color: #212838;
+  color: #ABB3C0;
+  border: 0px solid #212838;
+  transition: all 0.2s ease-out;
+  text-decoration: none;
+  text-transform: none;
+  font-size: 0.9em;
+  font-weight: 300;
+  padding: 8px 24px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.secondary-button-darker:hover {
+  background-color: #313948;
+}
+
+
 .light-border {
   border: 1px solid #212838;
 }
 
 .container {
   margin: 0 16px;
+}
+
+.animate-resize {
+  transition: all 0.2s ease-in-out;
 }
 
 .maxwidth-sm {
@@ -187,13 +211,18 @@ button {
 }
 
 .pool>* {
-  margin: 0 8px;
+  margin: 0 5px;
 }
 
 .pool .icon {
-  height: 24px;
-  width: 24px;
+  height: 26px;
+  width: 26px;
   flex: 0;
+}
+
+.horiz {
+  display: flex;
+  align-items: center;
 }
 
 .horizontal-slider {
@@ -250,11 +279,17 @@ button {
   border: 1px solid #212838
 }
 
+.pools-alloc-summary__container {
+  width: 100%;
+  margin: 8px 0;
+}
+
 .pool-adder__root {
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
+  margin: 16px 0;
 }
 
 .pool-adder__input-bar {
@@ -280,7 +315,7 @@ button {
 }
 
 .pool-adder__table__container {
-  height: 120px;
+  height: 201px;
   border: 1px solid #212838;
   border-radius: 8px;
   overflow: scroll;
@@ -292,9 +327,95 @@ button {
 .pool-adder__table__toolbar {
   border-radius: 8px 8px 0px 0px;
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 26px;
   background-color: #212838;
+  display: flex;
+  align-items: stretch;
+  padding: 0 8px;
+}
+
+.pool-adder__table__item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.pool-adder__table__toolbar p {
+  font-family: 'Plus Jakarta Text';
+  color: #9BA3B0;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.pool-adder__table__row {
+  width: 100%;
+  height: 32px;
+  background-color: #111628;
+  display: flex;
+  align-items: stretch;
+  padding: 22px 8px;
+  border-bottom: 1px solid #212838;
+  cursor: pointer;
+  position: relative;
+}
+
+.pool-adder__table__row:hover {
+  background-color: #212838;
+}
+
+.pool-adder__table-row__addbtn {
+  display: none;
+  background: #111628;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.pool-adder__table__row:hover .pool-adder__table-row__addbtn {
+  display: block;
+}
+
+.pool-adder__table__body {
+  padding-top: 26px;
+}
+
+.pool-adder__table__row p {
+  font-family: 'Quicksand';
+  color: #9BA3B0;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.pool-pair-image {
+  position: relative;
+}
+
+.pool-pair-image>img {
+  width: auto;
+  background: #111628;
+  padding: 3px;
+  border: 1px solid #212838;
+  border-radius: 50px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.job-container {
+  border: 1px solid #212838;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.job-status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  margin-right: 8px;
 }
