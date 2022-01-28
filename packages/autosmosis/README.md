@@ -1,5 +1,5 @@
-# autosmosis
+# dexmos
 
 ```
-npm install -g autosmosis
+npm install -g dexmos
 ```

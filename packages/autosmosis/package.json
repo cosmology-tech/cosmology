@@ -8,8 +8,7 @@
   "main": "main/index.js",
   "module": "module/index.js",
   "bin": {
-    "autosmosis": "main/autosmosis.js",
-    "cosmosis": "main/autosmosis.js"
+    "dexmos": "main/autosmosis.js"
   },
   "directories": {
     "lib": "src",
