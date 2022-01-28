@@ -1,24 +1,20 @@
-import bent from 'bent';
+import axios from 'axios';
 
 export class RestClient {
   constructor({ url }) {
     this.url = url.endsWith('/') ? url : `${url}/`;
     this._clientType = 'API';
-  }
-
-  get() {
-    return bent(this.url, 'GET', 'json', 200);
+    this.instance = axios.create({
+      baseURL: this.url,
+      timeout: 10000,
+      headers: {'X-Cosmonauts': 'true'}
+    });
   }
 
   async request(endpoint) {
     try {
-      const body = {};
-      const headers = {};
-      const result = await this.get()(endpoint, body, headers);
-      if (result.response) {
-        return result.response;
-      }
-      return result;
+      const response = await this.instance.get(endpoint);
+      return response.data;
     } catch (e) {
       console.error(
         `${this._clientType} response error:`,

@@ -1,4 +1,5 @@
 import { coins } from '@cosmjs/amino';
+
 /**
  * @typedef {{
  * poolId:string;

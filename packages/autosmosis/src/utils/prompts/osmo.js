@@ -79,6 +79,12 @@ export const osmoRestClient = async (argv) => {
         value
       }
     });
+    rest.push(
+      {
+        name: 'https://osmosis.stakesystems.io/ (mainnet)',
+        value: 'https://osmosis.stakesystems.io/',
+      }
+    );
     if (process.env.CHAIN_ID) {
         argv.chainId = process.env.CHAIN_ID;
     }
@@ -114,6 +120,56 @@ export const osmoRestClient = async (argv) => {
     argv.restEndpoint = restEndpoint;
 
     return {client, wallet};
+
+} catch (e) {
+    console.log('error ' + e);
+  }
+};
+
+export const osmoRestClientOnly = async (argv) => {
+  try {
+    if (process.env.CHAIN_ID) {
+        argv.chainId = process.env.CHAIN_ID;
+    }
+    if (process.env.REST_ENDPOINT) {
+        argv.restEndpoint = process.env.REST_ENDPOINT;
+    }
+    
+    const rest =[
+      {
+        name: 'https://osmosis.stakesystems.io/ (mainnet)',
+        value: 'https://osmosis.stakesystems.io/',
+      }
+    ];
+
+    const questions = [
+      {
+        type: 'list',
+        name: 'chainId',
+        message: 'chainId',
+        choices: ['localnet-1', 'osmosis-testnet-0', 'osmosis-1']
+      },
+        {
+          type: 'list',
+          name: 'restEndpoint',
+          message: 'restEndpoint',
+          choices: [...rest, ...osmosTestnetRests]
+        }
+    ];
+    const { restEndpoint, chainId } = await prompt(questions, argv);
+    if (osmosTestnetRests.includes(restEndpoint)) {
+      console.log('WARN: using TESTNET');
+    }
+
+    // 'https://lcd-osmosis.keplr.app/'
+    const client = new OsmosisApiClient({
+      url: restEndpoint
+    });
+
+    argv.chainId = chainId;
+    argv.restEndpoint = restEndpoint;
+
+    return client;
 
 } catch (e) {
     console.log('error ' + e);

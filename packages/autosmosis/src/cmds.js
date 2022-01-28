@@ -1,7 +1,9 @@
 
 import _create_mnemonic_wallet from './commands/create-mnemonic-wallet';
 import _get_balances from './commands/get-balances';
+import _get_latest_block from './commands/get-latest-block';
 import _get_price from './commands/get-price';
+import _get_transaction from './commands/get-transaction';
 import _ibc_transfer from './commands/ibc-transfer';
 import _join_pool from './commands/join-pool';
 import _list_apis from './commands/list-apis';
@@ -13,7 +15,9 @@ import _wallet_from_mnemonic from './commands/wallet-from-mnemonic';
 const Commands = {};
 Commands['create-mnemonic-wallet'] = _create_mnemonic_wallet;
 Commands['get-balances'] = _get_balances;
+Commands['get-latest-block'] = _get_latest_block;
 Commands['get-price'] = _get_price;
+Commands['get-transaction'] = _get_transaction;
 Commands['ibc-transfer'] = _ibc_transfer;
 Commands['join-pool'] = _join_pool;
 Commands['list-apis'] = _list_apis;
