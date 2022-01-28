@@ -35,3 +35,16 @@ if you need to edit `autosmosis` and view changes in next
 cd ./packages/autosmosis
 MODULE=true yarn build
 ```
+
+## CLI
+
+if you need to edit the CLI
+
+```sh
+cd ./packages/autosmosis
+export MNEMONIC="mammal wrestle hybrid cart choose flee transfer filter fly object swamp rookie"
+export CHAIN_ID=osmosis-testnet-0
+export RPC_ENDPOINT=http://143.244.147.126:26657
+
+yarn run dev
+```

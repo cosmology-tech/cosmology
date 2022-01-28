@@ -21,15 +21,13 @@ export const messages = {
    * @param {object} param0
    * @param {string} param0.sender
    * @param {string} param0.poolId
-   * @param {Coin} param0.tokenIn
    * @param {string} param0.shareOutAmount
    * @param {Coin[]} param0.tokenInMaxs
    */
-  joinPool: ({ sender, poolId, tokenIn, shareOutAmount, tokenInMaxs }) =>
+  joinPool: ({ sender, poolId, shareOutAmount, tokenInMaxs }) =>
     osmo('joinPool', {
       sender,
       poolId,
-      tokenIn,
       shareOutAmount,
       tokenInMaxs
     }),

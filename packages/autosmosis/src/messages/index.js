@@ -1,4 +1,4 @@
 export * from './meta';
-export * from './types';
+export * from './aminos';
 export * from './utils';
-export * from './create';
+export * from './messages';

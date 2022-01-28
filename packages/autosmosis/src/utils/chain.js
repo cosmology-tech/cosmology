@@ -18,17 +18,17 @@ export const getChain = async ({ token }) => {
 };
 
 export const promptChain = async (argv) => {
-  const { token } = await prompt(
+  const { chainToken } = await prompt(
     [
       {
         type: 'fuzzy',
-        name: 'token',
-        message: 'token',
+        name: 'chainToken',
+        message: 'chainToken',
         choices: assetList
       }
     ],
     argv
   );
-  argv.token = token;
-  return await getChain({ token });
+  argv.chainToken = chainToken;
+  return await getChain({ token: chainToken });
 };
