@@ -48,3 +48,12 @@ export RPC_ENDPOINT=http://143.244.147.126:26657
 
 yarn run dev
 ```
+
+## Useful Links
+
+https://v1.cosmos.network/rpc/v0.41.4
+
+https://github.com/osmosis-labs/awesome#publicly-available-endpoints
+
+https://www.notion.so/Stake-Systems-LCD-RPC-gRPC-Instances-04a99a9a9aa14247a42944931eec7024
+
