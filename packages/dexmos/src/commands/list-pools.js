@@ -20,7 +20,7 @@ export default async (argv) => {
     const client = new OsmosisApiClient();
     pools = await client.getPoolsPretty({ includeDetails });
   } catch (e) {
-     console.log(e);
+    console.log(e);
     return console.log('error fetching pools');
   }
   console.log(pools);

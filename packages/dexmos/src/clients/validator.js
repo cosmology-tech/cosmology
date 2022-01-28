@@ -2,7 +2,7 @@ import { RestClient } from './rest';
 
 export class OsmosisValidatorClient extends RestClient {
   constructor({ url = 'https://api-osmosis.imperator.co/' } = {}) {
-    super({url});
+    super({ url });
     this._clientType = 'Osmosis Validator';
   }
 

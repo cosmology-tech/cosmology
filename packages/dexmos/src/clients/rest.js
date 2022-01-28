@@ -7,7 +7,7 @@ export class RestClient {
     this.instance = axios.create({
       baseURL: this.url,
       timeout: 10000,
-      headers: {'X-Cosmonauts': 'true'}
+      headers: { 'X-Cosmonauts': 'true' }
     });
   }
 

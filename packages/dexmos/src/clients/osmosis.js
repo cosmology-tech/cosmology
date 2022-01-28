@@ -6,9 +6,9 @@ const assetHashMap = assets.reduce((m, asset) => {
   return m;
 }, {});
 
-export class CosmosApiClient extends RestClient{
+export class CosmosApiClient extends RestClient {
   constructor({ url }) {
-    super({url});
+    super({ url });
     this._clientType = 'Cosmos API';
   }
 
@@ -35,22 +35,22 @@ export class CosmosApiClient extends RestClient{
     return await this.request(endpoint);
   }
 
-    /**
-   * @returns {Promise<{
-   *   block_id: {
-   *      hash: string;
-   *      part_set_header: object;
-   *   };
-   *   block: {
-   *      header: {
-   *        version: object;
-   *        chain_id: string;
-   *        height: string;
-   *        time: string;
-   *      }
-   *   }
-   * }>}
-   */
+  /**
+ * @returns {Promise<{
+ *   block_id: {
+ *      hash: string;
+ *      part_set_header: object;
+ *   };
+ *   block: {
+ *      header: {
+ *        version: object;
+ *        chain_id: string;
+ *        height: string;
+ *        time: string;
+ *      }
+ *   }
+ * }>}
+ */
 
   async getLatestBlock() {
     const endpoint = `/cosmos/base/tendermint/v1beta1/blocks/latest`;
@@ -63,7 +63,7 @@ export class CosmosApiClient extends RestClient{
     const endpoint = `bank/balances/${address}`;
     return await this.request(endpoint);
   }
-  
+
   async authInfo(address) {
     const endpoint = `auth/accounts/${address}`;
     return await this.request(endpoint);
@@ -85,7 +85,7 @@ export class CosmosApiClient extends RestClient{
 
 export class OsmosisApiClient extends CosmosApiClient {
   constructor({ url = 'https://osmosis.stakesystems.io/' } = {}) {
-    super({url})
+    super({ url })
     this._clientType = 'Osmosis API';
   }
 
@@ -142,7 +142,7 @@ export class OsmosisApiClient extends CosmosApiClient {
   async getPoolsPretty({ includeDetails = false } = {}) {
     const { pools } = await this.getPools();
 
-    const prettyPools = pools.map((pool,i) => {
+    const prettyPools = pools.map((pool, i) => {
       const totalWeight = Number(pool.totalWeight);
       const tokens = pool.poolAssets.map(({ token, weight }) => {
         const asset = assetHashMap?.[token.denom];
@@ -160,10 +160,10 @@ export class OsmosisApiClient extends CosmosApiClient {
       });
       if (!i) console.log(pool);
       const value = {
-        nickname: tokens.map(t=>t.symbol).join('/'),
+        nickname: tokens.map(t => t.symbol).join('/'),
       };
       if (includeDetails) {
-        value.images = tokens.map(t=>{
+        value.images = tokens.map(t => {
           const imgs = t?.info?.logo_URIs;
           if (imgs) {
             return {
@@ -182,5 +182,5 @@ export class OsmosisApiClient extends CosmosApiClient {
 
     return prettyPools;
   }
-  
+
 }

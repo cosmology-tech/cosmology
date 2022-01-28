@@ -24,10 +24,10 @@ const out = `
 ${imports}
 const Commands = {};
 ${paths
-  .map((a) => {
-    return `Commands['${a.param}'] = _${a.safe};`;
-  })
-  .join('\n')}
+    .map((a) => {
+      return `Commands['${a.param}'] = _${a.safe};`;
+    })
+    .join('\n')}
 
   export { Commands }; 
 
