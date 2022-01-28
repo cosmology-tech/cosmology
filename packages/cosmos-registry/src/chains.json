@@ -3010,6 +3010,10 @@
         {
           "address": "https://lcd-osmosis.keplr.app",
           "provider": "chainapsis"
+        },
+        {
+          "address": "https://osmosis.stakesystems.io/",
+          "provider": "stakesystems"
         }
       ]
     },

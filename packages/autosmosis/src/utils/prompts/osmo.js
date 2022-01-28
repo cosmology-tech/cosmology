@@ -79,12 +79,6 @@ export const osmoRestClient = async (argv) => {
         value
       }
     });
-    rest.push(
-      {
-        name: 'https://osmosis.stakesystems.io/ (mainnet)',
-        value: 'https://osmosis.stakesystems.io/',
-      }
-    );
     if (process.env.CHAIN_ID) {
         argv.chainId = process.env.CHAIN_ID;
     }
