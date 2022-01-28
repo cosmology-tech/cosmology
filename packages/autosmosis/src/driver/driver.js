@@ -134,7 +134,7 @@ export class Driver {
       if (allocation.type === 'pool') {
         const txnId = Math.floor(Math.random() * 100000000) // random txn id (for internal use)
         this.txnStatus[txnId] = 'queued'
-        jobs.push(allocation, {
+        jobs.push({
           type: 'joinPool',
           txnId,
           job: {
@@ -150,7 +150,7 @@ export class Driver {
       if (allocation.type === 'pool') {
         const txnId = Math.floor(Math.random() * 100000000) // random txn id (for internal use)
         this.txnStatus[txnId] = 'queued'
-        jobs.push(allocation, {
+        jobs.push({
           type: 'lockTokens',
           txnId,
           job: {
