@@ -6,11 +6,22 @@ export class DriverClient {
     return { LUNA: 13, OSMO: 50, STARS: 2000 }
   }
 
-  static swap (inputCoin, targetCoin, amount) {}
+  static async swap (inputCoin, targetCoin, amount) {
+    return null
+  }
 
   static joinPool (poolId, amount) {}
 
   static lockTokens (poolId) {}
+
+  /**
+   *
+   * @param {string} txHash
+   * @returns {('success'|'failed'|'running'|'queued')}
+   */
+  static async pollStatus (txHash) {
+    return "success"
+  }
 
   static async getPrices (coins) {
     const coinsInGeckoFormat = coins.map(coin => {

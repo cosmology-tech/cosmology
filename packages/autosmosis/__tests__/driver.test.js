@@ -1,31 +1,23 @@
 import prices from '../__fixtures__/coingecko/api/v3/simple/price/data.json'
-import { getAllSwaps } from '../src/driver/driver'
+import { Driver } from '../src/driver/driver'
 import { Token } from '../src/model/Token'
 
-describe('testGetAllSwaps', () => {
-  it('can calculate all necessary swaps', async () => {
-    const swaps = await getAllSwaps([
+describe('testGetAllJobs', () => {
+  it('can calculate all necessary jobs', async () => {
+    let driver = new Driver()
+    const jobs = await driver.getAllJobs([
       { "type": "coin", "coin": "UST", "weight": 0.3 },
-      { "type": "pool", "pool": { "coin1": "LUNA", "coin2": "UST", "id": 562, "balance": 0.5 }, "weight": 0.3 },
-      { "type": "pool", "pool": { "coin1": "ATOM", "coin2": "STARS", "id": 611, "balance": 0.7 }, "weight": 0.4 }
+      { "type": "pool", "pool": { "id": 562, "coin1": "LUNA", "coin2": "UST", "balance": 0.5 }, "weight": 0.3 },
+      { "type": "pool", "pool": { "id": 611, "coin1": "ATOM", "coin2": "STARS", "balance": 0.7 }, "weight": 0.4 }
     ])
+    expect(jobs.length).toEqual(14)
 
-    expect(swaps).length === 6
+    expect(jobs[0].job.inputCoin).toEqual("LUNA")
+    expect(jobs[0].job.targetCoin).toEqual("UST")
+    expect(jobs[0].job.amount).toBeGreaterThan(0)
 
-    expect(swaps[0].inputCoin === "OSMO")
-    expect(swaps[0].targetCoin === "UST")
-    expect(swaps[0].amount > 0)
-
-    expect(swaps[5].inputCoin === "OSMO")
-    expect(swaps[5].targetCoin === "UST")
-    expect(swaps[5].amount > 0)
-    // .toEqual([
-    //   { "inputCoin": "LUNA", "targetCoin": "UST", "amount": 13 },
-    //   { "inputCoin": "OSMO", "targetCoin": "UST", "amount": 50 },
-    //   { "inputCoin": "STARS", "targetCoin": "UST", "amount": 2000 },
-    //   { "inputCoin": "UST", "targetCoin": "LUNA", "amount": 316.25 },
-    //   { "inputCoin": "UST", "targetCoin": "ATOM", "amount": 590.35 },
-    //   { "inputCoin": "UST", "targetCoin": "STARS", "amount": 7.73 },
-    // ])
+    expect(jobs[5].job.inputCoin).toEqual("UST")
+    expect(jobs[5].job.targetCoin).toEqual("STARS")
+    expect(jobs[5].job.amount).toBeGreaterThan(0)
   })
 })
