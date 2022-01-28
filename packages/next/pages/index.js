@@ -26,7 +26,7 @@ export default function Home() {
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
-          {/* {JSON.stringify(autosmosis, null, 2)} */}
+          {/* {JSON.stringify(dexmos, null, 2)} */}
         </p>
 
         <div className={styles.grid}>

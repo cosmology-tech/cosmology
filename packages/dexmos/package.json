@@ -1,14 +1,14 @@
 {
-  "name": "autosmosis",
+  "name": "dexmos",
   "version": "0.0.10",
-  "description": "autosmosis",
+  "description": "dexmos",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "homepage": "https://github.com/pyramation/autosmosis/tree/master/packages/autosmosis#readme",
+  "homepage": "https://github.com/pyramation/dexmos/tree/master/packages/dexmos#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "main/index.js",
   "module": "module/index.js",
   "bin": {
-    "dexmos": "main/autosmosis.js"
+    "dexmos": "main/dexmos.js"
   },
   "directories": {
     "lib": "src",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pyramation/autosmosis"
+    "url": "https://github.com/pyramation/dexmos"
   },
   "scripts": {
     "build:main": "cross-env BABEL_ENV=production babel src --out-dir main --delete-dir-on-start",
@@ -31,9 +31,9 @@
     "build": "npm run build:module && npm run build:main",
     "prepare": "npm run build",
     "lint": "eslint src --fix",
-    "dev": "cross-env NODE_ENV=development babel-node src/autosmosis",
+    "dev": "cross-env NODE_ENV=development babel-node src/dexmos",
     "mytest": "cross-env NODE_ENV=development babel-node src/my-test",
-    "watch": "cross-env NODE_ENV=development babel-watch src/autosmosis",
+    "watch": "cross-env NODE_ENV=development babel-watch src/dexmos",
     "file": "cross-env NODE_ENV=development babel-watch src/file",
     "make:commands": "cross-env NODE_ENV=development node ./bin/build.js",
     "test": "jest",
@@ -41,7 +41,7 @@
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "bugs": {
-    "url": "https://github.com/pyramation/autosmosis/issues"
+    "url": "https://github.com/pyramation/dexmos/issues"
   },
   "devDependencies": {
     "@babel/cli": "7.16.8",

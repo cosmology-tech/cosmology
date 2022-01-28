@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "description": "crypto networks",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "homepage": "https://github.com/pyramation/autosmosis/tree/master/packages/cosmos-networks#readme",
+  "homepage": "https://github.com/pyramation/dexmos/tree/master/packages/cosmos-networks#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "main/index.js",
   "module": "module/index.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pyramation/autosmosis"
+    "url": "https://github.com/pyramation/dexmos"
   },
   "scripts": {
     "build:main": "BABEL_ENV=production babel src --out-dir main --delete-dir-on-start",
