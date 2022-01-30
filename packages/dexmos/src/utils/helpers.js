@@ -1,6 +1,6 @@
 import { prompt, promptMnemonic } from './prompt';
 import { assets, chains } from '@pyramation/cosmos-registry';
-import { getAccountFromMnemonic, getWalletFromMnemonic } from '../utils/wallet';
+import { getAccountFromMnemonic, getWalletFromMnemonic, getWalletFromMnemonicForChain } from '../utils/wallet';
 const assetList = assets.reduce(
   (m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)],
   []
@@ -10,6 +10,14 @@ export const promptOsmoWallet = async (argv) => {
   argv = await promptMnemonic(argv);
   const { mnemonic } = argv;
   const account = await getWalletFromMnemonic({ mnemonic, token: 'OSMO' });
+  console.log('WARNING: LUNA and some wallets are NOT correct (TODO hdPath)');
+  return account;
+};
+
+export const promptCosmosChainWallet = async (chain, argv) => {
+  argv = await promptMnemonic(argv);
+  const { mnemonic } = argv;
+  const account = await getWalletFromMnemonicForChain({ mnemonic, chain });
   console.log('WARNING: LUNA and some wallets are NOT correct (TODO hdPath)');
   return account;
 };

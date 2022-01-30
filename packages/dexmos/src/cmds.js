@@ -10,6 +10,7 @@ import _list_apis from './commands/list-apis';
 import _list_pools from './commands/list-pools';
 import _list_prices from './commands/list-prices';
 import _lock_tokens from './commands/lock-tokens';
+import _send from './commands/send';
 import _swap_exact_amount_in from './commands/swap-exact-amount-in';
 import _wallet_from_mnemonic from './commands/wallet-from-mnemonic';
 const Commands = {};
@@ -24,6 +25,7 @@ Commands['list-apis'] = _list_apis;
 Commands['list-pools'] = _list_pools;
 Commands['list-prices'] = _list_prices;
 Commands['lock-tokens'] = _lock_tokens;
+Commands['send'] = _send;
 Commands['swap-exact-amount-in'] = _swap_exact_amount_in;
 Commands['wallet-from-mnemonic'] = _wallet_from_mnemonic;
 

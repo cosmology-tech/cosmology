@@ -1,4 +1,6 @@
 import { filter } from 'fuzzy';
+import { assets as osmosisAssets } from '../assets';
+import { assets, chains } from '@pyramation/cosmos-registry';
 import { prompt as inquirerer } from 'inquirerer';
 
 export const getFuzzySearch = (list) => {
@@ -17,6 +19,9 @@ export const getFuzzySearch = (list) => {
   };
 };
 
+const coinSymbols = osmosisAssets.map(({ symbol }) => symbol).sort();
+const allChains = chains.map(a => a.chain_id);
+
 const transform = (questions) => {
   return questions.map((q) => {
     if (q.type === 'fuzzy') {
@@ -26,6 +31,24 @@ const transform = (questions) => {
         ...q,
         type: 'autocomplete',
         source: getFuzzySearch(choices)
+      };
+    } else if (q.type === 'fuzzy:token') {
+      return {
+        ...q,
+        type: 'autocomplete',
+        source: getFuzzySearch(coinSymbols)
+      };
+    } else if (q.type === 'fuzzy:chain') {
+      return {
+        ...q,
+        type: 'autocomplete',
+        source: getFuzzySearch(allChains)
+      };
+    } else if (q.type === 'checkbox:token') {
+      return {
+        ...q,
+        type: 'checkbox',
+        choices: coinSymbols
       };
     } else {
       return q;

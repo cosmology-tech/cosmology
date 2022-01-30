@@ -8,10 +8,9 @@ export default async (argv) => {
   const { tokens } = await prompt(
     [
       {
-        type: 'checkbox',
+        type: 'checkbox:token',
         name: 'tokens',
-        message: 'tokens',
-        choices: assets.map(({ symbol }) => symbol)
+        message: 'tokens'
       }
     ],
     argv

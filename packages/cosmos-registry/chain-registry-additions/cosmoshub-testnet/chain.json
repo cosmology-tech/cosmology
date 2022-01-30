@@ -1,0 +1,41 @@
+{
+    "$schema": "../chain.schema.json",
+    "chain_name": "cosmoshub-testnet",
+    "chain_id": "cosmoshub-testnet",
+    "origin_chain_id": "cosmoshub-4",
+    "pretty_name": "Cosmos Hub",
+    "status": "live",
+    "network_type": "testnet",
+    "bech32_prefix": "cosmos",
+    "genesis": {
+        "genesis_url": "https://github.com/cosmos/mainnet/raw/master/genesis.cosmoshub-4.json.gz"
+    },
+    "daemon_name": "gaiad",
+    "node_home": "$HOME/.gaia",
+    "key_algos": [
+        "secp256k1"
+    ],
+    "slip44": 118,
+    "fees": {
+        "fee_tokens": [
+            {
+                "denom": "uatom",
+                "fixed_min_gas_price": 0
+            }
+        ]
+    },
+    "apis": {
+        "rpc": [
+            {
+                "address": "https://rpc.testnet.cosmos.network/",
+                "type": "testnet"
+            }
+        ],
+        "rest": [
+            {
+                "address": "https://api.testnet.cosmos.network/",
+                "type": "testnet"
+            }
+        ]
+    }
+}

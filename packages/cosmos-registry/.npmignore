@@ -3,6 +3,7 @@ npm-debug.log*
 
 bin
 chain-registry
+chain-registry-additions
 
 # Coverage directory used by tools like istanbul
 coverage
