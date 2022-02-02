@@ -18,7 +18,7 @@
         "usd": 18.14
     },
     "terrausd": {
-        "usd": 1.02
+        "usd": 1.0
     },
     "osmosis": {
         "usd": 9.1
@@ -64,6 +64,12 @@
     },
     "vidulum": {
         "usd": 0.278524
+    },
+    "stargaze": {
+        "usd": 0.709038
+    },
+    "chihuahua-token": {
+        "usd": 0.00425176
     },
     "iris-network": {
         "usd": 0.069877

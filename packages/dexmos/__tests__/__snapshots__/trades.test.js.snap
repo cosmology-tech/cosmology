@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`trades desired is less but should not need to sell 1`] = `
+Array [
+  Object {
+    "beliefValue": 90.5,
+    "buy": Object {
+      "amount": "50000000",
+      "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+      "displayAmount": 50,
+      "symbol": "AKT",
+      "value": 90.5,
+    },
+    "sell": Object {
+      "amount": "2470652.470652471",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "displayAmount": 2.4706524706524706,
+      "symbol": "ATOM",
+      "value": 90.5,
+    },
+  },
+]
+`;
+
+exports[`trades needs two coins 1`] = `
+Array [
+  Object {
+    "beliefValue": 90.5,
+    "buy": Object {
+      "amount": "50000000",
+      "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+      "displayAmount": 50,
+      "symbol": "AKT",
+      "value": 90.5,
+    },
+    "sell": Object {
+      "amount": "2470652.470652471",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "displayAmount": 2.4706524706524706,
+      "symbol": "ATOM",
+      "value": 90.5,
+    },
+  },
+  Object {
+    "beliefValue": 18.2,
+    "buy": Object {
+      "amount": "2000000",
+      "denom": "uosmo",
+      "displayAmount": 2,
+      "symbol": "OSMO",
+      "value": 18.2,
+    },
+    "sell": Object {
+      "amount": "496860.4968604968",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "displayAmount": 0.4968604968604968,
+      "symbol": "ATOM",
+      "value": 18.2,
+    },
+  },
+]
+`;
+
+exports[`trades simple 1`] = `
+Array [
+  Object {
+    "beliefValue": 90.5,
+    "buy": Object {
+      "amount": "50000000",
+      "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+      "displayAmount": 50,
+      "symbol": "AKT",
+      "value": 90.5,
+    },
+    "sell": Object {
+      "amount": "2470652.470652471",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "displayAmount": 2.4706524706524706,
+      "symbol": "ATOM",
+      "value": 90.5,
+    },
+  },
+]
+`;
+
+exports[`trades trade3 1`] = `
+Array [
+  Object {
+    "beliefValue": 4130,
+    "buy": Object {
+      "amount": "112749112.74911274",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "displayAmount": 112.74911274911274,
+      "symbol": "ATOM",
+      "value": 4130,
+    },
+    "sell": Object {
+      "amount": "1000000000",
+      "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+      "displayAmount": 1000,
+      "symbol": "CMDX",
+      "value": 4130,
+    },
+  },
+  Object {
+    "beliefValue": 9100,
+    "buy": Object {
+      "amount": "248430248.4302484",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "displayAmount": 248.4302484302484,
+      "symbol": "ATOM",
+      "value": 9100,
+    },
+    "sell": Object {
+      "amount": "1000000000",
+      "denom": "uosmo",
+      "displayAmount": 1000,
+      "symbol": "OSMO",
+      "value": 9100,
+    },
+  },
+  Object {
+    "beliefValue": 1422.0000000000018,
+    "buy": Object {
+      "amount": "38820638.82063887",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "displayAmount": 38.82063882063887,
+      "symbol": "ATOM",
+      "value": 1422.0000000000018,
+    },
+    "sell": Object {
+      "amount": "2005534259.09472",
+      "denom": "ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4",
+      "displayAmount": 2005.5342590947198,
+      "symbol": "STARS",
+      "value": 1422.0000000000018,
+    },
+  },
+]
+`;
+
+exports[`trades trade3 diff order 1`] = `
+Array [
+  Object {
+    "beliefValue": 7090.379999999999,
+    "buy": Object {
+      "amount": "193567567.56756753",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "displayAmount": 193.56756756756752,
+      "symbol": "ATOM",
+      "value": 7090.379999999999,
+    },
+    "sell": Object {
+      "amount": "10000000000",
+      "denom": "ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4",
+      "displayAmount": 10000,
+      "symbol": "STARS",
+      "value": 7090.379999999999,
+    },
+  },
+  Object {
+    "beliefValue": 4130,
+    "buy": Object {
+      "amount": "112749112.74911274",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "displayAmount": 112.74911274911274,
+      "symbol": "ATOM",
+      "value": 4130,
+    },
+    "sell": Object {
+      "amount": "1000000000",
+      "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+      "displayAmount": 1000,
+      "symbol": "CMDX",
+      "value": 4130,
+    },
+  },
+  Object {
+    "beliefValue": 3431.6200000000026,
+    "buy": Object {
+      "amount": "93683319.68331975",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "displayAmount": 93.68331968331975,
+      "symbol": "ATOM",
+      "value": 3431.6200000000026,
+    },
+    "sell": Object {
+      "amount": "377101098.9010992",
+      "denom": "uosmo",
+      "displayAmount": 377.1010989010992,
+      "symbol": "OSMO",
+      "value": 3431.6200000000026,
+    },
+  },
+]
+`;

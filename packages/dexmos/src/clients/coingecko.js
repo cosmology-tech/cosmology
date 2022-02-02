@@ -22,12 +22,16 @@ import axios from 'axios';
  * 'secret'|
  * 'medibloc'|
  * 'comdex'|
+ * 'stargaze'|
+ * 'chihuahua-token'|
  * 'cheqd-network'|
  * 'vidulum')} CoinGeckoToken
  *
- * @typedef {Object.<string, {usd: number}>} TokenPricesUSDResponse
+ * @typedef {Object.<CoinGeckoToken, {usd: number}>} TokenPricesUSDResponse
  *
  */
+
+//  https://api.coingecko.com/api/v3/simple/price?ids=osmosis,ion,cosmos,terra-luna,crypto-com-chain,terrausd,secret,juno-network,persistence,terra-krw,akash-network,regen,sentinel,iris-network,starname,e-money,e-money-eur,likecoin,bitcanna,medibloc,comdex,cheqd-network,vidulum,stargaze,chihuahua-token&vs_currencies=usd
 
 export const CoinGeckoToken = {
   // Enum
@@ -53,7 +57,9 @@ export const CoinGeckoToken = {
   medibloc: 'medibloc',
   comdex: 'comdex',
   'cheqd-network': 'cheqd-network',
-  vidulum: 'vidulum'
+  vidulum: 'vidulum',
+  stargaze: 'stargaze',
+  'chihuahua-token': 'chihuahua-token'
 };
 
 /**

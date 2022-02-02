@@ -51,37 +51,64 @@ export const getChainByChainId = (chain_id) => {
   return chain;
 };
 
-export const getBaseAndDisplayUnits = (symbol) => {
+export const getBaseAndDisplayUnitsGenericCosmos = (symbol) => {
   const coinInfo = getCosmosAssetInfo(symbol);
   if (!coinInfo) {
-      throw new Error('coin not found.')
-  }
-  const asset = coinInfo.assets.find(a=>a.symbol===symbol);
-  if (!asset) {
-      throw new Error('coin not found.')
+      throw new Error(`coin:${symbol} not found.`);
+    }
+    const asset = coinInfo.assets.find(a=>a.symbol===symbol);
+    if (!asset) {
+    throw new Error(`coin:${symbol} not found.`);
   }
   
   const base = asset.denom_units.find(d=>d.denom===asset.base);
   const display = asset.denom_units.find(d=>d.denom===asset.display);
 
   if (!base || !display) {
-      throw new Error('cannot find denom for coin');
+      throw new Error(`cannot find denom for coin ${symbol}`);
   }
 
   return { base, display };
 }
 
+export const getBaseAndDisplayUnits = (symbol) => {
+  const coinInfo = getOsmosisAssetInfo(symbol);
+  if (!coinInfo) {
+    throw new Error(`coin:${symbol} not found.`);
+  }
+  
+  const base = coinInfo.denom_units.find(d=>
+      d.denom===coinInfo.base ||
+      d.aliases?.includes(coinInfo.base)
+  );
+  const display = coinInfo.denom_units.find(
+    d=>d.denom===coinInfo.display ||
+    d.aliases?.includes(coinInfo.display)
+  );
+
+  if (!base || !display) {
+      throw new Error(`cannot find denom for coin ${symbol}`);
+  }
+
+  return { base, display };
+};
+
 export const getOsmosisSymbolIbcName = (symbol) => {
   const coinInfo = getOsmosisAssetInfo(symbol);
   if (!coinInfo) {
-      throw new Error('coin not found.')
+    throw new Error(`coin:${symbol} not found.`);
   }
   return coinInfo.base;
 }
 
 export const displayUnitsToDenomUnits = (symbol, amount) => {
   const { display } = getBaseAndDisplayUnits(symbol);
-  return amount * Math.pow(10, display.exponent); 
+  return Number(amount) * Math.pow(10, display.exponent); 
+}
+
+export const baseUnitsToDisplayUnits = (symbol, amount) => {
+  const { display } = getBaseAndDisplayUnits(symbol);
+  return Number(amount) / Math.pow(10, display.exponent); 
 }
 
 export const getChain = async ({ token }) => {

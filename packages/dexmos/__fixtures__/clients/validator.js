@@ -1,4 +1,8 @@
-import { RestClient } from './rest';
+import getPoolsFixture from '../validator/search/v1/pools/data.json';
+import getTokensFixture from '../validator/tokens/v2/all/data.json';
+import getPoolAprsFixture from '../validator/apr/v1/all/data.json';
+import getPoolAprFixture from '../validator/apr/v1/606/data.json';
+import getPairsSummaryFixture from '../validator/pairs/v1/summary/data.json';
 
 /**
  * 
@@ -63,23 +67,16 @@ import { RestClient } from './rest';
  * 
  */
 //  https://api-osmosis.imperator.co/swagger/#/
-export class OsmosisValidatorClient extends RestClient {
-  constructor({ url = 'https://api-osmosis.imperator.co/' } = {}) {
-    super({ url });
-    this._clientType = 'Osmosis Validator';
-  }
-
+export class OsmosisValidatorClient {
   async getPools() {
-    const endpoint = `search/v1/pools`;
-    return await this.request(endpoint);
+    return getPoolsFixture;
   }
 
   /**
    * @returns {Promise<ValidatorToken[]>}
    */
   async getTokens() {
-    const endpoint = `tokens/v2/all`;
-    return await this.request(endpoint);
+    return getTokensFixture;
   }
 
   /**
@@ -87,8 +84,7 @@ export class OsmosisValidatorClient extends RestClient {
    * @returns {Promise<ValidatorToken[]>}
    */
   async getToken(symbol) {
-    const endpoint = `tokens/v2/${symbol}`;
-    return await this.request(endpoint);
+    console.warn('NOT IMPLEMENTED IN TESTING');
   }
   
   /**
@@ -96,16 +92,14 @@ export class OsmosisValidatorClient extends RestClient {
    * @returns {Promise<ValidatorTokenPrice[]>}
    */
   async getTokenPrice(symbol) {
-    const endpoint = `tokens/v2/price/${symbol}`;
-    return await this.request(endpoint);
+    console.warn('NOT IMPLEMENTED IN TESTING');
   }
 
   /**
    * @returns {Promise<ValidatorPoolApr[]>}
    */
   async getPoolAprs() {
-    const endpoint = `apr/v1/all`;
-    return await this.request(endpoint);
+    return getPoolAprsFixture;
   }
 
   /**
@@ -113,16 +107,14 @@ export class OsmosisValidatorClient extends RestClient {
    * @returns {Promise<ValidatorPoolApr[]>}
    */
    async getPoolApr(symbol) {
-    const endpoint = `apr/v1/${symbol}`;
-    return await this.request(endpoint);
-  }
+    return getPoolAprFixture;
+   }
 
   /**
    * @returns {Promise<ValidatorPair[]>}
    */
    async getPairsSummary() {
-    const endpoint = `pairs/v1/summary`;
-    return await this.request(endpoint);
-  }
+    return getPairsSummaryFixture;
+   }
 
 }

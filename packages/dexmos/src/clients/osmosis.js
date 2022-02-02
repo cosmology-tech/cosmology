@@ -25,11 +25,6 @@ export class OsmosisApiClient extends CosmosApiClient {
     return await this.request(endpoint);
   }
 
-  async getIncentivizedPools() {
-    const endpoint = `osmosis/pool-incentives/v1beta1/incentivized_pools`;
-    return await this.request(endpoint);
-  }
-
   async getAccountLockedLongerDuration(address) {
     const endpoint = `osmosis/lockup/v1beta1/account_locked_longer_duration/${address}`;
     return await this.request(endpoint);
@@ -60,8 +55,32 @@ export class OsmosisApiClient extends CosmosApiClient {
     return await this.request(endpoint);
   }
 
-  async getLockableDuration() {
+  async getLockableDurations() {
     const endpoint = `osmosis/pool-incentives/v1beta1/lockable_durations`;
+    return await this.request(endpoint);
+  }
+
+  // https://osmosis.stakesystems.io/osmosis/incentives/v1beta1/gauges
+  // returns gauges both upcoming and active
+  async getGauges() {
+    const endpoint = `osmosis/incentives/v1beta1/gauges`;
+    return await this.request(endpoint);
+  }
+
+  async getActiveGauges() {
+    const endpoint = `osmosis/incentives/v1beta1/active_gauges`;
+    return await this.request(endpoint);
+  }
+
+  // https://osmosis.stakesystems.io/osmosis/incentives/v1beta1/gauge_by_id/5
+  async getGauge(gaugeId) {
+    const endpoint = `osmosis/incentives/v1beta1/gauge_by_id/${gaugeId}`;
+    return await this.request(endpoint);
+  }
+
+  // https://osmosis.stakesystems.io/osmosis/pool-incentives/v1beta1/incentivized_pools
+  async getIncentivizedPools() {
+    const endpoint = `osmosis/pool-incentives/v1beta1/incentivized_pools`;
     return await this.request(endpoint);
   }
 

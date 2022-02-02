@@ -948,7 +948,8 @@ export const assets = [
         'https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/vdl.png',
       svg:
         'https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/vdl.svg'
-    }
+    },
+    coingecko_id: 'vidulum'
   },
   {
     description: 'The native token of Desmos',
