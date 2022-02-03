@@ -1,6 +1,6 @@
 {
   "name": "dexmos",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "dexmos",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/pyramation/dexmos/tree/master/packages/dexmos#readme",
@@ -73,7 +73,7 @@
     "@cosmjs/launchpad": "0.27.0",
     "@cosmjs/proto-signing": "0.27.0",
     "@cosmjs/stargate": "0.27.0",
-    "@pyramation/cosmos-registry": "^0.1.5",
+    "@pyramation/cosmos-registry": "^0.1.6",
     "axios": "0.25.0",
     "cosmjs-types": "0.4.1",
     "fuzzy": "0.1.3",
