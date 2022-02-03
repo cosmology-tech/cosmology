@@ -16,22 +16,33 @@ const Nav = ({accounts, setAccounts}) => {
     }
   }, [accounts]);
 
-
+  const getKeplr = () => {
+    if (typeof window === 'undefined') {
+      return {};
+    } else {
+      return window['keplr']
+    }
+  }
   const handleClick = async () => {
-    if (!window.keplr) {
+    if (typeof window === 'undefined') {
+      return;
+    } else {
+
+    }
+    if (!getKeplr()) {
       alert("Please install keplr extension");
     } else {
       // Enabling before using the Keplr is recommended.
       // This method will ask the user whether to allow access if they haven't visited this website.
       // Also, it will request that the user unlock the wallet if the wallet is locked.
       try {
-        await window.keplr.enable(chainId);
+        await getKeplr().enable(chainId);
       } catch {
         alert("Please add Omsosis Chain to your wallet");
         return;
       }
 
-      const offlineSigner = window.keplr.getOfflineSigner(chainId);
+      const offlineSigner = getKeplr().getOfflineSigner(chainId);
 
       // You can get the address/public keys by `getAccounts` method.
       // It can return the array of address/public key.
