@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`subtraction 1`] = `
+Array [
+  Object {
+    "amount": "990000000",
+    "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+  },
+  Object {
+    "amount": "900000000",
+    "denom": "uosmo",
+  },
+]
+`;
+
+exports[`subtraction 2 1`] = `
+Array [
+  Object {
+    "amount": "1000000000",
+    "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+    "displayAmount": 1000,
+    "symbol": "ATOM",
+    "value": 36630,
+  },
+  Object {
+    "amount": "1000000000",
+    "denom": "uosmo",
+    "displayAmount": 1000,
+    "symbol": "OSMO",
+    "value": 9100,
+  },
+]
+`;
+
+exports[`subtraction 2 2`] = `
+Array [
+  Object {
+    "amount": "10000000",
+    "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+    "displayAmount": 10,
+    "symbol": "ATOM",
+    "value": 366.3,
+  },
+  Object {
+    "amount": "100000000",
+    "denom": "uosmo",
+    "displayAmount": 100,
+    "symbol": "OSMO",
+    "value": 910,
+  },
+]
+`;
+
+exports[`subtraction 2 3`] = `
+Array [
+  Object {
+    "amount": "990000000",
+    "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+    "displayAmount": 990,
+    "symbol": "ATOM",
+    "value": 36263.7,
+  },
+  Object {
+    "amount": "900000000",
+    "denom": "uosmo",
+    "displayAmount": 900,
+    "symbol": "OSMO",
+    "value": 8190,
+  },
+]
+`;
+
+exports[`subtraction 3 1`] = `
+Array [
+  Object {
+    "amount": "1000000000",
+    "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+    "displayAmount": 1000,
+    "symbol": "ATOM",
+    "value": 36630,
+  },
+  Object {
+    "amount": "1000000000",
+    "denom": "uosmo",
+    "displayAmount": 1000,
+    "symbol": "OSMO",
+    "value": 9100,
+  },
+]
+`;
+
+exports[`subtraction 3 2`] = `
+Array [
+  Object {
+    "amount": "10000000",
+    "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+    "displayAmount": 10,
+    "symbol": "ATOM",
+    "value": 366.3,
+  },
+  Object {
+    "amount": "100000000",
+    "denom": "uosmo",
+    "displayAmount": 100,
+    "symbol": "OSMO",
+    "value": 910,
+  },
+  Object {
+    "amount": "100000000",
+    "denom": "uosmo",
+    "displayAmount": 100,
+    "symbol": "OSMO",
+    "value": 910,
+  },
+]
+`;
+
+exports[`subtraction 3 3`] = `
+Array [
+  Object {
+    "amount": "990000000",
+    "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+    "displayAmount": 990,
+    "symbol": "ATOM",
+    "value": 36263.7,
+  },
+  Object {
+    "amount": "800000000",
+    "denom": "uosmo",
+    "displayAmount": 800,
+    "symbol": "OSMO",
+    "value": 7280,
+  },
+]
+`;

@@ -273,6 +273,32 @@ export const symbolsAndDisplayValuesToCoinsArray = (coins) =>
         amount: '' + displayUnitsToDenomUnits(symbol, amount)
     }));
 
+
+
+/**
+* @param {CoinValue[]} balances1
+* @param {CoinValue[]} balances2
+* @returns {CoinValue[]} 
+*/
+
+export const substractCoins = (balances1, balances2) => {
+    return balances1.reduce((m, coin) => {
+        const newCoin = { ...coin }
+        // due to swaps and how we use this method, 
+        // balances2 can have multiple versions of the same symbol
+        // so just subtract all of them...
+        const coins = balances2.filter(({denom})=>denom==coin.denom);
+        coins.forEach(c2=> {
+            newCoin.amount = '' + (Number(newCoin.amount) - Number(c2.amount));
+            if (coin.hasOwnProperty('displayAmount') && c2.hasOwnProperty('displayAmount'))
+            newCoin.displayAmount = Number(newCoin.displayAmount) - Number(c2.displayAmount);
+            if (coin.hasOwnProperty('value') && c2.hasOwnProperty('value'))
+            newCoin.value = Number(newCoin.value) - Number(c2.value);
+        })
+        return [...m, newCoin];
+    }, []);
+}
+
 /**
  * @param {object} param0
  * @param {PriceHash} param0.prices

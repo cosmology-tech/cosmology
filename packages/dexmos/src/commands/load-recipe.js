@@ -4,7 +4,7 @@ import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
 import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
-import { convertWeightsIntoCoins, convertValidatorPricesToDenomPriceHash, osmoDenomToSymbol, convertCoinsToDisplayValues, getTradesRequiredToGetBalances, getSwaps } from '../utils/osmo';
+import { convertWeightsIntoCoins, convertValidatorPricesToDenomPriceHash, osmoDenomToSymbol, convertCoinsToDisplayValues, getTradesRequiredToGetBalances, getSwaps, substractCoins } from '../utils/osmo';
 import c from 'ansi-colors';
 
 export default async (argv) => {
@@ -44,8 +44,6 @@ export default async (argv) => {
         };
     });
 
-
-
     // GET THE COINS THAT THE USER IS WILLING TO PART WITH
 
     const availableChoices = display.map((item) => {
@@ -64,7 +62,7 @@ export default async (argv) => {
         }
     ], argv);
 
-
+    let balances = substractCoins(available, []);
 
     // WHICH POOLS TO INVEST?
 
@@ -159,14 +157,28 @@ export default async (argv) => {
     const prices = convertValidatorPricesToDenomPriceHash(allTokens);
     const pools = await api.getPoolsPretty();
 
-    const result = convertWeightsIntoCoins({ weights, pools, prices, balances: available });
+    const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
 
     // console.log(result);
 
     // pools
     for (let i = 0; i < result.pools.length; i++) {
         const desired = result.pools[i].coins;
-        const trades = getTradesRequiredToGetBalances({ prices, balances: available, desired })
+
+        const trades = getTradesRequiredToGetBalances({ prices, balances, desired })
+        // needs to return balance so we can pass that in on the next one!
+        // OTHERWISE IT REUSES THE SAME BALANCE!
+        let coinsToSubstract = trades.map(trade=>
+            ({...trade.sell})
+        );
+        // console.log('balances before trades');
+        // console.log('coinsToSubstract');
+        // console.log(coinsToSubstract);
+        // console.log(balances);
+        coinsToSubstract = convertCoinsToDisplayValues({ prices, coins: coinsToSubstract })
+        balances = substractCoins(balances, coinsToSubstract);
+        // console.log('balances after trades');
+        // console.log(balances);
         const a = {
             name: result.pools[i].name,
             trades
@@ -175,7 +187,6 @@ export default async (argv) => {
         actions.push({
             type: 'pool',
             name: result.pools[i].name,
-            trades,
             swaps
         });
 
@@ -190,10 +201,23 @@ export default async (argv) => {
 
 
     // coins
-    const trades = getTradesRequiredToGetBalances({ prices, balances: available, desired: result.coins })
+    const trades = getTradesRequiredToGetBalances({ prices, balances, desired: result.coins });
+    let coinsToSubstract = trades.map(trade=>
+        ({...trade.sell})
+    );
 
-    console.log(`\nSWAPS for STAKING`);
+    // console.log('balances before coins');
+    // console.log('coinsToSubstract');
+    // console.log(coinsToSubstract);
+    // console.log(balances);
+    coinsToSubstract = convertCoinsToDisplayValues({ prices, coins: coinsToSubstract })
+    balances = substractCoins(balances, coinsToSubstract);
+    // console.log('balances after coins');
+    // console.log(balances);
+
+    console.log(`\nSWAPS for ${c.magenta('STAKING')}`);
     trades.forEach(({ sell, buy, beliefValue }) => {
+        if (Number(beliefValue) == 0) return; // lol why
         actions.push({
             type: 'coin',
             name: buy.symbol,
