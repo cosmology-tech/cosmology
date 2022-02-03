@@ -74,6 +74,7 @@
     "@cosmjs/proto-signing": "0.27.0",
     "@cosmjs/stargate": "0.27.0",
     "@pyramation/cosmos-registry": "^0.1.6",
+    "ansi-colors": "^4.1.1",
     "axios": "0.25.0",
     "cosmjs-types": "0.4.1",
     "fuzzy": "0.1.3",

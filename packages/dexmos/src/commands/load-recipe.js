@@ -4,7 +4,8 @@ import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
 import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
-import { convertWeightsIntoCoins, convertValidatorPricesToDenomPriceHash, osmoDenomToSymbol, convertCoinsToDisplayValues, getTradesRequiredToGetBalances } from '../utils/osmo';
+import { convertWeightsIntoCoins, convertValidatorPricesToDenomPriceHash, osmoDenomToSymbol, convertCoinsToDisplayValues, getTradesRequiredToGetBalances, getSwaps } from '../utils/osmo';
+import c from 'ansi-colors';
 
 export default async (argv) => {
 
@@ -154,6 +155,7 @@ export default async (argv) => {
     // get pricing and pools info...
 
     const allTokens = await validator.getTokens();
+    const pairs = await validator.getPairsSummary();
     const prices = convertValidatorPricesToDenomPriceHash(allTokens);
     const pools = await api.getPoolsPretty();
 
@@ -169,16 +171,19 @@ export default async (argv) => {
             name: result.pools[i].name,
             trades
         };
-
+        const swaps = await getSwaps({pools, trades, pairs: pairs.data});
         actions.push({
             type: 'pool',
             name: result.pools[i].name,
-            trades
+            trades,
+            swaps
         });
 
-        console.log(`\nSWAPS for ${result.pools[i].name}`);
-        trades.forEach(({ sell, buy, beliefValue }) => {
-            console.log(`TRADE $${beliefValue} worth of ${sell.symbol} for ${buy.symbol}`);
+        console.log(`\nSWAPS for ${c.bold.magenta(result.pools[i].name)}`);
+        swaps.forEach(({trade: { sell, buy, beliefValue }, routes}) => {
+            console.log(`TRADE ${c.bold.yellow(sell.displayAmount+'')} ($${beliefValue}) worth of ${c.bold.red(sell.symbol)} for ${c.bold.green(buy.symbol)}`);
+            const r = routes.map(r=>[r.tokenInSymbol,r.tokenOutSymbol].join('->')).join(', ').toLowerCase();
+            console.log(c.gray(`  routes: ${r}`));
         });
 
     }
@@ -186,6 +191,7 @@ export default async (argv) => {
 
     // coins
     const trades = getTradesRequiredToGetBalances({ prices, balances: available, desired: result.coins })
+
     console.log(`\nSWAPS for STAKING`);
     trades.forEach(({ sell, buy, beliefValue }) => {
         actions.push({
@@ -193,7 +199,7 @@ export default async (argv) => {
             name: buy.symbol,
             trade: { sell, buy, beliefValue }
         });
-        console.log(`TRADE $${beliefValue} worth of ${sell.symbol} for ${buy.symbol}`);
+        console.log(`TRADE ${c.bold.yellow(sell.displayAmount+'')} ($${beliefValue}) worth of ${c.bold.red(sell.symbol)} for ${c.bold.green(buy.symbol)}`);
     });
     console.log('\n\nSpecify an outfile for the recipe file:');
 
