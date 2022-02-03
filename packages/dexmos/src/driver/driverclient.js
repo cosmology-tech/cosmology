@@ -17,7 +17,7 @@ export class DriverClient {
   /**
    *
    * @param {string} txHash
-   * @returns {('success'|'failed'|'running'|'queued')}
+   * @returns {Promise<('success'|'failed'|'running'|'queued')>}
    */
   static async pollStatus (txHash) {
     return "success"
