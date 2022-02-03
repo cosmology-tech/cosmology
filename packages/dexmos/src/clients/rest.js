@@ -11,9 +11,9 @@ export class RestClient {
     });
   }
 
-  async request(endpoint, opts) {
+  async request(endpoint, opts = { }) {
     try {
-      const response = await this.instance.get(endpoint, opts);
+      const response = await this.instance.get(endpoint, { timeout: 30000, ...opts});
       return response.data;
     } catch (e) {
       console.error(
