@@ -899,8 +899,11 @@ export const lookupRoutesForTrade = ({ pools, trade, pairs }) => {
  */
 
 export const getSwaps = ({ pools, trades, pairs }) =>
-    trades.reduce((m, trade) =>
-        [...m, {
-            trade,
-            routes: lookupRoutesForTrade({ pools, trade, pairs })
-        }], []);
+    trades.reduce((m, trade) => {
+            // not sure why, but sometimes we get a zero amount
+            if (trade.sell.value === 0) return m;
+            return [...m, {
+                trade,
+                routes: lookupRoutesForTrade({ pools, trade, pairs })
+            }]
+        }, []);

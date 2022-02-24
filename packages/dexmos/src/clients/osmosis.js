@@ -103,7 +103,6 @@ export class OsmosisApiClient extends CosmosApiClient {
         }
         return obj;
       });
-      if (!i) console.log(pool);
       const value = {
         nickname: tokens.map(t => t.symbol).join('/'),
       };
