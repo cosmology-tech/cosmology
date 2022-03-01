@@ -1,5 +1,17 @@
 import { Secp256k1HdWallet } from '@cosmjs/amino';
+import { Slip10RawIndex } from "@cosmjs/crypto";
+
 import { assets, chains } from '@pyramation/cosmos-registry';
+
+export function makeHdPath(coinType = 118, account = 0) {
+  return [
+      Slip10RawIndex.hardened(44),
+      Slip10RawIndex.hardened(coinType),
+      Slip10RawIndex.hardened(0),
+      Slip10RawIndex.normal(0),
+      Slip10RawIndex.normal(account),
+  ];
+}
 
 export const getWalletFromMnemonic = async ({ mnemonic, token }) => {
   const chainFromAssets = assets.find(({ assets }) => {
@@ -11,17 +23,12 @@ export const getWalletFromMnemonic = async ({ mnemonic, token }) => {
   );
 
   try {
-    const { bech32_prefix } = chain;
-    // The BIP-32/SLIP-10 derivation paths. Defaults to the Cosmos Hub/ATOM path
-    // const hdPaths = `m/44'/${coinType}'/${account}'/0/${index}`;
+    const { bech32_prefix, slip44 } = chain;
     const wallet = await Secp256k1HdWallet.fromMnemonic(mnemonic, {
-      prefix: bech32_prefix
-      // TODO use the `slip44` from chain
-      // hdPaths: makeHdPath(coinType, index)
+      prefix: bech32_prefix,
+      hdPaths: [makeHdPath(slip44, 0)]
     });
     return wallet;
-    // console.log('prefix', chain.bech32_prefix);
-    // console.log('slip44', chain.slip44);
   } catch (e) {
     console.log('bad mnemonic');
   }
@@ -29,17 +36,12 @@ export const getWalletFromMnemonic = async ({ mnemonic, token }) => {
 
 export const getWalletFromMnemonicForChain = async ({ mnemonic, chain }) => {
   try {
-    const { bech32_prefix } = chain;
-    // The BIP-32/SLIP-10 derivation paths. Defaults to the Cosmos Hub/ATOM path
-    // const hdPaths = `m/44'/${coinType}'/${account}'/0/${index}`;
+    const { bech32_prefix, slip44 } = chain;
     const wallet = await Secp256k1HdWallet.fromMnemonic(mnemonic, {
-      prefix: bech32_prefix
-      // TODO use the `slip44` from chain
-      // hdPaths: makeHdPath(coinType, index)
+      prefix: bech32_prefix,
+      hdPaths:[ makeHdPath(slip44, 0)]
     });
     return wallet;
-    // console.log('prefix', chain.bech32_prefix);
-    // console.log('slip44', chain.slip44);
   } catch (e) {
     console.log('bad mnemonic');
   }

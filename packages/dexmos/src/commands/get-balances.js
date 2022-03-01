@@ -20,6 +20,7 @@ export default async (argv) => {
     console.log(display);
 
   } catch (e) {
+    console.log(e);
     console.log('error fetching balances');
   }
 };

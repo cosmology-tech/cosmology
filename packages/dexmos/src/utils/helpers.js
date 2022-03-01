@@ -10,7 +10,6 @@ export const promptOsmoWallet = async (argv) => {
   argv = await promptMnemonic(argv);
   const { mnemonic } = argv;
   const account = await getWalletFromMnemonic({ mnemonic, token: 'OSMO' });
-  console.log('WARNING: LUNA and some wallets are NOT correct (TODO hdPath)');
   return account;
 };
 
@@ -18,7 +17,6 @@ export const promptCosmosChainWallet = async (chain, argv) => {
   argv = await promptMnemonic(argv);
   const { mnemonic } = argv;
   const account = await getWalletFromMnemonicForChain({ mnemonic, chain });
-  console.log('WARNING: LUNA and some wallets are NOT correct (TODO hdPath)');
   return account;
 };
 
@@ -39,7 +37,6 @@ export const promptWalletOfToken = async (argv) => {
   argv.token = token;
   const { mnemonic } = argv;
   const account = await getWalletFromMnemonic({ mnemonic, token });
-  console.log('WARNING: LUNA and some wallets are NOT correct (TODO hdPath)');
   return account;
 };
 
@@ -60,6 +57,5 @@ export const promptAccountOfToken = async (argv) => {
   argv.token = token;
   const { mnemonic } = argv;
   const account = await getAccountFromMnemonic({ mnemonic, token });
-  console.log('WARNING: LUNA and some wallets are NOT correct (TODO hdPath)');
   return account;
 };

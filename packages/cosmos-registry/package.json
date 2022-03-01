@@ -28,6 +28,7 @@
     "build": "npm run build:module && npm run build:main",
     "make": "node ./bin/build.js",
     "prepare": "npm run build",
+    "prebuild": "npm run make",
     "lint": "eslint src --fix",
     "test": "jest",
     "test:watch": "jest --watch",

@@ -11,7 +11,7 @@ describe('testGetAllJobs', () => {
       { "type": "pool", "pool": { "id": 562, "coin1": "LUNA", "coin2": "UST", "balance": 0.5 }, "weight": 0.3 },
       { "type": "pool", "pool": { "id": 611, "coin1": "ATOM", "coin2": "STARS", "balance": 0.7 }, "weight": 0.4 }
     ])
-    console.log(jobs);
+    // console.log(jobs);
     expect(jobs.length).toEqual(10)
 
     expect(jobs[0].job.inputCoin).toEqual("LUNA")

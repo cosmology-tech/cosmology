@@ -21,6 +21,6 @@ it('APRs', async () => {
         liquidityLimit: 100_000,
         lockup: "14"
     });
-    console.log(result);
+    // console.log(result);
 });
 

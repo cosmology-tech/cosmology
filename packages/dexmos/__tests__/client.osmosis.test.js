@@ -7,7 +7,7 @@ const TEST_ADDR1 = 'osmo18scnpvh8vkdwhura6r8372v9halwmy34evxr2e';
 // const client = new OsmosisClient('http://10.0.0.15:1317');
 
 let client;
-describe('can fetch', () => {
+xdescribe('can fetch', () => {
   beforeAll(async () => {
     const wallet = await Secp256k1HdWallet.generate(12, { prefix: 'osmo' });
     const [{ address }] = await wallet.getAccounts();

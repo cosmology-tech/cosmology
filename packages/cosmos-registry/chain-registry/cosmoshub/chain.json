@@ -159,23 +159,27 @@
     "apis": {
         "rpc": [
             {
-                "address": "https://rpc-cosmoshub.keplr.app",
-                "provider": "chainapsis"
-            },
-            {
                 "address": "https://cosmoshub.validator.network/",
                 "provider": "validatornetwork"
             },
             {
                 "address": "https://cosmoshub-4.technofractal.com:443",
                 "provider": "strangelove-ventures"
+            },
+            {
+                "address": "https://rpc.cosmos.network:443",
+                "provider": "tendermint-inc"
+            },
+            {
+                "address": "https://rpc-cosmoshub.blockapsis.com",
+                "provider": "chainapsis"
             }
         ],
         "rest": [
             {
-                "address": "https://lcd-cosmoshub.keplr.app",
+                "address": "https://lcd-cosmoshub.blockapsis.com",
                 "provider": "chainapsis"
-            }
+            }  
         ]
     },
     "explorers": [

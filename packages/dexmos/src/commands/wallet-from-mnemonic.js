@@ -23,6 +23,5 @@ export default async (argv) => {
   );
   const { mnemonic } = argv;
   const account = await getAccountFromMnemonic({ mnemonic, token });
-  console.log('WARNING: LUNA and some wallets are NOT correct (TODO hdPath)');
   console.log(account.address);
 };
