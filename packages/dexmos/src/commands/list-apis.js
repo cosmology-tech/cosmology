@@ -1,4 +1,4 @@
-import { promptChain, promptMnemonic } from '../utils';
+import { promptChain, promptMnemonic } from '../utils/prompt';
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);

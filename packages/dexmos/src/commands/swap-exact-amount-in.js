@@ -25,7 +25,13 @@ export default async (argv) => {
     });
 
     console.log({ chainId: argv.chainId, address, msg, fee });
-    const res = await signAndBroadcast({ client, chainId: argv.chainId, address, msg, fee });
+    const res = await signAndBroadcast({
+      client,
+      chainId: argv.chainId,
+      address,
+      msg,
+      fee
+    });
 
     console.log(res);
   } catch (e) {

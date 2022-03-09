@@ -7,7 +7,7 @@ export default async (argv) => {
 
   try {
     const balances = await client.getBalances(account.address);
-    const display = balances.result.map(({denom, amount})=> {
+    const display = balances.result.map(({ denom, amount }) => {
       const symbol = osmoDenomToSymbol(denom);
       const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
       return {
@@ -18,7 +18,6 @@ export default async (argv) => {
       };
     });
     console.log(display);
-
   } catch (e) {
     console.log(e);
     console.log('error fetching balances');

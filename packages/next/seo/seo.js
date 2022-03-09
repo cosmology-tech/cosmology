@@ -24,10 +24,10 @@ const LEGAL_FILES = [
 ];
 const path = require('path');
 
-const walkSync = dir => {
+const walkSync = (dir) => {
   // Get all files of the current directory & iterate over them
   const files = fs.readdirSync(dir);
-  files.forEach(file => {
+  files.forEach((file) => {
     // Construct whole file-path & retrieve file's stats
     const filePath = `${dir}${file}`;
     const fileStat = fs.statSync(filePath);
@@ -87,7 +87,7 @@ const pageSitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
   ${Object.keys(pageObjects)
     .map(
-      path => `<url>
+      (path) => `<url>
     <loc>${canonical}${path}</loc>
     <lastmod>${formatDate(new Date(pageObjects[path].lastModified))}</lastmod>
   </url>`
@@ -99,7 +99,7 @@ const legalSitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
   ${Object.keys(legalPageObjects)
     .map(
-      path => `<url>
+      (path) => `<url>
     <loc>${canonical}${path}</loc>
     <lastmod>${formatDate(
       new Date(legalPageObjects[path].lastModified)
@@ -181,7 +181,7 @@ ${BAD_AGENTS.map(({ text, bots }) => {
 #
 
   ${bots
-    .map(bot => {
+    .map((bot) => {
       return `
 User-agent: ${bot}
 Disallow: /`;
@@ -193,7 +193,7 @@ Disallow: /`;
 User-agent: *
 
 ${Object.keys(pageObjects)
-  .map(path => `Allow: ${path}$`)
+  .map((path) => `Allow: ${path}$`)
   .join('\n')}
 
 Sitemap: ${canonical}/sitemaps/pages.xml

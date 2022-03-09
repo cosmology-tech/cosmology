@@ -453,3 +453,35 @@ button {
   border-radius: 25px;
   max-width: 80%;
 }
+
+.token-list-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  /* justify-content: space-between; */
+}
+
+.token-list-item.clickable {
+  cursor: pointer;
+  border-radius: 40000px;
+  transition: all 0.1s ease-out;
+}
+
+.token-list-item.clickable:hover {
+  background-color: #212838;
+}
+
+.token-list-item img {
+  margin-right: 8px;
+  width: 30px;
+  height: 30px;
+}
+
+.select-search__row {
+  list-style: none;
+  list-style-type: none;
+}
+
+.select-search__options {
+  padding: 0px;
+}

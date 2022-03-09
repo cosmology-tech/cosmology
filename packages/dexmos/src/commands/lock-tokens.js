@@ -18,9 +18,9 @@ export default async (argv) => {
   // }
 
   const durations = [
-    { name: '1 Day', value: "86400" },
-    { name: '7 Days', value: "604800" },
-    { name: '14 Days', value: "1209600" },
+    { name: '1 Day', value: '86400' },
+    { name: '7 Days', value: '604800' },
+    { name: '14 Days', value: '1209600' }
   ];
 
   try {
@@ -37,15 +37,19 @@ export default async (argv) => {
     const address = account.address;
     const { msg, fee } = messages.lockTokens({
       owner: address,
-      coins: [
-        coin('1096260487950196000000', 'gamm/pool/606'),
-      ],
+      coins: [coin('1096260487950196000000', 'gamm/pool/606')],
       duration
     });
 
     console.log({ chainId: argv.chainId, address, msg, fee });
     console.log(JSON.stringify({ msg }, null, 2));
-    const res = await signAndBroadcast({ client, chainId: argv.chainId, address, msg, fee });
+    const res = await signAndBroadcast({
+      client,
+      chainId: argv.chainId,
+      address,
+      msg,
+      fee
+    });
 
     console.log(res);
   } catch (e) {

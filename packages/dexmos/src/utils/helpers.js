@@ -1,6 +1,11 @@
 import { prompt, promptMnemonic } from './prompt';
 import { assets, chains } from '@pyramation/cosmos-registry';
-import { getAccountFromMnemonic, getWalletFromMnemonic, getWalletFromMnemonicForChain } from '../utils/wallet';
+import {
+  getAccountFromMnemonic,
+  getWalletFromMnemonic,
+  getWalletFromMnemonicForChain
+} from '../utils/wallet';
+
 const assetList = assets.reduce(
   (m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)],
   []

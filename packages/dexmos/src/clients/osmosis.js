@@ -1,5 +1,6 @@
 import { assets } from '../assets';
 import { CosmosApiClient } from './cosmos';
+import autobind from 'class-autobind';
 
 const assetHashMap = assets.reduce((m, asset) => {
   m[asset.base] = asset;
@@ -13,6 +14,7 @@ export class OsmosisApiClient extends CosmosApiClient {
   constructor({ url = 'https://osmosis.stakesystems.io/' } = {}) {
     super({ url })
     this._clientType = 'Osmosis API';
+    autobind(this); // React ES6 doesn't bind this -> meaning we get 'unable to read property 'request' of undefined
   }
 
   async getPools() {

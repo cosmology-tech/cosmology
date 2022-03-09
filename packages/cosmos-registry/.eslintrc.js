@@ -1,9 +1,10 @@
 module.exports = {
   plugins: ['prettier', 'react-hooks'],
-  extends: ['eslint:recommended', 'prettier', 'prettier/react', 'plugin:react-hooks/recommended'],
-  parser: 'babel-eslint',
+  extends: ['eslint:recommended', 'prettier', 'plugin:react-hooks/recommended'],
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 11,
+    requireConfigFile: false,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true

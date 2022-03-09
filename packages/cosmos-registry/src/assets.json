@@ -536,6 +536,33 @@
   },
   {
     "$schema": "../assetlist.schema.json",
+    "chain_id": "evmos_9001-1",
+    "assets": [
+      {
+        "description": "Evmos - a scalable EVM on Cosmos, built on Proof-of-Stake with fast-finality that prioritizes interoperability and novel economics",
+        "denom_units": [
+          {
+            "denom": "aevmos",
+            "exponent": 0
+          },
+          {
+            "denom": "evmos",
+            "exponent": 18
+          }
+        ],
+        "base": "aevmos",
+        "name": "Evmos",
+        "display": "evmos",
+        "symbol": "evmos",
+        "logo_URIs": {
+          "svg": "https://archive.evmos.dev/assets/evmos-black-icon.svg"
+        },
+        "coingecko_id": "evmos"
+      }
+    ]
+  },
+  {
+    "$schema": "../assetlist.schema.json",
     "chain_id": "fetchhub-3",
     "assets": [
       {
@@ -803,8 +830,10 @@
         "display": "darc",
         "symbol": "DARC",
         "logo_URIs": {
+          "png": "https://github.com/Konstellation/DARC_token/blob/main/256darctoken.png",
           "svg": "https://github.com/Konstellation/bridge/blob/1985183107d3e40cbd5a7802bcd112d033924cef/src/assets/img/darc-token.svg"
-        }
+        },
+        "coingecko_id": "darcmatter-coin"
       }
     ]
   },

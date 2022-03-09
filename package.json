@@ -6,7 +6,6 @@
   },
   "private": true,
   "scripts": {
-    "commit": "git-cz",
     "build": "lerna run prepare --parallel",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "lint": "eslint --ignore-path .gitignore .",
@@ -16,18 +15,19 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/cli": "7.16.8",
-    "@babel/core": "7.16.12",
+    "@babel/cli": "7.17.6",
+    "@babel/core": "7.17.5",
+    "@babel/eslint-parser": "^7.5.4",
     "@pyramation/babel-preset-env": "0.1.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "10.1.0",
     "babel-jest": "^24.9.0",
-    "eslint": "8.7.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
+    "eslint": "8.10.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "jest": "25.1.0",
     "lerna": "3.22.1",
-    "prettier": "2.1.2"
+    "pre-commit": "^1.2.2",
+    "prettier": "2.5.1"
   },
   "workspaces": [
     "packages/*"

@@ -30,21 +30,21 @@ export class CosmosApiClient extends RestClient {
   }
 
   /**
- * @returns {Promise<{
- *   block_id: {
- *      hash: string;
- *      part_set_header: object;
- *   };
- *   block: {
- *      header: {
- *        version: object;
- *        chain_id: string;
- *        height: string;
- *        time: string;
- *      }
- *   }
- * }>}
- */
+   * @returns {Promise<{
+   *   block_id: {
+   *      hash: string;
+   *      part_set_header: object;
+   *   };
+   *   block: {
+   *      header: {
+   *        version: object;
+   *        chain_id: string;
+   *        height: string;
+   *        time: string;
+   *      }
+   *   }
+   * }>}
+   */
 
   async getLatestBlock() {
     const endpoint = `/cosmos/base/tendermint/v1beta1/blocks/latest`;
@@ -70,6 +70,29 @@ export class CosmosApiClient extends RestClient {
 
   async getDelegations(address) {
     const endpoint = `staking/delegators/${address}/delegations`;
+    return await this.request(endpoint);
+  }
+
+  async getDelegatorValidatorInfo(delegatorAddr, validatorAddr) {
+    const endpoint = `cosmos/staking/v1beta1/delegators/${delegatorAddr}/validators/${validatorAddr}`;
+    return await this.request(endpoint);
+  }
+
+  async getValidatorInfo(validatorAddr) {
+    const endpoint = `cosmos/staking/v1beta1/validators/${validatorAddr}`;
+    return await this.request(endpoint);
+  }
+
+  async getValidators(status) {
+    const endpoint = `cosmos/staking/v1beta1/validators`;
+    if (status) {
+      return await this.request(endpoint, { params: { status } });
+    }
+    return await this.request(endpoint);
+  }
+
+  async getRewards(address) {
+    const endpoint = `cosmos/distribution/v1beta1/delegators/${address}/rewards`;
     return await this.request(endpoint);
   }
 }

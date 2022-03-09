@@ -1,4 +1,5 @@
 import { RestClient } from './rest';
+import autobind from 'class-autobind';
 
 /**
  * 
@@ -67,6 +68,7 @@ export class OsmosisValidatorClient extends RestClient {
   constructor({ url = 'https://api-osmosis.imperator.co/' } = {}) {
     super({ url });
     this._clientType = 'Osmosis Validator';
+    autobind(this); // React ES6 doesn't bind this -> meaning we get 'unable to read property 'request' of undefined
   }
 
   async getPools() {

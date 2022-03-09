@@ -1,9 +1,12 @@
 
 import _create_mnemonic_wallet from './commands/create-mnemonic-wallet';
+import _delegate from './commands/delegate';
 import _get_balances from './commands/get-balances';
+import _get_cosmos_balance from './commands/get-cosmos-balance';
 import _get_latest_block from './commands/get-latest-block';
 import _get_pool_apr from './commands/get-pool-apr';
 import _get_price from './commands/get-price';
+import _get_staking_rewards from './commands/get-staking-rewards';
 import _get_transaction from './commands/get-transaction';
 import _ibc_transfer from './commands/ibc-transfer';
 import _ibc_wip from './commands/ibc-wip';
@@ -18,10 +21,13 @@ import _swap_exact_amount_in from './commands/swap-exact-amount-in';
 import _wallet_from_mnemonic from './commands/wallet-from-mnemonic';
 const Commands = {};
 Commands['create-mnemonic-wallet'] = _create_mnemonic_wallet;
+Commands['delegate'] = _delegate;
 Commands['get-balances'] = _get_balances;
+Commands['get-cosmos-balance'] = _get_cosmos_balance;
 Commands['get-latest-block'] = _get_latest_block;
 Commands['get-pool-apr'] = _get_pool_apr;
 Commands['get-price'] = _get_price;
+Commands['get-staking-rewards'] = _get_staking_rewards;
 Commands['get-transaction'] = _get_transaction;
 Commands['ibc-transfer'] = _ibc_transfer;
 Commands['ibc-wip'] = _ibc_wip;

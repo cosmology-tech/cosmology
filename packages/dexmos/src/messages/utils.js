@@ -7,7 +7,7 @@ import { defaultRegistryTypes } from '@cosmjs/stargate';
 import { aminos } from './aminos';
 import { meta as metaInfo } from './meta';
 
-export const getClient = async ({ rpcEndpoint, wallet }) => {
+export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }) => {
   // registry
   const registry = new Registry(defaultRegistryTypes);
 
@@ -33,7 +33,7 @@ export const getClient = async ({ rpcEndpoint, wallet }) => {
 
   const client = await SigningStargateClient.connectWithSigner(
     rpcEndpoint,
-    wallet,
+    signer,
     { registry: registry, aminoTypes: aminoTypes }
   );
 
@@ -46,7 +46,7 @@ export const signAndBroadcast = async ({
   address,
   msg,
   fee,
-  memo = 'dexmos.finance'
+  memo = ''
 }) => {
   const { accountNumber, sequence } = await client.getSequence(address);
   const txRaw = await client.sign(address, [msg], fee, memo, {
@@ -74,4 +74,3 @@ export const generateOsmoMessage = (name, msg) => {
     }
   };
 };
-

@@ -64,15 +64,6 @@
     "isolatedModules": true,
     "incremental": true
   },
-  "exclude": [
-    "webworkers",
-    "dist"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx"
-  ]
+  "exclude": ["webworkers", "dist"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
 }

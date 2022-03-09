@@ -39,8 +39,11 @@ export const aminos = {
     toAmino: ({ sender, routes, tokenIn, tokenOutMinAmount }) => ({
       sender,
       routes: parseRoutes(routes),
-      tokenIn,
-      tokenOutMinAmount
+      tokenIn: {
+        denom: tokenIn.denom,
+        amount: Long.fromNumber(tokenIn.amount).toString()
+      },
+      tokenOutMinAmount: Long.fromNumber(tokenOutMinAmount).toString()
     }),
     fromAmino: ({ sender, routes, tokenIn, tokenOutMinAmount }) => ({
       sender,
@@ -56,21 +59,22 @@ export const aminos = {
   lockTokens: {
     toAmino: ({ owner, duration, coins }) => {
       return {
-        owner, 
+        owner,
         coins,
-        duration: (duration * 1_000_000_000).toString(),
-      }
-
+        duration: (duration * 1_000_000_000).toString()
+      };
     },
     fromAmino: ({ owner, duration, coins }) => {
       return {
-        owner, 
+        owner,
         coins,
         duration: {
-          seconds: Long.fromNumber(Math.floor(parseInt(duration) / 1_000_000_000)),
-          nanos: parseInt(duration) % 1_000_000_000,
+          seconds: Long.fromNumber(
+            Math.floor(parseInt(duration) / 1_000_000_000)
+          ),
+          nanos: parseInt(duration) % 1_000_000_000
         }
-      }
+      };
     }
   },
   beginUnlocking: {

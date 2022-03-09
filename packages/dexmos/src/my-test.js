@@ -1,5 +1,5 @@
 import { Secp256k1HdWallet } from '@cosmjs/amino';
-import { getClient, signAndBroadcast } from './messages';
+import { getSigningOsmosisClient, signAndBroadcast } from './messages';
 import { messages } from './messages/messages';
 
 const NET = process.env.local ? 'LOCAL' : 'TESTNET';
@@ -29,7 +29,7 @@ export const main = async () => {
   const [{ address }] = accounts;
   // lcd for account info
 
-  const client = await getClient({ rpcEndpoint, wallet });
+  const client = await getSigningOsmosisClient({ rpcEndpoint, signer: wallet });
 
   const { msg, fee } = messages.swapExactAmountIn({
     sender: address,
