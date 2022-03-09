@@ -8,6 +8,7 @@
   "scripts": {
     "build": "lerna run prepare --parallel",
     "bootstrap": "lerna bootstrap --use-workspaces",
+    "elint": "DEBUG=eslint:*,eslintrc:* eslint --ignore-path .gitignore .",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
     "pretest": "yarn lint",
