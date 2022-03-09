@@ -123,6 +123,29 @@ export default async (argv) => {
     }
   }
 
+  const balances = await client.getBalances(address);
+  if (!balances || !balances.result || !balances.result.length) {
+    console.log('no balance!');
+    return;
+  }
+
+  const bal = balances.result.find((el) => el.denom === denom);
+
+  if (!bal) {
+    console.log(`no ${argv.chainToken} balance!`);
+    return;
+  }
+  const readableBalance = baseUnitsToDisplayUnitsByDenom(bal.denom, bal.amount);
+
+  if (readableBalance < minAmount) {
+    console.log(
+      `${readableBalance} ${argv.chainToken} is not enough. Exiting...`
+    );
+    return;
+  }
+
+  console.log(`${readableBalance} ${argv.chainToken} available`);
+
   const { validatorAddress } = await prompt(
     [
       {
@@ -136,24 +159,6 @@ export default async (argv) => {
   );
 
   console.log(validatorAddress);
-
-  const balances = await client.getBalances(address);
-  if (!balances || !balances.result || !balances.result.length) {
-    console.log('no balance!');
-    return;
-  }
-
-  const bal = balances.result.find((el) => el.denom === denom);
-  const readableBalance = baseUnitsToDisplayUnitsByDenom(bal.denom, bal.amount);
-
-  if (readableBalance < minAmount) {
-    console.log(
-      `${readableBalance} ${argv.chainToken} is not enough. Exiting...`
-    );
-    return;
-  }
-
-  console.log(`${readableBalance} ${argv.chainToken} available`);
 
   const simulate = async (address, msgs, memo, modifier) => {
     const estimate = await stargateClient.simulate(address, msgs, memo);
