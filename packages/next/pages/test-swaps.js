@@ -126,8 +126,10 @@ const SwapTest = (props) => {
       https://docs.keplr.app/api/cosmjs.html#types-of-offline-signers
 
       "Amino is used for Launchpad chains and Protobuf is used for Stargate chains."
-      - [ ] figure out why we're using this, seems that we should be using stargate...
-      
+      - [x] figure out why we're using this, seems that we should be using stargate...
+
+      ANSWER: "However, if the msg to be sent is able to be serialized/deserialized using Amino codec you can use a signer for Amino. Also, as there are some limitations to protobuf type sign doc, there may be cases when Amino is necessary. For example, Protobuf formatted sign doc is currently not supported by Ledger Nano’s Cosmos app. Also, because protobuf sign doc is binary formatted, msgs not natively supported by Keplr may not be human-readable."
+
       */
 
       const offlineSigner = keplr.getOfflineSignerOnlyAmino(
