@@ -185,14 +185,18 @@ export default async (argv) => {
   }
 
   if (totalClaimable >= minAmount) {
-    console.log('minAmount available, starting claim process...');
+    console.log(
+      `${totalClaimable} ${argv.chainToken} available, starting claim process...`
+    );
     stargateClient.signAndBroadcast(address, messagesToClaim, fee, '').then(
       (result) => {
         try {
           assertIsDeliverTxSuccess(result);
           stargateClient.disconnect();
           console.log('⚛️');
-          console.log('success!');
+          console.log(
+            `success in claiming ${totalClaimable} ${argv.chainToken} rewards`
+          );
         } catch (error) {
           console.log(error);
         }
@@ -202,6 +206,6 @@ export default async (argv) => {
       }
     );
   } else {
-    console.log(`minAmount not available (${totalClaimable} < minAmount)`);
+    console.log(`${minAmount} not available (${totalClaimable} < minAmount)`);
   }
 };

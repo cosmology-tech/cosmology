@@ -32,13 +32,16 @@ export default async (argv) => {
   argv = await promptMnemonic(argv);
   const chain = await promptChain(argv);
 
-  // const { minAmount } = await prompt([
-  //     {
-  //         type: 'number',
-  //         message: 'minAmount',
-  //         name: 'minAmount'
-  //     }
-  // ], argv);
+  const { minAmount } = await prompt(
+    [
+      {
+        type: 'number',
+        message: 'minAmount',
+        name: 'minAmount'
+      }
+    ],
+    argv
+  );
 
   //   const url = await findAvailableUrl(chain.chain_id, chain.apis.rest.map(r=>r.address))
   //   console.log({url});
@@ -143,11 +146,19 @@ export default async (argv) => {
 
   const bal = balances.result.find((el) => el.denom === denom);
   const readableBalance = baseUnitsToDisplayUnitsByDenom(bal.denom, bal.amount);
-  console.log({ readableBalance });
+
+  if (readableBalance < minAmount) {
+    console.log(
+      `${readableBalance} ${argv.chainToken} is not enough. Exiting...`
+    );
+    return;
+  }
+
+  console.log(`${readableBalance} ${argv.chainToken} available`);
 
   const simulate = async (address, msgs, memo, modifier) => {
     const estimate = await stargateClient.simulate(address, msgs, memo);
-    console.log({ estimate });
+    // console.log({ estimate });
     return parseInt(estimate * (modifier || 1.5));
   };
 
@@ -158,7 +169,7 @@ export default async (argv) => {
       gas = await simulate(address, msgs, memo);
       fee = getFee(gas);
       //   fee = getFee(gas, gasPrice)
-      console.log(fee);
+      // console.log(fee);
       return fee;
       //   const feeAmount = Number(fee.amount[0].amount);
       //   return feeAmount;
@@ -168,6 +179,11 @@ export default async (argv) => {
   };
 
   const messagesToDelegate = [];
+
+  if (readableBalance - 0.02 <= 0.01) {
+    console.log('not enough to delegate. exiting.');
+    return;
+  }
 
   const { amount: displayAmount } = await prompt(
     [
@@ -210,7 +226,7 @@ export default async (argv) => {
         assertIsDeliverTxSuccess(result);
         stargateClient.disconnect();
         console.log('⚛️');
-        console.log('success!');
+        console.log(`success in staking ${displayAmount} ${argv.chainToken}`);
       } catch (error) {
         console.log(error);
       }
