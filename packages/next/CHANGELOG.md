@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.0.0-yolo.10](https://github.com/pyramation/dexmos/compare/next@0.0.0-yolo.6...next@0.0.0-yolo.10) (2022-03-09)
+
+**Note:** Version bump only for package next
+
+
+
+
+
 # [0.0.0-yolo.9](https://github.com/pyramation/dexmos/compare/next@0.0.0-yolo.8...next@0.0.0-yolo.9) (2022-03-08)
 
 **Note:** Version bump only for package next

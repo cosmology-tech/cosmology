@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.17](https://github.com/pyramation/dexmos/compare/dexmos@0.0.13...dexmos@0.0.17) (2022-03-09)
+
+**Note:** Version bump only for package dexmos
+
+
+
+
+
 ## [0.0.16](https://github.com/pyramation/dexmos/compare/dexmos@0.0.15...dexmos@0.0.16) (2022-03-08)
 
 **Note:** Version bump only for package dexmos
