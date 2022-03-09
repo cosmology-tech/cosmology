@@ -121,7 +121,15 @@ const SwapTest = (props) => {
       console.log({ swaps });
 
       keplr.enable(osmoChainConfig.chain_id);
-      // TODO determine why use getOfflineSignerOnlyAmino vs getOfflineSigner
+      /*
+
+      https://docs.keplr.app/api/cosmjs.html#types-of-offline-signers
+
+      "Amino is used for Launchpad chains and Protobuf is used for Stargate chains."
+      - [ ] figure out why we're using this, seems that we should be using stargate...
+      
+      */
+
       const offlineSigner = keplr.getOfflineSignerOnlyAmino(
         osmoChainConfig.chain_id
       );
