@@ -111,7 +111,6 @@ export default async (argv) => {
 
   const validators = [];
   if (delegations.result && delegations.result.length) {
-    console.log(delegations.result);
     const vals = delegations.result.map(
       (val) => val.delegation.validator_address
     );
