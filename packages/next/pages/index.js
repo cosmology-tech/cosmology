@@ -14,8 +14,11 @@ export default function Home() {
   return (
     <div className="backdrop">
       <Head>
-        <title>Dexmos</title>
-        <meta name="description" content="Dexmos | Osmosis Yield Automation" />
+        <title>Cosmology</title>
+        <meta
+          name="description"
+          content="Cosmology | Osmosis Yield Automation"
+        />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
@@ -43,7 +46,7 @@ export default function Home() {
             height={32}
             style={{ marginRight: 8 }}
           ></img>
-          <h4 style={{ fontFamily: 'Comfortaa' }}>dexmos</h4>
+          <h4 style={{ fontFamily: 'Comfortaa' }}>cosmology</h4>
         </div>
         {/* <button onClick={() => handleTest()}>click me</button> */}
 
@@ -56,7 +59,8 @@ export default function Home() {
           Automating DeFi in the Cosmos.
         </h2>
         <p className="detail-text paragraph">
-          Automate your daily Osmosis rewards reinvestments with dexmos.finance
+          Automate your daily Osmosis rewards reinvestments with
+          cosmology.finance
         </p>
         <button
           className="action-button"
