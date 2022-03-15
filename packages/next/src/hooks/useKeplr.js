@@ -1,7 +1,7 @@
 import { OsmosisApiClient } from 'cosmology';
 import { useEffect, useState } from 'react';
 
-import { chains } from '@pyramation/cosmos-registry';
+import { chains } from '@cosmology/cosmos-registry';
 import { getKeplr } from '../utils/utils';
 import { OfflineSigner } from '@cosmjs/launchpad';
 

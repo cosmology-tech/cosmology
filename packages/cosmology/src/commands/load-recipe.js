@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { assets } from '@pyramation/cosmos-registry';
+import { assets } from '@cosmology/cosmos-registry';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
 import { OsmosisValidatorClient } from '../clients/validator';

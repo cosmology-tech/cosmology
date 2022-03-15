@@ -1,6 +1,6 @@
 import { prompt, promptMnemonic } from '../utils';
 import { Secp256k1HdWallet } from '@cosmjs/amino';
-import { assets, chains } from '@pyramation/cosmos-registry';
+import { assets, chains } from '@cosmology/cosmos-registry';
 import { getAccountFromMnemonic } from '../utils/wallet';
 const assetList = assets.reduce(
   (m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)],

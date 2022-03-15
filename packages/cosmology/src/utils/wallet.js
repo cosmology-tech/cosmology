@@ -1,15 +1,15 @@
 import { Secp256k1HdWallet } from '@cosmjs/amino';
-import { Slip10RawIndex } from "@cosmjs/crypto";
+import { Slip10RawIndex } from '@cosmjs/crypto';
 
-import { assets, chains } from '@pyramation/cosmos-registry';
+import { assets, chains } from '@cosmology/cosmos-registry';
 
 export function makeHdPath(coinType = 118, account = 0) {
   return [
-      Slip10RawIndex.hardened(44),
-      Slip10RawIndex.hardened(coinType),
-      Slip10RawIndex.hardened(0),
-      Slip10RawIndex.normal(0),
-      Slip10RawIndex.normal(account),
+    Slip10RawIndex.hardened(44),
+    Slip10RawIndex.hardened(coinType),
+    Slip10RawIndex.hardened(0),
+    Slip10RawIndex.normal(0),
+    Slip10RawIndex.normal(account)
   ];
 }
 
@@ -39,7 +39,7 @@ export const getWalletFromMnemonicForChain = async ({ mnemonic, chain }) => {
     const { bech32_prefix, slip44 } = chain;
     const wallet = await Secp256k1HdWallet.fromMnemonic(mnemonic, {
       prefix: bech32_prefix,
-      hdPaths:[ makeHdPath(slip44, 0)]
+      hdPaths: [makeHdPath(slip44, 0)]
     });
     return wallet;
   } catch (e) {

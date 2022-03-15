@@ -1,4 +1,4 @@
-import { assets, chains } from '@pyramation/cosmos-registry';
+import { assets, chains } from '@cosmology/cosmos-registry';
 import { assets as osmosisAssets } from '../assets/index';
 import { coins } from '@cosmjs/amino';
 import { gas } from '../messages/gas';

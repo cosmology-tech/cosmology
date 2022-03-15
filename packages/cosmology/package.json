@@ -1,6 +1,6 @@
 {
   "name": "cosmology",
-  "version": "0.0.19",
+  "version": "0.0.2",
   "description": "cosmology",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/pyramation/cosmology/tree/master/packages/cosmology#readme",
@@ -74,7 +74,7 @@
     "@cosmjs/launchpad": "0.27.1",
     "@cosmjs/proto-signing": "0.27.1",
     "@cosmjs/stargate": "0.27.1",
-    "@pyramation/cosmos-registry": "^0.1.9",
+    "@cosmology/cosmos-registry": "^0.0.2",
     "ansi-colors": "^4.1.1",
     "axios": "0.25.0",
     "class-autobind": "^0.1.4",

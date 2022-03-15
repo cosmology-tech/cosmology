@@ -1,5 +1,5 @@
 import { prompt, promptMnemonic } from './prompt';
-import { assets, chains } from '@pyramation/cosmos-registry';
+import { assets, chains } from '@cosmology/cosmos-registry';
 import {
   getAccountFromMnemonic,
   getWalletFromMnemonic,
