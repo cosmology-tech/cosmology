@@ -1995,7 +1995,7 @@
     elliptic "^6.5.3"
     sha.js "^2.4.11"
 
-"@keplr-wallet/types@^0.9.12":
+"@keplr-wallet/types@0.9.12", "@keplr-wallet/types@^0.9.12":
   version "0.9.12"
   resolved "https://registry.npmjs.org/@keplr-wallet/types/-/types-0.9.12.tgz#5771913343030a491c551a5a2eebb9cb0ad480f7"
   integrity sha512-vtAczeD3+CgGExSZCnU9Wzs9Y8BpdbOii+UjIFHwCR57OXFQphbWHh2j15QFpV4CbebpDcBzIm+/4IAyLeI0Yw==
@@ -2006,7 +2006,7 @@
     long "^4.0.0"
     secretjs "^0.17.0"
 
-"@keplr-wallet/unit@^0.9.12":
+"@keplr-wallet/unit@0.9.12", "@keplr-wallet/unit@^0.9.12":
   version "0.9.12"
   resolved "https://registry.npmjs.org/@keplr-wallet/unit/-/unit-0.9.12.tgz#ca672aab115d604ccbe18d6664285252c3acf0f4"
   integrity sha512-24b3lSaaOrD3/ctdz+ADZn8vhqojsV5SGGzgD8F+DklI76uw8jYmmxSNcKyUAYpVUzRzTas6nnfB+4MwHBNU/Q==
