@@ -11,7 +11,7 @@ import {
   messages,
   signAndBroadcast,
   getSigningOsmosisClient
-} from 'dexmos';
+} from 'cosmology';
 
 import { chains } from '@pyramation/cosmos-registry';
 import { getColor, getKeplr } from '../src/utils/utils';

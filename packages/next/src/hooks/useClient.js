@@ -1,4 +1,4 @@
-import { OsmosisApiClient } from 'dexmos';
+import { OsmosisApiClient } from 'cosmology';
 import { useState } from 'react';
 
 import { chains } from '@pyramation/cosmos-registry';

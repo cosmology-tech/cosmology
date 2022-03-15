@@ -1,4 +1,4 @@
-import { OsmosisValidatorClient } from 'dexmos';
+import { OsmosisValidatorClient } from 'cosmology';
 import { useState } from 'react';
 
 // TODO add test env switches

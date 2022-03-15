@@ -1,11 +1,11 @@
-const siteUrl = 'https://dexmos.finance';
+const siteUrl = 'https://cosmology.finance';
 const siteAddress = new URL(siteUrl);
 const canonical = siteAddress.href.slice(0, -1);
 
 module.exports = {
   company: {
-    nick: 'Dexmos',
-    name: 'Dexmos',
+    nick: 'Cosmology',
+    name: 'Cosmology',
     addr: ['San Francisco, CA'],
     legalCounty: 'San Francisco',
     legalState: 'California'
@@ -16,12 +16,12 @@ module.exports = {
     host: siteAddress.host
   },
   emails: {
-    hello: 'hello@dexmos.finance',
-    support: 'support@dexmos.finance',
-    abuse: 'abuse@dexmos.finance',
-    privacy: 'privacy@dexmos.finance',
-    legal: 'legal@dexmos.finance',
-    copyright: 'copyright@dexmos.finance',
-    arbitrationOptOut: 'arbitration-opt-out@dexmos.finance'
+    hello: 'hello@cosmology.finance',
+    support: 'support@cosmology.finance',
+    abuse: 'abuse@cosmology.finance',
+    privacy: 'privacy@cosmology.finance',
+    legal: 'legal@cosmology.finance',
+    copyright: 'copyright@cosmology.finance',
+    arbitrationOptOut: 'arbitration-opt-out@cosmology.finance'
   }
 };

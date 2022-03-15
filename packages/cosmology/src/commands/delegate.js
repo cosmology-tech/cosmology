@@ -25,7 +25,7 @@ import { messages } from '../messages/native';
 
 // TODO certain calc'd values cosmjs doesn't like...
 // ? [amount] amount 0.05329299999999999
-// /Users/pyramation/code/dexmos/dexmos/node_modules/@cosmjs/amino/build/coins.js:26
+// /Users/pyramation/code/cosmology/cosmology/node_modules/@cosmjs/amino/build/coins.js:26
 //             throw new Error("Invalid unsigned integer string format");
 
 export default async (argv) => {

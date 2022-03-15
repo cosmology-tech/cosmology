@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export S3_BUCKET=dexmos.finance
+export S3_BUCKET=cosmology.finance
 
 (cd out &&
   find . -type f -name '*.html' | while read HTMLFILE; do

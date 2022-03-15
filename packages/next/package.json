@@ -10,8 +10,8 @@
     "export": "next build && next export",
     "postexport": "npm run seo",
     "seo": "node ./seo/seo.js",
-    "deploy": "AWS_PROFILE=webinc aws s3 sync out/ s3://dexmos.finance",
-    "invalidate": "AWS_PROFILE=webinc aws cloudfront create-invalidation --distribution-id E35JVFMWAP8JRK --paths \"/*\"",
+    "deploy": "AWS_PROFILE=webinc aws s3 sync out/ s3://cosmology.finance",
+    "invalidate": "AWS_PROFILE=webinc aws cloudfront create-invalidation --distribution-id E32045FNSZKMDT --paths \"/*\"",
     "deploy:all": "npm run export && npm run deploy && ./seo/prepare.sh"
   },
   "resolutions": {
@@ -29,7 +29,7 @@
     "@keplr-wallet/types": "^0.9.12",
     "@pyramation/cosmos-registry": "^0.1.9",
     "aos": "^2.3.4",
-    "dexmos": "^0.0.19",
+    "cosmology": "^0.0.19",
     "font-awesome": "^4.7.0",
     "next": "12.1.0",
     "react": "17.0.2",
