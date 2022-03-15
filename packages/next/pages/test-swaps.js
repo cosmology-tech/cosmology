@@ -13,7 +13,7 @@ import {
   getSigningOsmosisClient
 } from 'cosmology';
 
-import { chains } from '@pyramation/cosmos-registry';
+import { chains } from '@cosmology/cosmos-registry';
 import { getColor, getKeplr } from '../src/utils/utils';
 import useRoot from '../src/hooks/useRoot';
 import LoadingIndicator from '../src/components/subComponents/LoadingIndicator';

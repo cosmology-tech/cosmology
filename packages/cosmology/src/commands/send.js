@@ -13,7 +13,7 @@ import { coin, coins } from '@cosmjs/amino';
 import { MsgTransfer } from 'cosmjs-types/ibc/applications/transfer/v1/tx';
 import { MsgSend } from 'cosmjs-types/cosmos/bank/v1beta1/tx';
 
-import { assets } from '@pyramation/cosmos-registry';
+import { assets } from '@cosmology/cosmos-registry';
 
 export default async (argv) => {
   const { client, wallet } = await cosmosRpcClient(argv);

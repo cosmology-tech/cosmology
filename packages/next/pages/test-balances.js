@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import { Bech32Address } from '@keplr-wallet/cosmos';
 import { OsmosisApiClient, getCoinFromDenom } from 'cosmology';
-import { chains } from '@pyramation/cosmos-registry';
+import { chains } from '@cosmology/cosmos-registry';
 import { getKeplr } from '../src/utils/utils';
 
 // TODO add test env switches

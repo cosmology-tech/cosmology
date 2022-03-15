@@ -1,7 +1,7 @@
 import { OsmosisApiClient } from 'cosmology';
 import { useState } from 'react';
 
-import { chains } from '@pyramation/cosmos-registry';
+import { chains } from '@cosmology/cosmos-registry';
 
 // TODO add test env switches
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');

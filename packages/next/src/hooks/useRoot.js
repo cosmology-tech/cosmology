@@ -1,7 +1,7 @@
 import { OsmosisApiClient, OsmosisValidatorClient } from 'cosmology';
 import { useEffect, useState } from 'react';
 
-import { chains } from '@pyramation/cosmos-registry';
+import { chains } from '@cosmology/cosmos-registry';
 import useClient from './useClient';
 import useValidator from './useValidator';
 import useKeplr from './useKeplr';

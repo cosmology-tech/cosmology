@@ -1,6 +1,6 @@
 import { filter } from 'fuzzy';
 import { assets as osmosisAssets } from '../assets';
-import { assets, chains } from '@pyramation/cosmos-registry';
+import { assets, chains } from '@cosmology/cosmos-registry';
 import { prompt as inquirerer } from 'inquirerer';
 import { getChain, getChainByChainId } from './chain';
 import { crypt, decrypt } from './crypt';
