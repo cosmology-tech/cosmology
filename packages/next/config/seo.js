@@ -1,7 +1,7 @@
-const siteUrl = 'https://dexmos.finance';
+const siteUrl = 'https://cosmology.finance';
 const siteAddress = new URL(siteUrl);
 const canonical = siteAddress.href.slice(0, -1);
-const title = 'dexmos™';
+const title = 'Cosmology™';
 const description = 'Auto-compounding your cosmos rewards';
 const fbAppId = null;
 module.exports = {
@@ -24,8 +24,8 @@ module.exports = {
     ]
   },
   twitter: {
-    handle: '@dexmosapp',
-    site: '@dexmosapp'
+    handle: '@cosmologyapp',
+    site: '@cosmologyapp'
   },
   facebook: fbAppId
     ? {

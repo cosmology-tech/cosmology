@@ -6,7 +6,15 @@ const PAGE_DIR = __dirname + '/../pages/';
 const pageObjects = {};
 const legalPageObjects = {};
 
-const IGNORE = ['404', '_document'];
+const IGNORE = [
+  '404',
+  '_document',
+  '_app',
+  'api/hello',
+  'app',
+  'test-balances',
+  'test-swaps'
+];
 
 // FOR NOW keep this stuff out
 // later when you generate a sitemap page, you can categorize this in Legal
@@ -124,8 +132,7 @@ const BAD_AGENTS = [
     bots: ['UbiCrawler', 'DOC', 'Zao', 'discobot', 'dotbot', 'yacybot']
   },
   {
-    text:
-      "Dear bots, we don't appreciate you copying site content and providing very little additional value.",
+    text: "Dear bots, we don't appreciate you copying site content and providing very little additional value.",
     bots: [
       'sitecheck.internetseer.com',
       'Zealbot',

@@ -1,4 +1,4 @@
-# dexmos
+# cosmology
 
 ## TODO for demo
 
@@ -12,7 +12,7 @@
 first start the tests
 
 ```
-cd ./packages/dexmos
+cd ./packages/cosmology
 yarn test:watch
 ```
 
@@ -20,7 +20,7 @@ hit "p" and then type a search string to scope to your test, e.g., "keplr.bank"
 
 ## next server
 
-if you need to edit `dexmos` and view changes in next
+if you need to edit `cosmology` and view changes in next
 
 ```sh
 cd ./packages/next
@@ -29,10 +29,10 @@ yarn dev
 
 ## next JS flow
 
-if you need to edit `dexmos` and view changes in next
+if you need to edit `cosmology` and view changes in next
 
 ```sh
-cd ./packages/dexmos
+cd ./packages/cosmology
 MODULE=true yarn build
 ```
 
@@ -41,7 +41,7 @@ MODULE=true yarn build
 if you need to edit the CLI
 
 ```sh
-cd ./packages/dexmos
+cd ./packages/cosmology
 export MNEMONIC="mammal wrestle hybrid cart choose flee transfer filter fly object swamp rookie"
 export CHAIN_ID=osmosis-testnet-0
 export RPC_ENDPOINT=http://143.244.147.126:26657

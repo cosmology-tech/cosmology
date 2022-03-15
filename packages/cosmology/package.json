@@ -1,14 +1,14 @@
 {
-  "name": "dexmos",
+  "name": "cosmology",
   "version": "0.0.19",
-  "description": "dexmos",
+  "description": "cosmology",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "homepage": "https://github.com/pyramation/dexmos/tree/master/packages/dexmos#readme",
+  "homepage": "https://github.com/pyramation/cosmology/tree/master/packages/cosmology#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "main/index.js",
   "module": "module/index.js",
   "bin": {
-    "dexmos": "main/dexmos.js"
+    "cosmology": "main/cosmology.js"
   },
   "directories": {
     "lib": "src",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pyramation/dexmos"
+    "url": "https://github.com/pyramation/cosmology"
   },
   "scripts": {
     "build:main": "cross-env BABEL_ENV=production babel src --out-dir main --delete-dir-on-start",
@@ -31,9 +31,9 @@
     "build": "npm run build:module && npm run build:main",
     "prepare": "npm run build",
     "lint": "eslint src --fix",
-    "dev": "cross-env NODE_ENV=development babel-node src/dexmos",
+    "dev": "cross-env NODE_ENV=development babel-node src/cosmology",
     "mytest": "cross-env NODE_ENV=development babel-node src/my-test",
-    "watch": "cross-env NODE_ENV=development babel-watch src/dexmos",
+    "watch": "cross-env NODE_ENV=development babel-watch src/cosmology",
     "file": "cross-env NODE_ENV=development babel-watch src/file",
     "make:commands": "cross-env NODE_ENV=development node ./bin/build.js",
     "test": "jest",
@@ -41,7 +41,7 @@
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "bugs": {
-    "url": "https://github.com/pyramation/dexmos/issues"
+    "url": "https://github.com/pyramation/cosmology/issues"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",

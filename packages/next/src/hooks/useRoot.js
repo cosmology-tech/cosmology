@@ -1,4 +1,4 @@
-import { OsmosisApiClient, OsmosisValidatorClient } from 'dexmos';
+import { OsmosisApiClient, OsmosisValidatorClient } from 'cosmology';
 import { useEffect, useState } from 'react';
 
 import { chains } from '@pyramation/cosmos-registry';
