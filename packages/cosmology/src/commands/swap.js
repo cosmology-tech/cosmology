@@ -46,6 +46,14 @@ export default async (argv) => {
       value: symbol
     };
   });
+  const balances = accountBalances.result.map(({ denom, amount }) => {
+    const symbol = osmoDenomToSymbol(denom);
+    return {
+      symbol,
+      denom,
+      amount
+    };
+  });
 
   const { sell } = await prompt(
     [
@@ -86,6 +94,8 @@ export default async (argv) => {
 
   const usdValue = baseUnitsToDollarValue(prices, sell, tokenInBal.amount);
 
+  // stub
+  if (argv.all) argv.value = usdValue;
   const { value } = await prompt(
     [
       {
@@ -110,7 +120,9 @@ export default async (argv) => {
   );
 
   const tokenInPrice = getPrice(prices, sell);
-  const tokenInAmount = dollarValueToDenomUnits(prices, sell, value);
+  const tokenInAmount = argv.all
+    ? balances.find((a) => a.symbol === sell).amount
+    : dollarValueToDenomUnits(prices, sell, value);
   const tokenOutPrice = getPrice(prices, buy);
   const tokenOutAmount = dollarValueToDenomUnits(prices, buy, value);
   const tokenOutAmountWithSlippage =
