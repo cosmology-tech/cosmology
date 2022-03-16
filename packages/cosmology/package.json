@@ -86,6 +86,7 @@
     "long": "5.2.0",
     "minimist": "1.2.5",
     "protobufjs": "6.11.2",
+    "retry": "0.13.1",
     "tiny-async-pool": "^1.2.0"
   }
 }

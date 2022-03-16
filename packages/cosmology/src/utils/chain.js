@@ -2,7 +2,7 @@ import { assets, chains } from '@cosmology/cosmos-registry';
 import { assets as osmosisAssets } from '../assets/index';
 import { coins } from '@cosmjs/amino';
 import { gas } from '../messages/gas';
-import axios from 'axios';
+import { symbolToOsmoDenom } from '..';
 
 export const getFeeForChainAndMsg = (chainId, message) => {
   const chain = getChainByChainId(chainId);
@@ -135,6 +135,32 @@ export const getOsmosisSymbolIbcName = (symbol) => {
 export const displayUnitsToDenomUnits = (symbol, amount) => {
   const { display } = getBaseAndDisplayUnits(symbol);
   return Number(amount) * Math.pow(10, display.exponent);
+};
+
+// TODO design how classes migrate to methods...
+export const getPrice = (prices, symbol) => {
+  const denom = symbolToOsmoDenom(symbol);
+  return prices[denom] || 0;
+};
+
+export const displayUnitsToDollarValue = (prices, symbol, amount) => {
+  const price = getPrice(prices, symbol);
+  return amount * price;
+};
+
+export const baseUnitsToDollarValue = (prices, symbol, amount) => {
+  const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+  return displayUnitsToDollarValue(prices, symbol, displayAmount);
+};
+
+export const dollarValueToDisplayUnits = (prices, symbol, amount) => {
+  const price = getPrice(prices, symbol);
+  return amount / price;
+};
+
+export const dollarValueToDenomUnits = (prices, symbol, amount) => {
+  const display = dollarValueToDisplayUnits(prices, symbol, amount);
+  return displayUnitsToDenomUnits(symbol, display);
 };
 
 export const baseUnitsToDisplayUnits = (symbol, amount) => {

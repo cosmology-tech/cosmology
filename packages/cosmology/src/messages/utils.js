@@ -58,6 +58,72 @@ export const signAndBroadcast = async ({
   return await client.broadcastTx(txBytes);
 };
 
+const retry = require('retry');
+
+function getCosmosTx({ cosmos, transactionHash }) {
+  const operation = retry.operation({
+    retries: 5,
+    factor: 2,
+    minTimeout: 1 * 1000,
+    maxTimeout: 60 * 1000
+  });
+
+  return new Promise((resolve, reject) => {
+    operation.attempt(async () => {
+      let results;
+      let err;
+      try {
+        results = await cosmos.getCosmosTransaction(transactionHash);
+      } catch (e) {
+        console.log(e);
+        err = true;
+      }
+
+      if (operation.retry(err)) {
+        return;
+      }
+
+      // perhaps a tautology but semantics are that we
+      // want to ensure tx is in the chain
+      if (results.tx_response.txhash === transactionHash) {
+        resolve(results);
+      } else {
+        reject(operation.mainError());
+      }
+    });
+  });
+}
+
+export const signAndBroadcastTilTxExists = async ({
+  client,
+  cosmos,
+  chainId,
+  address,
+  msg,
+  fee,
+  memo = ''
+}) => {
+  const result = await signAndBroadcast({
+    client,
+    chainId,
+    address,
+    msg,
+    fee,
+    memo
+  });
+
+  if (result.transactionHash) {
+    const results = await getCosmosTx({
+      cosmos,
+      transactionHash: result.transactionHash
+    });
+    return results;
+  }
+
+  console.log(result);
+  throw new Error('no tx hash');
+};
+
 export const generateOsmoMessage = (name, msg) => {
   if (!metaInfo[name]) throw new Error('missing message.');
   const gas = metaInfo[name].gas + ''; // TEST if needs string or if number is ok
