@@ -1,4 +1,6 @@
 import { chains } from '@cosmology/cosmos-registry';
+import { coin } from '@cosmjs/amino';
+
 import { assets } from '@cosmology/cosmos-registry';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '../clients/osmosis';
@@ -176,7 +178,7 @@ export default async (argv) => {
     routes,
     tokenIn: {
       denom: tokenIn.denom,
-      // QUESTION: are decimals needed/allowed?
+      // TODO: use { coin } from '@cosmjs/amino' e.g. coin(num, denom)
       amount: (tokenIn.amount + '').split('.')[0]
     },
     tokenOutMinAmount: (tokenOut.amount + '').split('.')[0]

@@ -12,7 +12,7 @@ const assetHashMap = assets.reduce((m, asset) => {
 
 export class OsmosisApiClient extends CosmosApiClient {
   constructor({ url = 'https://osmosis.stakesystems.io/' } = {}) {
-    super({ url })
+    super({ url });
     this._clientType = 'Osmosis API';
     autobind(this); // React ES6 doesn't bind this -> meaning we get 'unable to read property 'request' of undefined
   }
@@ -88,45 +88,51 @@ export class OsmosisApiClient extends CosmosApiClient {
 
   async getPoolsPretty({ includeDetails = false } = {}) {
     const { pools } = await this.getPools();
-
-    const prettyPools = pools.map((pool, i) => {
-      const totalWeight = Number(pool.totalWeight);
-      const tokens = pool.poolAssets.map(({ token, weight }) => {
-        const asset = assetHashMap?.[token.denom];
-        const symbol = asset?.symbol ?? token.denom;
-        const ratio = Number(weight) / totalWeight;
-        const obj = {
-          symbol,
-          amount: token.amount,
-          ratio
-        };
-        if (includeDetails) {
-          obj.info = asset;
-        }
-        return obj;
-      });
-      const value = {
-        nickname: tokens.map(t => t.symbol).join('/'),
-      };
-      if (includeDetails) {
-        value.images = tokens.map(t => {
-          const imgs = t?.info?.logo_URIs;
-          if (imgs) {
-            return {
-              token: t.symbol,
-              images: imgs
-            };
-          }
-        }).filter(Boolean)
-      }
-      return {
-        ...value,
-        ...pool,
-        poolAssetsPretty: tokens
-      };
-    });
-
-    return prettyPools;
+    return pools.map((pool) => prettyPool(pool, { includeDetails }));
   }
 
+  async getPoolPretty(poodId, { includeDetails = false } = {}) {
+    const { pool } = await this.getPool(poodId);
+    return prettyPool(pool, { includeDetails });
+  }
 }
+
+const prettyPool = (pool, { includeDetails = false } = {}) => {
+  const totalWeight = Number(pool.totalWeight);
+  const tokens = pool.poolAssets.map(({ token, weight }) => {
+    const asset = assetHashMap?.[token.denom];
+    const symbol = asset?.symbol ?? token.denom;
+    const ratio = Number(weight) / totalWeight;
+    const obj = {
+      symbol,
+      denom: token.denom,
+      amount: token.amount,
+      ratio
+    };
+    if (includeDetails) {
+      obj.info = asset;
+    }
+    return obj;
+  });
+  const value = {
+    nickname: tokens.map((t) => t.symbol).join('/')
+  };
+  if (includeDetails) {
+    value.images = tokens
+      .map((t) => {
+        const imgs = t?.info?.logo_URIs;
+        if (imgs) {
+          return {
+            token: t.symbol,
+            images: imgs
+          };
+        }
+      })
+      .filter(Boolean);
+  }
+  return {
+    ...value,
+    ...pool,
+    poolAssetsPretty: tokens
+  };
+};
