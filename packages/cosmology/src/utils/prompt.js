@@ -159,3 +159,18 @@ export const promptChainIdAndChain = async (argv) => {
   argv.chainId = chainId;
   return await getChainByChainId(chainId);
 };
+
+export const getPools = async (validator, argv) => {
+  if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
+  const pools = await validator.getPools();
+  return Object.keys(pools)
+    .map((poolId) => {
+      if (pools[poolId][0].liquidity > argv['liquidity-limit']) {
+        return {
+          name: pools[poolId].map((a) => a.symbol).join('/'),
+          value: poolId
+        };
+      }
+    })
+    .filter(Boolean);
+};
