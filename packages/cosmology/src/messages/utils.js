@@ -3,7 +3,7 @@ import { Registry } from '@cosmjs/proto-signing';
 import { TxRaw } from 'cosmjs-types/cosmos/tx/v1beta1/tx';
 import { coins } from '@cosmjs/amino';
 import { defaultRegistryTypes } from '@cosmjs/stargate';
-
+import retry from 'retry';
 import { aminos } from './aminos';
 import { meta as metaInfo } from './meta';
 
@@ -57,8 +57,6 @@ export const signAndBroadcast = async ({
   const txBytes = TxRaw.encode(txRaw).finish();
   return await client.broadcastTx(txBytes);
 };
-
-const retry = require('retry');
 
 function getCosmosTx({ cosmos, transactionHash }) {
   const operation = retry.operation({
