@@ -84,7 +84,11 @@ function getCosmosTx({ cosmos, transactionHash }) {
       // perhaps a tautology but semantics are that we
       // want to ensure tx is in the chain
       if (results.tx_response.txhash === transactionHash) {
-        resolve(results);
+        if (results.tx_response.code == 0) {
+          resolve(results);
+        } else {
+          reject(results.tx_response.raw_log);
+        }
       } else {
         reject(operation.mainError());
       }
@@ -111,6 +115,9 @@ export const signAndBroadcastTilTxExists = async ({
   });
 
   if (result.transactionHash) {
+    console.log('\n\n\n\n\nbroadcast');
+    console.log(result);
+
     const results = await getCosmosTx({
       cosmos,
       transactionHash: result.transactionHash
