@@ -111,9 +111,7 @@ export default async (argv) => {
     };
   });
 
-  console.log(coinsNeeded);
-  console.log(sum);
-  console.log(myPool.totalShares);
+  //   share out amount = (token in amount * total share) / pool asset
 
   // const tokenInAmount = new IntPretty(new Dec(amountConfig.amount));
   // totalShare / poolAsset.amount = totalShare per poolAssetAmount = total share per tokenInAmount
@@ -123,20 +121,49 @@ export default async (argv) => {
   // totalShare proportion of tokenInAmount * otherTotalPoolAssetAmount = otherPoolAssetAmount
   // const shareOutAmount = tokenInAmount.mul(totalShare).quo(poolAsset.amount);
 
-  const _sum = new Dec(sum);
-  const _val = new Dec(value);
-  const _totalShares = new Dec(myPool.totalShares.amount);
+  /*
 
-  const shareOutAmount = _sum
-    .quo(_val)
-    .mul(_totalShares)
-    .toString()
-    .split('.')[0];
+`tokenInAmount` = number of tokens of coin A
+`poolAsset.amount` = total number of tokens of coin A in pool
+`totalShare` = total shares of pool (with exponent = 18)
 
-  console.log({ shareOutAmount });
+`shareOutAmount` = `tokenInAmount` * `totalShare` / `poolAsset.amount`
+
+@dev:
+Yeah I think theres two options:
+Simulate the message, and subtract $SLIPPAGE_PERCENTAGE from that
+Doing exactly what you did (but taking the min of that over both assets)
+
+ */
+
+  const shareOuts = [];
+
+  for (let i = 0; i < myPool.poolAssets.length; i++) {
+    const tokenInAmount = new IntPretty(new Dec(coinsNeeded[i].amount));
+    const totalShare = new IntPretty(new Dec(myPool.totalShares.amount));
+    const totalShareExp = totalShare.moveDecimalPointLeft(18);
+    const poolAssetAmount = new IntPretty(
+      new Dec(myPool.poolAssets[i].token.amount)
+    );
+
+    const shareOutAmountObj = tokenInAmount
+      .mul(totalShareExp)
+      .quo(poolAssetAmount);
+    const shareOutAmount = shareOutAmountObj
+      .moveDecimalPointRight(18)
+      .trim(true)
+      .shrink(true)
+      .maxDecimals(6)
+      .locale(false)
+      .toString();
+
+    shareOuts.push(shareOutAmount);
+  }
+
+  const shareOutAmount = shareOuts.sort()[0];
 
   const { msg, fee } = messages.joinPool({
-    poolId,
+    poolId: poolId + '', // string!
     sender: account.address,
     shareOutAmount,
     tokenInMaxs: coinsNeeded.map((c) => {
@@ -145,6 +172,31 @@ export default async (argv) => {
   });
 
   console.log(JSON.stringify(msg, null, 2));
-};
 
-// const { CoinPretty, Dec, DecUtils, Int, IntPretty } = require( '@keplr-wallet/unit' );
+  const accounts = await signer.getAccounts();
+  const osmoAddress = accounts[0].address;
+  const stargateClient = await getSigningOsmosisClient({
+    rpcEndpoint,
+    signer
+  });
+
+  const res = await signAndBroadcastTilTxExists({
+    client: stargateClient,
+    cosmos: client,
+    chainId: osmoChainConfig.chain_id,
+    address: osmoAddress,
+    msg,
+    fee,
+    memo: ''
+  });
+
+  const block = res?.tx_response?.height;
+
+  if (block) {
+    console.log(`success at block ${block}`);
+  } else {
+    console.log('no block found for tx!');
+  }
+  console.log('\n\n\n\n\ntx');
+  console.log(res);
+};

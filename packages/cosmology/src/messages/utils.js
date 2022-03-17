@@ -115,9 +115,6 @@ export const signAndBroadcastTilTxExists = async ({
   });
 
   if (result.transactionHash) {
-    console.log('\n\n\n\n\nbroadcast');
-    console.log(result);
-
     const results = await getCosmosTx({
       cosmos,
       transactionHash: result.transactionHash

@@ -31,6 +31,12 @@ const assetList = assets
   .reduce((m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)], [])
   .sort();
 
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+
+const assetsList = assetList.filter(onlyUnique);
+
 export default async (argv) => {
   const validator = new OsmosisValidatorClient();
   const api = new OsmosisApiClient();
@@ -60,8 +66,7 @@ export default async (argv) => {
       {
         type: 'list',
         name: 'sell',
-        message:
-          'select which coins in your wallet that you are willing to sell',
+        message: 'choose token to sell',
         choices: availableChoices
       }
     ],
@@ -73,8 +78,8 @@ export default async (argv) => {
       {
         type: 'list',
         name: 'buy',
-        message: 'choose token to buy in',
-        choices: assetList
+        message: 'choose token to buy',
+        choices: assetsList
       }
     ],
     argv
