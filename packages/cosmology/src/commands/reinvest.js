@@ -1,9 +1,16 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { chains } from '@cosmology/cosmos-registry';
+import { coin } from '@cosmjs/amino';
 import { assets } from '@cosmology/cosmos-registry';
+import { CoinPretty, Dec, DecUtils, Int, IntPretty } from '@keplr-wallet/unit';
+
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
 import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
+import { getSigningOsmosisClient } from '../messages/utils';
+import { messages } from '../messages/messages';
+import { signAndBroadcastTilTxExists } from '../messages/utils';
+
 import {
   convertWeightsIntoCoins,
   convertValidatorPricesToDenomPriceHash,
@@ -15,9 +22,29 @@ import {
 } from '../utils/osmo';
 import c from 'ansi-colors';
 
-export default async (argv) => {
-  const actions = [];
+const getAvailableBalance = async ({ client, address, sell }) => {
+  const accountBalances = await client.getBalances(address);
+  return accountBalances.result
+    .map(({ denom, amount }) => {
+      const symbol = osmoDenomToSymbol(denom);
+      const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+      if (displayAmount < 0.00001) return;
+      if (!sell.includes(symbol)) return;
+      return {
+        symbol,
+        denom,
+        amount,
+        displayAmount
+      };
+    })
+    .filter(Boolean);
+};
 
+const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
+// const restEndpoint = osmoChainConfig.apis.rest[0].address;
+const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
+
+export default async (argv) => {
   const validator = new OsmosisValidatorClient();
   const api = new OsmosisApiClient();
 
@@ -37,9 +64,9 @@ export default async (argv) => {
 
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
 
-  const { client, wallet } = await osmoRestClient(argv);
-  const [account] = await wallet.getAccounts();
-
+  const { client, wallet: signer } = await osmoRestClient(argv);
+  const [account] = await signer.getAccounts();
+  const address = account.address;
   const accountBalances = await client.getBalances(account.address);
   const display = accountBalances.result.map(({ denom, amount }) => {
     const symbol = osmoDenomToSymbol(denom);
@@ -57,15 +84,15 @@ export default async (argv) => {
   const availableChoices = display.map((item) => {
     return {
       name: `${item.symbol} (${item.displayAmount})`,
-      value: item
+      value: item.symbol
     };
   });
 
-  const { available } = await prompt(
+  let { sell } = await prompt(
     [
       {
         type: 'checkbox',
-        name: 'available',
+        name: 'sell',
         message:
           'select which coins in your wallet that you are willing to sell',
         choices: availableChoices
@@ -73,8 +100,13 @@ export default async (argv) => {
     ],
     argv
   );
+  if (!Array.isArray(sell)) sell = [sell];
 
-  let balances = substractCoins(available, []);
+  let balances = await getAvailableBalance({
+    client,
+    address,
+    sell
+  });
 
   // WHICH POOLS TO INVEST?
 
@@ -157,6 +189,16 @@ export default async (argv) => {
     })
   ];
 
+  //
+
+  const stargateClient = await getSigningOsmosisClient({
+    rpcEndpoint,
+    signer
+  });
+
+  const accounts = await signer.getAccounts();
+  const osmoAddress = accounts[0].address;
+
   // get pricing and pools info...
 
   const allTokens = await validator.getTokens();
@@ -173,6 +215,8 @@ export default async (argv) => {
   for (let i = 0; i < result.pools.length; i++) {
     const desired = result.pools[i].coins;
 
+    balances = await getAvailableBalance({ client, address, sell });
+
     const trades = getTradesRequiredToGetBalances({
       prices,
       balances,
@@ -180,14 +224,16 @@ export default async (argv) => {
     });
 
     const swaps = await getSwaps({ pools, trades, pairs: pairs.data });
-    actions.push({
-      type: 'pool',
-      name: result.pools[i].name,
-      swaps
-    });
 
     console.log(`\nSWAPS for ${c.bold.magenta(result.pools[i].name)}`);
-    swaps.forEach(({ trade: { sell, buy, beliefValue }, routes }) => {
+
+    for (let s = 0; s < swaps.length; s++) {
+      const swap = swaps[s];
+      const {
+        trade: { sell, buy, beliefValue },
+        routes
+      } = swap;
+
       console.log(
         `TRADE ${c.bold.yellow(
           sell.displayAmount + ''
@@ -200,83 +246,154 @@ export default async (argv) => {
         .join(', ')
         .toLowerCase();
       console.log(c.gray(`  routes: ${r}`));
-    });
+
+      const { msg, fee } = messages.swapExactAmountIn({
+        sender: osmoAddress,
+        routes,
+        tokenIn: {
+          denom: sell.denom,
+          amount: sell.amount.split('.')[0]
+        },
+        tokenOutMinAmount: Number(buy.amount.split('.')[0]) * 0.98 + ''
+      });
+
+      const res = await signAndBroadcastTilTxExists({
+        client: stargateClient,
+        cosmos: client,
+        chainId: osmoChainConfig.chain_id,
+        address: osmoAddress,
+        msg,
+        fee,
+        memo: ''
+      });
+
+      const block = res?.tx_response?.height;
+      if (block) {
+        console.log(`success at block ${block}`);
+      } else {
+        console.log('no block found for tx! EXITING...');
+        process.exit(1);
+      }
+
+      //
+    }
     //
 
-    // needs to return balance so we can pass that in on the next one!
-    // OTHERWISE IT REUSES THE SAME BALANCE!
-    let coinsToSubstract = trades.map((trade) => ({ ...trade.sell }));
-    // console.log('balances before trades');
-    // console.log('coinsToSubstract');
-    // console.log(coinsToSubstract);
-    // console.log(balances);
-    coinsToSubstract = convertCoinsToDisplayValues({
-      prices,
-      coins: coinsToSubstract
-    });
-    balances = substractCoins(balances, coinsToSubstract);
-    // console.log('balances after trades');
-    // console.log(balances);
-    // const a = {
-    //   name: result.pools[i].name,
-    //   trades
-    // };
+    // DO JOIN AND LOCK HERE
+    console.log('DO JOIN AND LOCK HERE');
+    console.log(result.pools[i]);
+    const poolInfo = await client.getPoolPretty(
+      result.pools[i].denom.split('/')[2]
+    );
+    console.log(poolInfo);
+    balances = await getAvailableBalance({ client, address, sell });
+
+    // 1. what is the value? given the ratio?
+    // then calculate the goods
+
+    // const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
+    //   const shareTotalValue = value * asset.ratio;
+    //   const totalDollarValue = baseUnitsToDollarValue(
+    //     prices,
+    //     asset.symbol,
+    //     asset.amount
+    //   );
+    //   const amount = dollarValueToDenomUnits(
+    //     prices,
+    //     asset.symbol,
+    //     shareTotalValue
+    //   );
+    //   return {
+    //     symbol: asset.symbol,
+    //     denom: asset.denom,
+    //     amount: (amount + '').split('.')[0], // no decimals...
+    //     displayAmount: baseUnitsToDisplayUnits(asset.symbol, amount),
+    //     shareTotalValue,
+    //     totalDollarValue,
+    //     unitRatio: amount / asset.amount
+    //   };
+    // });
+
+    // // MARKED AS NOT DRY (copied code from join.js)
+
+    // const shareOuts = [];
+
+    // for (let i = 0; i < poolInfo.poolAssets.length; i++) {
+    //   const tokenInAmount = new IntPretty(new Dec(coinsNeeded[i].amount));
+    //   const totalShare = new IntPretty(new Dec(poolInfo.totalShares.amount));
+    //   const totalShareExp = totalShare.moveDecimalPointLeft(18);
+    //   const poolAssetAmount = new IntPretty(
+    //     new Dec(poolInfo.poolAssets[i].token.amount)
+    //   );
+
+    //   const shareOutAmountObj = tokenInAmount
+    //     .mul(totalShareExp)
+    //     .quo(poolAssetAmount);
+    //   const shareOutAmount = shareOutAmountObj
+    //     .moveDecimalPointRight(18)
+    //     .trim(true)
+    //     .shrink(true)
+    //     .maxDecimals(6)
+    //     .locale(false)
+    //     .toString();
+
+    //   shareOuts.push(shareOutAmount);
+    // }
+
+    // const shareOutAmount = shareOuts.sort()[0];
+
+    // const { msg, fee } = messages.joinPool({
+    //   poolId: poolId + '', // string!
+    //   sender: account.address,
+    //   shareOutAmount,
+    //   tokenInMaxs: coinsNeeded.map((c) => {
+    //     return coin(c.amount, c.denom);
+    //   })
+    // });
+
+    // const res = await signAndBroadcastTilTxExists({
+    //   client: stargateClient,
+    //   cosmos: client,
+    //   chainId: osmoChainConfig.chain_id,
+    //   address,
+    //   msg,
+    //   fee,
+    //   memo: ''
+    // });
+    // const block = res?.tx_response?.height;
+
+    // if (block) {
+    //   console.log(`success at block ${block}`);
+    // } else {
+    //   console.log('no block found for tx!');
+    // }
   }
 
-  // coins
-  const trades = getTradesRequiredToGetBalances({
-    prices,
-    balances,
-    desired: result.coins
-  });
-  let coinsToSubstract = trades.map((trade) => ({ ...trade.sell }));
+  // coins + staking
 
-  // console.log('balances before coins');
-  // console.log('coinsToSubstract');
-  // console.log(coinsToSubstract);
-  // console.log(balances);
-  coinsToSubstract = convertCoinsToDisplayValues({
-    prices,
-    coins: coinsToSubstract
-  });
-  balances = substractCoins(balances, coinsToSubstract);
+  // const trades = getTradesRequiredToGetBalances({
+  //   prices,
+  //   balances,
+  //   desired: result.coins
+  // });
+
   // console.log('balances after coins');
   // console.log(balances);
 
-  console.log(`\nSWAPS for ${c.magenta('STAKING')}`);
-  trades.forEach(({ sell, buy, beliefValue }) => {
-    if (Number(beliefValue) == 0) return; // lol why
-    actions.push({
-      type: 'coin',
-      name: buy.symbol,
-      trade: { sell, buy, beliefValue }
-    });
-    console.log(
-      `TRADE ${c.bold.yellow(
-        sell.displayAmount + ''
-      )} ($${beliefValue}) worth of ${c.bold.red(
-        sell.symbol
-      )} for ${c.bold.green(buy.symbol)}`
-    );
-  });
-  console.log('\n\nSpecify an outfile for the recipe file:');
-
-  let { outfile } = await prompt(
-    [
-      {
-        type: 'file',
-        name: 'outfile',
-        message: 'outfile'
-      }
-    ],
-    argv
-  );
-  if (!outfile.endsWith('.json')) outfile = outfile + '.json';
-  writeFileSync(outfile, JSON.stringify(actions, null, 2));
-
-  // console.log(trades);
-  // console.log({
-  //     available,
-  //     weights
+  // console.log(`\nSWAPS for ${c.magenta('STAKING')}`);
+  // trades.forEach(({ sell, buy, beliefValue }) => {
+  //   if (Number(beliefValue) == 0) return; // lol why
+  //   actions.push({
+  //     type: 'coin',
+  //     name: buy.symbol,
+  //     trade: { sell, buy, beliefValue }
+  //   });
+  //   console.log(
+  //     `TRADE ${c.bold.yellow(
+  //       sell.displayAmount + ''
+  //     )} ($${beliefValue}) worth of ${c.bold.red(
+  //       sell.symbol
+  //     )} for ${c.bold.green(buy.symbol)}`
+  //   );
   // });
 };

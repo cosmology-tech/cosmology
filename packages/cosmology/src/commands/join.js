@@ -85,9 +85,9 @@ export default async (argv) => {
     argv
   );
 
-  const myPool = await client.getPoolPretty(poolId);
-  let sum = 0;
-  const coinsNeeded = myPool.poolAssetsPretty.map((asset) => {
+  const poolInfo = await client.getPoolPretty(poolId);
+
+  const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
     const shareTotalValue = value * asset.ratio;
     const totalDollarValue = baseUnitsToDollarValue(
       prices,
@@ -99,7 +99,6 @@ export default async (argv) => {
       asset.symbol,
       shareTotalValue
     );
-    sum += totalDollarValue;
     return {
       symbol: asset.symbol,
       denom: asset.denom,
@@ -138,12 +137,12 @@ Doing exactly what you did (but taking the min of that over both assets)
 
   const shareOuts = [];
 
-  for (let i = 0; i < myPool.poolAssets.length; i++) {
+  for (let i = 0; i < poolInfo.poolAssets.length; i++) {
     const tokenInAmount = new IntPretty(new Dec(coinsNeeded[i].amount));
-    const totalShare = new IntPretty(new Dec(myPool.totalShares.amount));
+    const totalShare = new IntPretty(new Dec(poolInfo.totalShares.amount));
     const totalShareExp = totalShare.moveDecimalPointLeft(18);
     const poolAssetAmount = new IntPretty(
-      new Dec(myPool.poolAssets[i].token.amount)
+      new Dec(poolInfo.poolAssets[i].token.amount)
     );
 
     const shareOutAmountObj = tokenInAmount
