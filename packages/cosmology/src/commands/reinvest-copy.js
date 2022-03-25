@@ -21,28 +21,11 @@ import {
   substractCoins
 } from '../utils/osmo';
 import c from 'ansi-colors';
+import { getAvailableBalance } from './reinvest';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 // const restEndpoint = osmoChainConfig.apis.rest[0].address;
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
-
-export const getAvailableBalance = async ({ client, address, sell }) => {
-  const accountBalances = await client.getBalances(address);
-  return accountBalances.result
-    .map(({ denom, amount }) => {
-      const symbol = osmoDenomToSymbol(denom);
-      const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-      if (displayAmount < 0.00001) return;
-      if (!sell.includes(symbol)) return;
-      return {
-        symbol,
-        denom,
-        amount,
-        displayAmount
-      };
-    })
-    .filter(Boolean);
-};
 
 export default async (argv) => {
   const validator = new OsmosisValidatorClient();

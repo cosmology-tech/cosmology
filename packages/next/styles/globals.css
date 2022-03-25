@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
 @import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-text.min.css");
 
 html,
@@ -42,7 +43,7 @@ input:focus {
 }
 
 button {
-  font-family: 'Plus Jakarta Text';
+  font-family: 'Plus Jakarta Text', Arial, Helvetica, sans-serif;
 }
 
 .main-text {
@@ -484,4 +485,28 @@ button {
 
 .select-search__options {
   padding: 0px;
+}
+
+.balance-row {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #212838;
+}
+
+.balance-row:last-of-type {
+  border-bottom: none;
+
+}
+
+.balance-row>input {
+  background: transparent;
+  margin-right: 8px;
+
+}
+
+.balance-row>img {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+
 }
