@@ -11,6 +11,9 @@ import PoolPairImage from '../src/components/subComponents/PoolPairImage';
 import PoolAllocSummary from '../src/components/PoolAllocSummary';
 import Nav from '../src/components/Nav';
 import Job from '../src/components/subComponents/Job';
+import SelectBalances from '../partials/SelectBalances';
+import { chains } from '@cosmology/cosmos-registry';
+import useRoot from '../src/hooks/useRoot';
 
 const SYMBOLCOINHASH = {};
 const COINHASH = assets.reduce((m, asset) => {
@@ -51,17 +54,40 @@ const defaultPools = [
 
 let saverTimeout = null;
 
+const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
+
 const App = () => {
   const [ourPools, setOurPools] = useState(null);
   const [showPoolAdder, setShowPoolAdder] = useState(false);
   const [queuedPools, setQueuedPools] = useState([]);
   const [pools, setPools] = useState([]);
+  const [exclusions, setExclusions] = useState([]);
   const [queryingForPools, setQueryingForPools] = useState(false);
   const [accounts, setAccounts] = useState([]);
-  const [showPreview, setShowPreview] = useState(false);
+  const [screen, setScreen] = useState('pools');
   const [swaps, setSwaps] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [driver, setDriver] = useState(null);
+
+  const loadConfig = {
+    loadBalances: true,
+    loadTokens: true,
+    loadPairsSummary: true,
+    loadPoolsInfo: true
+  };
+  const {
+    client,
+    validator,
+    keplr,
+    balances,
+    tokens,
+    pairsSummary,
+    poolsInfo,
+    loading
+  } = useRoot({
+    chainConfig: osmoChainConfig,
+    ...loadConfig
+  });
 
   const queryForPools = async () => {
     if (!queryingForPools) {
@@ -96,9 +122,11 @@ const App = () => {
   useEffect(() => {
     if (!ourPools) {
       const savedPoolSettings = window.localStorage.getItem('poolsConfig');
+      const exclusions = window.localStorage.getItem('exclusions');
       setOurPools(
         savedPoolSettings ? JSON.parse(savedPoolSettings) : defaultPools
       );
+      setExclusions(exclusions ? JSON.parse(exclusions) : []);
     }
     if (queuedPools.length) {
       const poolsToAdd = [];
@@ -126,6 +154,7 @@ const App = () => {
   function savePoolSettings() {
     console.log('Saving', ourPools);
     window.localStorage.setItem('poolsConfig', JSON.stringify(ourPools));
+    window.localStorage.setItem('exclusions', JSON.stringify(exclusions));
   }
 
   function resetPoolSettingsSaver() {
@@ -165,6 +194,7 @@ const App = () => {
 
   async function triggerSwapsPreview() {
     if (totalAlloc === 0.0000001)
+      // eslint-disable-next-line no-alert
       return alert('You must allocate your rewards into at least one pool.');
 
     const poolObjectsMapped = ourPools.map((pool) => {
@@ -184,11 +214,21 @@ const App = () => {
     });
 
     const jobs = await driver.getAllJobs(poolObjectsMapped);
-    setShowPreview(true);
+    setScreen('preview');
     setJobs(jobs);
   }
 
   console.log(ourPools);
+
+  function handleSetExclusions(newExclusions) {
+    setExclusions(newExclusions);
+    setScreen('pools');
+    resetPoolSettingsSaver();
+  }
+
+  function handleEditExclusions() {
+    setScreen('balances');
+  }
 
   function handleRun() {
     driver.executejobs(jobs);
@@ -211,7 +251,16 @@ const App = () => {
           className="grid-container light-border column animate-resize"
           style={{ borderRadius: 32, alignItems: 'stretch' }}
         >
-          {showPreview ? (
+          {screen === 'balances' ? (
+            <SelectBalances
+              exclusions={exclusions}
+              handleSetExclusions={handleSetExclusions}
+              keplr={keplr}
+              balances={balances}
+              tokens={tokens}
+              osmoChainConfig={osmoChainConfig}
+            />
+          ) : screen === 'preview' ? (
             <div>
               <div className="horiz" style={{ marginBottom: 16 }}>
                 <h3 className="main-text">Pending Jobs</h3>
@@ -335,6 +384,19 @@ const App = () => {
                         </div> */}
                 </div>
               </div>
+              <p className="detail-text" style={{ marginBottom: 4 }}>
+                Running with{' '}
+                {exclusions.length
+                  ? exclusions.length + ' tokens excluded from compounding '
+                  : 'no exclusions '}
+                <a
+                  href="#"
+                  style={{ color: '#0089FF' }}
+                  onClick={handleEditExclusions}
+                >
+                  <b>Edit</b>
+                </a>
+              </p>
               <div className="grid-item" style={{ display: 'flex', flex: 1 }}>
                 <button
                   className="action-button"

@@ -20,11 +20,6 @@ export default function Home() {
           content="Cosmology | Osmosis Yield Automation"
         />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="//fonts.googleapis.com/css?family=Comfortaa"
-        />
       </Head>
 
       <main

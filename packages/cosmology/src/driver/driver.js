@@ -29,6 +29,7 @@ export class Driver {
       }
 
       // each job execution is a promise
+      // eslint-disable-next-line no-async-promise-executor
       return new Promise(async (resolve) => {
         var txnHash = null;
         if (job.type === 'swap') {
@@ -39,7 +40,7 @@ export class Driver {
           );
         } else if (job.type === 'joinPool') {
           txnHash = DriverClient.joinPool(job.job.id, job.job.amount);
-        } else if (job.type === 'swap') {
+        } else if (job.type === 'lock') {
           txnHash = DriverClient.lockTokens(job.job.id);
         }
 
