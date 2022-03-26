@@ -1,8 +1,12 @@
 import { assets, chains } from '@cosmology/cosmos-registry';
+import { coin } from '@cosmjs/amino';
+
 import { assets as osmosisAssets } from '../assets/index';
 import { coins } from '@cosmjs/amino';
 import { gas } from '../messages/gas';
-import { symbolToOsmoDenom } from '..';
+import { symbolToOsmoDenom } from './osmo';
+import { CoinPretty, Dec, DecUtils, Int, IntPretty } from '@keplr-wallet/unit';
+import { prettyPool } from '../clients';
 
 export const getFeeForChainAndMsg = (chainId, message) => {
   const chain = getChainByChainId(chainId);
@@ -184,26 +188,132 @@ export const getChain = async ({ token }) => {
   return chain;
 };
 
-// from re-stake
+export const calculateShareOutAmount = (poolInfo, coinsNeeded) => {
+  const shareOuts = [];
 
-// export function mapAsync(array, callbackfn) {
-//   return Promise.all(array.map(callbackfn));
-// }
+  for (let i = 0; i < poolInfo.poolAssets.length; i++) {
+    const tokenInAmount = new IntPretty(new Dec(coinsNeeded[i].amount));
+    const totalShare = new IntPretty(new Dec(poolInfo.totalShares.amount));
+    const totalShareExp = totalShare.moveDecimalPointLeft(18);
+    const poolAssetAmount = new IntPretty(
+      new Dec(poolInfo.poolAssets[i].token.amount)
+    );
 
-// export function findAsync(array, callbackfn) {
-//   return mapAsync(array, callbackfn).then(findMap => {
-//     return array.find((value, index) => findMap[index]);
-//   });
-// }
+    const shareOutAmountObj = tokenInAmount
+      .mul(totalShareExp)
+      .quo(poolAssetAmount);
+    const shareOutAmount = shareOutAmountObj
+      .moveDecimalPointRight(18)
+      .trim(true)
+      .shrink(true)
+      .maxDecimals(6)
+      .locale(false)
+      .toString();
 
-// export function findAvailableUrl(chainId, urls){
-//   return findAsync(urls, (url) => {
-//     return axios.get(url + '/status?', {timeout: 1000})
-//       .then(res => res.data)
-//       .then(data => {
-//         return data.result.node_info.network === chainId
-//       }).catch(error => {
-//         return false
-//       })
-//   })
-// }
+    shareOuts.push(shareOutAmount);
+  }
+  const shareOutAmount = shareOuts.sort()[0];
+  return shareOutAmount;
+};
+
+const coinGet = (prices, balances, asset, pAsset) => {
+  // get the asset
+  const coinBalance = balances.find((coin) => coin.denom == asset.token.denom);
+
+  if (!coinBalance || !coinBalance.amount) {
+    throw new Error('not enough ' + pAsset.symbol);
+  }
+
+  coinBalance.displayValue = baseUnitsToDollarValue(
+    prices,
+    pAsset.symbol,
+    coinBalance.amount
+  );
+
+  return coinBalance;
+};
+
+export const caclulateMaxCoinsForPool = (prices, pool, balances) => {
+  const poolInfo = prettyPool(pool, { includeDetails: true });
+  const scenarios = {};
+
+  for (let i = 0; i < poolInfo.poolAssets.length; i++) {
+    const asset = poolInfo.poolAssets[i];
+    const pAsset = poolInfo.poolAssetsPretty[i];
+    // first solve for the first asset having the amount it currently has
+    scenarios[pAsset.symbol] = [];
+
+    // get the asset
+    const coinBalance = coinGet(prices, balances, asset, pAsset);
+
+    const totalDollarValueOfCoinA = baseUnitsToDollarValue(
+      prices,
+      pAsset.symbol,
+      coinBalance.amount
+    );
+
+    const totalDollarValue = totalDollarValueOfCoinA / Number(pAsset.ratio);
+
+    scenarios[pAsset.symbol].push({
+      token: coinBalance,
+      ratio: pAsset.ratio,
+      symbol: pAsset.symbol,
+      amount: coinBalance.amount,
+      enoughCoinsExist: true
+    });
+
+    for (let j = 0; j < poolInfo.poolAssets.length; j++) {
+      const jAsset = poolInfo.poolAssets[j];
+      const jPAsset = poolInfo.poolAssetsPretty[j];
+      if (jAsset.token.denom === asset.token.denom) continue;
+      const otherBalance = coinGet(prices, balances, jAsset, jPAsset);
+
+      const totalDollarValueOfCoinB = totalDollarValue * jPAsset.ratio;
+      const totalCoinsBDenom = dollarValueToDenomUnits(
+        prices,
+        jPAsset.symbol,
+        totalDollarValueOfCoinB
+      );
+      const enoughCoinsExist = otherBalance.amount - totalCoinsBDenom > 0;
+      scenarios[pAsset.symbol].push({
+        token: otherBalance,
+        ratio: jPAsset.ratio,
+        symbol: jPAsset.symbol,
+        amount: totalCoinsBDenom,
+        enoughCoinsExist
+      });
+    }
+  }
+
+  const allScenarios = Object.entries(scenarios).map(([key, value]) => {
+    return {
+      name: key,
+      coins: value
+    };
+  });
+
+  const winners = allScenarios.filter((scenario) =>
+    scenario.coins.every((coin) => coin.enoughCoinsExist)
+  );
+
+  if (!winners.length) {
+    throw new Error('no scenario possible!');
+  }
+  const winner = winners[0];
+
+  const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
+    const coin = winner.coins.find((coin) => coin.token.denom === asset.denom);
+    return {
+      denom: coin.token.denom,
+      amount: coin.amount + ''
+    };
+  });
+
+  const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
+
+  return {
+    scenarios: allScenarios,
+    shareOutAmount,
+    tokenInMaxs: coinsNeeded
+  };
+};
