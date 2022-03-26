@@ -11,7 +11,9 @@ import {
   baseUnitsToDisplayUnits,
   baseUnitsToDollarValue,
   dollarValueToDenomUnits,
-  getPrice
+  calculateShareOutAmount,
+  calculateCoinsNeededInPoolForValue,
+  calculateMaxCoinsForPool
 } from '../utils/chain';
 import { osmoRestClient } from '../utils';
 import {
@@ -41,7 +43,7 @@ export default async (argv) => {
   const [account] = await signer.getAccounts();
 
   const accountBalances = await client.getBalances(account.address);
-
+  const balances = accountBalances.result;
   // get pricing and pools info...
   const allTokens = await validator.getTokens();
   const pairs = await validator.getPairsSummary();
@@ -62,6 +64,10 @@ export default async (argv) => {
   );
   if (Array.isArray(poolId)) throw new Error('only atomic joins right now.');
 
+  if (argv.max) {
+    argv.value = -1;
+  }
+
   const { value } = await prompt(
     [
       {
@@ -73,93 +79,14 @@ export default async (argv) => {
     argv
   );
 
-  const { slippage } = await prompt(
-    [
-      {
-        type: 'number',
-        name: 'slippage',
-        message: `how much slippage %`,
-        default: 1
-      }
-    ],
-    argv
-  );
-
   const poolInfo = await client.getPoolPretty(poolId);
-
-  const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
-    const shareTotalValue = value * asset.ratio;
-    const totalDollarValue = baseUnitsToDollarValue(
-      prices,
-      asset.symbol,
-      asset.amount
-    );
-    const amount = dollarValueToDenomUnits(
-      prices,
-      asset.symbol,
-      shareTotalValue
-    );
-    return {
-      symbol: asset.symbol,
-      denom: asset.denom,
-      amount: (amount + '').split('.')[0], // no decimals...
-      displayAmount: baseUnitsToDisplayUnits(asset.symbol, amount),
-      shareTotalValue,
-      totalDollarValue,
-      unitRatio: amount / asset.amount
-    };
-  });
-
-  //   share out amount = (token in amount * total share) / pool asset
-
-  // const tokenInAmount = new IntPretty(new Dec(amountConfig.amount));
-  // totalShare / poolAsset.amount = totalShare per poolAssetAmount = total share per tokenInAmount
-  // tokenInAmount * (total share per tokenInAmount) = totalShare of given tokenInAmount aka shareOutAmount;
-  // tokenInAmount in terms of totalShare unit
-  // shareOutAmount / totalShare = totalShare proportion of tokenInAmount;
-  // totalShare proportion of tokenInAmount * otherTotalPoolAssetAmount = otherPoolAssetAmount
-  // const shareOutAmount = tokenInAmount.mul(totalShare).quo(poolAsset.amount);
-
-  /*
-
-`tokenInAmount` = number of tokens of coin A
-`poolAsset.amount` = total number of tokens of coin A in pool
-`totalShare` = total shares of pool (with exponent = 18)
-
-`shareOutAmount` = `tokenInAmount` * `totalShare` / `poolAsset.amount`
-
-@dev:
-Yeah I think theres two options:
-Simulate the message, and subtract $SLIPPAGE_PERCENTAGE from that
-Doing exactly what you did (but taking the min of that over both assets)
-
- */
-
-  const shareOuts = [];
-
-  for (let i = 0; i < poolInfo.poolAssets.length; i++) {
-    const tokenInAmount = new IntPretty(new Dec(coinsNeeded[i].amount));
-    const totalShare = new IntPretty(new Dec(poolInfo.totalShares.amount));
-    const totalShareExp = totalShare.moveDecimalPointLeft(18);
-    const poolAssetAmount = new IntPretty(
-      new Dec(poolInfo.poolAssets[i].token.amount)
-    );
-
-    const shareOutAmountObj = tokenInAmount
-      .mul(totalShareExp)
-      .quo(poolAssetAmount);
-    const shareOutAmount = shareOutAmountObj
-      .moveDecimalPointRight(18)
-      .trim(true)
-      .shrink(true)
-      .maxDecimals(6)
-      .locale(false)
-      .toString();
-
-    shareOuts.push(shareOutAmount);
+  let coinsNeeded;
+  if (!argv.max) {
+    coinsNeeded = calculateCoinsNeededInPoolForValue(prices, poolInfo, value);
+  } else {
+    coinsNeeded = calculateMaxCoinsForPool(prices, poolInfo, balances);
   }
-
-  const shareOutAmount = shareOuts.sort()[0];
+  const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
 
   const { msg, fee } = messages.joinPool({
     poolId: poolId + '', // string!
