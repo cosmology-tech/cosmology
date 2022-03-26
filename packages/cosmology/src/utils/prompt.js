@@ -1,3 +1,4 @@
+import keychain from 'keychain';
 import { filter } from 'fuzzy';
 import { assets as osmosisAssets } from '../assets';
 import { assets, chains } from '@cosmology/cosmos-registry';
@@ -93,20 +94,46 @@ export const encryptPrompt = async (str, argv) => {
   return encrypted_str;
 };
 
-export const prompt = async (questions = [], argv = {}) => {
-  questions = transform(questions);
-  return await inquirerer(questions, argv);
+export const decryptString = async (str, argv) => {
+  return await decryptPrompt(str, argv);
 };
 
-export const promptMnemonic = async (argv = {}) => {
+export const encryptString = async (str, argv) => {
+  return await encryptPrompt(str, argv);
+};
+
+export const getKeychainPassword = ({ account, service }) => {
+  return new Promise((resolve, reject) => {
+    keychain.getPassword({ account, service }, async (err, pass) => {
+      if (err) return reject(err);
+      resolve(pass);
+    });
+  });
+};
+
+export const prompt = async (questions = [], argv = {}) => {
   if (process.env.SALT) {
     argv.salt = process.env.SALT;
   }
   if (process.env.ENCRYPTED_SALT) {
     argv.encrypted_salt = process.env.ENCRYPTED_SALT;
   }
+  questions = transform(questions);
+  return await inquirerer(questions, argv);
+};
 
-  if (process.env.SALT || process.env.ENCRYPTED_SALT || argv.encrypted) {
+export const promptMnemonic = async (argv = {}) => {
+  if (argv.keychain) {
+    const pass = await getKeychainPassword({
+      account: 'cosmology',
+      service: argv.keychain
+    });
+    if (!pass) {
+      throw new Error(`cannot get ${argv.keychain}`);
+    }
+    const decrypted = await decryptString(pass, argv);
+    argv.mnemonic = decrypted;
+  } else if (process.env.SALT || process.env.ENCRYPTED_SALT || argv.encrypted) {
     if (process.env.MNEMONIC) {
       argv.mnemonic = await decryptPrompt(process.env.MNEMONIC, argv);
     }
