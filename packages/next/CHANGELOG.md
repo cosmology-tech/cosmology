@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.0.0-yolo.20](https://github.com/pyramation/cosmology/compare/next@0.0.0-yolo.19...next@0.0.0-yolo.20) (2022-03-26)
+
+**Note:** Version bump only for package next
+
+
+
+
+
 # [0.0.0-yolo.19](https://github.com/pyramation/cosmology/compare/next@0.0.0-yolo.18...next@0.0.0-yolo.19) (2022-03-26)
 
 **Note:** Version bump only for package next
