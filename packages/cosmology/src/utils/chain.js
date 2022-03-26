@@ -188,6 +188,31 @@ export const getChain = async ({ token }) => {
   return chain;
 };
 
+//   share out amount = (token in amount * total share) / pool asset
+
+// const tokenInAmount = new IntPretty(new Dec(amountConfig.amount));
+// totalShare / poolAsset.amount = totalShare per poolAssetAmount = total share per tokenInAmount
+// tokenInAmount * (total share per tokenInAmount) = totalShare of given tokenInAmount aka shareOutAmount;
+// tokenInAmount in terms of totalShare unit
+// shareOutAmount / totalShare = totalShare proportion of tokenInAmount;
+// totalShare proportion of tokenInAmount * otherTotalPoolAssetAmount = otherPoolAssetAmount
+// const shareOutAmount = tokenInAmount.mul(totalShare).quo(poolAsset.amount);
+
+/*
+
+`tokenInAmount` = number of tokens of coin A
+`poolAsset.amount` = total number of tokens of coin A in pool
+`totalShare` = total shares of pool (with exponent = 18)
+
+`shareOutAmount` = `tokenInAmount` * `totalShare` / `poolAsset.amount`
+
+@dev:
+Yeah I think theres two options:
+Simulate the message, and subtract $SLIPPAGE_PERCENTAGE from that
+Doing exactly what you did (but taking the min of that over both assets)
+
+ */
+
 export const calculateShareOutAmount = (poolInfo, coinsNeeded) => {
   const shareOuts = [];
 
@@ -216,6 +241,32 @@ export const calculateShareOutAmount = (poolInfo, coinsNeeded) => {
   return shareOutAmount;
 };
 
+export const calculateCoinsNeededInPoolForValue = (prices, poolInfo, value) => {
+  const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
+    const shareTotalValue = value * asset.ratio;
+    const totalDollarValue = baseUnitsToDollarValue(
+      prices,
+      asset.symbol,
+      asset.amount
+    );
+    const amount = dollarValueToDenomUnits(
+      prices,
+      asset.symbol,
+      shareTotalValue
+    );
+    return {
+      symbol: asset.symbol,
+      denom: asset.denom,
+      amount: (amount + '').split('.')[0], // no decimals...
+      displayAmount: baseUnitsToDisplayUnits(asset.symbol, amount),
+      shareTotalValue,
+      totalDollarValue,
+      unitRatio: amount / asset.amount
+    };
+  });
+  return coinsNeeded;
+};
+
 const coinGet = (prices, balances, asset, pAsset) => {
   // get the asset
   const coinBalance = balances.find((coin) => coin.denom == asset.token.denom);
@@ -233,8 +284,7 @@ const coinGet = (prices, balances, asset, pAsset) => {
   return coinBalance;
 };
 
-export const caclulateMaxCoinsForPool = (prices, pool, balances) => {
-  const poolInfo = prettyPool(pool, { includeDetails: true });
+export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
   const scenarios = {};
 
   for (let i = 0; i < poolInfo.poolAssets.length; i++) {
@@ -258,7 +308,7 @@ export const caclulateMaxCoinsForPool = (prices, pool, balances) => {
       token: coinBalance,
       ratio: pAsset.ratio,
       symbol: pAsset.symbol,
-      amount: coinBalance.amount,
+      amount: (coinBalance.amount + '').split('.')[0], // no decimals...,
       enoughCoinsExist: true
     });
 
@@ -279,7 +329,7 @@ export const caclulateMaxCoinsForPool = (prices, pool, balances) => {
         token: otherBalance,
         ratio: jPAsset.ratio,
         symbol: jPAsset.symbol,
-        amount: totalCoinsBDenom,
+        amount: (totalCoinsBDenom + '').split('.')[0], // no decimals...,
         enoughCoinsExist
       });
     }
@@ -309,11 +359,5 @@ export const caclulateMaxCoinsForPool = (prices, pool, balances) => {
     };
   });
 
-  const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
-
-  return {
-    scenarios: allScenarios,
-    shareOutAmount,
-    tokenInMaxs: coinsNeeded
-  };
+  return coinsNeeded;
 };
