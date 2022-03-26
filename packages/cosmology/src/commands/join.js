@@ -64,7 +64,18 @@ export default async (argv) => {
   );
   if (Array.isArray(poolId)) throw new Error('only atomic joins right now.');
 
-  if (argv.max) {
+  const { max } = await prompt(
+    [
+      {
+        type: 'confirm',
+        name: 'max',
+        message: `join pool with maximum tokens?`
+      }
+    ],
+    argv
+  );
+
+  if (max) {
     argv.value = -1;
   }
 
@@ -81,7 +92,7 @@ export default async (argv) => {
 
   const poolInfo = await client.getPoolPretty(poolId);
   let coinsNeeded;
-  if (!argv.max) {
+  if (!max) {
     coinsNeeded = calculateCoinsNeededInPoolForValue(prices, poolInfo, value);
   } else {
     coinsNeeded = calculateMaxCoinsForPool(prices, poolInfo, balances);
