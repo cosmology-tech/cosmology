@@ -26,6 +26,25 @@ export const getFuzzySearch = (list) => {
   };
 };
 
+export const getFuzzySearchNames = (nameValueItemList) => {
+  const list = nameValueItemList.map(({ name, value }) => name);
+  return (answers, input) => {
+    input = input || '';
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        const fuzzyResult = filter(input, list);
+        resolve(
+          fuzzyResult.map(function (el) {
+            return nameValueItemList.find(
+              ({ name, value }) => el.original == name
+            );
+          })
+        );
+      }, 25);
+    });
+  };
+};
+
 const coinSymbols = osmosisAssets.map(({ symbol }) => symbol).sort();
 const allChains = chains.map((a) => a.chain_id);
 
@@ -44,6 +63,14 @@ const transform = (questions) => {
         ...q,
         type: 'autocomplete',
         source: getFuzzySearch(coinSymbols)
+      };
+    } else if (q.type === 'fuzzy:objects') {
+      const choices = q.choices;
+      delete q.choices;
+      return {
+        ...q,
+        type: 'autocomplete',
+        source: getFuzzySearchNames(choices)
       };
     } else if (q.type === 'fuzzy:chain') {
       return {

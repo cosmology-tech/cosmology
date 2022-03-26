@@ -52,7 +52,7 @@ export default async (argv) => {
   const { poolId } = await prompt(
     [
       {
-        type: 'list',
+        type: 'fuzzy:objects',
         name: 'poolId',
         message: 'choose pools to invest in',
         choices: poolList
