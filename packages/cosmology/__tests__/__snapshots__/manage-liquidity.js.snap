@@ -1,209 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`joins complex 1`] = `
-Object {
-  "scenarios": Array [
-    Object {
-      "coins": Array [
-        Object {
-          "amount": "3000000",
-          "enoughCoinsExist": true,
-          "ratio": 0.33333333333333304,
-          "symbol": "AKT",
-          "token": Object {
-            "amount": "3000000",
-            "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
-            "displayValue": 5.43,
-          },
-        },
-        Object {
-          "amount": 1480818895.5763602,
-          "enoughCoinsExist": false,
-          "ratio": 0.33333333333333304,
-          "symbol": "CRO",
-          "token": Object {
-            "amount": "300000000",
-            "denom": "ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1",
-            "displayValue": 1.100067,
-          },
-        },
-        Object {
-          "amount": 596703.2967032967,
-          "enoughCoinsExist": true,
-          "ratio": 0.33333333333333304,
-          "symbol": "OSMO",
-          "token": Object {
-            "amount": "3000000",
-            "denom": "uosmo",
-            "displayValue": 27.299999999999997,
-          },
-        },
-      ],
-      "name": "AKT",
-    },
-    Object {
-      "coins": Array [
-        Object {
-          "amount": "300000000",
-          "enoughCoinsExist": true,
-          "ratio": 0.33333333333333304,
-          "symbol": "CRO",
-          "token": Object {
-            "amount": "300000000",
-            "denom": "ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1",
-            "displayValue": 1.100067,
-          },
-        },
-        Object {
-          "amount": 607771.8232044198,
-          "enoughCoinsExist": true,
-          "ratio": 0.33333333333333304,
-          "symbol": "AKT",
-          "token": Object {
-            "amount": "3000000",
-            "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
-            "displayValue": 5.43,
-          },
-        },
-        Object {
-          "amount": 120886.48351648351,
-          "enoughCoinsExist": true,
-          "ratio": 0.33333333333333304,
-          "symbol": "OSMO",
-          "token": Object {
-            "amount": "3000000",
-            "denom": "uosmo",
-            "displayValue": 27.299999999999997,
-          },
-        },
-      ],
-      "name": "CRO",
-    },
-    Object {
-      "coins": Array [
-        Object {
-          "amount": "3000000",
-          "enoughCoinsExist": true,
-          "ratio": 0.33333333333333304,
-          "symbol": "OSMO",
-          "token": Object {
-            "amount": "3000000",
-            "denom": "uosmo",
-            "displayValue": 27.299999999999997,
-          },
-        },
-        Object {
-          "amount": 15082872.928176794,
-          "enoughCoinsExist": false,
-          "ratio": 0.33333333333333304,
-          "symbol": "AKT",
-          "token": Object {
-            "amount": "3000000",
-            "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
-            "displayValue": 5.43,
-          },
-        },
-        Object {
-          "amount": 7445001077.207115,
-          "enoughCoinsExist": false,
-          "ratio": 0.33333333333333304,
-          "symbol": "CRO",
-          "token": Object {
-            "amount": "300000000",
-            "denom": "ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1",
-            "displayValue": 1.100067,
-          },
-        },
-      ],
-      "name": "OSMO",
-    },
-  ],
-  "shareOutAmount": "1652006830588098807",
-  "tokenInMaxs": Array [
-    Object {
-      "amount": "607771.8232044198",
-      "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
-    },
-    Object {
-      "amount": "300000000",
-      "denom": "ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1",
-    },
-    Object {
-      "amount": "120886.48351648351",
-      "denom": "uosmo",
-    },
-  ],
-}
+Array [
+  Object {
+    "amount": "607771.8232044198",
+    "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+  },
+  Object {
+    "amount": "300000000",
+    "denom": "ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1",
+  },
+  Object {
+    "amount": "120886.48351648351",
+    "denom": "uosmo",
+  },
+]
 `;
 
 exports[`joins simple 1`] = `
-Object {
-  "scenarios": Array [
-    Object {
-      "coins": Array [
-        Object {
-          "amount": "3000000",
-          "enoughCoinsExist": true,
-          "ratio": 0.66,
-          "symbol": "AKT",
-          "token": Object {
-            "amount": "3000000",
-            "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
-            "displayValue": 5.43,
-          },
-        },
-        Object {
-          "amount": 76365.62182016727,
-          "enoughCoinsExist": true,
-          "ratio": 0.34,
-          "symbol": "ATOM",
-          "token": Object {
-            "amount": "290000",
-            "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
-            "displayValue": 10.6227,
-          },
-        },
-      ],
-      "name": "AKT",
-    },
-    Object {
-      "coins": Array [
-        Object {
-          "amount": "290000",
-          "enoughCoinsExist": true,
-          "ratio": 0.34,
-          "symbol": "ATOM",
-          "token": Object {
-            "amount": "290000",
-            "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
-            "displayValue": 10.6227,
-          },
-        },
-        Object {
-          "amount": 11392560.9359766,
-          "enoughCoinsExist": false,
-          "ratio": 0.66,
-          "symbol": "AKT",
-          "token": Object {
-            "amount": "3000000",
-            "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
-            "displayValue": 5.43,
-          },
-        },
-      ],
-      "name": "ATOM",
-    },
-  ],
-  "shareOutAmount": "32247481566430498328",
-  "tokenInMaxs": Array [
-    Object {
-      "amount": "3000000",
-      "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
-    },
-    Object {
-      "amount": "76365.62182016727",
-      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
-    },
-  ],
-}
+Array [
+  Object {
+    "amount": "3000000",
+    "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+  },
+  Object {
+    "amount": "76365.62182016727",
+    "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+  },
+]
 `;

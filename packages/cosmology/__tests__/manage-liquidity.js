@@ -17,7 +17,7 @@ import {
   dollarValueToDisplayUnits,
   calculateShareOutAmount,
   displayUnitsToDollarValue,
-  caclulateMaxCoinsForPool
+  calculateMaxCoinsForPool
 } from '../src/utils/chain';
 
 const fakePools = [
@@ -72,8 +72,8 @@ cases(
     const pool = poolsFixture.pools
       .concat(fakePools)
       .find((pool) => pool.id == opts.poolId);
-
-    const info = caclulateMaxCoinsForPool(prices, pool, balances);
+    const poolInfo = prettyPool(pool, { includeDetails: true });
+    const info = calculateMaxCoinsForPool(prices, poolInfo, balances);
     expect(info).toMatchSnapshot();
   },
   [
