@@ -1,4 +1,4 @@
-const siteUrl = 'https://cosmology.finance';
+const siteUrl = 'https://app.cosmology.finance';
 const siteAddress = new URL(siteUrl);
 const canonical = siteAddress.href.slice(0, -1);
 
