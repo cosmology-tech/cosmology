@@ -10,8 +10,8 @@
     "export": "next build && next export",
     "postexport": "npm run seo",
     "seo": "node ./seo/seo.js",
-    "deploy": "AWS_PROFILE=webinc aws s3 sync out/ s3://cosmology.finance",
-    "invalidate": "AWS_PROFILE=webinc aws cloudfront create-invalidation --distribution-id E32045FNSZKMDT --paths \"/*\"",
+    "deploy": "AWS_PROFILE=webinc aws s3 sync out/ s3://app.cosmology.finance",
+    "invalidate": "AWS_PROFILE=webinc aws cloudfront create-invalidation --distribution-id E21QX1RGUJ0Q58 --paths \"/*\"",
     "deploy:all": "npm run export && npm run deploy && ./seo/prepare.sh"
   },
   "resolutions": {

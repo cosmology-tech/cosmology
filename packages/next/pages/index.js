@@ -54,7 +54,7 @@ export default function Home() {
           Automating DeFi in the Cosmos.
         </h2>
         <p className="detail-text paragraph">
-          Automate your daily Osmosis rewards reinvestments with
+          Automate your DeFi rewards and investment strategies with
           cosmology.finance
         </p>
         <button
