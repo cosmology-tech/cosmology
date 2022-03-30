@@ -26,6 +26,7 @@ import _salt_generate from './commands/salt-generate';
 import _shamir_decrypt from './commands/shamir-decrypt';
 import _shamir_encrypt from './commands/shamir-encrypt';
 import _swap from './commands/swap';
+import _version from './commands/version';
 const Commands = {};
 Commands['create-mnemonic-wallet'] = _create_mnemonic_wallet;
 Commands['decrypt'] = _decrypt;
@@ -54,6 +55,7 @@ Commands['salt-generate'] = _salt_generate;
 Commands['shamir-decrypt'] = _shamir_decrypt;
 Commands['shamir-encrypt'] = _shamir_encrypt;
 Commands['swap'] = _swap;
+Commands['version'] = _version;
 
   export { Commands }; 
 
