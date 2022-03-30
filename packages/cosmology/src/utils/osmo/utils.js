@@ -605,9 +605,9 @@ export const getTradesRequiredToGetBalances = ({
     coins: desiredCoinsNeeded
   });
 
-  if (desiredCoinsNeededValue >= availableCoinsValue) {
+  if (desiredCoinsNeededValue > availableCoinsValue) {
     throw new Error(
-      `not possible with current values (desired[${desiredCoinsNeededValue}] >= available[${availableCoinsValue}])`
+      `not possible with current values (desired[${desiredCoinsNeededValue}] > available[${availableCoinsValue}])`
     );
   }
 
