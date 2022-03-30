@@ -70,16 +70,23 @@ export default async (argv) => {
   const [account] = await signer.getAccounts();
   const address = account.address;
   const accountBalances = await client.getBalances(account.address);
-  const display = accountBalances.result.map(({ denom, amount }) => {
-    const symbol = osmoDenomToSymbol(denom);
-    const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-    return {
-      symbol,
-      denom,
-      amount,
-      displayAmount
-    };
-  });
+  const display = accountBalances.result
+    .map(({ denom, amount }) => {
+      if (denom.startsWith('gamm')) return;
+      const symbol = osmoDenomToSymbol(denom);
+      if (!symbol) {
+        console.log('WARNING: cannot find ' + denom);
+        return;
+      }
+      const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+      return {
+        symbol,
+        denom,
+        amount,
+        displayAmount
+      };
+    })
+    .filter(Boolean);
 
   // GET THE COINS THAT THE USER IS WILLING TO PART WITH
 
