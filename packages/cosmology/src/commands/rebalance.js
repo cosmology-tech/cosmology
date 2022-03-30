@@ -8,7 +8,10 @@ import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { getSigningOsmosisClient } from '../messages/utils';
 import { messages } from '../messages/messages';
-import { signAndBroadcastTilTxExists } from '../messages/utils';
+import {
+  signAndBroadcastTilTxExists,
+  signAndBroadcast
+} from '../messages/utils';
 
 import {
   convertWeightsIntoCoins,
@@ -257,22 +260,32 @@ export default async (argv) => {
         tokenOutMinAmount: Number(buy.amount.split('.')[0]) * 0.98 + ''
       });
 
-      const res = await signAndBroadcastTilTxExists({
-        client: stargateClient,
-        cosmos: client,
-        chainId: osmoChainConfig.chain_id,
-        address: osmoAddress,
-        msg,
-        fee,
-        memo: ''
-      });
-
-      const block = res?.tx_response?.height;
-      if (block) {
-        console.log(`success at block ${block}`);
+      if (!argv.verify) {
+        await signAndBroadcast({
+          client: stargateClient,
+          chainId: osmoChainConfig.chain_id,
+          address: osmoAddress,
+          msg,
+          fee,
+          memo: ''
+        });
       } else {
-        console.log('no block found for tx! EXITING...');
-        process.exit(1);
+        const res = await signAndBroadcastTilTxExists({
+          client: stargateClient,
+          cosmos: client,
+          chainId: osmoChainConfig.chain_id,
+          address: osmoAddress,
+          msg,
+          fee,
+          memo: ''
+        });
+        const block = res?.tx_response?.height;
+        if (block) {
+          console.log(`success at block ${block}`);
+        } else {
+          console.log('no block found for tx! EXITING...');
+          process.exit(1);
+        }
       }
 
       //
