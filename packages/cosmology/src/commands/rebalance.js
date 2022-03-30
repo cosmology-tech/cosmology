@@ -1,6 +1,5 @@
-import { chains } from '@cosmology/cosmos-registry';
+import { chains, assets } from '@cosmology/cosmos-registry';
 import { coin } from '@cosmjs/amino';
-import { assets } from '@cosmology/cosmos-registry';
 import { CoinPretty, Dec, DecUtils, Int, IntPretty } from '@keplr-wallet/unit';
 
 import { prompt } from '../utils';
@@ -21,11 +20,28 @@ import {
   substractCoins
 } from '../utils/osmo';
 import c from 'ansi-colors';
-import { getAvailableBalance } from './reinvest';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 // const restEndpoint = osmoChainConfig.apis.rest[0].address;
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
+
+export const getAvailableBalance = async ({ client, address, sell }) => {
+  const accountBalances = await client.getBalances(address);
+  return accountBalances.result
+    .map(({ denom, amount }) => {
+      const symbol = osmoDenomToSymbol(denom);
+      const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+      if (displayAmount < 0.00001) return;
+      if (!sell.includes(symbol)) return;
+      return {
+        symbol,
+        denom,
+        amount,
+        displayAmount
+      };
+    })
+    .filter(Boolean);
+};
 
 export default async (argv) => {
   const validator = new OsmosisValidatorClient();
@@ -118,30 +134,30 @@ export default async (argv) => {
     )
     .sort();
 
-  let { token } = await prompt(
-    [
-      {
-        type: 'checkbox',
-        name: 'token',
-        message: 'choose tokens to invest in',
-        choices: assetList
-      }
-    ],
-    argv
-  );
-  if (!Array.isArray(token)) token = [token];
+  // let { token } = await prompt(
+  //   [
+  //     {
+  //       type: 'checkbox',
+  //       name: 'token',
+  //       message: 'choose tokens to invest in',
+  //       choices: assetList
+  //     }
+  //   ],
+  //   argv
+  // );
+  // if (!Array.isArray(token)) token = [token];
 
-  // WEIGHTS?
+  // // WEIGHTS?
 
-  const tokenWeightQuestions = token.map((t) => {
-    return {
-      type: 'number',
-      name: `tokenWeights[${t}][weight]`,
-      message: `enter weight for ${t}`
-    };
-  });
+  // const tokenWeightQuestions = token.map((t) => {
+  //   return {
+  //     type: 'number',
+  //     name: `tokenWeights[${t}][weight]`,
+  //     message: `enter weight for ${t}`
+  //   };
+  // });
 
-  const { tokenWeights } = await prompt(tokenWeightQuestions, argv);
+  // const { tokenWeights } = await prompt(tokenWeightQuestions, argv);
 
   const poolWeightQuestions = poolId.map((p) => {
     const str = `gamm/pool/${p}`;
@@ -162,14 +178,15 @@ export default async (argv) => {
         denom: gamm,
         weight
       };
-    }),
-    ...Object.keys(tokenWeights).map((symbol) => {
-      const weight = tokenWeights[symbol].weight;
-      return {
-        symbol,
-        weight
-      };
     })
+    // add this back when you enable tokenWeights
+    // ...Object.keys(tokenWeights).map((symbol) => {
+    //   const weight = tokenWeights[symbol].weight;
+    //   return {
+    //     symbol,
+    //     weight
+    //   };
+    // })
   ];
 
   //
@@ -263,13 +280,13 @@ export default async (argv) => {
     //
 
     // DO JOIN AND LOCK HERE
-    console.log('DO JOIN AND LOCK HERE');
-    console.log(result.pools[i]);
-    const poolInfo = await client.getPoolPretty(
-      result.pools[i].denom.split('/')[2]
-    );
-    console.log(poolInfo);
-    balances = await getAvailableBalance({ client, address, sell });
+    // console.log('DO JOIN AND LOCK HERE');
+    // console.log(result.pools[i]);
+    // const poolInfo = await client.getPoolPretty(
+    // result.pools[i].denom.split('/')[2]
+    // );
+    // console.log(poolInfo);
+    // balances = await getAvailableBalance({ client, address, sell });
 
     // 1. what is the value? given the ratio?
     // then calculate the goods
