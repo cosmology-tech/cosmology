@@ -480,6 +480,9 @@ export const convertPoolToDisplayValues = ({ prices, pool }) => {
     })
     .filter(Boolean);
   pool.totalValue = totalValue;
+
+  // TODO use keplr/unit
+
   // pool.pricePerShareL = Long.fromValue(totalValue) / Long.fromString(totalShares.amount),
   // TODO verify 10^18
   (pool.pricePerShare =
