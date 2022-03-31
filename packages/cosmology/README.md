@@ -66,6 +66,16 @@ The lock command will lock your gamms tokens for staking so you can earn rewards
 cosmology lock 
 ```
 
+### `delgate`
+
+```
+cosmology --keychain my-mnemonic-name --chainToken CMDX delegate
+```
+### `claim`
+
+```
+cosmology --keychain my-mnemonic-name --chainToken CMDX claim
+```
 ## mnemonics
 
 There are a few methods to deal with mnemonics. 

@@ -1,4 +1,9 @@
-import { AminoTypes, SigningStargateClient } from '@cosmjs/stargate';
+import {
+  AminoTypes,
+  calculateFee,
+  GasPrice,
+  SigningStargateClient
+} from '@cosmjs/stargate';
 import { Registry } from '@cosmjs/proto-signing';
 import { TxRaw } from 'cosmjs-types/cosmos/tx/v1beta1/tx';
 import { coins } from '@cosmjs/amino';
@@ -6,6 +11,7 @@ import { defaultRegistryTypes } from '@cosmjs/stargate';
 import retry from 'retry';
 import { aminos } from './aminos';
 import { meta as metaInfo } from './meta';
+import { Dec, IntPretty } from '@keplr-wallet/unit';
 
 export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }) => {
   // registry
@@ -50,6 +56,24 @@ export const signAndBroadcast = async ({
 }) => {
   const { accountNumber, sequence } = await client.getSequence(address);
   const txRaw = await client.sign(address, [msg], fee, memo, {
+    accountNumber: accountNumber,
+    sequence: sequence,
+    chainId
+  });
+  const txBytes = TxRaw.encode(txRaw).finish();
+  return await client.broadcastTx(txBytes);
+};
+
+export const signAndBroadcastBatch = async ({
+  client,
+  chainId,
+  address,
+  msgs,
+  fee,
+  memo = ''
+}) => {
+  const { accountNumber, sequence } = await client.getSequence(address);
+  const txRaw = await client.sign(address, msgs, fee, memo, {
     accountNumber: accountNumber,
     sequence: sequence,
     chainId
@@ -141,4 +165,15 @@ export const generateOsmoMessage = (name, msg) => {
       value: msg
     }
   };
+};
+
+export const estimateOsmoFee = async (client, address, msgs, memo) => {
+  const gasPrice = GasPrice.fromString('0.025uosmo');
+  const gasEstimation = await client.simulate(address, msgs, memo);
+  const fee = calculateFee(Math.round(gasEstimation * 1.3), gasPrice);
+  return fee;
+};
+
+export const noDecimals = (num) => {
+  return new IntPretty(new Dec(num)).maxDecimals(0).locale(false).toString();
 };

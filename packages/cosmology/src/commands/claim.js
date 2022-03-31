@@ -34,9 +34,6 @@ export default async (argv) => {
     argv
   );
 
-  //   const url = await findAvailableUrl(chain.chain_id, chain.apis.rest.map(r=>r.address))
-  //   console.log({url});
-
   const { restEndpoint } = await prompt(
     [
       {
@@ -82,11 +79,6 @@ export default async (argv) => {
     signer
   );
 
-  const getAddress = async () => {
-    const accounts = await signer.getAccounts();
-    return accounts[0].address;
-  };
-
   const getFee = (gas, gasPrice) => {
     if (!gas) gas = 200_000;
     if (!gasPrice) gasPrice = GasPrice.fromString(defaultGasPrice);
@@ -96,18 +88,12 @@ export default async (argv) => {
   const [mainAccount] = await signer.getAccounts();
 
   const { address } = mainAccount;
-  //   console.log(address);
-
-  // const balances = await client.getBalances(address);
-  //   console.log(balances);
 
   const delegations = await client.getDelegations(address);
 
   if (!delegations.result || !delegations.result.length) {
     console.log('no delegations. Exiting.');
   }
-
-  // console.log(delegations.result);
 
   const messagesToClaim = [];
   let totalClaimable = 0;
@@ -164,10 +150,7 @@ export default async (argv) => {
     }
   };
 
-  // console.log(JSON.stringify(messagesToClaim, null, 2));
-
   const fee = await getGasPrice(address, messagesToClaim);
-  // console.log(JSON.stringify({ fee }, null, 2));
 
   if (denom === 'uhuahua') {
     // literally wtf (needs a 10x + 1)

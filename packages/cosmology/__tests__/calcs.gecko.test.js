@@ -60,12 +60,14 @@ cases(
 cases(
   'displayUnitsToDenomUnits',
   (opts) => {
-    expect(displayUnitsToDenomUnits(opts.name, opts.amount)).toBe(opts.value);
+    expect(displayUnitsToDenomUnits(opts.name, opts.amount)).toEqual(
+      opts.value
+    );
   },
   [
-    { name: 'ATOM', amount: 10, value: 10000000 },
-    { name: 'AKT', amount: 0.6, value: 600000 },
-    { name: 'OSMO', amount: 10, value: 10000000 }
+    { name: 'ATOM', amount: 10, value: '10000000.0000000000000000' },
+    { name: 'AKT', amount: 0.6, value: '600000.0000000000000000' },
+    { name: 'OSMO', amount: 10, value: '10000000.0000000000000000' }
   ]
 );
 
@@ -174,7 +176,7 @@ describe('basic portfolio', () => {
 
   it('calculate portfolio value (balances)', () => {
     const value = calculateCoinsTotalBalance({ prices, coins });
-    expect(value).toBe(3086.3);
+    expect(value).toBe('3086.300000000000000000');
   });
 
   it('calculate pool value (global)', () => {

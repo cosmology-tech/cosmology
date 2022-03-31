@@ -42,8 +42,6 @@ it('single route swaps', async () => {
   ]);
   const trades = getTradesRequiredToGetBalances({ prices, balances, desired });
 
-  console.log(trades);
-
   const swaps = getSwaps({
     prices,
     pools,
@@ -100,8 +98,6 @@ it('multi-hop route swaps', async () => {
     }
   ]);
   const trades = getTradesRequiredToGetBalances({ prices, balances, desired });
-
-  console.log(trades);
 
   const swaps = getSwaps({
     prices,

@@ -1,6 +1,4 @@
 import { chains } from '@cosmology/cosmos-registry';
-import { coin } from '@cosmjs/amino';
-
 import { assets } from '@cosmology/cosmos-registry';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '../clients/osmosis';
@@ -18,13 +16,15 @@ import {
   symbolToOsmoDenom
 } from '../utils/osmo';
 
-import { lookupRoutesForTrade } from '../utils/osmo/utils';
-import { getSigningOsmosisClient } from '../messages/utils';
+import {
+  lookupRoutesForTrade,
+  calculateAmountWithSlippage
+} from '../utils/osmo/utils';
+import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
-import { signAndBroadcastTilTxExists } from '../messages/utils';
+import { signAndBroadcast } from '../messages/utils';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
-// const restEndpoint = osmoChainConfig.apis.rest[0].address;
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
 
 const assetList = assets
@@ -130,8 +130,17 @@ export default async (argv) => {
     : dollarValueToDenomUnits(prices, sell, value);
   const tokenOutPrice = getPrice(prices, buy);
   const tokenOutAmount = dollarValueToDenomUnits(prices, buy, value);
-  const tokenOutAmountWithSlippage =
-    Number(tokenOutAmount) * ((100 - slippage) / 100);
+  const tokenOutAmountWithSlippage = calculateAmountWithSlippage(
+    tokenOutAmount,
+    slippage
+  );
+
+  const tokenInValue = baseUnitsToDollarValue(prices, sell, tokenInAmount);
+  const tokenOutValue = baseUnitsToDollarValue(
+    prices,
+    buy,
+    tokenOutAmountWithSlippage
+  );
 
   const tokenIn = {
     denom: symbolToOsmoDenom(sell),
@@ -139,16 +148,16 @@ export default async (argv) => {
     amount: tokenInAmount,
     displayAmount: baseUnitsToDisplayUnits(sell, tokenInAmount),
     tokenInPrice,
-    tokenInValue: baseUnitsToDisplayUnits(sell, tokenInAmount) * tokenInPrice
+    tokenInValue
   };
+
   const tokenOut = {
     denom: symbolToOsmoDenom(buy),
     symbol: buy,
     amount: tokenOutAmountWithSlippage,
     displayAmount: baseUnitsToDisplayUnits(buy, tokenOutAmountWithSlippage),
     tokenOutPrice,
-    tokenOutValue:
-      baseUnitsToDisplayUnits(buy, tokenOutAmountWithSlippage) * tokenOutPrice
+    tokenOutValue
   };
 
   const routes = lookupRoutesForTrade({
@@ -156,11 +165,11 @@ export default async (argv) => {
     trade: {
       sell: {
         denom: tokenIn.denom,
-        amount: tokenInAmount + ''
+        amount: tokenInAmount
       },
       buy: {
         denom: tokenOut.denom,
-        amount: tokenOutAmount + ''
+        amount: tokenOutAmount
       },
       beliefValue: value
     },
@@ -196,16 +205,15 @@ export default async (argv) => {
     tokenIn: {
       denom: tokenIn.denom,
       // TODO: use { coin } from '@cosmjs/amino' e.g. coin(num, denom)
-      amount: (tokenIn.amount + '').split('.')[0]
+      amount: noDecimals(tokenIn.amount)
     },
-    tokenOutMinAmount: (tokenOut.amount + '').split('.')[0]
+    tokenOutMinAmount: noDecimals(tokenOut.amount)
   });
 
   console.log(msg);
 
-  const res = await signAndBroadcastTilTxExists({
+  const res = await signAndBroadcast({
     client: stargateClient,
-    cosmos: client,
     chainId: osmoChainConfig.chain_id,
     address: osmoAddress,
     msg,
@@ -213,37 +221,6 @@ export default async (argv) => {
     memo: ''
   });
 
-  const block = res?.tx_response?.height;
-
-  // ERRORS
-
-  //   {
-  //     code: 7,
-  //     height: 3612102,
-  //     rawLog: 'failed to execute message; message index: 0: ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2 token is lesser than min amount: calculated amount is lesser than min amount',
-  //     transactionHash: '19AEB7F56FD26F205F986C4D7E5846CC821CDE941DB1215763C3DADE34FDBBA3',
-  //     gasUsed: 50716,
-  //     gasWanted: 250000
-  //   }
-
-  // SUCCESS
-
-  // broadcast
-  // {
-  //   code: 0,
-  //   height: 3612234,
-  //   rawLog: '[{"events"...]',
-  //   transactionHash: '2F184843E66278CBB3EAB2065E8E5F17B3D2913EB4AEDA2DB9E69843EB1B83C8',
-  //   gasUsed: 117782,
-  //   gasWanted: 250000
-  // }
-  // success at block 3612234
-
-  if (block) {
-    console.log(`success at block ${block}`);
-  } else {
-    console.log('no block found for tx!');
-  }
   console.log('\n\n\n\n\ntx');
   console.log(res);
 };

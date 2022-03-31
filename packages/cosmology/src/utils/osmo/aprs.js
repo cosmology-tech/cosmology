@@ -12,30 +12,32 @@ const convertAprToApyObj = (obj) => {
   };
 };
 
-const pickApr = ({ lockup }) => (el) => {
-  const { apr_1d, apr_7d, apr_14d, apy_1d, apy_7d, apy_14d, ...rest } = el;
-  if (lockup == '14') {
-    return {
-      ...rest,
-      apr_14d,
-      apy_14d
-    };
-  }
-  if (lockup == '1') {
-    return {
-      ...rest,
-      apr_1d,
-      apy_1d
-    };
-  }
-  if (lockup == '7') {
-    return {
-      ...rest,
-      apr_7d,
-      apy_7d
-    };
-  }
-};
+const pickApr =
+  ({ lockup }) =>
+  (el) => {
+    const { apr_1d, apr_7d, apr_14d, apy_1d, apy_7d, apy_14d, ...rest } = el;
+    if (lockup == '14') {
+      return {
+        ...rest,
+        apr_14d,
+        apy_14d
+      };
+    }
+    if (lockup == '1') {
+      return {
+        ...rest,
+        apr_1d,
+        apy_1d
+      };
+    }
+    if (lockup == '7') {
+      return {
+        ...rest,
+        apr_7d,
+        apy_7d
+      };
+    }
+  };
 
 export const getPoolAprs = async ({
   api,
