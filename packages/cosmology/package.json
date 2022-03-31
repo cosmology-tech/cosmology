@@ -91,5 +91,6 @@
     "retry": "0.13.1",
     "secrets.js-grempe": "2.0.0",
     "tiny-async-pool": "^1.2.0"
-  }
+  },
+  "gitHead": "8bb6eaf72e6ca2996663df72a830912d0ebbb0e7"
 }

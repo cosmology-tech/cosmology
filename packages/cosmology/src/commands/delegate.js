@@ -118,7 +118,7 @@ export default async (argv) => {
   const readableBalance = baseUnitsToDisplayUnitsByDenom(bal.denom, bal.amount);
 
   const availBal = new Dec(readableBalance);
-  if (availBal.lt(new Dec(minAmount)) {
+  if (availBal.lt(new Dec(minAmount))) {
     console.log(
       `${readableBalance} ${argv.chainToken} is not enough. Exiting...`
     );
