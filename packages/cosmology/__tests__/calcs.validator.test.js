@@ -35,12 +35,14 @@ import {
 cases(
   'displayUnitsToDenomUnits',
   (opts) => {
-    expect(displayUnitsToDenomUnits(opts.name, opts.amount)).toBe(opts.value);
+    expect(displayUnitsToDenomUnits(opts.name, opts.amount)).toEqual(
+      opts.value
+    );
   },
   [
-    { name: 'ATOM', amount: 10, value: 10000000 },
-    { name: 'AKT', amount: 0.6, value: 600000 },
-    { name: 'OSMO', amount: 10, value: 10000000 }
+    { name: 'ATOM', amount: 10, value: '10000000.0000000000000000' },
+    { name: 'AKT', amount: 0.6, value: '600000.0000000000000000' },
+    { name: 'OSMO', amount: 10, value: '10000000.0000000000000000' }
   ]
 );
 
@@ -163,7 +165,7 @@ describe('basic portfolio', () => {
 
   it('calculate portfolio value (balances)', () => {
     const value = calculateCoinsTotalBalance({ prices, coins });
-    expect(value).toBe(2622.48607051);
+    expect(value).toBe('2622.486070510000000000');
   });
 
   it('calculate pool value (global)', () => {
@@ -262,22 +264,14 @@ describe('user actions', () => {
   });
 });
 
-it('calcs', async () => {
-  // console.log(prices);
-  // console.log(bank);
-  // console.log(pools);
-  // let driver = new Driver()
-  // const jobs = await driver.getAllJobs([
-  //   { "type": "coin", "coin": "UST", "weight": 0.3 },
-  //   { "type": "pool", "pool": { "id": 562, "coin1": "LUNA", "coin2": "UST", "balance": 0.5 }, "weight": 0.3 },
-  //   { "type": "pool", "pool": { "id": 611, "coin1": "ATOM", "coin2": "STARS", "balance": 0.7 }, "weight": 0.4 }
-  // ])
-  // console.log(jobs);
-  // expect(jobs.length).toEqual(10)
-  // expect(jobs[0].job.inputCoin).toEqual("LUNA")
-  // expect(jobs[0].job.targetCoin).toEqual("UST")
-  // expect(jobs[0].job.amount).toBeGreaterThan(0)
-  // expect(jobs[5].job.inputCoin).toEqual("UST")
-  // expect(jobs[5].job.targetCoin).toEqual("STARS")
-  // expect(jobs[5].job.amount).toBeGreaterThan(0)
+it('convertCoinToDisplayValues', async () => {
+  const prices = convertValidatorPricesToDenomPriceHash(validatorPricesFixture);
+  const a = convertCoinToDisplayValues({
+    prices,
+    coin: {
+      denom: 'uosmo',
+      amount: '10000'
+    }
+  });
+  console.log(a);
 });

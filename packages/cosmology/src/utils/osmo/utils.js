@@ -3,6 +3,7 @@
 import { assets as osmosisAssets } from '../../assets';
 import { displayUnitsToDenomUnits, baseUnitsToDisplayUnits } from '../chain';
 import Long from 'long';
+import { Dec, Int, IntPretty } from '@keplr-wallet/unit';
 
 /**
  *
@@ -12,15 +13,16 @@ import Long from 'long';
  * address: string;
  * displayPoolAssets: object[];
  * poolAssets: object[];
- * pricePerShare: number;
+ * pricePerShareEn18: string;
  * totalShares: Coin;
- * totalValue: number;
- * totalWeight: number;
+ * totalValue: string;
+ * totalWeight: string;
  * }} Pool
- *
- * @typedef {{
- * amount:string;
- * denom:CoinDenom;
+ * * totalWeight: = "1";
+//  *
+//  * @typedef {{
+//  * amount:string;
+//  * denom:CoinDenom;
  * }} LockedPool
  *
  *
@@ -58,8 +60,8 @@ import Long from 'long';
  * @typedef {{
  * amount:string;
  * denom:CoinDenom;
- * value:number;
- * allocation:number;
+ * value:string;
+ * allocation:string;
  * poolId:string;
  * }} LockedPoolDisplay
  *
@@ -69,21 +71,21 @@ import Long from 'long';
  * }} Coin
  *
  * @typedef {{
- * weight:number;
+ * weight:string;
  * type:('coin'|'pool');
  * name:string;
- * value:number|null;
+ * value:string|null;
  * symbol:CoinSymbol|null;
  * poolId:string|null;
  * denom:CoinDenom;
- * allocation:number;
+ * allocation:string;
  * }} CoinWeight
  *
  * @typedef {{
  * amount:string;
  * denom:CoinDenom;
- * displayAmount: number;
- * value: number;
+ * displayAmount: string;
+ * value: string;
  * symbol: CoinSymbol;
  * }} CoinValue
  *
@@ -91,8 +93,8 @@ import Long from 'long';
  * name: string;
  * denom:CoinDenom;
  * amount:string|null;
- * displayAmount: number|null;
- * value: number;
+ * displayAmount: string|null;
+ * value: string;
  * coins: CoinValue[];
  * }} PoolAllocation
  *
@@ -270,7 +272,7 @@ export class OsmosisToken {
 export const symbolsAndDisplayValuesToCoinsArray = (coins) =>
   coins.map(({ symbol, amount }) => ({
     denom: symbolToOsmoDenom(symbol),
-    amount: '' + displayUnitsToDenomUnits(symbol, amount)
+    amount: displayUnitsToDenomUnits(symbol, amount)
   }));
 
 /**
@@ -287,15 +289,22 @@ export const substractCoins = (balances1, balances2) => {
     // so just subtract all of them...
     const coins = balances2.filter(({ denom }) => denom == coin.denom);
     coins.forEach((c2) => {
-      newCoin.amount = '' + (Number(newCoin.amount) - Number(c2.amount));
+      const a = new Dec(newCoin.amount);
+      const b = new Dec(c2.amount);
+      newCoin.amount = a.sub(b).toString();
       if (
         coin.hasOwnProperty('displayAmount') &&
         c2.hasOwnProperty('displayAmount')
-      )
-        newCoin.displayAmount =
-          Number(newCoin.displayAmount) - Number(c2.displayAmount);
-      if (coin.hasOwnProperty('value') && c2.hasOwnProperty('value'))
-        newCoin.value = Number(newCoin.value) - Number(c2.value);
+      ) {
+        const a = new Dec(newCoin.displayAmount);
+        const b = new Dec(c2.displayAmount);
+        newCoin.displayAmount = a.sub(b).toString();
+      }
+      if (coin.hasOwnProperty('value') && c2.hasOwnProperty('value')) {
+        const a = new Dec(newCoin.value);
+        const b = new Dec(c2.value);
+        newCoin.value = a.sub(b).toString();
+      }
     });
     return [...m, newCoin];
   }, []);
@@ -305,7 +314,7 @@ export const substractCoins = (balances1, balances2) => {
  * @param {object} param0
  * @param {PriceHash} param0.prices
  * @param {CoinDenom} param0.denom
- * @param {number} param0.value - usd value
+ * @param {string|number} param0.value - usd value
  * @returns {CoinValue}
  */
 export const convertCoinValueToCoin = ({ prices, denom, value }) => {
@@ -315,13 +324,15 @@ export const convertCoinValueToCoin = ({ prices, denom, value }) => {
     // console.log(`bad price for ${denom} NaN.`);
     return null;
   }
-  const displayAmount = value / prices[denom];
+  const v = new Dec(value);
+  const p = new Dec(prices[denom]);
+  const displayAmount = v.quo(p).toString();
   return {
     symbol,
     denom,
-    amount: '' + displayUnitsToDenomUnits(symbol, displayAmount),
+    amount: displayUnitsToDenomUnits(symbol, displayAmount),
     displayAmount,
-    value
+    value: new Dec(value).toString()
   };
 };
 
@@ -340,16 +351,19 @@ export const convertCoinToDisplayValues = ({ prices, coin }) => {
     return null;
   }
   const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-  if (isNaN(displayAmount)) {
-    // console.log('bad amount, NaN.');
-    return null;
-  }
+  // if (isNaN(displayAmount)) {
+  //   // console.log('bad amount, NaN.');
+  //   return null;
+  // }
+  const dA = new Dec(displayAmount);
+  const assetPrice = new Dec(prices[denom]);
+  const value = dA.mul(assetPrice).toString();
   return {
     symbol,
     denom,
     amount,
     displayAmount,
-    value: displayAmount * prices[denom]
+    value
   };
 };
 
@@ -366,12 +380,15 @@ export const convertCoinsToDisplayValues = ({ prices, coins }) =>
  * @param {object} param0
  * @param {PriceHash} param0.prices
  * @param {Coin[]} param0.coins
+ * @returns {string}
  */
 export const calculateCoinsTotalBalance = ({ prices, coins }) => {
   return convertCoinsToDisplayValues({ prices, coins }).reduce((m, v) => {
     const { value } = v;
-    return value + m;
-  }, 0);
+    const val = new Dec(value);
+    const mv = new Dec(m);
+    return val.add(mv).toString();
+  }, '0');
 };
 
 /**
@@ -444,12 +461,22 @@ export const getUserPools = ({ pools, lockedPools }) => {
       const pool = getPoolByGammName(pools, denom);
       // TODO why some pools missing?
       if (!pool) return null;
-      const value = pool.pricePerShare * Number(amount);
+
+      const p = new Dec(pool.pricePerShareEn18);
+      const a = new Dec(amount);
+      const ta = new Dec(pool.totalShares.amount);
+      const value = new IntPretty(p.mul(a))
+        .moveDecimalPointLeft(18)
+        .maxDecimals(18)
+        .locale(false)
+        .toString();
+      const allocation = a.quo(ta).toString();
+
       return {
         denom,
         amount,
         value,
-        allocation: Number(amount) / Number(pool.totalShares.amount),
+        allocation,
         poolId: pool.id
       };
     })
@@ -464,30 +491,41 @@ export const getUserPools = ({ pools, lockedPools }) => {
 
 export const convertPoolToDisplayValues = ({ prices, pool }) => {
   const { totalShares, poolAssets } = pool;
-  let totalValue = 0;
+  let totalValue = new Dec(0);
   pool.displayPoolAssets = poolAssets
     .map(({ token, weight }) => {
       const value = convertCoinToDisplayValues({ prices, coin: token });
       if (!value) return undefined;
-      totalValue += value.value;
+      const val = new Dec(value.value);
+      totalValue = totalValue.add(val);
+      const w = new Dec(weight);
+      const wt = new Dec(pool.totalWeight);
       return {
         token,
         weight,
-        allocation: Long.fromString(weight) / Long.fromString(pool.totalWeight),
+        allocation: w.quo(wt).toString(),
         symbol: osmoDenomToSymbol(token.denom),
         value
       };
     })
     .filter(Boolean);
-  pool.totalValue = totalValue;
 
-  // TODO use keplr/unit
+  pool.totalValue = totalValue.toString();
 
-  // pool.pricePerShareL = Long.fromValue(totalValue) / Long.fromString(totalShares.amount),
-  // TODO verify 10^18
-  (pool.pricePerShare =
-    (Number(totalValue) / Number(totalShares.amount)) * Math.pow(10, 18)),
-    (pool.pricePerShare = Number(totalValue) / Number(totalShares.amount));
+  const ta = new Dec(totalShares.amount);
+  const totalSharesAmount = new IntPretty(ta);
+  const totalVal = new IntPretty(totalValue);
+
+  if (ta.lte(new Dec(0))) {
+    pool.pricePerShareEn18 = '0';
+  } else {
+    pool.pricePerShareEn18 = totalVal
+      .maxDecimals(18)
+      .quo(totalSharesAmount.moveDecimalPointLeft(18).maxDecimals(18))
+      // .moveDecimalPointLeft(18)
+      .locale(false)
+      .toString();
+  }
 
   pool.name = pool.displayPoolAssets
     .reduce((m, v) => {
@@ -534,14 +572,21 @@ export const getTradesRequiredToGetBalances = ({
   const totalCurrent = calculateCoinsTotalBalance({ prices, coins: balances });
   const totalDesired = calculateCoinsTotalBalance({ prices, coins: desired });
 
-  if (totalDesired > totalCurrent) {
+  const t = new Dec(totalDesired);
+  const c = new Dec(totalCurrent);
+
+  if (t.gt(c) && !t.sub(c).lte(new Dec(0.01))) {
+    // if t > c, but the difference IS not a small number
+    console.log(t.toString(), c.toString());
     throw new Error('insufficient balance');
   }
 
   const hasEnough = desired.reduce((m, { denom, amount }) => {
     const current = balances.find((c) => c.denom === denom);
     if (!current) return false;
-    if (current.amount >= amount) return m && true;
+    const a = new Dec(current.amount);
+    const b = new Dec(amount);
+    if (a.gte(b)) return m && true;
     return false;
   }, true);
 
@@ -561,8 +606,10 @@ export const getTradesRequiredToGetBalances = ({
       return [...m, coin];
     }
 
-    const diff = Number(coin.amount) - Number(desiredCoin.amount);
-    if (diff <= 0) {
+    const a = new Dec(coin.amount);
+    const b = new Dec(desiredCoin.amount);
+    const diff = a.sub(b);
+    if (diff.lte(new Dec(0))) {
       return m;
     }
 
@@ -570,7 +617,7 @@ export const getTradesRequiredToGetBalances = ({
       ...m,
       {
         denom: coin.denom,
-        amount: diff
+        amount: diff.toString()
       }
     ];
   }, []);
@@ -582,11 +629,15 @@ export const getTradesRequiredToGetBalances = ({
     if (!current) {
       return [...m, coin];
     }
+    const a = new Dec(coin.amount);
+    const b = new Dec(current.amount);
+    const aMinusB = a.sub(b);
+
     const diff = {
       denom: coin.denom,
-      amount: Number(coin.amount) - Number(current.amount)
+      amount: aMinusB.toString()
     };
-    if (diff.amount <= 0) return m;
+    if (aMinusB.lte(new Dec(0))) return m;
     return [...m, diff];
   }, []);
 
@@ -608,7 +659,10 @@ export const getTradesRequiredToGetBalances = ({
     coins: desiredCoinsNeeded
   });
 
-  if (desiredCoinsNeededValue > availableCoinsValue) {
+  const dsr = new Dec(desiredCoinsNeededValue);
+  const avl = new Dec(availableCoinsValue);
+
+  if (dsr.gt(avl) && !dsr.sub(avl).lte(new Dec(0.01))) {
     throw new Error(
       `not possible with current values (desired[${desiredCoinsNeededValue}] > available[${availableCoinsValue}])`
     );
@@ -616,61 +670,61 @@ export const getTradesRequiredToGetBalances = ({
 
   // trades are required
   const trades = desiredCoinsNeededWithValues.reduce((m, coin) => {
-    let valueNeeded = coin.value;
+    let valueNeeded = new Dec(coin.value);
     for (let i = 0; i < availableCoinsWithValues.length; i++) {
-      if (valueNeeded <= 0) continue;
+      if (valueNeeded.lte(new Dec(0))) continue;
       const current = availableCoinsWithValues[i];
       if (coin.symbol === current.symbol) continue;
-
-      if (current.value >= valueNeeded) {
+      const currentVal = new Dec(current.value);
+      if (currentVal.gte(valueNeeded)) {
         // console.log(`I desired:${coin.symbol} avail:${current.symbol}`);
         // console.log(`I valueNeeded:${valueNeeded}`);
         // 1. value is more than what is needed
         // TAKE WHAT YOU NEED
-        const leftOver = current.value - valueNeeded;
-        const amountUsed = valueNeeded;
-        valueNeeded -= amountUsed;
+        const leftOver = currentVal.sub(valueNeeded);
+        const amountUsed = new Dec(valueNeeded.toString());
+        valueNeeded = valueNeeded.sub(amountUsed);
 
         m.push({
           sell: convertCoinValueToCoin({
             prices,
             denom: current.denom,
-            value: amountUsed
+            value: amountUsed.toString()
           }),
           buy: convertCoinValueToCoin({
             prices,
             denom: coin.denom,
-            value: amountUsed
+            value: amountUsed.toString()
           }),
-          beliefValue: amountUsed
+          beliefValue: amountUsed.toString()
         });
 
-        current.value = leftOver;
-        availableCoinsWithValues[i].value = leftOver;
-      } else if (current.value < valueNeeded) {
+        current.value = leftOver.toString();
+        availableCoinsWithValues[i].value = leftOver.toString();
+      } else if (currentVal.lt(valueNeeded)) {
         // console.log(`II desired:${coin.symbol} avail:${current.symbol}`);
         // console.log(`II valueNeeded:${valueNeeded}`);
         // 2. value is less than what is needed
         // TAKE IT ALL!
-        const amountUsed = current.value;
-        valueNeeded -= amountUsed;
+        const amountUsed = new Dec(current.value);
+        valueNeeded = valueNeeded.sub(amountUsed);
 
         m.push({
           sell: convertCoinValueToCoin({
             prices,
             denom: current.denom,
-            value: amountUsed
+            value: amountUsed.toString()
           }),
           buy: convertCoinValueToCoin({
             prices,
             denom: coin.denom,
-            value: amountUsed
+            value: amountUsed.toString()
           }),
-          beliefValue: amountUsed
+          beliefValue: amountUsed.toString()
         });
 
-        current.value = 0;
-        availableCoinsWithValues[i].value = 0;
+        current.value = '0';
+        availableCoinsWithValues[i].value = '0';
       }
     }
     return m;
@@ -699,11 +753,13 @@ export const canonicalizeCoinWeights = ({
   prices,
   totalCurrentValue
 }) => {
-  let total = 0;
+  let totalValue = new Dec(0);
   const enriched = weights.map((item) => {
-    if (!item.weight || item.weight <= 0)
+    if (!item.weight || new Dec(item.weight).lt(new Dec(0)))
       throw new Error('no non-positive weights');
-    total += item.weight;
+
+    const wt = new Dec(item.weight);
+    totalValue = totalValue.add(wt);
     if (!item.denom) {
       if (item.symbol) {
         item.denom = symbolToOsmoDenom(item.symbol);
@@ -731,14 +787,20 @@ export const canonicalizeCoinWeights = ({
     return item;
   });
 
-  return enriched.map((item) => ({
-    ...item,
-    allocation: item.weight / total,
-    value:
-      typeof totalCurrentValue === 'undefined'
-        ? undefined
-        : (totalCurrentValue * item.weight) / total
-  }));
+  return enriched.map((item) => {
+    const allocation = new Dec(item.weight).quo(totalValue).toString();
+    let value;
+    if (typeof totalCurrentValue !== 'undefined') {
+      const tcv = new Dec(totalCurrentValue);
+      const wt = new Dec(item.weight);
+      value = tcv.mul(wt).quo(totalValue).toString();
+    }
+    return {
+      ...item,
+      allocation,
+      value
+    };
+  });
 };
 
 /**
@@ -757,10 +819,12 @@ export const poolAllocationToCoinsNeeded = ({ pools, prices, weight }) => {
   const pool = getPoolInfo({ prices, pools, poolId: weight.poolId });
 
   const coins = pool.displayPoolAssets.map((a) => {
+    const value = new Dec(weight.value);
+    const alloc = new Dec(a.allocation);
     return convertCoinValueToCoin({
       prices,
       denom: a.token.denom,
-      value: weight.value * a.allocation
+      value: value.mul(alloc).toString()
     });
   });
 
@@ -768,13 +832,16 @@ export const poolAllocationToCoinsNeeded = ({ pools, prices, weight }) => {
     throw new Error('weight.value needs to be defined');
   }
 
+  const ta = new Dec(pool.totalShares.amount);
+  const tv = new Dec(pool.totalValue);
+  const wv = new Dec(weight.value);
+
   const allocation = {
     name: pool.name,
     denom: pool.totalShares.denom,
-    amount:
-      '' + (Number(pool.totalShares.amount) / pool.totalValue) * weight.value,
+    amount: ta.quo(tv).mul(wv).toString(),
     // TODO determine the pool multipliers
-    displayAmount: -1,
+    displayAmount: '-1',
     value: weight.value,
     coins
   };
@@ -817,10 +884,12 @@ export const convertWeightsIntoCoins = ({
       return poolAllocationToCoinsNeeded({ pools, prices, weight: pool });
     });
 
+  const tcv = new Dec(totalCurrentValue);
   const objs = cleaned.map((item) => {
+    const alc = new Dec(item.allocation);
     return {
       ...item,
-      value: totalCurrentValue * item.allocation
+      value: tcv.mul(alc).toString()
     };
   });
 
