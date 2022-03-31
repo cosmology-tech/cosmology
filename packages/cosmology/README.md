@@ -40,7 +40,7 @@ The rebalance command will make a series of swaps on your behalf. It will prompt
 cosmology rebalance 
 ```
 
-Also, you can always supply parameters to not be prompted for those fields:
+Example with parameters
 
 ```sh
 cosmology rebalance \
@@ -58,6 +58,17 @@ The join command will join a pool.
 cosmology join 
 ```
 
+Example with parameters
+
+```sh
+cosmology join \
+    --keychain my-mnemonic-name \
+    --chainId osmosis-1 \
+    --restEndpoint https://lcd-osmosis.blockapsis.com \
+    --poolId 601
+    --max
+```
+
 ### `lock`
 
 The lock command will lock your gamms tokens for staking so you can earn rewards.
@@ -66,18 +77,20 @@ The lock command will lock your gamms tokens for staking so you can earn rewards
 cosmology lock 
 ```
 
-### `delgate`
-
-```
-cosmology delegate
-```
-
 Example with parameters
 
 ```
-cosmology --keychain my-mnemonic-name --chainToken CMDX delegate
+cosmology lock \
+    --keychain my-mnemonic-name \
+    --chainId osmosis-1 \
+    --restEndpoint https://lcd-osmosis.blockapsis.com \
+    --poolId 601 \
+    --duration 14
 ```
+
 ### `claim`
+
+Claim rewards from staking.
 
 ```
 cosmology claim
@@ -86,7 +99,32 @@ cosmology claim
 Example with parameters
 
 ```
-cosmology --keychain my-mnemonic-name --chainToken CMDX claim
+cosmology claim \
+  --keychain my-mnemonic-name \
+  --chainToken CMDX \
+  --minAmount 1 \
+  --restEndpoint https://rest.comdex.one \
+  --rpcEndpoint https://rpc.comdex.one
+```
+
+### `delgate`
+
+Stake tokens to a validator.
+
+```
+cosmology delegate
+```
+
+Example with parameters
+
+```
+cosmology delegate \
+  --keychain my-mnemonic-name \
+  --chainToken CMDX \
+  --minAmount 1 \
+  --restEndpoint https://rest.comdex.one \
+  --rpcEndpoint https://rpc.comdex.one \
+  --validatorAddress comdexvaloper1mzxzxkzajancc63gtwt9x9zw2qfv9k9ar7ka34
 ```
 ## mnemonics
 
