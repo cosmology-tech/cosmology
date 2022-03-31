@@ -1025,7 +1025,7 @@ export const lookupRoutesForTrade = ({ pools, trade, pairs }) => {
 export const getSwaps = ({ pools, trades, pairs }) =>
   trades.reduce((m, trade) => {
     // not sure why, but sometimes we get a zero amount
-    if (trade.sell.value === 0) return m;
+    if (new Dec(trade.sell.value).lte(new Dec(0))) return m;
     return [
       ...m,
       {
@@ -1034,3 +1034,10 @@ export const getSwaps = ({ pools, trades, pairs }) =>
       }
     ];
   }, []);
+
+export const calculateAmountWithSlippage = (amount, slippage) => {
+  const a = new Dec(amount);
+  const b = new Dec(100).sub(new Dec(slippage)).quo(new Dec(100));
+  // Number(amount) * ((100 - slippage) / 100);
+  return a.mul(b).toString();
+};

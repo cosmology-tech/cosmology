@@ -34,7 +34,7 @@ export const getAvailableBalance = async ({ client, address, sell }) => {
     .map(({ denom, amount }) => {
       const symbol = osmoDenomToSymbol(denom);
       const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-      if (displayAmount < 0.00001) return;
+      if (new Dec(displayAmount).lt(new Dec(0.00001))) return;
       if (!sell.includes(symbol)) return;
       return {
         symbol,

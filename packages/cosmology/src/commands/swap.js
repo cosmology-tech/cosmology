@@ -18,10 +18,14 @@ import {
   symbolToOsmoDenom
 } from '../utils/osmo';
 
-import { lookupRoutesForTrade } from '../utils/osmo/utils';
+import {
+  lookupRoutesForTrade,
+  calculateAmountWithSlippage
+} from '../utils/osmo/utils';
 import { getSigningOsmosisClient } from '../messages/utils';
 import { messages } from '../messages/messages';
 import { signAndBroadcastTilTxExists } from '../messages/utils';
+import { Dec } from '@keplr-wallet/unit';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 // const restEndpoint = osmoChainConfig.apis.rest[0].address;
@@ -130,8 +134,17 @@ export default async (argv) => {
     : dollarValueToDenomUnits(prices, sell, value);
   const tokenOutPrice = getPrice(prices, buy);
   const tokenOutAmount = dollarValueToDenomUnits(prices, buy, value);
-  const tokenOutAmountWithSlippage =
-    Number(tokenOutAmount) * ((100 - slippage) / 100);
+  const tokenOutAmountWithSlippage = calculateAmountWithSlippage(
+    tokenOutAmount,
+    slippage
+  );
+
+  const tokenInValue = baseUnitsToDollarValue(prices, sell, tokenInAmount);
+  const tokenOutValue = baseUnitsToDollarValue(
+    prices,
+    buy,
+    tokenOutAmountWithSlippage
+  );
 
   const tokenIn = {
     denom: symbolToOsmoDenom(sell),
@@ -139,16 +152,16 @@ export default async (argv) => {
     amount: tokenInAmount,
     displayAmount: baseUnitsToDisplayUnits(sell, tokenInAmount),
     tokenInPrice,
-    tokenInValue: baseUnitsToDisplayUnits(sell, tokenInAmount) * tokenInPrice
+    tokenInValue
   };
+
   const tokenOut = {
     denom: symbolToOsmoDenom(buy),
     symbol: buy,
     amount: tokenOutAmountWithSlippage,
     displayAmount: baseUnitsToDisplayUnits(buy, tokenOutAmountWithSlippage),
     tokenOutPrice,
-    tokenOutValue:
-      baseUnitsToDisplayUnits(buy, tokenOutAmountWithSlippage) * tokenOutPrice
+    tokenOutValue
   };
 
   const routes = lookupRoutesForTrade({
@@ -156,11 +169,11 @@ export default async (argv) => {
     trade: {
       sell: {
         denom: tokenIn.denom,
-        amount: tokenInAmount + ''
+        amount: tokenInAmount
       },
       buy: {
         denom: tokenOut.denom,
-        amount: tokenOutAmount + ''
+        amount: tokenOutAmount
       },
       beliefValue: value
     },
@@ -196,9 +209,9 @@ export default async (argv) => {
     tokenIn: {
       denom: tokenIn.denom,
       // TODO: use { coin } from '@cosmjs/amino' e.g. coin(num, denom)
-      amount: (tokenIn.amount + '').split('.')[0]
+      amount: (tokenIn.amount + '').split('.')[0] // no decimals...
     },
-    tokenOutMinAmount: (tokenOut.amount + '').split('.')[0]
+    tokenOutMinAmount: (tokenOut.amount + '').split('.')[0] // no decimals...
   });
 
   console.log(msg);
