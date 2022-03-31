@@ -1,8 +1,13 @@
 // osmo specific utils
-
 import { assets as osmosisAssets } from '../../assets';
-import { displayUnitsToDenomUnits, baseUnitsToDisplayUnits } from '../chain';
+import {
+  displayUnitsToDenomUnits,
+  baseUnitsToDisplayUnits,
+  baseUnitsToDollarValue,
+  dollarValueToDenomUnits
+} from '../chain';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
+import { noDecimals } from '../../messages';
 
 /**
  *
