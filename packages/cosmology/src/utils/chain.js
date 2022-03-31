@@ -330,7 +330,7 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
     const tva = new Dec(totalDollarValueOfCoinA);
     const pr = new Dec(pAsset.ratio);
 
-    const totalDollarValue = tva.quo(pr).toString();
+    const totalDollarValue = tva.quo(pr);
 
     scenarios[pAsset.symbol].push({
       token: coinBalance,
@@ -338,7 +338,7 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
       symbol: pAsset.symbol,
       amount: (coinBalance.amount + '').split('.')[0], // no decimals...,
       enoughCoinsExist: true,
-      totalDollarValue
+      totalDollarValue: totalDollarValue.toString()
     });
 
     for (let j = 0; j < poolInfo.poolAssets.length; j++) {
@@ -347,10 +347,8 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
       if (jAsset.token.denom === asset.token.denom) continue;
       const otherBalance = coinGet(prices, balances, jAsset, jPAsset);
 
-      const t = new Dec(totalDollarValue);
-      const r = new Dec(jPAsset.ratio);
-
-      const totalDollarValueOfCoinB = t.quo(r).toString();
+      const ratio = new Dec(jPAsset.ratio);
+      const totalDollarValueOfCoinB = totalDollarValue.mul(ratio).toString();
       const totalCoinsBDenom = dollarValueToDenomUnits(
         prices,
         jPAsset.symbol,
@@ -359,7 +357,6 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
 
       const other = new Dec(otherBalance.amount);
       const totalB = new Dec(totalCoinsBDenom);
-      const diff = other.sub(totalB);
       const enoughCoinsExist = other.sub(totalB).gt(new Dec(0));
 
       scenarios[pAsset.symbol].push({
@@ -367,11 +364,7 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
         ratio: jPAsset.ratio,
         symbol: jPAsset.symbol,
         amount: (totalCoinsBDenom + '').split('.')[0], // no decimals...,
-        enoughCoinsExist,
-        totalDollarValueOfCoinB,
-        diff: diff.toString(),
-        other: other.toString(),
-        compare: totalB.toString()
+        enoughCoinsExist
       });
     }
   }
@@ -382,8 +375,6 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
       coins: value
     };
   });
-
-  console.log(JSON.stringify(allScenarios, null, 2));
 
   const winners = allScenarios.filter((scenario) =>
     scenario.coins.every((coin) => coin.enoughCoinsExist)
@@ -398,7 +389,7 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
     const coin = winner.coins.find((coin) => coin.token.denom === asset.denom);
     return {
       denom: coin.token.denom,
-      amount: coin.amount + ''
+      amount: coin.amount
     };
   });
 
