@@ -1,7 +1,4 @@
 import { chains, assets } from '@cosmology/cosmos-registry';
-import { coin } from '@cosmjs/amino';
-import { CoinPretty, Dec, DecUtils, Int, IntPretty } from '@keplr-wallet/unit';
-
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
 import { OsmosisValidatorClient } from '../clients/validator';
@@ -9,43 +6,21 @@ import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
 import {
-  signAndBroadcastTilTxExists,
   signAndBroadcast
 } from '../messages/utils';
-
 import {
+  getSellableBalance,
   convertWeightsIntoCoins,
   convertValidatorPricesToDenomPriceHash,
   osmoDenomToSymbol,
-  convertCoinsToDisplayValues,
   getTradesRequiredToGetBalances,
   getSwaps,
-  substractCoins,
   calculateAmountWithSlippage
 } from '../utils/osmo';
 import c from 'ansi-colors';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
-// const restEndpoint = osmoChainConfig.apis.rest[0].address;
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
-
-export const getAvailableBalance = async ({ client, address, sell }) => {
-  const accountBalances = await client.getBalances(address);
-  return accountBalances.result
-    .map(({ denom, amount }) => {
-      const symbol = osmoDenomToSymbol(denom);
-      const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-      if (new Dec(displayAmount).lt(new Dec(0.00001))) return;
-      if (!sell.includes(symbol)) return;
-      return {
-        symbol,
-        denom,
-        amount,
-        displayAmount
-      };
-    })
-    .filter(Boolean);
-};
 
 export default async (argv) => {
   const validator = new OsmosisValidatorClient();
@@ -112,7 +87,7 @@ export default async (argv) => {
   );
   if (!Array.isArray(sell)) sell = [sell];
 
-  let balances = await getAvailableBalance({
+  let balances = await getSellableBalance({
     client,
     address,
     sell
@@ -138,12 +113,12 @@ export default async (argv) => {
 
   // WHICH TOKENS TO INVEST?
 
-  const assetList = assets
-    .reduce(
-      (m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)],
-      []
-    )
-    .sort();
+  // const assetList = assets
+  //   .reduce(
+  //     (m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)],
+  //     []
+  //   )
+  //   .sort();
 
   // let { token } = await prompt(
   //   [
@@ -226,7 +201,7 @@ export default async (argv) => {
   for (let i = 0; i < result.pools.length; i++) {
     const desired = result.pools[i].coins;
 
-    balances = await getAvailableBalance({ client, address, sell });
+    balances = await getSellableBalance({ client, address, sell });
 
     const trades = getTradesRequiredToGetBalances({
       prices,
@@ -274,7 +249,6 @@ export default async (argv) => {
         tokenOutMinAmount: noDecimals(tokenOutMinAmount)
       });
 
-      if (!argv.verify) {
         await signAndBroadcast({
           client: stargateClient,
           chainId: osmoChainConfig.chain_id,
@@ -283,23 +257,6 @@ export default async (argv) => {
           fee,
           memo: ''
         });
-      } else {
-        const res = await signAndBroadcastTilTxExists({
-          client: stargateClient,
-          cosmos: client,
-          chainId: osmoChainConfig.chain_id,
-          address: osmoAddress,
-          msg,
-          fee,
-          memo: ''
-        });
-        const block = res?.tx_response?.height;
-        if (block) {
-          console.log(`success at block ${block}`);
-        } else {
-          console.log('no block found for tx! EXITING...');
-          process.exit(1);
-        }
       }
 
       //
@@ -313,7 +270,7 @@ export default async (argv) => {
     // result.pools[i].denom.split('/')[2]
     // );
     // console.log(poolInfo);
-    // balances = await getAvailableBalance({ client, address, sell });
+    // balances = await getSellableBalance({ client, address, sell });
 
     // 1. what is the value? given the ratio?
     // then calculate the goods
