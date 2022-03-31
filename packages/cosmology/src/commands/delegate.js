@@ -22,6 +22,7 @@ import {
   GasPrice
 } from '@cosmjs/stargate';
 import { messages } from '../messages/native';
+import { noDecimals } from '../messages';
 
 // TODO certain calc'd values cosmjs doesn't like...
 // ? [amount] amount 0.05329299999999999
@@ -208,7 +209,7 @@ export default async (argv) => {
     messages.delegate({
       delegatorAddress: address,
       validatorAddress: validatorAddress,
-      amount: amount + '',
+      amount: noDecimals(amount),
       denom
     })
   );
