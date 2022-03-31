@@ -32,6 +32,8 @@ import {
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 // const restEndpoint = osmoChainConfig.apis.rest[0].address;
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
+const sleep = (milliseconds) =>
+  new Promise((resolve) => setTimeout(resolve, milliseconds));
 
 export const getAvailableBalance = async ({ client, address, sell }) => {
   const accountBalances = await client.getBalances(address);
@@ -278,33 +280,14 @@ export default async (argv) => {
         tokenOutMinAmount: noDecimals(tokenOutMinAmount)
       });
 
-      if (!argv.verify) {
-        await signAndBroadcast({
-          client: stargateClient,
-          chainId: osmoChainConfig.chain_id,
-          address: osmoAddress,
-          msg,
-          fee,
-          memo: ''
-        });
-      } else {
-        const res = await signAndBroadcastTilTxExists({
-          client: stargateClient,
-          cosmos: client,
-          chainId: osmoChainConfig.chain_id,
-          address: osmoAddress,
-          msg,
-          fee,
-          memo: ''
-        });
-        const block = res?.tx_response?.height;
-        if (block) {
-          console.log(`success at block ${block}`);
-        } else {
-          console.log('no block found for tx! EXITING...');
-          process.exit(1);
-        }
-      }
+      await signAndBroadcast({
+        client: stargateClient,
+        chainId: osmoChainConfig.chain_id,
+        address: osmoAddress,
+        msg,
+        fee,
+        memo: ''
+      });
 
       //
     }
@@ -314,6 +297,8 @@ export default async (argv) => {
     const poolId = result.pools[i].denom.split('/')[2];
     const poolInfo = await client.getPoolPretty(poolId);
     // balances = await getAvailableBalance({ client, address, sell });
+
+    await sleep(1500);
     const accountBalances = await client.getBalances(account.address);
 
     // pass all balances in! NOT the scoped version... you need all your coins!
@@ -355,9 +340,11 @@ export default async (argv) => {
 
     // LOCK
 
-    // const accountBalances = await client.getBalances(account.address);
+    // get balances again for gamm
+    await sleep(2000);
+    const newBalances = await client.getBalances(account.address);
 
-    const gammTokens = accountBalances.result
+    const gammTokens = newBalances.result
       .filter((a) => a.denom.startsWith('gamm'))
       .map((obj) => {
         return {
