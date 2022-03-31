@@ -86,6 +86,8 @@ export const getBaseAndDisplayUnitsGenericCosmos = (symbol) => {
 export const getBaseAndDisplayUnits = (symbol) => {
   const coinInfo = getOsmosisAssetInfo(symbol);
   if (!coinInfo) {
+    const info = getBaseAndDisplayUnitsByDenom(symbol);
+    if (info) return info;
     throw new Error(`coin:${symbol} not found.`);
   }
 
@@ -105,6 +107,13 @@ export const getBaseAndDisplayUnits = (symbol) => {
 
 // uses cosmos
 export const getBaseAndDisplayUnitsByDenom = (denom) => {
+  if (denom.startsWith('gamm')) {
+    return {
+      base: denom,
+      display: 18
+    };
+  }
+
   const chainInfo = getCosmosAssetInfoByDenom(denom);
   if (!chainInfo) {
     throw new Error(`coin:denom:${denom} not found.`);
