@@ -138,7 +138,12 @@ export const getOsmosisSymbolIbcName = (symbol) => {
 
 export const displayUnitsToDenomUnits = (symbol, amount) => {
   const { display } = getBaseAndDisplayUnits(symbol);
-  return Number(amount) * Math.pow(10, display.exponent);
+  const a = new IntPretty(new Dec(amount));
+  return a
+    .moveDecimalPointRight(display.exponent)
+    .maxDecimals(16)
+    .locale(false)
+    .toString();
 };
 
 // TODO design how classes migrate to methods...
@@ -149,7 +154,9 @@ export const getPrice = (prices, symbol) => {
 
 export const displayUnitsToDollarValue = (prices, symbol, amount) => {
   const price = getPrice(prices, symbol);
-  return amount * price;
+  const a = new Dec(amount);
+  const p = new Dec(price);
+  return a.mul(p).toString();
 };
 
 export const baseUnitsToDollarValue = (prices, symbol, amount) => {
@@ -159,7 +166,9 @@ export const baseUnitsToDollarValue = (prices, symbol, amount) => {
 
 export const dollarValueToDisplayUnits = (prices, symbol, amount) => {
   const price = getPrice(prices, symbol);
-  return amount / price;
+  const a = new Dec(amount);
+  const p = new Dec(price);
+  return a.quo(p).toString();
 };
 
 export const dollarValueToDenomUnits = (prices, symbol, amount) => {
@@ -169,12 +178,22 @@ export const dollarValueToDenomUnits = (prices, symbol, amount) => {
 
 export const baseUnitsToDisplayUnits = (symbol, amount) => {
   const { display } = getBaseAndDisplayUnits(symbol);
-  return Number(amount) / Math.pow(10, display.exponent);
+  const a = new IntPretty(new Dec(amount));
+  return a
+    .moveDecimalPointLeft(display.exponent)
+    .maxDecimals(16)
+    .locale(false)
+    .toString();
 };
 
 export const baseUnitsToDisplayUnitsByDenom = (denom, amount) => {
   const { display } = getBaseAndDisplayUnitsByDenom(denom);
-  return Number(amount) / Math.pow(10, display.exponent);
+  const a = new IntPretty(new Dec(amount));
+  return a
+    .moveDecimalPointLeft(display.exponent)
+    .maxDecimals(16)
+    .locale(false)
+    .toString();
 };
 
 export const getChain = async ({ token }) => {
@@ -243,7 +262,9 @@ export const calculateShareOutAmount = (poolInfo, coinsNeeded) => {
 
 export const calculateCoinsNeededInPoolForValue = (prices, poolInfo, value) => {
   const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
-    const shareTotalValue = value * asset.ratio;
+    const v = new Dec(value);
+    const r = new Dec(asset.ratio);
+    const shareTotalValue = v.mul(r).toString();
     const totalDollarValue = baseUnitsToDollarValue(
       prices,
       asset.symbol,
@@ -254,14 +275,18 @@ export const calculateCoinsNeededInPoolForValue = (prices, poolInfo, value) => {
       asset.symbol,
       shareTotalValue
     );
+
+    const a = new Dec(amount);
+    const b = new Dec(asset.amount);
+
     return {
       symbol: asset.symbol,
       denom: asset.denom,
-      amount: (amount + '').split('.')[0], // no decimals...
+      amount: (a.toString() + '').split('.')[0], // no decimals...
       displayAmount: baseUnitsToDisplayUnits(asset.symbol, amount),
       shareTotalValue,
       totalDollarValue,
-      unitRatio: amount / asset.amount
+      unitRatio: a.quo(b).toString()
     };
   });
   return coinsNeeded;
@@ -302,14 +327,18 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
       coinBalance.amount
     );
 
-    const totalDollarValue = totalDollarValueOfCoinA / Number(pAsset.ratio);
+    const tva = new Dec(totalDollarValueOfCoinA);
+    const pr = new Dec(pAsset.ratio);
+
+    const totalDollarValue = tva.quo(pr).toString();
 
     scenarios[pAsset.symbol].push({
       token: coinBalance,
       ratio: pAsset.ratio,
       symbol: pAsset.symbol,
       amount: (coinBalance.amount + '').split('.')[0], // no decimals...,
-      enoughCoinsExist: true
+      enoughCoinsExist: true,
+      totalDollarValue
     });
 
     for (let j = 0; j < poolInfo.poolAssets.length; j++) {
@@ -318,19 +347,31 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
       if (jAsset.token.denom === asset.token.denom) continue;
       const otherBalance = coinGet(prices, balances, jAsset, jPAsset);
 
-      const totalDollarValueOfCoinB = totalDollarValue * jPAsset.ratio;
+      const t = new Dec(totalDollarValue);
+      const r = new Dec(jPAsset.ratio);
+
+      const totalDollarValueOfCoinB = t.quo(r).toString();
       const totalCoinsBDenom = dollarValueToDenomUnits(
         prices,
         jPAsset.symbol,
         totalDollarValueOfCoinB
       );
-      const enoughCoinsExist = otherBalance.amount - totalCoinsBDenom > 0;
+
+      const other = new Dec(otherBalance.amount);
+      const totalB = new Dec(totalCoinsBDenom);
+      const diff = other.sub(totalB);
+      const enoughCoinsExist = other.sub(totalB).gt(new Dec(0));
+
       scenarios[pAsset.symbol].push({
         token: otherBalance,
         ratio: jPAsset.ratio,
         symbol: jPAsset.symbol,
         amount: (totalCoinsBDenom + '').split('.')[0], // no decimals...,
-        enoughCoinsExist
+        enoughCoinsExist,
+        totalDollarValueOfCoinB,
+        diff: diff.toString(),
+        other: other.toString(),
+        compare: totalB.toString()
       });
     }
   }
@@ -341,6 +382,8 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
       coins: value
     };
   });
+
+  console.log(JSON.stringify(allScenarios, null, 2));
 
   const winners = allScenarios.filter((scenario) =>
     scenario.coins.every((coin) => coin.enoughCoinsExist)
