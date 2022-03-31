@@ -107,7 +107,7 @@ cosmology claim \
   --rpcEndpoint https://rpc.comdex.one
 ```
 
-### `delgate`
+### `delegate`
 
 Stake tokens to a validator.
 
