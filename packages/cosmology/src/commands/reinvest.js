@@ -1,6 +1,5 @@
 import { chains, assets } from '@cosmology/cosmos-registry';
 import { coin } from '@cosmjs/amino';
-import { Dec } from '@keplr-wallet/unit';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
 import { OsmosisValidatorClient } from '../clients/validator';
@@ -8,7 +7,7 @@ import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
 import { signAndBroadcast } from '../messages/utils';
-
+import c from 'ansi-colors';
 import {
   convertWeightsIntoCoins,
   convertValidatorPricesToDenomPriceHash,
@@ -17,32 +16,14 @@ import {
   getSwaps,
   calculateMaxCoinsForPool,
   calculateShareOutAmount,
-  calculateAmountWithSlippage
+  calculateAmountWithSlippage,
+  getSellableBalance
 } from '../utils/osmo';
-import c from 'ansi-colors';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
 const sleep = (milliseconds) =>
   new Promise((resolve) => setTimeout(resolve, milliseconds));
-
-export const getAvailableBalance = async ({ client, address, sell }) => {
-  const accountBalances = await client.getBalances(address);
-  return accountBalances.result
-    .map(({ denom, amount }) => {
-      const symbol = osmoDenomToSymbol(denom);
-      const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-      if (new Dec(displayAmount).lt(new Dec(0.00001))) return;
-      if (!sell.includes(symbol)) return;
-      return {
-        symbol,
-        denom,
-        amount,
-        displayAmount
-      };
-    })
-    .filter(Boolean);
-};
 
 export default async (argv) => {
   const validator = new OsmosisValidatorClient();
@@ -109,7 +90,7 @@ export default async (argv) => {
   );
   if (!Array.isArray(sell)) sell = [sell];
 
-  let balances = await getAvailableBalance({
+  let balances = await getSellableBalance({
     client,
     address,
     sell
@@ -132,15 +113,6 @@ export default async (argv) => {
 
   if (!Array.isArray(poolId)) poolId = [poolId];
   poolId = poolId.map((id) => id + ''); // toString
-
-  // WHICH TOKENS TO INVEST?
-
-  const assetList = assets
-    .reduce(
-      (m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)],
-      []
-    )
-    .sort();
 
   const poolWeightQuestions = poolId.map((p) => {
     const str = `gamm/pool/${p}`;
@@ -188,7 +160,7 @@ export default async (argv) => {
   for (let i = 0; i < result.pools.length; i++) {
     const desired = result.pools[i].coins;
 
-    balances = await getAvailableBalance({ client, address, sell });
+    balances = await getSellableBalance({ client, address, sell });
 
     const trades = getTradesRequiredToGetBalances({
       prices,

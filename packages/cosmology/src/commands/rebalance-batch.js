@@ -15,30 +15,13 @@ import {
   getTradesRequiredToGetBalances,
   getSwaps,
   substractCoins,
-  calculateAmountWithSlippage
+  calculateAmountWithSlippage,
+  getSellableBalance
 } from '../utils/osmo';
 import c from 'ansi-colors';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
-
-export const getAvailableBalance = async ({ client, address, sell }) => {
-  const accountBalances = await client.getBalances(address);
-  return accountBalances.result
-    .map(({ denom, amount }) => {
-      const symbol = osmoDenomToSymbol(denom);
-      const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-      if (new Dec(displayAmount).lt(new Dec(0.00001))) return;
-      if (!sell.includes(symbol)) return;
-      return {
-        symbol,
-        denom,
-        amount,
-        displayAmount
-      };
-    })
-    .filter(Boolean);
-};
 
 export default async (argv) => {
   const validator = new OsmosisValidatorClient();
@@ -105,7 +88,7 @@ export default async (argv) => {
   );
   if (!Array.isArray(sell)) sell = [sell];
 
-  let balances = await getAvailableBalance({
+  let balances = await getSellableBalance({
     client,
     address,
     sell
