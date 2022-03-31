@@ -1,23 +1,11 @@
-import { osmoDenomToSymbol, symbolToOsmoDenom } from '..';
 import { prompt } from '../utils/prompt';
 import { CosmosApiClient } from '../clients/cosmos';
 import {
-  baseUnitsToDisplayUnits,
-  displayUnitsToDenomUnits,
-  getCosmosAssetInfoByDenom,
   getWalletFromMnemonic,
-  getBaseAndDisplayUnitsByDenom,
   baseUnitsToDisplayUnitsByDenom,
   getCosmosAssetInfo
 } from '../utils';
 import { promptChain, promptMnemonic } from '../utils/prompt';
-import {
-  SigningStargateClient,
-  calculateFee,
-  assertIsDeliverTxSuccess,
-  GasPrice
-} from '@cosmjs/stargate';
-import { messages } from '../messages/native';
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);
