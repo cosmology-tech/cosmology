@@ -15,6 +15,7 @@ import {
 } from '@cosmjs/stargate';
 import { messages } from '../messages/native';
 import { noDecimals } from '../messages';
+import { Dec } from '@keplr-wallet/unit';
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);
@@ -116,7 +117,8 @@ export default async (argv) => {
   }
   const readableBalance = baseUnitsToDisplayUnitsByDenom(bal.denom, bal.amount);
 
-  if (readableBalance < minAmount) {
+  const availBal = new Dec(readableBalance);
+  if (availBal.lt(new Dec(minAmount)) {
     console.log(
       `${readableBalance} ${argv.chainToken} is not enough. Exiting...`
     );
@@ -162,8 +164,8 @@ export default async (argv) => {
   };
 
   const messagesToDelegate = [];
-
-  if (readableBalance - 0.02 <= 0.01) {
+  const suggested = availBal.sub(new Dec(0.02));
+  if (suggested.lte(new Dec(0.01))) {
     console.log('not enough to delegate. exiting.');
     return;
   }
@@ -174,7 +176,7 @@ export default async (argv) => {
         type: 'number',
         message: 'amount',
         name: 'amount',
-        default: readableBalance - 0.02,
+        default: suggested.toString(),
         choices: validators
       }
     ],

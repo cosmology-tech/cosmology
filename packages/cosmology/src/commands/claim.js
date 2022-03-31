@@ -18,6 +18,7 @@ import {
   GasPrice
 } from '@cosmjs/stargate';
 import { messages } from '../messages/native';
+import { Dec } from '@keplr-wallet/unit';
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);
@@ -96,7 +97,7 @@ export default async (argv) => {
   }
 
   const messagesToClaim = [];
-  let totalClaimable = 0;
+  let totalClaimable = new Dec(0);
 
   const rewards = await client.getRewards(address);
   if (rewards && rewards.rewards && rewards.rewards.length) {
@@ -112,7 +113,7 @@ export default async (argv) => {
           rewardWeWant.denom,
           rewardWeWant.amount
         );
-        totalClaimable += value;
+        totalClaimable = totalClaimable.add(new Dec(value));
 
         messagesToClaim.push(
           messages.withdrawDelegatorReward({
@@ -167,7 +168,7 @@ export default async (argv) => {
     return;
   }
 
-  if (totalClaimable >= minAmount) {
+  if (totalClaimable.gte(new Dec(minAmount))) {
     console.log(
       `${totalClaimable} ${argv.chainToken} available, starting claim process...`
     );
@@ -178,7 +179,9 @@ export default async (argv) => {
           stargateClient.disconnect();
           console.log('⚛️');
           console.log(
-            `success in claiming ${totalClaimable} ${argv.chainToken} rewards`
+            `success in claiming ${totalClaimable.toString()} ${
+              argv.chainToken
+            } rewards`
           );
         } catch (error) {
           console.log(error);
@@ -189,6 +192,8 @@ export default async (argv) => {
       }
     );
   } else {
-    console.log(`${minAmount} not available (${totalClaimable} < minAmount)`);
+    console.log(
+      `${minAmount} not available (${totalClaimable.toString()} < minAmount)`
+    );
   }
 };
