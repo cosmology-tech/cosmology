@@ -1,15 +1,12 @@
 import { chains, assets } from '@cosmology/cosmos-registry';
-import { coin } from '@cosmjs/amino';
-import { CoinPretty, Dec, DecUtils, Int, IntPretty } from '@keplr-wallet/unit';
-
+import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
 import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
-import { signAndBroadcastBatch, estimateOsmoFee } from '../messages/utils';
-
+import { signAndBroadcastBatch } from '../messages/utils';
 import {
   convertWeightsIntoCoins,
   convertValidatorPricesToDenomPriceHash,
@@ -23,7 +20,6 @@ import {
 import c from 'ansi-colors';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
-// const restEndpoint = osmoChainConfig.apis.rest[0].address;
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
 
 export const getAvailableBalance = async ({ client, address, sell }) => {
@@ -135,38 +131,6 @@ export default async (argv) => {
 
   // WHICH TOKENS TO INVEST?
 
-  const assetList = assets
-    .reduce(
-      (m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)],
-      []
-    )
-    .sort();
-
-  // let { token } = await prompt(
-  //   [
-  //     {
-  //       type: 'checkbox',
-  //       name: 'token',
-  //       message: 'choose tokens to invest in',
-  //       choices: assetList
-  //     }
-  //   ],
-  //   argv
-  // );
-  // if (!Array.isArray(token)) token = [token];
-
-  // // WEIGHTS?
-
-  // const tokenWeightQuestions = token.map((t) => {
-  //   return {
-  //     type: 'number',
-  //     name: `tokenWeights[${t}][weight]`,
-  //     message: `enter weight for ${t}`
-  //   };
-  // });
-
-  // const { tokenWeights } = await prompt(tokenWeightQuestions, argv);
-
   const poolWeightQuestions = poolId.map((p) => {
     const str = `gamm/pool/${p}`;
     const name = poolList.find(({ value }) => value == p + '').name;
@@ -187,17 +151,7 @@ export default async (argv) => {
         weight
       };
     })
-    // add this back when you enable tokenWeights
-    // ...Object.keys(tokenWeights).map((symbol) => {
-    //   const weight = tokenWeights[symbol].weight;
-    //   return {
-    //     symbol,
-    //     weight
-    //   };
-    // })
   ];
-
-  //
 
   const stargateClient = await getSigningOsmosisClient({
     rpcEndpoint,
@@ -215,8 +169,6 @@ export default async (argv) => {
   const pools = await api.getPoolsPretty();
 
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
-
-  // console.log(result);
 
   // pools
 
