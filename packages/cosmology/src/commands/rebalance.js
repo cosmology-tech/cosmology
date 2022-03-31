@@ -6,7 +6,7 @@ import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
 import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
-import { getSigningOsmosisClient } from '../messages/utils';
+import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
 import {
   signAndBroadcastTilTxExists,
@@ -269,9 +269,9 @@ export default async (argv) => {
         routes,
         tokenIn: {
           denom: sell.denom,
-          amount: sell.amount.split('.')[0] // no decimals...,
+          amount: noDecimals(sell.amount)
         },
-        tokenOutMinAmount: tokenOutMinAmount.split('.')[0] // no decimals...,
+        tokenOutMinAmount: noDecimals(tokenOutMinAmount)
       });
 
       if (!argv.verify) {
@@ -333,7 +333,7 @@ export default async (argv) => {
     //   return {
     //     symbol: asset.symbol,
     //     denom: asset.denom,
-    //     amount: (amount + '').split('.')[0], // no decimals...
+    //     amount: noDecimals(amount),
     //     displayAmount: baseUnitsToDisplayUnits(asset.symbol, amount),
     //     shareTotalValue,
     //     totalDollarValue,

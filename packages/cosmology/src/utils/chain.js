@@ -7,6 +7,7 @@ import { gas } from '../messages/gas';
 import { symbolToOsmoDenom } from './osmo';
 import { CoinPretty, Dec, DecUtils, Int, IntPretty } from '@keplr-wallet/unit';
 import { prettyPool } from '../clients';
+import { noDecimals } from '../messages';
 
 export const getFeeForChainAndMsg = (chainId, message) => {
   const chain = getChainByChainId(chainId);
@@ -291,7 +292,7 @@ export const calculateCoinsNeededInPoolForValue = (prices, poolInfo, value) => {
     return {
       symbol: asset.symbol,
       denom: asset.denom,
-      amount: (a.toString() + '').split('.')[0], // no decimals...
+      amount: noDecimals(amount),
       displayAmount: baseUnitsToDisplayUnits(asset.symbol, amount),
       shareTotalValue,
       totalDollarValue,
@@ -306,6 +307,8 @@ const coinGet = (prices, balances, asset, pAsset) => {
   const coinBalance = balances.find((coin) => coin.denom == asset.token.denom);
 
   if (!coinBalance || !coinBalance.amount) {
+    console.log(JSON.stringify({ asset, balances }, null, 2));
+    console.log({ coinBalance });
     throw new Error('not enough ' + pAsset.symbol);
   }
 
@@ -345,7 +348,7 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
       token: coinBalance,
       ratio: pAsset.ratio,
       symbol: pAsset.symbol,
-      amount: (coinBalance.amount + '').split('.')[0], // no decimals...,
+      amount: noDecimals(coinBalance.amount),
       enoughCoinsExist: true,
       totalDollarValue: totalDollarValue.toString()
     });
@@ -372,7 +375,7 @@ export const calculateMaxCoinsForPool = (prices, poolInfo, balances) => {
         token: otherBalance,
         ratio: jPAsset.ratio,
         symbol: jPAsset.symbol,
-        amount: (totalCoinsBDenom + '').split('.')[0], // no decimals...,
+        amount: noDecimals(totalCoinsBDenom),
         enoughCoinsExist
       });
     }

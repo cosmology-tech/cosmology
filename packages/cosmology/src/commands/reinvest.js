@@ -8,7 +8,10 @@ import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
-import { signAndBroadcastBatch, estimateOsmoFee } from '../messages/utils';
+import {
+  signAndBroadcastTilTxExists,
+  signAndBroadcast
+} from '../messages/utils';
 
 import {
   convertWeightsIntoCoins,
@@ -21,6 +24,10 @@ import {
   calculateAmountWithSlippage
 } from '../utils/osmo';
 import c from 'ansi-colors';
+import {
+  calculateMaxCoinsForPool,
+  calculateShareOutAmount
+} from '../utils/chain';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 // const restEndpoint = osmoChainConfig.apis.rest[0].address;
@@ -220,11 +227,10 @@ export default async (argv) => {
 
   // pools
 
-  const msgs = [];
-  let feeCalc;
-
   for (let i = 0; i < result.pools.length; i++) {
     const desired = result.pools[i].coins;
+
+    balances = await getAvailableBalance({ client, address, sell });
 
     const trades = getTradesRequiredToGetBalances({
       prices,
@@ -232,13 +238,7 @@ export default async (argv) => {
       desired
     });
 
-    let coinsToSubstract = trades.map((trade) => ({ ...trade.sell }));
-    coinsToSubstract = convertCoinsToDisplayValues({
-      prices,
-      coins: coinsToSubstract
-    });
     const swaps = await getSwaps({ pools, trades, pairs: pairs.data });
-    balances = substractCoins(balances, coinsToSubstract);
 
     console.log(`\nSWAPS for ${c.bold.magenta(result.pools[i].name)}`);
 
@@ -278,28 +278,150 @@ export default async (argv) => {
         tokenOutMinAmount: noDecimals(tokenOutMinAmount)
       });
 
-      feeCalc = fee;
-      msgs.push(msg);
+      if (!argv.verify) {
+        await signAndBroadcast({
+          client: stargateClient,
+          chainId: osmoChainConfig.chain_id,
+          address: osmoAddress,
+          msg,
+          fee,
+          memo: ''
+        });
+      } else {
+        const res = await signAndBroadcastTilTxExists({
+          client: stargateClient,
+          cosmos: client,
+          chainId: osmoChainConfig.chain_id,
+          address: osmoAddress,
+          msg,
+          fee,
+          memo: ''
+        });
+        const block = res?.tx_response?.height;
+        if (block) {
+          console.log(`success at block ${block}`);
+        } else {
+          console.log('no block found for tx! EXITING...');
+          process.exit(1);
+        }
+      }
+
+      //
     }
+    //
+
+    // JOIN
+    const poolId = result.pools[i].denom.split('/')[2];
+    const poolInfo = await client.getPoolPretty(poolId);
+    // balances = await getAvailableBalance({ client, address, sell });
+    const accountBalances = await client.getBalances(account.address);
+
+    // pass all balances in! NOT the scoped version... you need all your coins!
+    const coinsNeeded = calculateMaxCoinsForPool(
+      prices,
+      poolInfo,
+      accountBalances.result
+    );
+    const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
+
+    const { msg, fee } = messages.joinPool({
+      poolId,
+      sender: osmoAddress,
+      shareOutAmount,
+      tokenInMaxs: coinsNeeded.map((c) => {
+        return coin(c.amount, c.denom);
+      })
+    });
+
+    console.log(JSON.stringify(msg, null, 2));
+
+    const res = await signAndBroadcast({
+      client: stargateClient,
+      chainId: osmoChainConfig.chain_id,
+      address: osmoAddress,
+      msg,
+      fee,
+      memo: ''
+    });
+
+    if (res.transactionHash) {
+      console.log(`tx hash ${res.transactionHash}`);
+    } else {
+      console.log('no tx found!');
+    }
+
+    console.log('\n\n\n\n\ntx');
+    console.log(res);
+
+    // LOCK
+
+    // const accountBalances = await client.getBalances(account.address);
+
+    const gammTokens = accountBalances.result
+      .filter((a) => a.denom.startsWith('gamm'))
+      .map((obj) => {
+        return {
+          ...obj,
+          poolId: obj.denom.split('/')[2]
+        };
+      });
+
+    if (!gammTokens.length) {
+      return console.log('no gamm tokens to stake');
+    }
+
+    const coins = [gammTokens.find((gamm) => gamm.poolId === poolId)].map(
+      ({ denom, amount }) => ({ amount, denom })
+    );
+    const lockInfo = messages.lockTokens({
+      owner: account.address,
+      coins,
+      duration: '1209600000'
+    });
+
+    const lockRes = await signAndBroadcast({
+      client: stargateClient,
+      chainId: osmoChainConfig.chain_id,
+      address: osmoAddress,
+      msg: lockInfo.msg,
+      fee: lockInfo.fee,
+      memo: ''
+    });
+
+    if (lockRes.transactionHash) {
+      console.log(`tx hash ${lockRes.transactionHash}`);
+    } else {
+      console.log('no tx found!');
+    }
+    console.log('\n\n\n\n\ntx');
+    console.log(lockRes);
   }
 
-  console.log(JSON.stringify(msgs, null, 2));
+  // coins + staking
 
-  const gasUsed = await stargateClient.simulate(osmoAddress, msgs, '');
-  feeCalc.gas = new IntPretty(new Dec(gasUsed).mul(new Dec(1.3)))
-    .maxDecimals(0)
-    .locale(false)
-    .toString();
+  // const trades = getTradesRequiredToGetBalances({
+  //   prices,
+  //   balances,
+  //   desired: result.coins
+  // });
 
-  console.log(feeCalc);
+  // console.log('balances after coins');
+  // console.log(balances);
 
-  const res = await signAndBroadcastBatch({
-    client: stargateClient,
-    chainId: osmoChainConfig.chain_id,
-    address: osmoAddress,
-    msgs,
-    fee: feeCalc,
-    memo: ''
-  });
-  console.log(res);
+  // console.log(`\nSWAPS for ${c.magenta('STAKING')}`);
+  // trades.forEach(({ sell, buy, beliefValue }) => {
+  //   if (Number(beliefValue) == 0) return; // lol why
+  //   actions.push({
+  //     type: 'coin',
+  //     name: buy.symbol,
+  //     trade: { sell, buy, beliefValue }
+  //   });
+  //   console.log(
+  //     `TRADE ${c.bold.yellow(
+  //       sell.displayAmount + ''
+  //     )} ($${beliefValue}) worth of ${c.bold.red(
+  //       sell.symbol
+  //     )} for ${c.bold.green(buy.symbol)}`
+  //   );
+  // });
 };
