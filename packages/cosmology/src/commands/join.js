@@ -25,7 +25,7 @@ import {
 import { lookupRoutesForTrade } from '../utils/osmo/utils';
 import { getSigningOsmosisClient } from '../messages/utils';
 import { messages } from '../messages/messages';
-import { signAndBroadcastTilTxExists } from '../messages/utils';
+import { signAndBroadcast } from '../messages/utils';
 import { getPools } from '../utils/prompt';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
@@ -117,9 +117,8 @@ export default async (argv) => {
     signer
   });
 
-  const res = await signAndBroadcastTilTxExists({
+  const res = await signAndBroadcast({
     client: stargateClient,
-    cosmos: client,
     chainId: osmoChainConfig.chain_id,
     address: osmoAddress,
     msg,
@@ -127,13 +126,12 @@ export default async (argv) => {
     memo: ''
   });
 
-  const block = res?.tx_response?.height;
-
-  if (block) {
-    console.log(`success at block ${block}`);
+  if (res.transactionHash) {
+    console.log(`tx hash ${res.transactionHash}`);
   } else {
-    console.log('no block found for tx!');
+    console.log('no tx found!');
   }
+
   console.log('\n\n\n\n\ntx');
   console.log(res);
 };

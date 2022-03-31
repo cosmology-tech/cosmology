@@ -8,10 +8,7 @@ import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { getSigningOsmosisClient } from '../messages/utils';
 import { messages } from '../messages/messages';
-import {
-  signAndBroadcastTilTxExists,
-  signAndBroadcast
-} from '../messages/utils';
+import { signAndBroadcastBatch, estimateOsmoFee } from '../messages/utils';
 
 import {
   convertWeightsIntoCoins,
@@ -223,10 +220,11 @@ export default async (argv) => {
 
   // pools
 
+  const msgs = [];
+  let feeCalc;
+
   for (let i = 0; i < result.pools.length; i++) {
     const desired = result.pools[i].coins;
-
-    balances = await getAvailableBalance({ client, address, sell });
 
     const trades = getTradesRequiredToGetBalances({
       prices,
@@ -234,7 +232,13 @@ export default async (argv) => {
       desired
     });
 
+    let coinsToSubstract = trades.map((trade) => ({ ...trade.sell }));
+    coinsToSubstract = convertCoinsToDisplayValues({
+      prices,
+      coins: coinsToSubstract
+    });
     const swaps = await getSwaps({ pools, trades, pairs: pairs.data });
+    balances = substractCoins(balances, coinsToSubstract);
 
     console.log(`\nSWAPS for ${c.bold.magenta(result.pools[i].name)}`);
 
@@ -274,153 +278,28 @@ export default async (argv) => {
         tokenOutMinAmount: tokenOutMinAmount.split('.')[0] // no decimals...,
       });
 
-      if (!argv.verify) {
-        await signAndBroadcast({
-          client: stargateClient,
-          chainId: osmoChainConfig.chain_id,
-          address: osmoAddress,
-          msg,
-          fee,
-          memo: ''
-        });
-      } else {
-        const res = await signAndBroadcastTilTxExists({
-          client: stargateClient,
-          cosmos: client,
-          chainId: osmoChainConfig.chain_id,
-          address: osmoAddress,
-          msg,
-          fee,
-          memo: ''
-        });
-        const block = res?.tx_response?.height;
-        if (block) {
-          console.log(`success at block ${block}`);
-        } else {
-          console.log('no block found for tx! EXITING...');
-          process.exit(1);
-        }
-      }
-
-      //
+      feeCalc = fee;
+      msgs.push(msg);
     }
-    //
-
-    // DO JOIN AND LOCK HERE
-    // console.log('DO JOIN AND LOCK HERE');
-    // console.log(result.pools[i]);
-    // const poolInfo = await client.getPoolPretty(
-    // result.pools[i].denom.split('/')[2]
-    // );
-    // console.log(poolInfo);
-    // balances = await getAvailableBalance({ client, address, sell });
-
-    // 1. what is the value? given the ratio?
-    // then calculate the goods
-
-    // const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
-    //   const shareTotalValue = value * asset.ratio;
-    //   const totalDollarValue = baseUnitsToDollarValue(
-    //     prices,
-    //     asset.symbol,
-    //     asset.amount
-    //   );
-    //   const amount = dollarValueToDenomUnits(
-    //     prices,
-    //     asset.symbol,
-    //     shareTotalValue
-    //   );
-    //   return {
-    //     symbol: asset.symbol,
-    //     denom: asset.denom,
-    //     amount: (amount + '').split('.')[0], // no decimals...
-    //     displayAmount: baseUnitsToDisplayUnits(asset.symbol, amount),
-    //     shareTotalValue,
-    //     totalDollarValue,
-    //     unitRatio: amount / asset.amount
-    //   };
-    // });
-
-    // // MARKED AS NOT DRY (copied code from join.js)
-
-    // const shareOuts = [];
-
-    // for (let i = 0; i < poolInfo.poolAssets.length; i++) {
-    //   const tokenInAmount = new IntPretty(new Dec(coinsNeeded[i].amount));
-    //   const totalShare = new IntPretty(new Dec(poolInfo.totalShares.amount));
-    //   const totalShareExp = totalShare.moveDecimalPointLeft(18);
-    //   const poolAssetAmount = new IntPretty(
-    //     new Dec(poolInfo.poolAssets[i].token.amount)
-    //   );
-
-    //   const shareOutAmountObj = tokenInAmount
-    //     .mul(totalShareExp)
-    //     .quo(poolAssetAmount);
-    //   const shareOutAmount = shareOutAmountObj
-    //     .moveDecimalPointRight(18)
-    //     .trim(true)
-    //     .shrink(true)
-    //     .maxDecimals(6)
-    //     .locale(false)
-    //     .toString();
-
-    //   shareOuts.push(shareOutAmount);
-    // }
-
-    // const shareOutAmount = shareOuts.sort()[0];
-
-    // const { msg, fee } = messages.joinPool({
-    //   poolId: poolId + '', // string!
-    //   sender: account.address,
-    //   shareOutAmount,
-    //   tokenInMaxs: coinsNeeded.map((c) => {
-    //     return coin(c.amount, c.denom);
-    //   })
-    // });
-
-    // const res = await signAndBroadcastTilTxExists({
-    //   client: stargateClient,
-    //   cosmos: client,
-    //   chainId: osmoChainConfig.chain_id,
-    //   address,
-    //   msg,
-    //   fee,
-    //   memo: ''
-    // });
-    // const block = res?.tx_response?.height;
-
-    // if (block) {
-    //   console.log(`success at block ${block}`);
-    // } else {
-    //   console.log('no block found for tx!');
-    // }
   }
 
-  // coins + staking
+  console.log(JSON.stringify(msgs, null, 2));
 
-  // const trades = getTradesRequiredToGetBalances({
-  //   prices,
-  //   balances,
-  //   desired: result.coins
-  // });
+  const gasUsed = await stargateClient.simulate(osmoAddress, msgs, '');
+  feeCalc.gas = new IntPretty(new Dec(gasUsed).mul(new Dec(1.3)))
+    .maxDecimals(0)
+    .locale(false)
+    .toString();
 
-  // console.log('balances after coins');
-  // console.log(balances);
+  console.log(feeCalc);
 
-  // console.log(`\nSWAPS for ${c.magenta('STAKING')}`);
-  // trades.forEach(({ sell, buy, beliefValue }) => {
-  //   if (Number(beliefValue) == 0) return; // lol why
-  //   actions.push({
-  //     type: 'coin',
-  //     name: buy.symbol,
-  //     trade: { sell, buy, beliefValue }
-  //   });
-  //   console.log(
-  //     `TRADE ${c.bold.yellow(
-  //       sell.displayAmount + ''
-  //     )} ($${beliefValue}) worth of ${c.bold.red(
-  //       sell.symbol
-  //     )} for ${c.bold.green(buy.symbol)}`
-  //   );
-  // });
+  const res = await signAndBroadcastBatch({
+    client: stargateClient,
+    chainId: osmoChainConfig.chain_id,
+    address: osmoAddress,
+    msgs,
+    fee: feeCalc,
+    memo: ''
+  });
+  console.log(res);
 };

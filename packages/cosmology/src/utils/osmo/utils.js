@@ -208,8 +208,7 @@ export const osmoDenomToSymbol = (denom) => {
   const rec = osmosisAssets.find(({ base }) => base === denom);
   const symbol = rec?.symbol;
   if (!symbol) {
-    // console.log(`cannot find symbol ${denom} `);
-    return null;
+    return denom;
   }
   return symbol;
 };
