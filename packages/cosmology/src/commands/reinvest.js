@@ -1,36 +1,27 @@
 import { chains, assets } from '@cosmology/cosmos-registry';
 import { coin } from '@cosmjs/amino';
-import { CoinPretty, Dec, DecUtils, Int, IntPretty } from '@keplr-wallet/unit';
-
+import { Dec } from '@keplr-wallet/unit';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
 import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
-import {
-  signAndBroadcastTilTxExists,
-  signAndBroadcast
-} from '../messages/utils';
+import { signAndBroadcast } from '../messages/utils';
 
 import {
   convertWeightsIntoCoins,
   convertValidatorPricesToDenomPriceHash,
   osmoDenomToSymbol,
-  convertCoinsToDisplayValues,
   getTradesRequiredToGetBalances,
   getSwaps,
-  substractCoins,
+  calculateMaxCoinsForPool,
+  calculateShareOutAmount,
   calculateAmountWithSlippage
 } from '../utils/osmo';
 import c from 'ansi-colors';
-import {
-  calculateMaxCoinsForPool,
-  calculateShareOutAmount
-} from '../utils/chain';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
-// const restEndpoint = osmoChainConfig.apis.rest[0].address;
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
 const sleep = (milliseconds) =>
   new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -151,31 +142,6 @@ export default async (argv) => {
     )
     .sort();
 
-  // let { token } = await prompt(
-  //   [
-  //     {
-  //       type: 'checkbox',
-  //       name: 'token',
-  //       message: 'choose tokens to invest in',
-  //       choices: assetList
-  //     }
-  //   ],
-  //   argv
-  // );
-  // if (!Array.isArray(token)) token = [token];
-
-  // // WEIGHTS?
-
-  // const tokenWeightQuestions = token.map((t) => {
-  //   return {
-  //     type: 'number',
-  //     name: `tokenWeights[${t}][weight]`,
-  //     message: `enter weight for ${t}`
-  //   };
-  // });
-
-  // const { tokenWeights } = await prompt(tokenWeightQuestions, argv);
-
   const poolWeightQuestions = poolId.map((p) => {
     const str = `gamm/pool/${p}`;
     const name = poolList.find(({ value }) => value == p + '').name;
@@ -196,14 +162,6 @@ export default async (argv) => {
         weight
       };
     })
-    // add this back when you enable tokenWeights
-    // ...Object.keys(tokenWeights).map((symbol) => {
-    //   const weight = tokenWeights[symbol].weight;
-    //   return {
-    //     symbol,
-    //     weight
-    //   };
-    // })
   ];
 
   //
@@ -224,8 +182,6 @@ export default async (argv) => {
   const pools = await api.getPoolsPretty();
 
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
-
-  // console.log(result);
 
   // pools
 
@@ -288,15 +244,11 @@ export default async (argv) => {
         fee,
         memo: ''
       });
-
-      //
     }
-    //
 
     // JOIN
     const poolId = result.pools[i].denom.split('/')[2];
     const poolInfo = await client.getPoolPretty(poolId);
-    // balances = await getAvailableBalance({ client, address, sell });
 
     await sleep(1500);
     const accountBalances = await client.getBalances(account.address);
@@ -383,32 +335,4 @@ export default async (argv) => {
     console.log('\n\n\n\n\ntx');
     console.log(lockRes);
   }
-
-  // coins + staking
-
-  // const trades = getTradesRequiredToGetBalances({
-  //   prices,
-  //   balances,
-  //   desired: result.coins
-  // });
-
-  // console.log('balances after coins');
-  // console.log(balances);
-
-  // console.log(`\nSWAPS for ${c.magenta('STAKING')}`);
-  // trades.forEach(({ sell, buy, beliefValue }) => {
-  //   if (Number(beliefValue) == 0) return; // lol why
-  //   actions.push({
-  //     type: 'coin',
-  //     name: buy.symbol,
-  //     trade: { sell, buy, beliefValue }
-  //   });
-  //   console.log(
-  //     `TRADE ${c.bold.yellow(
-  //       sell.displayAmount + ''
-  //     )} ($${beliefValue}) worth of ${c.bold.red(
-  //       sell.symbol
-  //     )} for ${c.bold.green(buy.symbol)}`
-  //   );
-  // });
 };
