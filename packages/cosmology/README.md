@@ -4,7 +4,7 @@
 npm install -g cosmology
 ```
 
-Use `cosmology` to manage your daily rewards and investment strategies in the Cosmos. Make cryptocurrency trades, join liquidity pools, and stake rewards.
+Use `cosmology` to manage your daily rewards and investment strategies in Osmosis and the Cosmos. Make cryptocurrency trades, join liquidity pools, and stake rewards.
 
 ## usage
 
@@ -69,9 +69,21 @@ cosmology lock
 ### `delgate`
 
 ```
+cosmology delegate
+```
+
+Example with parameters
+
+```
 cosmology --keychain my-mnemonic-name --chainToken CMDX delegate
 ```
 ### `claim`
+
+```
+cosmology claim
+```
+
+Example with parameters
 
 ```
 cosmology --keychain my-mnemonic-name --chainToken CMDX claim
