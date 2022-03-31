@@ -5,9 +5,7 @@ import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
-import {
-  signAndBroadcast
-} from '../messages/utils';
+import { signAndBroadcast } from '../messages/utils';
 import {
   getSellableBalance,
   convertWeightsIntoCoins,
@@ -249,135 +247,134 @@ export default async (argv) => {
         tokenOutMinAmount: noDecimals(tokenOutMinAmount)
       });
 
-        await signAndBroadcast({
-          client: stargateClient,
-          chainId: osmoChainConfig.chain_id,
-          address: osmoAddress,
-          msg,
-          fee,
-          memo: ''
-        });
-      }
-
-      //
+      await signAndBroadcast({
+        client: stargateClient,
+        chainId: osmoChainConfig.chain_id,
+        address: osmoAddress,
+        msg,
+        fee,
+        memo: ''
+      });
     }
+
     //
-
-    // DO JOIN AND LOCK HERE
-    // console.log('DO JOIN AND LOCK HERE');
-    // console.log(result.pools[i]);
-    // const poolInfo = await client.getPoolPretty(
-    // result.pools[i].denom.split('/')[2]
-    // );
-    // console.log(poolInfo);
-    // balances = await getSellableBalance({ client, address, sell });
-
-    // 1. what is the value? given the ratio?
-    // then calculate the goods
-
-    // const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
-    //   const shareTotalValue = value * asset.ratio;
-    //   const totalDollarValue = baseUnitsToDollarValue(
-    //     prices,
-    //     asset.symbol,
-    //     asset.amount
-    //   );
-    //   const amount = dollarValueToDenomUnits(
-    //     prices,
-    //     asset.symbol,
-    //     shareTotalValue
-    //   );
-    //   return {
-    //     symbol: asset.symbol,
-    //     denom: asset.denom,
-    //     amount: noDecimals(amount),
-    //     displayAmount: baseUnitsToDisplayUnits(asset.symbol, amount),
-    //     shareTotalValue,
-    //     totalDollarValue,
-    //     unitRatio: amount / asset.amount
-    //   };
-    // });
-
-    // // MARKED AS NOT DRY (copied code from join.js)
-
-    // const shareOuts = [];
-
-    // for (let i = 0; i < poolInfo.poolAssets.length; i++) {
-    //   const tokenInAmount = new IntPretty(new Dec(coinsNeeded[i].amount));
-    //   const totalShare = new IntPretty(new Dec(poolInfo.totalShares.amount));
-    //   const totalShareExp = totalShare.moveDecimalPointLeft(18);
-    //   const poolAssetAmount = new IntPretty(
-    //     new Dec(poolInfo.poolAssets[i].token.amount)
-    //   );
-
-    //   const shareOutAmountObj = tokenInAmount
-    //     .mul(totalShareExp)
-    //     .quo(poolAssetAmount);
-    //   const shareOutAmount = shareOutAmountObj
-    //     .moveDecimalPointRight(18)
-    //     .trim(true)
-    //     .shrink(true)
-    //     .maxDecimals(6)
-    //     .locale(false)
-    //     .toString();
-
-    //   shareOuts.push(shareOutAmount);
-    // }
-
-    // const shareOutAmount = shareOuts.sort()[0];
-
-    // const { msg, fee } = messages.joinPool({
-    //   poolId: poolId + '', // string!
-    //   sender: account.address,
-    //   shareOutAmount,
-    //   tokenInMaxs: coinsNeeded.map((c) => {
-    //     return coin(c.amount, c.denom);
-    //   })
-    // });
-
-    // const res = await signAndBroadcastTilTxExists({
-    //   client: stargateClient,
-    //   cosmos: client,
-    //   chainId: osmoChainConfig.chain_id,
-    //   address,
-    //   msg,
-    //   fee,
-    //   memo: ''
-    // });
-    // const block = res?.tx_response?.height;
-
-    // if (block) {
-    //   console.log(`success at block ${block}`);
-    // } else {
-    //   console.log('no block found for tx!');
-    // }
   }
+  //
 
-  // coins + staking
+  // DO JOIN AND LOCK HERE
+  // console.log('DO JOIN AND LOCK HERE');
+  // console.log(result.pools[i]);
+  // const poolInfo = await client.getPoolPretty(
+  // result.pools[i].denom.split('/')[2]
+  // );
+  // console.log(poolInfo);
+  // balances = await getSellableBalance({ client, address, sell });
 
-  // const trades = getTradesRequiredToGetBalances({
-  //   prices,
-  //   balances,
-  //   desired: result.coins
-  // });
+  // 1. what is the value? given the ratio?
+  // then calculate the goods
 
-  // console.log('balances after coins');
-  // console.log(balances);
-
-  // console.log(`\nSWAPS for ${c.magenta('STAKING')}`);
-  // trades.forEach(({ sell, buy, beliefValue }) => {
-  //   if (Number(beliefValue) == 0) return; // lol why
-  //   actions.push({
-  //     type: 'coin',
-  //     name: buy.symbol,
-  //     trade: { sell, buy, beliefValue }
-  //   });
-  //   console.log(
-  //     `TRADE ${c.bold.yellow(
-  //       sell.displayAmount + ''
-  //     )} ($${beliefValue}) worth of ${c.bold.red(
-  //       sell.symbol
-  //     )} for ${c.bold.green(buy.symbol)}`
+  // const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
+  //   const shareTotalValue = value * asset.ratio;
+  //   const totalDollarValue = baseUnitsToDollarValue(
+  //     prices,
+  //     asset.symbol,
+  //     asset.amount
   //   );
+  //   const amount = dollarValueToDenomUnits(
+  //     prices,
+  //     asset.symbol,
+  //     shareTotalValue
+  //   );
+  //   return {
+  //     symbol: asset.symbol,
+  //     denom: asset.denom,
+  //     amount: noDecimals(amount),
+  //     displayAmount: baseUnitsToDisplayUnits(asset.symbol, amount),
+  //     shareTotalValue,
+  //     totalDollarValue,
+  //     unitRatio: amount / asset.amount
+  //   };
   // });
+
+  // // MARKED AS NOT DRY (copied code from join.js)
+
+  // const shareOuts = [];
+
+  // for (let i = 0; i < poolInfo.poolAssets.length; i++) {
+  //   const tokenInAmount = new IntPretty(new Dec(coinsNeeded[i].amount));
+  //   const totalShare = new IntPretty(new Dec(poolInfo.totalShares.amount));
+  //   const totalShareExp = totalShare.moveDecimalPointLeft(18);
+  //   const poolAssetAmount = new IntPretty(
+  //     new Dec(poolInfo.poolAssets[i].token.amount)
+  //   );
+
+  //   const shareOutAmountObj = tokenInAmount
+  //     .mul(totalShareExp)
+  //     .quo(poolAssetAmount);
+  //   const shareOutAmount = shareOutAmountObj
+  //     .moveDecimalPointRight(18)
+  //     .trim(true)
+  //     .shrink(true)
+  //     .maxDecimals(6)
+  //     .locale(false)
+  //     .toString();
+
+  //   shareOuts.push(shareOutAmount);
+  // }
+
+  // const shareOutAmount = shareOuts.sort()[0];
+
+  // const { msg, fee } = messages.joinPool({
+  //   poolId: poolId + '', // string!
+  //   sender: account.address,
+  //   shareOutAmount,
+  //   tokenInMaxs: coinsNeeded.map((c) => {
+  //     return coin(c.amount, c.denom);
+  //   })
+  // });
+
+  // const res = await signAndBroadcastTilTxExists({
+  //   client: stargateClient,
+  //   cosmos: client,
+  //   chainId: osmoChainConfig.chain_id,
+  //   address,
+  //   msg,
+  //   fee,
+  //   memo: ''
+  // });
+  // const block = res?.tx_response?.height;
+
+  // if (block) {
+  //   console.log(`success at block ${block}`);
+  // } else {
+  //   console.log('no block found for tx!');
+  // }
 };
+
+// coins + staking
+
+// const trades = getTradesRequiredToGetBalances({
+//   prices,
+//   balances,
+//   desired: result.coins
+// });
+
+// console.log('balances after coins');
+// console.log(balances);
+
+// console.log(`\nSWAPS for ${c.magenta('STAKING')}`);
+// trades.forEach(({ sell, buy, beliefValue }) => {
+//   if (Number(beliefValue) == 0) return; // lol why
+//   actions.push({
+//     type: 'coin',
+//     name: buy.symbol,
+//     trade: { sell, buy, beliefValue }
+//   });
+//   console.log(
+//     `TRADE ${c.bold.yellow(
+//       sell.displayAmount + ''
+//     )} ($${beliefValue}) worth of ${c.bold.red(
+//       sell.symbol
+//     )} for ${c.bold.green(buy.symbol)}`
+//   );
+// });
