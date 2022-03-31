@@ -11,6 +11,7 @@ import { defaultRegistryTypes } from '@cosmjs/stargate';
 import retry from 'retry';
 import { aminos } from './aminos';
 import { meta as metaInfo } from './meta';
+import { Dec, IntPretty } from '@keplr-wallet/unit';
 
 export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }) => {
   // registry
@@ -171,4 +172,8 @@ export const estimateOsmoFee = async (client, address, msgs, memo) => {
   const gasEstimation = await client.simulate(address, msgs, memo);
   const fee = calculateFee(Math.round(gasEstimation * 1.3), gasPrice);
   return fee;
+};
+
+export const noDecimals = (num) => {
+  return new IntPretty(new Dec(num)).maxDecimals(0).locale(false).toString();
 };

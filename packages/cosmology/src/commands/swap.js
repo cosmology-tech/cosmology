@@ -22,7 +22,7 @@ import {
   lookupRoutesForTrade,
   calculateAmountWithSlippage
 } from '../utils/osmo/utils';
-import { getSigningOsmosisClient } from '../messages/utils';
+import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
 import { signAndBroadcastTilTxExists } from '../messages/utils';
 import { Dec } from '@keplr-wallet/unit';
@@ -209,9 +209,9 @@ export default async (argv) => {
     tokenIn: {
       denom: tokenIn.denom,
       // TODO: use { coin } from '@cosmjs/amino' e.g. coin(num, denom)
-      amount: (tokenIn.amount + '').split('.')[0] // no decimals...
+      amount: noDecimals(tokenIn.amount)
     },
-    tokenOutMinAmount: (tokenOut.amount + '').split('.')[0] // no decimals...
+    tokenOutMinAmount: noDecimals(tokenOut.amount)
   });
 
   console.log(msg);
