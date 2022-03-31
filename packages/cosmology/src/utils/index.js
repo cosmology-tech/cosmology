@@ -3,3 +3,4 @@ export * from './prompt';
 export * from './helpers';
 export * from './wallet';
 export * from './prompts';
+export * from './osmo';
