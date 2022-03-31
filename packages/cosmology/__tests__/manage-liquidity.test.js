@@ -19,6 +19,7 @@ import {
   displayUnitsToDollarValue,
   calculateMaxCoinsForPool
 } from '../src/utils/chain';
+import { osmoDenomToSymbol } from '../main/utils/osmo/utils';
 
 const fakePools = [
   {
@@ -64,7 +65,66 @@ const fakePools = [
   }
 ];
 
+const myCases = [
+  {
+    name: 'simple',
+    balances: [
+      {
+        // "price": 36.63,
+        symbol: 'ATOM',
+        amount: 0.29
+      },
+      {
+        // "price": 1.81,
+        symbol: 'AKT',
+        amount: 3
+      }
+    ],
+    poolId: '4'
+  },
+  {
+    name: 'complex',
+    balances: [
+      {
+        // "price": 1.81,
+        symbol: 'AKT',
+        amount: 3
+      },
+      {
+        // "price": 0.366689,
+        symbol: 'CRO',
+        amount: 3
+      },
+      {
+        // "price": 9.1,
+        symbol: 'OSMO',
+        amount: 3
+      }
+    ],
+    poolId: '1010101'
+  }
+];
+
 const prices = convertGeckoPricesToDenomPriceHash(pricesFixture);
+cases(
+  'balances',
+  (opts) => {
+    const balances = symbolsAndDisplayValuesToCoinsArray(opts.balances);
+    expect(balances).toMatchSnapshot();
+    expect(
+      balances.map((coin) => {
+        const symbol = osmoDenomToSymbol(coin.denom);
+        return {
+          symbol,
+          value: baseUnitsToDollarValue(prices, symbol, coin.amount),
+          price: prices[coin.denom]
+        };
+      })
+    ).toMatchSnapshot();
+  },
+  myCases
+);
+
 cases(
   'joins',
   (opts) => {
@@ -73,45 +133,9 @@ cases(
       .concat(fakePools)
       .find((pool) => pool.id == opts.poolId);
     const poolInfo = prettyPool(pool, { includeDetails: true });
+    // console.log(JSON.stringify({ poolInfo }, null, 2));
     const info = calculateMaxCoinsForPool(prices, poolInfo, balances);
     expect(info).toMatchSnapshot();
   },
-  [
-    {
-      name: 'simple',
-      balances: [
-        {
-          symbol: 'ATOM',
-          amount: 0.29
-        },
-        {
-          symbol: 'AKT',
-          amount: 3
-        }
-      ],
-      poolId: '4'
-    },
-    {
-      name: 'complex',
-      balances: [
-        {
-          symbol: 'ATOM',
-          amount: 0.29
-        },
-        {
-          symbol: 'AKT',
-          amount: 3
-        },
-        {
-          symbol: 'CRO',
-          amount: 3
-        },
-        {
-          symbol: 'OSMO',
-          amount: 3
-        }
-      ],
-      poolId: '1010101'
-    }
-  ]
+  myCases
 );

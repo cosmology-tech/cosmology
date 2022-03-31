@@ -1,40 +1,22 @@
 import { chains } from '@cosmology/cosmos-registry';
 import { coin } from '@cosmjs/amino';
-import Long from 'long';
-import { CoinPretty, Dec, DecUtils, Int, IntPretty } from '@keplr-wallet/unit';
-
-import { assets } from '@cosmology/cosmos-registry';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '../clients/osmosis';
 import { OsmosisValidatorClient } from '../clients/validator';
-import {
-  baseUnitsToDisplayUnits,
-  baseUnitsToDollarValue,
-  dollarValueToDenomUnits,
-  calculateShareOutAmount,
-  calculateCoinsNeededInPoolForValue,
-  calculateMaxCoinsForPool
-} from '../utils/chain';
 import { osmoRestClient } from '../utils';
 import {
   convertValidatorPricesToDenomPriceHash,
-  osmoDenomToSymbol,
-  symbolToOsmoDenom
+  calculateShareOutAmount,
+  calculateCoinsNeededInPoolForValue,
+  calculateMaxCoinsForPool
 } from '../utils/osmo';
-
-import { lookupRoutesForTrade } from '../utils/osmo/utils';
 import { getSigningOsmosisClient } from '../messages/utils';
 import { messages } from '../messages/messages';
-import { signAndBroadcastTilTxExists } from '../messages/utils';
+import { signAndBroadcast } from '../messages/utils';
 import { getPools } from '../utils/prompt';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
-// const restEndpoint = osmoChainConfig.apis.rest[0].address;
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
-
-const assetList = assets
-  .reduce((m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)], [])
-  .sort();
 
 export default async (argv) => {
   const validator = new OsmosisValidatorClient();
@@ -117,9 +99,8 @@ export default async (argv) => {
     signer
   });
 
-  const res = await signAndBroadcastTilTxExists({
+  const res = await signAndBroadcast({
     client: stargateClient,
-    cosmos: client,
     chainId: osmoChainConfig.chain_id,
     address: osmoAddress,
     msg,
@@ -127,13 +108,12 @@ export default async (argv) => {
     memo: ''
   });
 
-  const block = res?.tx_response?.height;
-
-  if (block) {
-    console.log(`success at block ${block}`);
+  if (res.transactionHash) {
+    console.log(`tx hash ${res.transactionHash}`);
   } else {
-    console.log('no block found for tx!');
+    console.log('no tx found!');
   }
+
   console.log('\n\n\n\n\ntx');
   console.log(res);
 };

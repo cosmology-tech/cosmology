@@ -1,6 +1,7 @@
 import { assets } from '../assets';
 import { CosmosApiClient } from './cosmos';
 import autobind from 'class-autobind';
+import { Dec } from '@keplr-wallet/unit';
 
 const assetHashMap = assets.reduce((m, asset) => {
   m[asset.base] = asset;
@@ -98,11 +99,12 @@ export class OsmosisApiClient extends CosmosApiClient {
 }
 
 export const prettyPool = (pool, { includeDetails = false } = {}) => {
-  const totalWeight = Number(pool.totalWeight);
+  const totalWeight = new Dec(pool.totalWeight);
   const tokens = pool.poolAssets.map(({ token, weight }) => {
     const asset = assetHashMap?.[token.denom];
     const symbol = asset?.symbol ?? token.denom;
-    const ratio = Number(weight) / totalWeight;
+    const w = new Dec(weight);
+    const ratio = w.quo(totalWeight).toString();
     const obj = {
       symbol,
       denom: token.denom,
