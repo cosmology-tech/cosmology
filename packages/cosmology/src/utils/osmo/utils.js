@@ -2,8 +2,7 @@
 
 import { assets as osmosisAssets } from '../../assets';
 import { displayUnitsToDenomUnits, baseUnitsToDisplayUnits } from '../chain';
-import Long from 'long';
-import { Dec, Int, IntPretty } from '@keplr-wallet/unit';
+import { Dec, IntPretty } from '@keplr-wallet/unit';
 
 /**
  *
