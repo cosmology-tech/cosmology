@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.7](https://github.com/pyramation/cosmology/compare/@cosmology/cosmos-registry@0.0.6...@cosmology/cosmos-registry@0.0.7) (2022-04-01)
+
+**Note:** Version bump only for package @cosmology/cosmos-registry
+
+
+
+
+
 ## [0.0.6](https://github.com/pyramation/cosmology/compare/@cosmology/cosmos-registry@0.0.5...@cosmology/cosmos-registry@0.0.6) (2022-04-01)
 
 **Note:** Version bump only for package @cosmology/cosmos-registry
