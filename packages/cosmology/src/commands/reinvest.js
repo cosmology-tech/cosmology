@@ -10,7 +10,6 @@ import { signAndBroadcast } from '../messages/utils';
 import c from 'ansi-colors';
 import {
   convertWeightsIntoCoins,
-  convertValidatorPricesToDenomPriceHash,
   osmoDenomToSymbol,
   getTradesRequiredToGetBalances,
   getSwaps,
@@ -19,6 +18,7 @@ import {
   calculateAmountWithSlippage,
   getSellableBalance
 } from '../utils/osmo';
+import { getPricesFromCoinGecko } from '../clients/coingecko';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
@@ -148,9 +148,8 @@ export default async (argv) => {
 
   // get pricing and pools info...
 
-  const allTokens = await validator.getTokens();
   const pairs = await validator.getPairsSummary();
-  const prices = convertValidatorPricesToDenomPriceHash(allTokens);
+  const prices = await getPricesFromCoinGecko();
   const pools = await api.getPoolsPretty();
 
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
