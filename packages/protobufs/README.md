@@ -5,13 +5,13 @@ Typescript Protobuf Messages for Osmosis
 # usage
 
 ```sh
-npm install @pyramation/osmosis-protobufs
+npm install @cosmology/protobufs
 ```
 
 ## Example
 
 ```js
-import { MsgJoinPool } from '@pyramation/osmosis-protobufs';
+import { MsgJoinPool } from '@cosmology/protobufs';
 const msg = MsgJoinPool.fromPartial({
   poolId: '606',
   sender: 'osmo1f4vxvvvvvvvvvv3luuddddddddddcccccccccc',
