@@ -9,13 +9,13 @@ import { signAndBroadcast } from '../messages/utils';
 import {
   getSellableBalance,
   convertWeightsIntoCoins,
-  convertValidatorPricesToDenomPriceHash,
   osmoDenomToSymbol,
   getTradesRequiredToGetBalances,
   getSwaps,
   calculateAmountWithSlippage
 } from '../utils/osmo';
 import c from 'ansi-colors';
+import { getPricesFromCoinGecko } from '../clients/coingecko';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
@@ -185,9 +185,8 @@ export default async (argv) => {
 
   // get pricing and pools info...
 
-  const allTokens = await validator.getTokens();
   const pairs = await validator.getPairsSummary();
-  const prices = convertValidatorPricesToDenomPriceHash(allTokens);
+  const prices = await getPricesFromCoinGecko();
   const pools = await api.getPoolsPretty();
 
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
@@ -247,7 +246,7 @@ export default async (argv) => {
         tokenOutMinAmount: noDecimals(tokenOutMinAmount)
       });
 
-      await signAndBroadcast({
+      const res = await signAndBroadcast({
         client: stargateClient,
         chainId: osmoChainConfig.chain_id,
         address: osmoAddress,
@@ -255,6 +254,15 @@ export default async (argv) => {
         fee,
         memo: ''
       });
+
+      if (res.code == 0) {
+        console.log(`success at height: ${res.height}`);
+        console.log(`TX: ${res.transactionHash}`);
+      } else {
+        console.log('TX failed:');
+        console.log(res.rawLog);
+        process.exit(1);
+      }
     }
 
     //
