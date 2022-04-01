@@ -10,25 +10,6 @@ yarn test:watch
 ```
 
 hit "p" and then type a search string to scope to your test, e.g., "keplr.bank"
-
-## next server
-
-if you need to edit `cosmology` and view changes in next
-
-```sh
-cd ./packages/next
-yarn dev
-```
-
-## next JS flow
-
-if you need to edit `cosmology` and view changes in next
-
-```sh
-cd ./packages/cosmology
-MODULE=true yarn build
-```
-
 ## CLI
 
 if you need to edit the CLI
