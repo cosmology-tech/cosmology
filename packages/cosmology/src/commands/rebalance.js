@@ -109,6 +109,18 @@ export default async (argv) => {
   if (!Array.isArray(poolId)) poolId = [poolId];
   poolId = poolId.map((id) => id + ''); // toString
 
+  const { slippage } = await prompt(
+    [
+      {
+        type: 'number',
+        name: 'slippage',
+        message: `how much slippage %`,
+        default: 1.5
+      }
+    ],
+    argv
+  );
+
   // WHICH TOKENS TO INVEST?
 
   // const assetList = assets
@@ -230,7 +242,6 @@ export default async (argv) => {
         .toLowerCase();
       console.log(c.gray(`  routes: ${r}`));
 
-      const slippage = 1;
       const tokenOutMinAmount = calculateAmountWithSlippage(
         buy.amount,
         slippage
@@ -258,6 +269,7 @@ export default async (argv) => {
       if (res.code == 0) {
         console.log(`success at height: ${res.height}`);
         console.log(`TX: ${res.transactionHash}`);
+        console.log(`\n`);
       } else {
         console.log('TX failed:');
         console.log(res.rawLog);

@@ -114,6 +114,18 @@ export default async (argv) => {
   if (!Array.isArray(poolId)) poolId = [poolId];
   poolId = poolId.map((id) => id + ''); // toString
 
+  const { slippage } = await prompt(
+    [
+      {
+        type: 'number',
+        name: 'slippage',
+        message: `how much slippage %`,
+        default: 1.5
+      }
+    ],
+    argv
+  );
+
   const poolWeightQuestions = poolId.map((p) => {
     const str = `gamm/pool/${p}`;
     const name = poolList.find(({ value }) => value == p + '').name;
@@ -191,7 +203,6 @@ export default async (argv) => {
         .toLowerCase();
       console.log(c.gray(`  routes: ${r}`));
 
-      const slippage = 1;
       const tokenOutMinAmount = calculateAmountWithSlippage(
         buy.amount,
         slippage
