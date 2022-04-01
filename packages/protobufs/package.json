@@ -22,7 +22,7 @@
     "build:proto": "source ./bin/run-proto.sh",
     "proto:build": "source ./bin/run-proto.sh",
     "proto:gen": "cross-env NODE_ENV=development babel-node bin/gen-proto.js",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "dev": "cross-env NODE_ENV=development babel-node src/index",
     "watch": "cross-env NODE_ENV=development babel-watch src/index",
     "lint": "eslint src --fix",
