@@ -1,24 +1,15 @@
 // @ts-nocheck
 import pricesFixture from '../__fixtures__/coingecko/api/v3/simple/price/data.json';
-import pairsFixture from '../__fixtures__/validator/pairs/v1/summary/data.json';
 import poolsFixture from '../__fixtures__/lcd/osmosis/gamm/v1beta1/pools/data.json';
 import cases from 'jest-in-case';
 import {
   convertGeckoPricesToDenomPriceHash,
   symbolsAndDisplayValuesToCoinsArray,
-  getTradesRequiredToGetBalances
+  calculateMaxCoinsForPool
 } from '../src/utils/osmo';
-import { CoinPretty, Dec, DecUtils, Int, IntPretty } from '@keplr-wallet/unit';
 
 import { prettyPool } from '../src';
-import {
-  baseUnitsToDollarValue,
-  dollarValueToDenomUnits,
-  dollarValueToDisplayUnits,
-  calculateShareOutAmount,
-  displayUnitsToDollarValue,
-  calculateMaxCoinsForPool
-} from '../src/utils/chain';
+import { baseUnitsToDollarValue } from '../src/utils/chain';
 import { osmoDenomToSymbol } from '../main/utils/osmo/utils';
 
 const fakePools = [
