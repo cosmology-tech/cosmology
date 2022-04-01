@@ -1,5 +1,5 @@
 {
-  "version": "0.0.0-yolo.34",
+  "version": "0.0.0-yolo.35",
   "name": "next",
   "private": true,
   "scripts": {
@@ -30,7 +30,7 @@
     "@keplr-wallet/types": "0.9.12",
     "@keplr-wallet/unit": "0.9.12",
     "aos": "^2.3.4",
-    "cosmology": "^0.0.24",
+    "cosmology": "^0.0.25",
     "font-awesome": "^4.7.0",
     "next": "12.1.0",
     "react": "17.0.2",
