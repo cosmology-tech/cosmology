@@ -207,7 +207,7 @@ export default async (argv) => {
         tokenOutMinAmount: noDecimals(tokenOutMinAmount)
       });
 
-      await signAndBroadcast({
+      const res = await signAndBroadcast({
         client: stargateClient,
         chainId: osmoChainConfig.chain_id,
         address: osmoAddress,
@@ -215,6 +215,16 @@ export default async (argv) => {
         fee,
         memo: ''
       });
+
+      if (res.code == 0) {
+        console.log(`success at height: ${res.height}`);
+        console.log(`TX: ${res.transactionHash}`);
+        console.log(`\n`);
+      } else {
+        console.log('TX failed:');
+        console.log(res.rawLog);
+        process.exit(1);
+      }
     }
 
     // JOIN
