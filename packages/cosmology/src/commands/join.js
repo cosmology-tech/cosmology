@@ -5,7 +5,6 @@ import { OsmosisApiClient } from '../clients/osmosis';
 import { OsmosisValidatorClient } from '../clients/validator';
 import { osmoRestClient } from '../utils';
 import {
-  convertValidatorPricesToDenomPriceHash,
   calculateShareOutAmount,
   calculateCoinsNeededInPoolForValue,
   calculateMaxCoinsForPool
@@ -14,6 +13,7 @@ import { getSigningOsmosisClient } from '../messages/utils';
 import { messages } from '../messages/messages';
 import { signAndBroadcast } from '../messages/utils';
 import { getPools } from '../utils/prompt';
+import { getPricesFromCoinGecko } from '../clients/coingecko';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
@@ -27,9 +27,7 @@ export default async (argv) => {
   const accountBalances = await client.getBalances(account.address);
   const balances = accountBalances.result;
   // get pricing and pools info...
-  const allTokens = await validator.getTokens();
-  const pairs = await validator.getPairsSummary();
-  const prices = convertValidatorPricesToDenomPriceHash(allTokens);
+  const prices = await getPricesFromCoinGecko();
   //   const pools = await api.getPoolsPretty();
 
   const poolList = await getPools(validator, argv);
