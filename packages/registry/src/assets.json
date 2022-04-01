@@ -259,7 +259,8 @@
         "symbol": "CRBRUS",
         "logo_URIs": {
           "png": "https://cerberus-chain.s3.us-east-2.amazonaws.com/main/logo.png"
-        }
+        },
+        "coingecko_id": "cerberus"
       }
     ]
   },
@@ -340,7 +341,8 @@
         "symbol": "CMDX",
         "logo_URIs": {
           "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/cmdx.png"
-        }
+        },
+        "coingecko_id": "comdex"
       }
     ]
   },
@@ -480,7 +482,8 @@
         "symbol": "DSM",
         "logo_URIs": {
           "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/desmos/images/dsm.png"
-        }
+        },
+        "coingecko_id": "desmos"
       }
     ]
   },
@@ -506,7 +509,8 @@
         "symbol": "DIG",
         "logo_URIs": {
           "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/dig.png"
-        }
+        },
+        "coingecko_id": "dig-chain"
       }
     ]
   },
@@ -1528,7 +1532,8 @@
         "symbol": "UMEE",
         "logo_URIs": {
           "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/umee/images/umee.png"
-        }
+        },
+        "coingecko_id": "umee"
       }
     ]
   },
