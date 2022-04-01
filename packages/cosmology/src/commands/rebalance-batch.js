@@ -121,7 +121,8 @@ export default async (argv) => {
     return {
       type: 'number',
       name: `poolWeights[${str}][weight]`,
-      message: `enter weight for pool ${name} (${p})`
+      message: `enter weight for pool ${name} (${p})`,
+      default: 1
     };
   });
 
