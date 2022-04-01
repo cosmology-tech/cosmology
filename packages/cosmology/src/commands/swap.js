@@ -10,11 +10,7 @@ import {
   getPrice
 } from '../utils/chain';
 import { osmoRestClient } from '../utils';
-import {
-  convertValidatorPricesToDenomPriceHash,
-  osmoDenomToSymbol,
-  symbolToOsmoDenom
-} from '../utils/osmo';
+import { osmoDenomToSymbol, symbolToOsmoDenom } from '../utils/osmo';
 
 import {
   lookupRoutesForTrade,
@@ -23,6 +19,7 @@ import {
 import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
 import { signAndBroadcast } from '../messages/utils';
+import { getPricesFromCoinGecko } from '../clients/coingecko';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
@@ -92,9 +89,9 @@ export default async (argv) => {
   });
 
   // get pricing and pools info...
-  const allTokens = await validator.getTokens();
   const pairs = await validator.getPairsSummary();
-  const prices = convertValidatorPricesToDenomPriceHash(allTokens);
+  const prices = await getPricesFromCoinGecko();
+
   const pools = await api.getPoolsPretty();
 
   const usdValue = baseUnitsToDollarValue(prices, sell, tokenInBal.amount);

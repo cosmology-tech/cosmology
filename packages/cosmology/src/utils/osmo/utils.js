@@ -198,9 +198,9 @@ export const getSymbolForCoinGeckoId = (geckoId) => {
     ({ coingecko_id }) => coingecko_id === geckoId
   );
   const symbol = rec?.symbol;
-  if (!symbol) {
-    console.log(`WARNING: cannot find coin for geckoId: ${geckoId}`);
-  }
+  // if (!symbol) {
+  // console.log(`WARNING: cannot find coin for geckoId: ${geckoId}`);
+  // }
   return symbol;
 };
 
@@ -252,9 +252,9 @@ export class OsmosisToken {
     }
     if (denom) {
       this.denom = denom;
-      this.symbol = symbolToOsmoDenom(denom);
+      this.symbol = osmoDenomToSymbol(denom);
     }
-    this.amount = '' + displayUnitsToDenomUnits(this.symbol, amount);
+    this.amount = displayUnitsToDenomUnits(this.symbol, amount);
   }
   /**
    * @returns {Coin}
