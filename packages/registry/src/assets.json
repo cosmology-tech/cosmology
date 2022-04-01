@@ -239,6 +239,32 @@
   },
   {
     "$schema": "../assetlist.schema.json",
+    "chain_id": "cerberus-chain-1",
+    "assets": [
+      {
+        "description": "The native token of Cerberus Chain",
+        "denom_units": [
+          {
+            "denom": "ucrbrus",
+            "exponent": 0
+          },
+          {
+            "denom": "crbrus",
+            "exponent": 6
+          }
+        ],
+        "base": "ucrbrus",
+        "name": "Cerberus",
+        "display": "crbrus",
+        "symbol": "CRBRUS",
+        "logo_URIs": {
+          "png": "https://cerberus-chain.s3.us-east-2.amazonaws.com/main/logo.png"
+        }
+      }
+    ]
+  },
+  {
+    "$schema": "../assetlist.schema.json",
     "chain_id": "cheqd-mainnet-1",
     "assets": [
       {
@@ -1111,6 +1137,32 @@
   },
   {
     "$schema": "../assetlist.schema.json",
+    "chain_id": "titan-1",
+    "assets": [
+      {
+        "description": "Native token of Rizon Chain",
+        "denom_units": [
+          {
+            "denom": "uatolo",
+            "exponent": 0
+          },
+          {
+            "denom": "atolo",
+            "exponent": 6
+          }
+        ],
+        "base": "uatolo",
+        "name": "Rizon Chain",
+        "display": "atolo",
+        "symbol": "ATOLO",
+        "logo_URIs": {
+          "svg": "https://raw.githubusercontent.com/rizon-world/rizon-assets/master/logo/symbol%26favicon.svg"
+        }
+      }
+    ]
+  },
+  {
+    "$schema": "../assetlist.schema.json",
     "chain_id": "secret-4",
     "assets": [
       {
@@ -1208,7 +1260,7 @@
         "display": "rowan",
         "symbol": "ROWAN",
         "logo_URIs": {
-          "svg": "https://raw.githubusercontent.com/Sifchain/sifchain-ui/develop/ui/app/public/images/tokens/ROWAN.svg"
+          "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/sifchain/images/rowan.svg"
         },
         "coingecko_id": "sifchain"
       }
@@ -1423,6 +1475,33 @@
         "symbol": "STATE",
         "logo_URIs": {
           "jpeg": "https://app.stateset.zone/stateset.jpeg"
+        }
+      }
+    ]
+  },
+  {
+    "$schema": "../assetlist.schema.json",
+    "chain_id": "theta-testnet-001",
+    "assets": [
+      {
+        "description": "The native staking and governance token of the Theta testnet version of the Cosmos Hub.",
+        "denom_units": [
+          {
+            "denom": "uatom",
+            "exponent": 0
+          },
+          {
+            "denom": "atom",
+            "exponent": 6
+          }
+        ],
+        "base": "uatom",
+        "name": "Cosmos",
+        "display": "atom",
+        "symbol": "ATOM",
+        "logo_URIs": {
+          "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/atom.png",
+          "svg": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/atom.svg"
         }
       }
     ]
