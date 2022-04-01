@@ -1,5 +1,5 @@
 {
-  "version": "0.0.0-yolo.32",
+  "version": "0.0.0-yolo.33",
   "name": "next",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@cosmjs/launchpad": "0.27.1",
     "@cosmjs/stargate": "0.27.1",
-    "@cosmology/cosmos-registry": "^0.0.4",
+    "@cosmology/cosmos-registry": "^0.0.5",
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -30,7 +30,7 @@
     "@keplr-wallet/types": "0.9.12",
     "@keplr-wallet/unit": "0.9.12",
     "aos": "^2.3.4",
-    "cosmology": "^0.0.22",
+    "cosmology": "^0.0.23",
     "font-awesome": "^4.7.0",
     "next": "12.1.0",
     "react": "17.0.2",
