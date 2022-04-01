@@ -1,3 +1,4 @@
+import { coins } from '@cosmjs/amino';
 import { chains, assets } from '@cosmology/cosmos-registry';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { prompt } from '../utils';
@@ -155,7 +156,6 @@ export default async (argv) => {
   // pools
 
   const msgs = [];
-  let feeCalc;
 
   for (let i = 0; i < result.pools.length; i++) {
     const desired = result.pools[i].coins;
@@ -202,7 +202,7 @@ export default async (argv) => {
         slippage
       );
 
-      const { msg, fee } = messages.swapExactAmountIn({
+      const { msg } = messages.swapExactAmountIn({
         sender: osmoAddress,
         routes,
         tokenIn: {
@@ -212,27 +212,28 @@ export default async (argv) => {
         tokenOutMinAmount: noDecimals(tokenOutMinAmount)
       });
 
-      feeCalc = fee;
       msgs.push(msg);
     }
   }
 
   console.log(JSON.stringify(msgs, null, 2));
 
-  const gasUsed = await stargateClient.simulate(osmoAddress, msgs, '');
-  feeCalc.gas = new IntPretty(new Dec(gasUsed).mul(new Dec(1.3)))
-    .maxDecimals(0)
-    .locale(false)
-    .toString();
-
-  console.log(feeCalc);
+  const memo = '';
+  const gasEstimated = await stargateClient.simulate(address, msgs, memo);
+  const fee = {
+    amount: coins(0, 'uosmo'),
+    gas: new IntPretty(new Dec(gasEstimated).mul(new Dec(1.3)))
+      .maxDecimals(0)
+      .locale(false)
+      .toString()
+  };
 
   const res = await signAndBroadcastBatch({
     client: stargateClient,
     chainId: osmoChainConfig.chain_id,
     address: osmoAddress,
     msgs,
-    fee: feeCalc,
+    fee,
     memo: ''
   });
   console.log(res);
