@@ -1,6 +1,6 @@
 {
   "name": "cosmology",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "cosmology",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/pyramation/cosmology/tree/master/packages/cosmology#readme",
@@ -74,7 +74,7 @@
     "@cosmjs/launchpad": "0.27.1",
     "@cosmjs/proto-signing": "0.27.1",
     "@cosmjs/stargate": "0.27.1",
-    "@cosmology/cosmos-registry": "^0.0.5",
+    "@cosmology/cosmos-registry": "^0.0.6",
     "@keplr-wallet/types": "0.9.12",
     "@keplr-wallet/unit": "0.9.12",
     "ansi-colors": "^4.1.1",
