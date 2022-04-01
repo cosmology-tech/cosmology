@@ -1,6 +1,6 @@
 {
   "name": "@cosmology/protobufs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "osmosis protobufs",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/pyramation/cosmology/tree/master/packages/protobufs#readme",
