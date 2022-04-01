@@ -276,8 +276,6 @@ export default async (argv) => {
         process.exit(1);
       }
     }
-
-    //
   }
   //
 
