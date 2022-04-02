@@ -2,20 +2,15 @@ import { osmoDenomToSymbol, symbolToOsmoDenom } from '..';
 import { prompt } from '../utils/prompt';
 import { CosmosApiClient } from '../clients/cosmos';
 import {
-  baseUnitsToDisplayUnits,
-  displayUnitsToDenomUnits,
-  getCosmosAssetInfoByDenom,
   getWalletFromMnemonic,
-  getBaseAndDisplayUnitsByDenom,
   baseUnitsToDisplayUnitsByDenom,
-  getCosmosAssetInfo
+  getCosmosAssetInfo,
+  gasEstimation
 } from '../utils';
 import { promptChain, promptMnemonic } from '../utils/prompt';
 import {
   SigningStargateClient,
-  calculateFee,
-  assertIsDeliverTxSuccess,
-  GasPrice
+  assertIsDeliverTxSuccess
 } from '@cosmjs/stargate';
 import { messages } from '../messages/native';
 import { Dec } from '@keplr-wallet/unit';
@@ -80,12 +75,6 @@ export default async (argv) => {
     signer
   );
 
-  const getFee = (gas, gasPrice) => {
-    if (!gas) gas = 200_000;
-    if (!gasPrice) gasPrice = GasPrice.fromString(defaultGasPrice);
-    return calculateFee(gas, gasPrice);
-  };
-
   const [mainAccount] = await signer.getAccounts();
 
   const { address } = mainAccount;
@@ -130,44 +119,20 @@ export default async (argv) => {
     return;
   }
 
-  const simulate = async (address, msgs, memo, modifier) => {
-    const estimate = await stargateClient.simulate(address, msgs, memo);
-    // console.log({ estimate })
-    return parseInt(estimate * (modifier || 1.5));
-  };
-
-  const getGasPrice = async (address, msgs, memo, modifier) => {
-    let fee;
-    let gas;
-    try {
-      gas = await simulate(address, msgs, memo);
-      fee = getFee(gas);
-      //   fee = getFee(gas, gasPrice)
-      return fee;
-      //   const feeAmount = Number(fee.amount[0].amount);
-      //   return feeAmount;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fee = await getGasPrice(address, messagesToClaim);
-
-  if (denom === 'uhuahua') {
-    // literally wtf (needs a 10x + 1)
-    fee.amount[0].amount = `${fee.amount[0].amount}1`;
-  }
-  if (denom === 'ucmdx') {
-    // literally wtf (needs a 10x + 1)
-    fee.amount[0].amount = `${fee.amount[0].amount}1`;
-  }
+  const fee = await gasEstimation(
+    denom,
+    stargateClient,
+    address,
+    messagesToClaim,
+    '',
+    1.3
+  );
 
   if (argv.simulate) {
     console.log(JSON.stringify(messagesToClaim, null, 2));
     console.log(JSON.stringify(fee, null, 2));
     return;
   }
-
   if (totalClaimable.gte(new Dec(minAmount))) {
     console.log(
       `${totalClaimable} ${argv.chainToken} available, starting claim process...`
@@ -176,10 +141,11 @@ export default async (argv) => {
       (result) => {
         try {
           assertIsDeliverTxSuccess(result);
+          // TODO needs mintscan per chain
+          // printOsmoTransactionResponse(result);
           stargateClient.disconnect();
-          console.log('⚛️');
           console.log(
-            `success in claiming ${totalClaimable.toString()} ${
+            `⚛️  success in claiming ${totalClaimable.toString()} ${
               argv.chainToken
             } rewards`
           );
