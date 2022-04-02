@@ -26,16 +26,15 @@
     "url": "https://github.com/pyramation/cosmology"
   },
   "scripts": {
-    "build:main": "cross-env BABEL_ENV=production babel src --out-dir main --delete-dir-on-start",
-    "build:module": "cross-env MODULE=true babel src --out-dir module --delete-dir-on-start",
+    "build:main": "cross-env BABEL_ENV=production babel src --out-dir main --delete-dir-on-start --extensions \".tsx,.ts,.js\"",
+    "build:module": "cross-env MODULE=true babel src --out-dir module --delete-dir-on-start  --extensions \".tsx,.ts,.js\"",
+    "build:commands": "cross-env NODE_ENV=development node ./bin/build.js",
     "build": "npm run build:module && npm run build:main",
     "prepare": "npm run build",
     "lint": "eslint src --fix",
-    "dev": "cross-env NODE_ENV=development babel-node src/cosmology",
-    "mytest": "cross-env NODE_ENV=development babel-node src/my-test",
-    "watch": "cross-env NODE_ENV=development babel-watch src/cosmology",
-    "file": "cross-env NODE_ENV=development babel-watch src/file",
-    "make:commands": "cross-env NODE_ENV=development node ./bin/build.js",
+    "dev": "cross-env NODE_ENV=development babel-node src/cosmology --extensions \".tsx,.ts,.js\"",
+    "watch": "cross-env NODE_ENV=development babel-watch src/cosmology --extensions \".tsx,.ts,.js\"",
+    "file": "cross-env NODE_ENV=development babel-watch src/file --extensions \".tsx,.ts,.js\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
@@ -52,6 +51,7 @@
     "@babel/plugin-proposal-export-default-from": "7.16.7",
     "@babel/plugin-proposal-object-rest-spread": "7.17.3",
     "@babel/plugin-transform-runtime": "7.17.0",
+    "@babel/preset-typescript": "7.16.7",
     "@babel/preset-env": "7.16.11",
     "@types/jest": "^27.4.0",
     "babel-core": "7.0.0-bridge.0",
@@ -90,7 +90,6 @@
     "protobufjs": "6.11.2",
     "retry": "0.13.1",
     "secrets.js-grempe": "2.0.0",
-    "tiny-async-pool": "^1.2.0"
-  },
-  "gitHead": "8bb6eaf72e6ca2996663df72a830912d0ebbb0e7"
+    "typescript": "^4.6.2"
+  }
 }
