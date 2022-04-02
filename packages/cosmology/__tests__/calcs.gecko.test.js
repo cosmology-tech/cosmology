@@ -4,9 +4,6 @@ import validatorPricesFixture from '../__fixtures__/validator/tokens/v2/all/data
 import bankFixture from '../__fixtures__/lcd/bank/balances/osmo1x/data.json';
 import poolsFixture from '../__fixtures__/lcd/osmosis/gamm/v1beta1/pools/data.json';
 import lockedPoolsFixture from '../__fixtures__/lcd/osmosis/lockup/v1beta1/account_locked_coins/osmo1/data.json';
-import { Token } from '../src/model/Token';
-import { assets, chains } from '@cosmology/cosmos-registry';
-import { assets as osmosisAssets } from '../src/assets';
 import cases from 'jest-in-case';
 import {
   displayUnitsToDenomUnits,

@@ -4,13 +4,16 @@ const glob = require('glob').sync;
 const Case = require('case');
 const srcDir = path.resolve(`${__dirname}/../src/commands`);
 
-const paths = glob(`${srcDir}/**.js`).map((file) => {
-  const [, name] = file.match(/\/(.*)\.js$/);
+const paths = glob(`${srcDir}/**.[j|t]s`).map((file) => {
+  const [, name] = file.match(/\/(.*)\.[j|t]s$/);
   return {
     name: path.basename(name),
     param: Case.kebab(path.basename(name)),
     safe: Case.snake(path.basename(name)),
-    path: file.replace(srcDir, './commands').replace(/\.js$/, '')
+    path: file
+      .replace(srcDir, './commands')
+      .replace(/\.js$/, '')
+      .replace(/\.ts$/, '')
   };
 });
 
@@ -24,10 +27,10 @@ const out = `
 ${imports}
 const Commands = {};
 ${paths
-    .map((a) => {
-      return `Commands['${a.param}'] = _${a.safe};`;
-    })
-    .join('\n')}
+  .map((a) => {
+    return `Commands['${a.param}'] = _${a.safe};`;
+  })
+  .join('\n')}
 
   export { Commands }; 
 
