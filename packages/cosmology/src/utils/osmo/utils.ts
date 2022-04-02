@@ -9,22 +9,27 @@ import {
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { noDecimals } from '../../messages';
 import {
-  CoinWeight,
-  CoinSymbol,
-  Trade,
-  DisplayCoin,
-  CoinGeckoToken,
-  ValidatorToken,
-  PoolAllocation,
-  LockedPool,
-  CoinValue,
-  Pool,
-  PriceHash,
   Coin,
+  CoinDenom,
+  CoinGeckoToken,
   CoinGeckoUSDResponse,
-  LockedPoolDisplay
+  CoinSymbol,
+  CoinValue,
+  CoinWeight,
+  DisplayCoin,
+  LockedPool,
+  LockedPoolDisplay,
+  Pair,
+  Pool,
+  PoolAllocation,
+  PoolDisplay,
+  PoolPretty,
+  PriceHash,
+  Swap,
+  Trade,
+  TradeRoute,
+  ValidatorToken,
 } from '../../types';
-import { CoinDenom } from '../../clients';
 
 export const getCoinGeckoIdForSymbol = (token: CoinSymbol): CoinGeckoToken => {
   const rec = osmosisAssets.find(({ symbol }) => symbol === token);
@@ -206,25 +211,17 @@ export const convertValidatorPricesToDenomPriceHash = (tokens: ValidatorToken[])
   }, {});
 };
 
-export const getPoolByGammName = (pools: Pool[], gammId: string): Pool => {
+export const getPoolByGammName = (pools: PoolDisplay[], gammId: string): PoolDisplay => {
   return pools.find(({ totalShares: { denom } }) => denom === gammId);
 };
 
-export const getPoolInfo = ({ prices, pools, poolId }: { prices: PriceHash, pools: Pool[], poolId: string }): Pool => {
+export const getPoolInfo = ({ prices, pools, poolId }: { prices: PriceHash, pools: Pool[], poolId: string }): PoolDisplay => {
   const pool = pools.find(({ id }) => id === poolId);
   if (!pool) throw new Error('cannot find pool');
   return convertPoolToDisplayValues({ prices, pool });
 };
 
-/**
- *
- * @param {object} param0
- * @param {Pool[]} param0.pools
- * @param {LockedPool[]} param0.lockedPools
- * @returns {LockedPoolDisplay[]}
- */
-
-export const getUserPools = ({ pools, lockedPools }: { pools: Pool[], lockedPools: LockedPool[] }): LockedPoolDisplay[] => {
+export const getUserPools = ({ pools, lockedPools }: { pools: PoolDisplay[], lockedPools: LockedPool[] }): LockedPoolDisplay[] => {
   return lockedPools
     .map(({ denom, amount }) => {
       const pool = getPoolByGammName(pools, denom);
@@ -252,10 +249,12 @@ export const getUserPools = ({ pools, lockedPools }: { pools: Pool[], lockedPool
     .filter(Boolean);
 };
 
-export const convertPoolToDisplayValues = ({ prices, pool }: { prices: PriceHash, pool: Pool }) => {
+export const convertPoolToDisplayValues = ({ prices, pool }: { prices: PriceHash, pool: Pool }): PoolDisplay => {
   const { totalShares, poolAssets } = pool;
+
+  const enrichedPool: PoolDisplay = { ...pool };
   let totalValue = new Dec(0);
-  pool.displayPoolAssets = poolAssets
+  enrichedPool.displayPoolAssets = poolAssets
     .map(({ token, weight }) => {
       const value = convertCoinToDisplayValues({ prices, coin: token });
       if (!value) return undefined;
@@ -273,16 +272,16 @@ export const convertPoolToDisplayValues = ({ prices, pool }: { prices: PriceHash
     })
     .filter(Boolean);
 
-  pool.totalValue = totalValue.toString();
+  enrichedPool.totalValue = totalValue.toString();
 
   const ta = new Dec(totalShares.amount);
   const totalSharesAmount = new IntPretty(ta);
   const totalVal = new IntPretty(totalValue);
 
   if (ta.lte(new Dec(0))) {
-    pool.pricePerShareEn18 = '0';
+    enrichedPool.pricePerShareEn18 = '0';
   } else {
-    pool.pricePerShareEn18 = totalVal
+    enrichedPool.pricePerShareEn18 = totalVal
       .maxDecimals(18)
       .quo(totalSharesAmount.moveDecimalPointLeft(18).maxDecimals(18))
       // .moveDecimalPointLeft(18)
@@ -290,13 +289,13 @@ export const convertPoolToDisplayValues = ({ prices, pool }: { prices: PriceHash
       .toString();
   }
 
-  pool.name = pool.displayPoolAssets
+  enrichedPool.name = enrichedPool.displayPoolAssets
     .reduce((m, v) => {
       return [...m, v.symbol];
     }, [])
     .join('/');
 
-  return pool;
+  return enrichedPool;
 };
 
 export const convertPoolsToDisplayValues = ({ prices, pools }: { prices: PriceHash, pools: Pool[] }) =>
@@ -483,17 +482,9 @@ export const getTradesRequiredToGetBalances = ({
 };
 
 /**
- * @param {object} param0
- * @param {CoinWeight[]} param0.weights
- * @param {Pool[]} param0.pools
- * @param {PriceHash} param0.prices
- * @param {number|null} param0.totalCurrentValue
- * @returns {CoinWeight[]}
- *
  * this is used to canonicalize CoinWeights so a user can
  * pass in only some properties, like poolId, or symbol, etc.,
  * and it will determine the denom, etc.
- *
  */
 
 export const canonicalizeCoinWeights = ({
@@ -501,7 +492,12 @@ export const canonicalizeCoinWeights = ({
   pools,
   prices,
   totalCurrentValue
-}) => {
+}: {
+  weights: CoinWeight[],
+  pools: Pool[],
+  prices: PriceHash,
+  totalCurrentValue: string | number | undefined
+}): CoinWeight[] => {
   let totalValue = new Dec(0);
   const enriched = weights.map((item) => {
     if (!item.weight || new Dec(item.weight).lt(new Dec(0)))
@@ -552,15 +548,10 @@ export const canonicalizeCoinWeights = ({
   });
 };
 
-/**
- * @param {object} param0
- * @param {Pool[]} param0.pools
- * @param {PriceHash} param0.prices
- * @param {CoinWeight} param0.weight
- * @returns {PoolAllocation}
- */
-
-export const poolAllocationToCoinsNeeded = ({ pools, prices, weight }) => {
+export const poolAllocationToCoinsNeeded = (
+  { pools, prices, weight }:
+    { pools: PoolDisplay[], prices: PriceHash, weight: CoinWeight }
+): PoolAllocation => {
   if (weight.type !== 'pool') {
     throw new Error('not yet');
   }
@@ -598,14 +589,6 @@ export const poolAllocationToCoinsNeeded = ({ pools, prices, weight }) => {
   return allocation;
 };
 
-/**
- * @returns {{
- *  pools: PoolAllocation[];
- *  coins: CoinValue[];
- *  weights: CoinWeight[];
- * }}
- */
-
 export const convertWeightsIntoCoins = ({
   weights,
   pools,
@@ -613,10 +596,14 @@ export const convertWeightsIntoCoins = ({
   balances
 }: {
   weights: CoinWeight[],
-  pools: Pool[],
+  pools: PoolDisplay[],
   prices: PriceHash,
   balances: Coin[]
-}) => {
+}): {
+  pools: PoolAllocation[];
+  coins: CoinValue[];
+  weights: CoinWeight[];
+} => {
   const totalCurrentValue = calculateCoinsTotalBalance({
     prices,
     coins: balances
@@ -659,15 +646,7 @@ export const convertWeightsIntoCoins = ({
   };
 };
 
-/**
- * @param {object} param0
- * @param {CoinDenom} param0.denom
- * @param {Trade} param0.trade
- * @param {Pair[]} param0.pairs
- * @returns {TradeRoute[]}
- */
-
-export const routeThroughPool = ({ denom, trade, pairs }) => {
+export const routeThroughPool = ({ denom, trade, pairs }: { denom: CoinDenom, trade: Trade, pairs: Pair[] }): TradeRoute[] => {
   const symbol = osmoDenomToSymbol(denom);
 
   const sellPool = pairs.find(
@@ -712,7 +691,7 @@ export const routeThroughPool = ({ denom, trade, pairs }) => {
  * @returns {TradeRoute[]}
  */
 
-export const lookupRoutesForTrade = ({ pools, trade, pairs }) => {
+export const lookupRoutesForTrade = ({ pools, trade, pairs }: { pools: Pool[], trade: Trade, pairs: Pair[] }): TradeRoute[] => {
   const directPool = pairs.find(
     (pair) =>
       (pair.base_address == trade.sell.denom &&
@@ -763,15 +742,7 @@ export const lookupRoutesForTrade = ({ pools, trade, pairs }) => {
   throw new Error('no trade routes found!');
 };
 
-/**
- * @param {object} param0
- * @param {Pool[]} param0.pools
- * @param {Trade[]} param0.trades
- * @param {Pair[]} param0.pairs
- * @returns {Swap[]}
- */
-
-export const getSwaps = ({ pools, trades, pairs }) =>
+export const getSwaps = ({ pools, trades, pairs }: { pools: Pool[], trades: Trade[], pairs: Pair[] }): Swap[] =>
   trades.reduce((m, trade) => {
     // not sure why, but sometimes we get a zero amount
     if (new Dec(trade.sell.value).lte(new Dec(0))) return m;
@@ -816,7 +787,7 @@ Doing exactly what you did (but taking the min of that over both assets)
 
  */
 
-export const calculateShareOutAmount = (poolInfo, coinsNeeded) => {
+export const calculateShareOutAmount = (poolInfo: Pool, coinsNeeded: Coin[]) => {
   const shareOuts = [];
 
   for (let i = 0; i < poolInfo.poolAssets.length; i++) {
@@ -844,7 +815,7 @@ export const calculateShareOutAmount = (poolInfo, coinsNeeded) => {
   return shareOutAmount;
 };
 
-export const calculateCoinsNeededInPoolForValue = (prices, poolInfo, value) => {
+export const calculateCoinsNeededInPoolForValue = (prices: PriceHash, poolInfo: PoolPretty, value) => {
   const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
     const v = new Dec(value);
     const r = new Dec(asset.ratio);

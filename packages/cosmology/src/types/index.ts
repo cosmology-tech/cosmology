@@ -1,14 +1,55 @@
 
+export interface BroadcastTxResponse {
+    height: number;
+    code: number;
+    transactionHash: string;
+    rawLog?: any;
+}
 export interface Pool {
     id: string;
     name: string;
     address: string;
-    displayPoolAssets: object[];
-    poolAssets: object[];
-    pricePerShareEn18: string;
+    poolAssets: PoolAsset[];
     totalShares: Coin;
-    totalValue: string;
     totalWeight: string;
+}
+export interface PoolDisplay extends Pool {
+    displayPoolAssets: PoolAssetDisplay[];
+    pricePerShareEn18: string;
+    totalValue: string;
+}
+
+export interface PoolPretty extends Pool {
+    nickname: string;
+    images: PoolTokenImage[] | null;
+    poolAssetsPretty: PoolAssetPretty[]
+}
+
+export interface PoolTokenImage {
+    token: CoinSymbol;
+    images: {
+        png: string;
+        svg: string;
+    }
+}
+
+export interface PoolAsset {
+    token: Coin;
+    weight: string;
+}
+export interface PoolAssetPretty {
+    symbol: any;
+    denom: string;
+    amount: string;
+    ratio: string;
+    info: any;
+}
+export interface PoolAssetDisplay {
+    allocation: string;
+    symbol: CoinSymbol;
+    token: Coin;
+    value: DisplayCoin;
+    weight: string;
 }
 
 export interface TradeRoute {
@@ -40,6 +81,10 @@ export interface Pair {
     volume_7d: number;
     liquidity: number;
     liquidity_atom: number;
+}
+export interface LockedPool {
+    amount: string;
+    denom: CoinDenom;
 }
 export interface LockedPoolDisplay {
     amount: string;
