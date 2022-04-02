@@ -10,9 +10,7 @@ import {
 import { promptChain, promptMnemonic } from '../utils/prompt';
 import {
   SigningStargateClient,
-  calculateFee,
-  assertIsDeliverTxSuccess,
-  GasPrice
+  assertIsDeliverTxSuccess
 } from '@cosmjs/stargate';
 import { messages } from '../messages/native';
 import { noDecimals } from '../messages';
@@ -54,7 +52,6 @@ export default async (argv) => {
     (a) => a.symbol === argv.chainToken
   ).base;
   if (!denom) throw new Error('cannot find asset base unit');
-  const defaultGasPrice = '0.0025' + denom;
 
   const signer = await getWalletFromMnemonic({
     mnemonic: argv.mnemonic,
