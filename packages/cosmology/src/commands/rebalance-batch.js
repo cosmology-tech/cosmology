@@ -20,7 +20,11 @@ import {
 } from '../utils/osmo';
 import c from 'ansi-colors';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
-import { printSwap } from '../../module/utils/print';
+import {
+  printSwap,
+  printSwapForPoolAllocation,
+  printOsmoTransactionResponse
+} from '../utils/print';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
@@ -58,6 +62,7 @@ export default async (argv) => {
         return;
       }
       const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+      if (new Dec(displayAmount).lte(new Dec(0.0001))) return;
       return {
         symbol,
         denom,
@@ -176,7 +181,7 @@ export default async (argv) => {
     const swaps = await getSwaps({ pools, trades, pairs: pairs.data });
     balances = substractCoins(balances, coinsToSubstract);
 
-    console.log(`\nSWAPS for ${c.bold.magenta(result.pools[i].name)}`);
+    printSwapForPoolAllocation(result.pools[i]);
 
     for (let s = 0; s < swaps.length; s++) {
       const swap = swaps[s];
@@ -227,5 +232,6 @@ export default async (argv) => {
     fee,
     memo: ''
   });
-  console.log(res);
+
+  printOsmoTransactionResponse(res);
 };
