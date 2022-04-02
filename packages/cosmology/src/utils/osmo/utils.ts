@@ -8,179 +8,30 @@ import {
 } from '../chain';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { noDecimals } from '../../messages';
+import {
+  Coin,
+  CoinDenom,
+  CoinGeckoToken,
+  CoinGeckoUSDResponse,
+  CoinSymbol,
+  CoinValue,
+  CoinWeight,
+  DisplayCoin,
+  LockedPool,
+  LockedPoolDisplay,
+  Pair,
+  Pool,
+  PoolAllocation,
+  PoolDisplay,
+  PoolPretty,
+  PriceHash,
+  Swap,
+  Trade,
+  TradeRoute,
+  ValidatorToken,
+} from '../../types';
 
-/**
- *
- * @typedef {{
- * id: string;
- * name: string;
- * address: string;
- * displayPoolAssets: object[];
- * poolAssets: object[];
- * pricePerShareEn18: string;
- * totalShares: Coin;
- * totalValue: string;
- * totalWeight: string;
- * }} Pool
- * * totalWeight: = "1";
-//  *
-//  * @typedef {{
-//  * amount:string;
-//  * denom:CoinDenom;
- * }} LockedPool
- *
- *
- * @typedef {{
- * poolId:string;
- * tokenOutDenom:CoinDenom;
- * tokenOutSymbol:CoinSymbol;
- * tokenInSymbol:CoinSymbol;
- * liquidity:number;
- * }} TradeRoute
- *
- * @typedef {{
- * trade: Trade;
- * routes:TradeRoute[];
- * }} Swap
- *
- * @typedef {{
- *  pool_address: string;
- *  pool_id: string;
- *  base_name: string;
- *  base_symbol: CoinSymbol;
- *  base_address: CoinDenom;
- *  quote_name: string;
- *  quote_symbol: CoinSymbol;
- *  quote_address: CoinDenom;
- *  price: number;
- *  base_volume_24h: number;
- *  quote_volume_24h: number;
- *  volume_24h: number;
- *  volume_7d: number;
- *  liquidity: number;
- *  liquidity_atom: number;
- * }} Pair
- *
- * @typedef {{
- * amount:string;
- * denom:CoinDenom;
- * value:string;
- * allocation:string;
- * poolId:string;
- * }} LockedPoolDisplay
- *
- * @typedef {{
- * amount:string;
- * denom:CoinDenom;
- * }} Coin
- *
- * @typedef {{
- * weight:string;
- * type:('coin'|'pool');
- * name:string;
- * value:string|null;
- * symbol:CoinSymbol|null;
- * poolId:string|null;
- * denom:CoinDenom;
- * allocation:string;
- * }} CoinWeight
- *
- * @typedef {{
- * amount:string;
- * denom:CoinDenom;
- * displayAmount: string;
- * value: string;
- * symbol: CoinSymbol;
- * }} CoinValue
- *
- * @typedef {{
- * name: string;
- * denom:CoinDenom;
- * amount:string|null;
- * displayAmount: string|null;
- * value: string;
- * coins: CoinValue[];
- * }} PoolAllocation
- *
- * @typedef {{
- * amount:string;
- * symbol:CoinSymbol;
- * }} DisplayCoin
- *
- * @typedef {{
- * sell:CoinValue
- * buy:CoinValue;
- * beliefValue:string;
- * }} Trade
- *
- *
- */
-
-/**
- * @typedef {(
- * string
- * )} CoinDenom
- *
- */
-
-/**
- * @typedef {(
- * 'ATOM'|
- * 'OSMO'|
- * 'ION'|
- * 'AKT'|
- * 'DVPN'|
- * 'IRIS'|
- * 'CRO'|
- * 'XPRT'|
- * 'REGEN'|
- * 'IOV'|
- * 'NGM'|
- * 'EEUR'|
- * 'JUNO'|
- * 'LIKE'|
- * 'UST'|
- * 'LUNA'|
- * 'BCNA'|
- * 'SCRT'|
- * 'MED'
- * )} CoinSymbol
- *
- * @typedef {('cosmos'|
- * 'osmosis'|
- * 'ion'|
- * 'akash-network'|
- * 'sentinel'|
- * 'iris-network'|
- * 'crypto-com-chain'|
- * 'persistence'|
- * 'regen'|
- * 'starname'|
- * 'e-money'|
- * 'e-money-eur'|
- * 'juno-network'|
- * 'likecoin'|
- * 'terrausd'|
- * 'terra-luna'|
- * 'bitcanna'|
- * 'terra-krw'|
- * 'secret'|
- * 'medibloc'|
- * 'comdex'|
- * 'cheqd-network'|
- * 'vidulum')} CoinGeckoToken
- *
- * @typedef {Object.<CoinDenom, number>} PriceHash
- *
- * @typedef {Object.<CoinGeckoToken, {usd: number}>} CoinGeckoUSDResponse
- *
- */
-
-/**
- * @param {CoinSymbol} token
- * @returns {CoinGeckoToken}
- */
-export const getCoinGeckoIdForSymbol = (token) => {
+export const getCoinGeckoIdForSymbol = (token: CoinSymbol): CoinGeckoToken => {
   const rec = osmosisAssets.find(({ symbol }) => symbol === token);
   const geckoId = rec?.coingecko_id;
   if (!geckoId) {
@@ -193,7 +44,7 @@ export const getCoinGeckoIdForSymbol = (token) => {
  * @param {CoinGeckoToken} geckoId
  * @returns {CoinSymbol}
  */
-export const getSymbolForCoinGeckoId = (geckoId) => {
+export const getSymbolForCoinGeckoId = (geckoId: CoinGeckoToken): CoinSymbol => {
   const rec = osmosisAssets.find(
     ({ coingecko_id }) => coingecko_id === geckoId
   );
@@ -204,11 +55,7 @@ export const getSymbolForCoinGeckoId = (geckoId) => {
   return symbol;
 };
 
-/**
- * @param {CoinDenom} denom
- * @returns {CoinSymbol}
- */
-export const osmoDenomToSymbol = (denom) => {
+export const osmoDenomToSymbol = (denom: CoinDenom): CoinSymbol => {
   const rec = osmosisAssets.find(({ base }) => base === denom);
   const symbol = rec?.symbol;
   if (!symbol) {
@@ -217,11 +64,7 @@ export const osmoDenomToSymbol = (denom) => {
   return symbol;
 };
 
-/**
- * @param {CoinSymbol} token
- * @returns {CoinDenom}
- */
-export const symbolToOsmoDenom = (token) => {
+export const symbolToOsmoDenom = (token: CoinSymbol): CoinDenom => {
   const rec = osmosisAssets.find(({ symbol }) => symbol === token);
   const base = rec?.base;
   if (!base) {
@@ -231,21 +74,11 @@ export const symbolToOsmoDenom = (token) => {
   return base;
 };
 
-/**
- * @type {object}
- * @property {CoinSymbol} symbol - the human readable all-caps version, e.g. ATOM, OSMO, etc.
- * @property {CoinDenom} denom - denomination, e.g. uosmo, or ibc/143....
- * @property {string} amount - the amount of the token
- */
-
 export class OsmosisToken {
-  /**
-   * @param {object} param0
-   * @param {CoinSymbol|null} param0.symbol - the human readable all-caps version, e.g. ATOM, OSMO, etc.
-   * @param {CoinDenom|null} param0.denom - denomination, e.g. uosmo, or ibc/143....
-   * @param {number} param0.amount - the amount of the token
-   */
-  constructor({ symbol, denom, amount = 0 }) {
+  symbol: CoinSymbol | null;
+  denom: CoinDenom | null;
+  amount: string;
+  constructor({ symbol, denom, amount = '0' }: { symbol: CoinSymbol | null, denom: CoinDenom | null, amount: string }) {
     if (symbol) {
       this.symbol = symbol;
       this.denom = symbolToOsmoDenom(symbol);
@@ -267,24 +100,13 @@ export class OsmosisToken {
   }
 }
 
-/**
- * @param {DisplayCoin[]} coins
- * @returns {Coin[]}
- */
-
-export const symbolsAndDisplayValuesToCoinsArray = (coins) =>
+export const symbolsAndDisplayValuesToCoinsArray = (coins: DisplayCoin[]): Coin[] =>
   coins.map(({ symbol, amount }) => ({
     denom: symbolToOsmoDenom(symbol),
     amount: displayUnitsToDenomUnits(symbol, amount)
   }));
 
-/**
- * @param {CoinValue[]} balances1
- * @param {CoinValue[]} balances2
- * @returns {CoinValue[]}
- */
-
-export const substractCoins = (balances1, balances2) => {
+export const substractCoins = (balances1: CoinValue[], balances2: CoinValue[]): CoinValue[] => {
   return balances1.reduce((m, coin) => {
     const newCoin = { ...coin };
     // due to swaps and how we use this method,
@@ -313,14 +135,9 @@ export const substractCoins = (balances1, balances2) => {
   }, []);
 };
 
-/**
- * @param {object} param0
- * @param {PriceHash} param0.prices
- * @param {CoinDenom} param0.denom
- * @param {string|number} param0.value - usd value
- * @returns {CoinValue}
- */
-export const convertCoinValueToCoin = ({ prices, denom, value }) => {
+export const convertCoinValueToCoin = (
+  { prices, denom, value }: { prices: PriceHash, denom: CoinDenom, value: string | number }
+): CoinValue => {
   const price = prices[denom];
   const symbol = osmoDenomToSymbol(denom);
   if (isNaN(price)) {
@@ -339,13 +156,7 @@ export const convertCoinValueToCoin = ({ prices, denom, value }) => {
   };
 };
 
-/**
- * @param {object} param0
- * @param {PriceHash} param0.prices
- * @param {Coin} param0.coin
- * @returns {CoinValue}
- */
-export const convertCoinToDisplayValues = ({ prices, coin }) => {
+export const convertCoinToDisplayValues = ({ prices, coin }: { prices: PriceHash, coin: Coin }): CoinValue => {
   const { denom, amount } = coin;
   const price = prices[denom];
   const symbol = osmoDenomToSymbol(denom);
@@ -370,22 +181,10 @@ export const convertCoinToDisplayValues = ({ prices, coin }) => {
   };
 };
 
-/**
- * @param {object} param0
- * @param {PriceHash} param0.prices
- * @param {Coin[]} param0.coins
- * @returns {CoinValue[]}
- */
-export const convertCoinsToDisplayValues = ({ prices, coins }) =>
+export const convertCoinsToDisplayValues = ({ prices, coins }: { prices: PriceHash, coins: Coin[] }): CoinValue[] =>
   coins.map((coin) => convertCoinToDisplayValues({ prices, coin }));
 
-/**
- * @param {object} param0
- * @param {PriceHash} param0.prices
- * @param {Coin[]} param0.coins
- * @returns {string}
- */
-export const calculateCoinsTotalBalance = ({ prices, coins }) => {
+export const calculateCoinsTotalBalance = ({ prices, coins }: { prices: PriceHash, coins: Coin[] }): string => {
   return convertCoinsToDisplayValues({ prices, coins }).reduce((m, v) => {
     const { value } = v;
     const val = new Dec(value);
@@ -394,13 +193,7 @@ export const calculateCoinsTotalBalance = ({ prices, coins }) => {
   }, '0');
 };
 
-/**
- *
- * @param {CoinGeckoUSDResponse} prices
- * @returns {PriceHash}
- */
-
-export const convertGeckoPricesToDenomPriceHash = (prices) => {
+export const convertGeckoPricesToDenomPriceHash = (prices: CoinGeckoUSDResponse): PriceHash => {
   return Object.keys(prices).reduce((m, geckoId) => {
     const symbol = getSymbolForCoinGeckoId(geckoId);
     if (symbol) {
@@ -411,54 +204,24 @@ export const convertGeckoPricesToDenomPriceHash = (prices) => {
   }, {});
 };
 
-/**
- *
- * @param {ValidatorToken[]} tokens
- * @returns {PriceHash}
- */
-
-export const convertValidatorPricesToDenomPriceHash = (tokens) => {
+export const convertValidatorPricesToDenomPriceHash = (tokens: ValidatorToken[]): PriceHash => {
   return tokens.reduce((m, token) => {
     m[token.denom] = token.price;
     return m;
   }, {});
 };
 
-/**
- *
- * @param {object} pools
- * @param {string} gammId
- * @returns {Pool}
- */
-
-export const getPoolByGammName = (pools, gammId) => {
+export const getPoolByGammName = (pools: PoolDisplay[], gammId: string): PoolDisplay => {
   return pools.find(({ totalShares: { denom } }) => denom === gammId);
 };
 
-/**
- *
- * @param {object} param0
- * @param {PriceHash} param0.prices
- * @param {Pool[]} param0.pools
- * @param {string} param0.poolId
- * @returns {Pool}
- */
-
-export const getPoolInfo = ({ prices, pools, poolId }) => {
+export const getPoolInfo = ({ prices, pools, poolId }: { prices: PriceHash, pools: Pool[], poolId: string }): PoolDisplay => {
   const pool = pools.find(({ id }) => id === poolId);
   if (!pool) throw new Error('cannot find pool');
   return convertPoolToDisplayValues({ prices, pool });
 };
 
-/**
- *
- * @param {object} param0
- * @param {Pool[]} param0.pools
- * @param {LockedPool[]} param0.lockedPools
- * @returns {LockedPoolDisplay[]}
- */
-
-export const getUserPools = ({ pools, lockedPools }) => {
+export const getUserPools = ({ pools, lockedPools }: { pools: PoolDisplay[], lockedPools: LockedPool[] }): LockedPoolDisplay[] => {
   return lockedPools
     .map(({ denom, amount }) => {
       const pool = getPoolByGammName(pools, denom);
@@ -486,16 +249,12 @@ export const getUserPools = ({ pools, lockedPools }) => {
     .filter(Boolean);
 };
 
-/**
- * @param {object} param0
- * @param {PriceHash} param0.prices
- * @param {Pool} param0.pool
- */
-
-export const convertPoolToDisplayValues = ({ prices, pool }) => {
+export const convertPoolToDisplayValues = ({ prices, pool }: { prices: PriceHash, pool: Pool }): PoolDisplay => {
   const { totalShares, poolAssets } = pool;
+
+  const enrichedPool: PoolDisplay = { ...pool };
   let totalValue = new Dec(0);
-  pool.displayPoolAssets = poolAssets
+  enrichedPool.displayPoolAssets = poolAssets
     .map(({ token, weight }) => {
       const value = convertCoinToDisplayValues({ prices, coin: token });
       if (!value) return undefined;
@@ -513,16 +272,16 @@ export const convertPoolToDisplayValues = ({ prices, pool }) => {
     })
     .filter(Boolean);
 
-  pool.totalValue = totalValue.toString();
+  enrichedPool.totalValue = totalValue.toString();
 
   const ta = new Dec(totalShares.amount);
   const totalSharesAmount = new IntPretty(ta);
   const totalVal = new IntPretty(totalValue);
 
   if (ta.lte(new Dec(0))) {
-    pool.pricePerShareEn18 = '0';
+    enrichedPool.pricePerShareEn18 = '0';
   } else {
-    pool.pricePerShareEn18 = totalVal
+    enrichedPool.pricePerShareEn18 = totalVal
       .maxDecimals(18)
       .quo(totalSharesAmount.moveDecimalPointLeft(18).maxDecimals(18))
       // .moveDecimalPointLeft(18)
@@ -530,48 +289,34 @@ export const convertPoolToDisplayValues = ({ prices, pool }) => {
       .toString();
   }
 
-  pool.name = pool.displayPoolAssets
+  enrichedPool.name = enrichedPool.displayPoolAssets
     .reduce((m, v) => {
       return [...m, v.symbol];
     }, [])
     .join('/');
 
-  return pool;
+  return enrichedPool;
 };
 
-/**
- * @param {object} param0
- * @param {PriceHash} param0.prices
- * @param {Pool[]} param0.pools
- */
-export const convertPoolsToDisplayValues = ({ prices, pools }) =>
+export const convertPoolsToDisplayValues = ({ prices, pools }: { prices: PriceHash, pools: Pool[] }) =>
   pools.map((pool) => convertPoolToDisplayValues({ prices, pool }));
 
-/**
- * @param {object} param0
- * @param {PriceHash} param0.prices
- * @param {Pool[]} param0.pools
- */
-export const getFilteredPoolsWithValues = ({ prices, pools }) =>
+export const getFilteredPoolsWithValues = ({ prices, pools }: { prices: PriceHash, pools: Pool[] }) =>
   convertPoolsToDisplayValues({ prices, pools });
 // remove small pools
 // .filter(({ totalValue }) => totalValue >= 100000)
 // remove DIG or VIDL or coins not on coingecko that don't get prices
 // .filter(({ poolAssets, displayPoolAssets }) => poolAssets.length === displayPoolAssets.length);
 
-/**
- * @param {object} param0
- * @param {PriceHash} param0.prices
- * @param {Coin[]} param0.balances
- * @param {Coin[]} param0.desired
- * @param {Pool[]} param0.pools
- * @returns {Trade[]}
- */
 export const getTradesRequiredToGetBalances = ({
   prices,
   balances,
   desired
-}) => {
+}: {
+  prices: PriceHash,
+  balances: Coin[],
+  desired: Coin[]
+}): Trade[] => {
   const totalCurrent = calculateCoinsTotalBalance({ prices, coins: balances });
   const totalDesired = calculateCoinsTotalBalance({ prices, coins: desired });
 
@@ -737,17 +482,9 @@ export const getTradesRequiredToGetBalances = ({
 };
 
 /**
- * @param {object} param0
- * @param {CoinWeight[]} param0.weights
- * @param {Pool[]} param0.pools
- * @param {PriceHash} param0.prices
- * @param {number|null} param0.totalCurrentValue
- * @returns {CoinWeight[]}
- *
  * this is used to canonicalize CoinWeights so a user can
  * pass in only some properties, like poolId, or symbol, etc.,
  * and it will determine the denom, etc.
- *
  */
 
 export const canonicalizeCoinWeights = ({
@@ -755,7 +492,12 @@ export const canonicalizeCoinWeights = ({
   pools,
   prices,
   totalCurrentValue
-}) => {
+}: {
+  weights: CoinWeight[],
+  pools: Pool[],
+  prices: PriceHash,
+  totalCurrentValue: string | number | undefined
+}): CoinWeight[] => {
   let totalValue = new Dec(0);
   const enriched = weights.map((item) => {
     if (!item.weight || new Dec(item.weight).lt(new Dec(0)))
@@ -806,15 +548,10 @@ export const canonicalizeCoinWeights = ({
   });
 };
 
-/**
- * @param {object} param0
- * @param {Pool[]} param0.pools
- * @param {PriceHash} param0.prices
- * @param {CoinWeight} param0.weight
- * @returns {PoolAllocation}
- */
-
-export const poolAllocationToCoinsNeeded = ({ pools, prices, weight }) => {
+export const poolAllocationToCoinsNeeded = (
+  { pools, prices, weight }:
+    { pools: PoolDisplay[], prices: PriceHash, weight: CoinWeight }
+): PoolAllocation => {
   if (weight.type !== 'pool') {
     throw new Error('not yet');
   }
@@ -852,25 +589,21 @@ export const poolAllocationToCoinsNeeded = ({ pools, prices, weight }) => {
   return allocation;
 };
 
-/**
- * @param {object} param0
- * @param {CoinWeight[]} param0.weights
- * @param {Pool[]} param0.pools
- * @param {PriceHash} param0.prices
- * @param {Coin[]} param0.balances
- * @returns {{
- *  pools: PoolAllocation[];
- *  coins: CoinValue[];
- *  weights: CoinWeight[];
- * }}
- */
-
 export const convertWeightsIntoCoins = ({
   weights,
   pools,
   prices,
   balances
-}) => {
+}: {
+  weights: CoinWeight[],
+  pools: PoolDisplay[],
+  prices: PriceHash,
+  balances: Coin[]
+}): {
+  pools: PoolAllocation[];
+  coins: CoinValue[];
+  weights: CoinWeight[];
+} => {
   const totalCurrentValue = calculateCoinsTotalBalance({
     prices,
     coins: balances
@@ -913,15 +646,7 @@ export const convertWeightsIntoCoins = ({
   };
 };
 
-/**
- * @param {object} param0
- * @param {CoinDenom} param0.denom
- * @param {Trade} param0.trade
- * @param {Pair[]} param0.pairs
- * @returns {TradeRoute[]}
- */
-
-export const routeThroughPool = ({ denom, trade, pairs }) => {
+export const routeThroughPool = ({ denom, trade, pairs }: { denom: CoinDenom, trade: Trade, pairs: Pair[] }): TradeRoute[] => {
   const symbol = osmoDenomToSymbol(denom);
 
   const sellPool = pairs.find(
@@ -966,7 +691,7 @@ export const routeThroughPool = ({ denom, trade, pairs }) => {
  * @returns {TradeRoute[]}
  */
 
-export const lookupRoutesForTrade = ({ pools, trade, pairs }) => {
+export const lookupRoutesForTrade = ({ pools, trade, pairs }: { pools: Pool[], trade: Trade, pairs: Pair[] }): TradeRoute[] => {
   const directPool = pairs.find(
     (pair) =>
       (pair.base_address == trade.sell.denom &&
@@ -1017,15 +742,7 @@ export const lookupRoutesForTrade = ({ pools, trade, pairs }) => {
   throw new Error('no trade routes found!');
 };
 
-/**
- * @param {object} param0
- * @param {Pool[]} param0.pools
- * @param {Trade[]} param0.trades
- * @param {Pair[]} param0.pairs
- * @returns {Swap[]}
- */
-
-export const getSwaps = ({ pools, trades, pairs }) =>
+export const getSwaps = ({ pools, trades, pairs }: { pools: Pool[], trades: Trade[], pairs: Pair[] }): Swap[] =>
   trades.reduce((m, trade) => {
     // not sure why, but sometimes we get a zero amount
     if (new Dec(trade.sell.value).lte(new Dec(0))) return m;
@@ -1070,7 +787,7 @@ Doing exactly what you did (but taking the min of that over both assets)
 
  */
 
-export const calculateShareOutAmount = (poolInfo, coinsNeeded) => {
+export const calculateShareOutAmount = (poolInfo: Pool, coinsNeeded: Coin[]) => {
   const shareOuts = [];
 
   for (let i = 0; i < poolInfo.poolAssets.length; i++) {
@@ -1098,7 +815,7 @@ export const calculateShareOutAmount = (poolInfo, coinsNeeded) => {
   return shareOutAmount;
 };
 
-export const calculateCoinsNeededInPoolForValue = (prices, poolInfo, value) => {
+export const calculateCoinsNeededInPoolForValue = (prices: PriceHash, poolInfo: PoolPretty, value) => {
   const coinsNeeded = poolInfo.poolAssetsPretty.map((asset) => {
     const v = new Dec(value);
     const r = new Dec(asset.ratio);

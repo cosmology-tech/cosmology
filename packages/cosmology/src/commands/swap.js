@@ -1,5 +1,4 @@
-import { chains } from '@cosmology/cosmos-registry';
-import { assets } from '@cosmology/cosmos-registry';
+import { chains, assets } from '@cosmology/cosmos-registry';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '../clients/osmosis';
 import { OsmosisValidatorClient } from '../clients/validator';
