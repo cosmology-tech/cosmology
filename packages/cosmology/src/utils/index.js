@@ -5,3 +5,4 @@ export * from './print';
 export * from './prompt';
 export * from './prompts';
 export * from './wallet';
+export * from './gas';
