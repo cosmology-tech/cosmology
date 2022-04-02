@@ -10,6 +10,12 @@ module.exports = (api) => {
       '@babel/proposal-export-default-from',
       'babel-plugin-inline-json-import'
     ],
-    presets: useESModules ? [] : ['@babel/env']
+    presets: useESModules ? [
+      '@babel/typescript'
+    ] :
+    [
+      '@babel/typescript',
+      '@babel/env'
+    ]
   };
 };
