@@ -20,6 +20,7 @@ import {
 } from '../utils/osmo';
 import c from 'ansi-colors';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
+import { printSwap } from '../../module/utils/print';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
@@ -179,23 +180,12 @@ export default async (argv) => {
 
     for (let s = 0; s < swaps.length; s++) {
       const swap = swaps[s];
+      printSwap(swap);
+
       const {
         trade: { sell, buy, beliefValue },
         routes
       } = swap;
-
-      console.log(
-        `TRADE ${c.bold.yellow(
-          sell.displayAmount + ''
-        )} ($${beliefValue}) worth of ${c.bold.red(
-          sell.symbol
-        )} for ${c.bold.green(buy.symbol)}`
-      );
-      const r = routes
-        .map((r) => [r.tokenInSymbol, r.tokenOutSymbol].join('->'))
-        .join(', ')
-        .toLowerCase();
-      console.log(c.gray(`  routes: ${r}`));
 
       const slippage = 1;
       const tokenOutMinAmount = calculateAmountWithSlippage(

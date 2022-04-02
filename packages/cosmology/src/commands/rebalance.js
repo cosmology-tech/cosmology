@@ -1,5 +1,5 @@
 import { chains } from '@cosmology/cosmos-registry';
-import { prompt } from '../utils';
+import { printTransactionResponse, prompt } from '../utils';
 import { OsmosisApiClient } from '..';
 import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
@@ -16,6 +16,7 @@ import {
 } from '../utils/osmo';
 import c from 'ansi-colors';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
+import { printSwap } from '../../main/utils/print';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
@@ -225,23 +226,12 @@ export default async (argv) => {
 
     for (let s = 0; s < swaps.length; s++) {
       const swap = swaps[s];
+      printSwap(swap);
+
       const {
         trade: { sell, buy, beliefValue },
         routes
       } = swap;
-
-      console.log(
-        `TRADE ${c.bold.yellow(
-          sell.displayAmount + ''
-        )} ($${beliefValue}) worth of ${c.bold.red(
-          sell.symbol
-        )} for ${c.bold.green(buy.symbol)}`
-      );
-      const r = routes
-        .map((r) => [r.tokenInSymbol, r.tokenOutSymbol].join('->'))
-        .join(', ')
-        .toLowerCase();
-      console.log(c.gray(`  routes: ${r}`));
 
       const tokenOutMinAmount = calculateAmountWithSlippage(
         buy.amount,
@@ -267,15 +257,7 @@ export default async (argv) => {
         memo: ''
       });
 
-      if (res.code == 0) {
-        console.log(`success at height: ${res.height}`);
-        console.log(`TX: ${res.transactionHash}`);
-        console.log(`\n`);
-      } else {
-        console.log('TX failed:');
-        console.log(res.rawLog);
-        process.exit(1);
-      }
+      printTransactionResponse(res);
     }
   }
   //
