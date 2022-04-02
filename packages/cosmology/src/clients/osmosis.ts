@@ -3,6 +3,12 @@ import { CosmosApiClient } from './cosmos';
 import autobind from 'class-autobind';
 import { Dec } from '@keplr-wallet/unit';
 
+import {
+  Pool,
+  PoolDisplay,
+  PoolPretty
+} from '../types'
+
 const assetHashMap = assets.reduce((m, asset) => {
   m[asset.base] = asset;
   return m;
@@ -98,7 +104,7 @@ export class OsmosisApiClient extends CosmosApiClient {
   }
 }
 
-export const prettyPool = (pool, { includeDetails = false } = {}) => {
+export const prettyPool = (pool: Pool | PoolDisplay, { includeDetails = false } = {}): PoolPretty => {
   const totalWeight = new Dec(pool.totalWeight);
   const tokens = pool.poolAssets.map(({ token, weight }) => {
     const asset = assetHashMap?.[token.denom];
@@ -109,7 +115,8 @@ export const prettyPool = (pool, { includeDetails = false } = {}) => {
       symbol,
       denom: token.denom,
       amount: token.amount,
-      ratio
+      ratio,
+      info: undefined
     };
     if (includeDetails) {
       obj.info = asset;
@@ -117,7 +124,8 @@ export const prettyPool = (pool, { includeDetails = false } = {}) => {
     return obj;
   });
   const value = {
-    nickname: tokens.map((t) => t.symbol).join('/')
+    nickname: tokens.map((t) => t.symbol).join('/'),
+    images: undefined
   };
   if (includeDetails) {
     value.images = tokens
