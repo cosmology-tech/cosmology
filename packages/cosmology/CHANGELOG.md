@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.36](https://github.com/pyramation/cosmology/compare/cosmology@0.0.35...cosmology@0.0.36) (2022-04-03)
+
+**Note:** Version bump only for package cosmology
+
+
+
+
+
 ## [0.0.35](https://github.com/pyramation/cosmology/compare/cosmology@0.0.34...cosmology@0.0.35) (2022-04-03)
 
 **Note:** Version bump only for package cosmology
