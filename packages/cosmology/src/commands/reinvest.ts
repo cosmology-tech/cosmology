@@ -19,6 +19,7 @@ import {
   makePoolsPretty,
   makePoolsPrettyValues
 } from '../utils/osmo';
+import { prettyPool } from '../clients/osmosis';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
 import {
   printSwap,
@@ -158,10 +159,8 @@ export default async (argv) => {
   const osmoAddress = accounts[0].address;
 
   // get pricing and pools info...
-
   const pairs = makePoolPairs(prettyPools);
-  // TODO don't fetch this 2x since you already have it
-  const pools = await api.getPoolsPretty();
+  const pools = lcdPools.pools.map((pool) => prettyPool(pool));
 
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
 

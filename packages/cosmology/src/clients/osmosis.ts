@@ -110,7 +110,7 @@ export class OsmosisApiClient extends CosmosApiClient {
   }
 }
 
-export const prettyPool = (pool: Pool | PoolDisplay, { includeDetails = false } = {}): PoolPretty => {
+export const prettyPool = (pool: LcdPool | Pool | PoolDisplay, { includeDetails = false } = {}): PoolPretty => {
   const totalWeight = new Dec(pool.totalWeight);
   const tokens = pool.poolAssets.map(({ token, weight }) => {
     const asset = assetHashMap?.[token.denom];
