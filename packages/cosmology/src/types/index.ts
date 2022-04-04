@@ -237,3 +237,38 @@ export interface ValidatorPair {
     liquidity_atom: number;
 }
 
+export type GammPoolDenom = string;
+export interface PrettyPool {
+    id: string;
+    denom: GammPoolDenom;
+    nickname: string;
+    liquidity: string;
+    tokens: PrettyPoolAsset[]
+};
+
+export interface PrettyPoolAsset {
+    denom: CoinDenom;
+    symbol: CoinSymbol;
+    amount: string;
+    weight: string;
+    ratio: string;
+    price: number;
+    value: string;
+};
+
+export interface LcdPool {
+    "@type": string;
+    address: string;
+    id: string;
+    "poolParams": {
+        "swapFee": string;
+        "exitFee": string;
+    }
+    future_pool_governor: string;
+    totalShares: {
+        denom: GammPoolDenom;
+        amount: string;
+    }
+    poolAssets: PoolAsset[],
+    totalWeight: string;
+};

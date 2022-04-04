@@ -12,7 +12,9 @@ import {
   osmoDenomToSymbol,
   getTradesRequiredToGetBalances,
   getSwaps,
-  calculateAmountWithSlippage
+  calculateAmountWithSlippage,
+  makeLcdPoolPretty,
+  getApiPoolsPretty
 } from '../utils/osmo';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
 import {
@@ -28,19 +30,10 @@ const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
 export default async (argv) => {
   const validator = new OsmosisValidatorClient();
   const api = new OsmosisApiClient();
+  const prices = await getPricesFromCoinGecko();
 
   const getPools = async (argv) => {
-    const pools = await validator.getPools();
-    return Object.keys(pools)
-      .map((poolId) => {
-        if (pools[poolId][0].liquidity > argv['liquidity-limit']) {
-          return {
-            name: pools[poolId].map((a) => a.symbol).join('/'),
-            value: poolId
-          };
-        }
-      })
-      .filter(Boolean);
+    return await getApiPoolsPretty(prices, api, argv['liquidity-limit']);
   };
 
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
@@ -205,7 +198,6 @@ export default async (argv) => {
   // get pricing and pools info...
 
   const pairs = await validator.getPairsSummary();
-  const prices = await getPricesFromCoinGecko();
   const pools = await api.getPoolsPretty();
 
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
