@@ -149,10 +149,14 @@ export const prompt = async (questions = [], argv = {}) => {
   return await inquirerer(questions, argv);
 };
 
+export const getKeychainAccount = () => {
+  return process.env.KEYCHAIN_ACCOUNT || 'cosmology';
+};
+
 export const promptMnemonic = async (argv = {}) => {
   if (argv.keychain) {
     const pass = await getKeychainPassword({
-      account: 'cosmology',
+      account: getKeychainAccount(),
       service: argv.keychain
     });
     if (!pass) {

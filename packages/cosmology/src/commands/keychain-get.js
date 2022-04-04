@@ -1,5 +1,10 @@
-import { decryptString, getKeychainPassword, prompt } from '../utils';
-const account = 'cosmology';
+import {
+  decryptString,
+  getKeychainAccount,
+  getKeychainPassword,
+  prompt
+} from '../utils';
+const account = getKeychainAccount();
 export default async (argv) => {
   const { name } = await prompt(
     [

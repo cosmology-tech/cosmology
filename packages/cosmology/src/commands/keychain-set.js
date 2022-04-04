@@ -1,6 +1,6 @@
 import keychain from 'keychain';
-import { encryptString, prompt } from '../utils';
-const account = 'cosmology';
+import { encryptString, prompt, getKeychainAccount } from '../utils';
+const account = getKeychainAccount();
 export default async (argv) => {
   const { name, password } = await prompt(
     [
