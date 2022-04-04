@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { assets } from '@cosmology/cosmos-registry';
+import { assets } from '../assets';
+import { PriceHash } from '../types';
 import { convertGeckoPricesToDenomPriceHash } from '../utils/osmo/utils';
 
 /**
@@ -86,23 +87,18 @@ export const getPrices = async (coins = ['osmosis']) => {
 
 export const allGeckoAssets = () => {
   return assets
-    .reduce((m, chain) => {
-      return [...m, ...chain.assets];
-    }, [])
     .filter((asset) => !!asset.coingecko_id);
 };
 
-export const getPricesFromCoinGecko = async () => {
+export const _getPricesFromCoinGecko = async () => {
   const geckoAssets = allGeckoAssets();
   const geckoIds = geckoAssets
-    .map((asset) => {
-      if (!asset.coingecko_id) {
-        // console.log(`${asset.symbol} has no geckoId, skipping...`);
-        return;
-      }
-      return asset.coingecko_id;
-    })
-    .filter(Boolean);
+    .map(asset => asset.coingecko_id);
   const prices = await getPrices(geckoIds);
+  return prices;
+};
+
+export const getPricesFromCoinGecko = async (): Promise<PriceHash> => {
+  const prices = await _getPricesFromCoinGecko();
   return convertGeckoPricesToDenomPriceHash(prices);
 };
