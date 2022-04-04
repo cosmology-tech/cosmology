@@ -1,8 +1,8 @@
 import { Secp256k1HdWallet } from '@cosmjs/amino';
-import { prompt } from '../utils';
+import { prompt, encryptPrompt } from '../utils';
 
 export default async (argv) => {
-  const { length } = await prompt(
+  const { length, encrypt } = await prompt(
     [
       {
         _: true,
@@ -10,11 +10,19 @@ export default async (argv) => {
         name: 'length',
         message: 'length',
         default: 12
-      }
+      },
+      { type: 'confirm', name: 'encrypt', message: 'encrypt' }
     ],
     argv
   );
 
+  let fn = async (str, argv) => {
+    return str;
+  };
+  if (encrypt) fn = encryptPrompt;
+
   const wallet = await Secp256k1HdWallet.generate(length);
-  console.log(wallet.secret.data);
+  let mnemonic = wallet.secret.data;
+  mnemonic = await fn(mnemonic, argv);
+  console.log(mnemonic);
 };
