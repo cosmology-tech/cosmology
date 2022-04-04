@@ -4,7 +4,8 @@ import {
   displayUnitsToDenomUnits,
   baseUnitsToDisplayUnits,
   baseUnitsToDollarValue,
-  dollarValueToDenomUnits
+  dollarValueToDenomUnits,
+  baseUnitsToDollarValueByDenom
 } from '../chain';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { noDecimals } from '../../messages';
@@ -17,19 +18,23 @@ import {
   CoinValue,
   CoinWeight,
   DisplayCoin,
+  LcdPool,
   LockedPool,
   LockedPoolDisplay,
   Pair,
   Pool,
   PoolAllocation,
+  PoolAsset,
   PoolDisplay,
   PoolPretty,
+  PrettyPool,
   PriceHash,
   Swap,
   Trade,
   TradeRoute,
   ValidatorToken,
 } from '../../types';
+import { OsmosisApiClient } from '../../clients';
 
 export const getCoinGeckoIdForSymbol = (token: CoinSymbol): CoinGeckoToken => {
   const rec = osmosisAssets.find(({ symbol }) => symbol === token);
@@ -967,6 +972,73 @@ export const getSellableBalance = async ({ client, address, sell }) => {
         amount,
         displayAmount
       };
+    })
+    .filter(Boolean);
+};
+
+
+
+
+export const makeLcdPoolPretty = (
+  prices: PriceHash,
+  pool: LcdPool
+): PrettyPool => {
+
+  let unsupported = false;
+
+  const tokens = pool.poolAssets.map(asset => {
+    const denom: CoinDenom = asset.token.denom;
+    const amount = asset.token.amount;
+    const symbol: CoinSymbol = osmoDenomToSymbol(denom) || denom;
+    const price = prices[asset.token.denom] || 0;
+    if (!price && !prices.hasOwnProperty(asset.token.denom)) {
+      // console.log(denom + ' not supported!');
+      unsupported = true;
+      return null;
+    }
+    const value = baseUnitsToDollarValueByDenom(prices, denom, amount);
+    return {
+      price,
+      weight: asset.weight,
+      denom,
+      symbol,
+      amount,
+      ratio: new Dec(asset.weight).quo(new Dec(pool.totalWeight)).toString(),
+      value
+    };
+  });
+
+  if (unsupported) return null;
+
+  const liquidity = tokens.reduce((m, v) => {
+    return m.add(new Dec(v.value))
+  }, new Dec('0')).toString()
+
+  const nickname = tokens.reduce((m, v) => {
+    return [...m, v.symbol];
+  }, []).join('/');
+
+  return {
+    id: pool.id,
+    denom: `gamm/pool/${pool.id}`,
+    nickname,
+    liquidity,
+    tokens
+  }
+};
+
+export const getApiPoolsPretty = async (prices: PriceHash, api: OsmosisApiClient, liquidityLimit = 100_000) => {
+  const lcdPools = await api.getPools();
+  return lcdPools.pools
+    .map((pool) => makeLcdPoolPretty(prices, pool))
+    .filter(Boolean)
+    .map((pool) => {
+      if (new Dec(pool.liquidity).gt(new Dec(liquidityLimit))) {
+        return {
+          name: pool.nickname,
+          value: pool.id
+        };
+      }
     })
     .filter(Boolean);
 };
