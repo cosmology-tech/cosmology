@@ -37,7 +37,6 @@ import {
   ValidatorToken,
   OsmosisAsset
 } from '../../types';
-import { OsmosisApiClient } from '../../clients';
 
 export const getCoinGeckoIdForSymbol = (token: CoinSymbol): CoinGeckoToken => {
   const rec = osmosisAssets.find(({ symbol }) => symbol === token);
