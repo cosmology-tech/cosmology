@@ -202,7 +202,9 @@ export default async (argv) => {
     }
   }
 
-  console.log(JSON.stringify(msgs, null, 2));
+  if (argv.verbose) {
+    console.log(JSON.stringify(msgs, null, 2));
+  }
 
   const memo = '';
   const gasEstimated = await stargateClient.simulate(address, msgs, memo);

@@ -93,7 +93,9 @@ export default async (argv) => {
     })
   });
 
-  console.log(JSON.stringify(msg, null, 2));
+  if (argv.verbose) {
+    console.log(JSON.stringify(msg, null, 2));
+  }
 
   const accounts = await signer.getAccounts();
   const osmoAddress = accounts[0].address;

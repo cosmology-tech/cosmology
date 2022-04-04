@@ -246,7 +246,9 @@ export default async (argv) => {
         tokenOutMinAmount: noDecimals(tokenOutMinAmount)
       });
 
-      console.log(JSON.stringify({ msg }, null, 2));
+      if (argv.verbose) {
+        console.log(JSON.stringify(msg, null, 2));
+      }
 
       const res = await signAndBroadcast({
         client: stargateClient,
