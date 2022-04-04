@@ -4,6 +4,7 @@ import autobind from 'class-autobind';
 import { Dec } from '@keplr-wallet/unit';
 
 import {
+  LcdPool,
   Pool,
   PoolDisplay,
   PoolPretty
@@ -17,6 +18,11 @@ const assetHashMap = assets.reduce((m, asset) => {
 // Cosmos LCD API
 // https://www.notion.so/Stake-Systems-LCD-RPC-gRPC-Instances-04a99a9a9aa14247a42944931eec7024
 
+export interface PoolsResponse {
+  pools: LcdPool[];
+  pagination: object;
+}
+
 export class OsmosisApiClient extends CosmosApiClient {
   constructor({ url = 'https://osmosis.stakesystems.io/' } = {}) {
     super({ url });
@@ -24,7 +30,7 @@ export class OsmosisApiClient extends CosmosApiClient {
     autobind(this); // React ES6 doesn't bind this -> meaning we get 'unable to read property 'request' of undefined
   }
 
-  async getPools() {
+  async getPools(): Promise<PoolsResponse> {
     const endpoint = `osmosis/gamm/v1beta1/pools?pagination.limit=750`;
     return await this.request(endpoint);
   }
@@ -104,7 +110,7 @@ export class OsmosisApiClient extends CosmosApiClient {
   }
 }
 
-export const prettyPool = (pool: Pool | PoolDisplay, { includeDetails = false } = {}): PoolPretty => {
+export const prettyPool = (pool: LcdPool | Pool | PoolDisplay, { includeDetails = false } = {}): PoolPretty => {
   const totalWeight = new Dec(pool.totalWeight);
   const tokens = pool.poolAssets.map(({ token, weight }) => {
     const asset = assetHashMap?.[token.denom];

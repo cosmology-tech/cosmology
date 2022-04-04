@@ -1,7 +1,6 @@
 import { baseUnitsToDollarValue } from '../utils/chain';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { osmoDenomToSymbol } from '../utils/osmo';
-import { OsmosisValidatorClient } from '../clients/validator';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
 

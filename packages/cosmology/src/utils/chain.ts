@@ -30,19 +30,15 @@ export const getFeeForChainAndMsg = (chainId, message) => {
 export const getCosmosAssetInfo = (symbol) =>
   assets.find((a) => !!a.assets.find((i) => i.symbol === symbol));
 
-export const getCosmosAssetInfoByDenom = (denom) =>
-  assets.find(
-    (a) =>
-      !!a.assets.find(
-        (asset) => !!asset.denom_units.find((unit) => unit.denom === denom)
-      )
-  );
-
-// export const getAssetInfoByDenom = (denom) =>
-//   assets.find(a=>a.symbol === symbol);
-
 export const getOsmosisAssetInfo = (symbol) =>
   osmosisAssets.find((a) => a.symbol === symbol);
+
+export const getOsmosisAssetInfoByDenom = (denom) => osmosisAssets.find(
+  (a) =>
+    !!a.denom_units.find(
+      (unit) => unit.denom === denom
+    ));
+
 
 export const getOsmosisAssetIbcInfo = (symbol) => {
   const assetInfo = getOsmosisAssetInfo(symbol);
@@ -115,14 +111,10 @@ export const getBaseAndDisplayUnitsByDenom = (denom) => {
     };
   }
 
-  const chainInfo = getCosmosAssetInfoByDenom(denom);
-  if (!chainInfo) {
+  const coinInfo = getOsmosisAssetInfoByDenom(denom);
+  if (!coinInfo) {
     throw new Error(`coin:denom:${denom} not found.`);
   }
-
-  const coinInfo = chainInfo.assets.find(
-    (asset) => asset.base === denom || asset.display === denom
-  );
 
   const base = coinInfo.denom_units.find(
     (d) => d.denom === coinInfo.base || d.aliases?.includes(coinInfo.base)
@@ -167,6 +159,18 @@ export const displayUnitsToDollarValue = (prices, symbol, amount) => {
   const a = new Dec(amount);
   const p = new Dec(price);
   return a.mul(p).toString();
+};
+
+export const displayUnitsToDollarValueByDenom = (prices, denom, amount) => {
+  const price = prices[denom] || 0;
+  const a = new Dec(amount);
+  const p = new Dec(price);
+  return a.mul(p).toString();
+};
+
+export const baseUnitsToDollarValueByDenom = (prices, denom, amount) => {
+  const displayAmount = baseUnitsToDisplayUnitsByDenom(denom, amount);
+  return displayUnitsToDollarValueByDenom(prices, denom, displayAmount);
 };
 
 export const baseUnitsToDollarValue = (prices, symbol, amount) => {
