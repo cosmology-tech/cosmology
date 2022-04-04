@@ -1,7 +1,6 @@
 import { chains } from '@cosmology/cosmos-registry';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
-import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
@@ -198,6 +197,7 @@ export default async (argv) => {
   // get pricing and pools info...
 
   const pairs = makePoolPairs(prettyPools);
+  // TODO don't fetch this 2x since you already have it
   const pools = await api.getPoolsPretty();
 
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
@@ -217,7 +217,7 @@ export default async (argv) => {
       desired
     });
 
-    const swaps = await getSwaps({ trades, pairs: pairs });
+    const swaps = await getSwaps({ trades, pairs });
 
     printSwapForPoolAllocation(result.pools[i]);
 

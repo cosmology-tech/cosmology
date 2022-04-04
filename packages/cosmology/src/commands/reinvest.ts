@@ -2,7 +2,6 @@ import { chains } from '@cosmology/cosmos-registry';
 import { coin } from '@cosmjs/amino';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
-import { OsmosisValidatorClient } from '../clients/validator';
 import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
 import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
@@ -15,7 +14,10 @@ import {
   calculateMaxCoinsForPool,
   calculateShareOutAmount,
   calculateAmountWithSlippage,
-  getSellableBalance
+  getSellableBalance,
+  makePoolPairs,
+  makePoolsPretty,
+  makePoolsPrettyValues
 } from '../utils/osmo';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
 import {
@@ -31,24 +33,15 @@ const sleep = (milliseconds) =>
   new Promise((resolve) => setTimeout(resolve, milliseconds));
 
 export default async (argv) => {
-  const validator = new OsmosisValidatorClient();
   const api = new OsmosisApiClient();
-
-  const getPools = async (argv) => {
-    const pools = await validator.getPools();
-    return Object.keys(pools)
-      .map((poolId) => {
-        if (pools[poolId][0].liquidity > argv['liquidity-limit']) {
-          return {
-            name: pools[poolId].map((a) => a.symbol).join('/'),
-            value: poolId
-          };
-        }
-      })
-      .filter(Boolean);
-  };
-
+  const prices = await getPricesFromCoinGecko();
+  const lcdPools = await api.getPools();
+  const prettyPools = makePoolsPretty(prices, lcdPools.pools);
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
+  const poolListValues = makePoolsPrettyValues(
+    prettyPools,
+    argv['liquidity-limit']
+  );
 
   const { client, wallet: signer } = await osmoRestClient(argv);
   const [account] = await signer.getAccounts();
@@ -104,14 +97,13 @@ export default async (argv) => {
 
   // WHICH POOLS TO INVEST?
 
-  const poolList = await getPools(argv);
   let { poolId } = await prompt(
     [
       {
         type: 'checkbox',
         name: 'poolId',
         message: 'choose pools to invest in',
-        choices: poolList
+        choices: poolListValues
       }
     ],
     argv
@@ -134,7 +126,7 @@ export default async (argv) => {
 
   const poolWeightQuestions = poolId.map((p) => {
     const str = `gamm/pool/${p}`;
-    const name = poolList.find(({ value }) => value == p + '').name;
+    const name = poolListValues.find(({ value }) => value == p + '').name;
     return {
       type: 'number',
       name: `poolWeights[${str}][weight]`,
@@ -167,8 +159,8 @@ export default async (argv) => {
 
   // get pricing and pools info...
 
-  const pairs = await validator.getPairsSummary();
-  const prices = await getPricesFromCoinGecko();
+  const pairs = makePoolPairs(prettyPools);
+  // TODO don't fetch this 2x since you already have it
   const pools = await api.getPoolsPretty();
 
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
@@ -186,7 +178,7 @@ export default async (argv) => {
       desired
     });
 
-    const swaps = await getSwaps({ pools, trades, pairs: pairs.data });
+    const swaps = await getSwaps({ trades, pairs });
 
     printSwapForPoolAllocation(result.pools[i]);
 
