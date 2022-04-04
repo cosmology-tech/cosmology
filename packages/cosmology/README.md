@@ -202,6 +202,11 @@ $ cosmology keychain-get \
  --name my-special-mnemonic-name-1
 ```
 
+## known issues
+
+* defaults to NOT using pools with less than 100k in liquidity
+* smaller tokens with volatility may need higher slippage values
+
 ## Disclaimer
 
 AS DESCRIBED IN THE COSMOLOGY LICENSES, THE SOFTWARE IS PROVIDED “AS IS”, AT YOUR OWN RISK, AND WITHOUT WARRANTIES OF ANY KIND.
