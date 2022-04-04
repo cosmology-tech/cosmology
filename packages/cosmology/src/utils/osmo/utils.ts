@@ -27,12 +27,15 @@ import {
   PoolAsset,
   PoolDisplay,
   PoolPretty,
+  PrettyPair,
   PrettyPool,
   PriceHash,
+  PromptValue,
   Swap,
   Trade,
   TradeRoute,
   ValidatorToken,
+  OsmosisAsset
 } from '../../types';
 import { OsmosisApiClient } from '../../clients';
 
@@ -67,6 +70,11 @@ export const osmoDenomToSymbol = (denom: CoinDenom): CoinSymbol => {
     return denom;
   }
   return symbol;
+};
+
+
+export const getOsmoAssetByDenom = (denom: CoinDenom): OsmosisAsset => {
+  return osmosisAssets.find((asset) => asset.base === denom);
 };
 
 export const symbolToOsmoDenom = (token: CoinSymbol): CoinDenom => {
@@ -651,7 +659,7 @@ export const convertWeightsIntoCoins = ({
   };
 };
 
-export const routeThroughPool = ({ denom, trade, pairs }: { denom: CoinDenom, trade: Trade, pairs: Pair[] }): TradeRoute[] => {
+export const routeThroughPool = ({ denom, trade, pairs }: { denom: CoinDenom, trade: Trade, pairs: PrettyPair[] }): TradeRoute[] => {
   const symbol = osmoDenomToSymbol(denom);
 
   const sellPool = pairs.find(
@@ -669,14 +677,14 @@ export const routeThroughPool = ({ denom, trade, pairs }: { denom: CoinDenom, tr
   if (sellPool && buyPool) {
     const routes = [
       {
-        poolId: sellPool.pool_id,
+        poolId: sellPool.id,
         tokenOutDenom: denom,
         tokenOutSymbol: symbol,
         tokenInSymbol: trade.sell.symbol,
         liquidity: sellPool.liquidity
       },
       {
-        poolId: buyPool.pool_id,
+        poolId: buyPool.id,
         tokenOutDenom: trade.buy.denom,
         tokenOutSymbol: trade.buy.symbol,
         tokenInSymbol: symbol,
@@ -688,15 +696,7 @@ export const routeThroughPool = ({ denom, trade, pairs }: { denom: CoinDenom, tr
   }
 };
 
-/**
- * @param {object} param0
- * @param {Pool[]} param0.pools
- * @param {Trade} param0.trade
- * @param {Pair[]} param0.pairs
- * @returns {TradeRoute[]}
- */
-
-export const lookupRoutesForTrade = ({ pools, trade, pairs }: { pools: Pool[], trade: Trade, pairs: Pair[] }): TradeRoute[] => {
+export const lookupRoutesForTrade = ({ trade, pairs }: { trade: Trade, pairs: PrettyPair[] }): TradeRoute[] => {
   const directPool = pairs.find(
     (pair) =>
       (pair.base_address == trade.sell.denom &&
@@ -708,7 +708,7 @@ export const lookupRoutesForTrade = ({ pools, trade, pairs }: { pools: Pool[], t
   if (directPool) {
     return [
       {
-        poolId: directPool.pool_id,
+        poolId: directPool.id,
         tokenOutDenom: trade.buy.denom,
         tokenOutSymbol: trade.buy.symbol,
         tokenInSymbol: trade.sell.symbol,
@@ -747,15 +747,15 @@ export const lookupRoutesForTrade = ({ pools, trade, pairs }: { pools: Pool[], t
   throw new Error('no trade routes found!');
 };
 
-export const getSwaps = ({ pools, trades, pairs }: { pools: Pool[], trades: Trade[], pairs: Pair[] }): Swap[] =>
+export const getSwaps = ({ trades, pairs }: { trades: Trade[], pairs: PrettyPair[] }): Swap[] =>
   trades.reduce((m, trade) => {
     // not sure why, but sometimes we get a zero amount
-    if (new Dec(trade.sell.value).lte(new Dec(0))) return m;
+    if (new Dec(trade.sell.value).lte(new Dec(0.0001))) return m;
     return [
       ...m,
       {
         trade,
-        routes: lookupRoutesForTrade({ pools, trade, pairs })
+        routes: lookupRoutesForTrade({ trade, pairs })
       }
     ];
   }, []);
@@ -1020,6 +1020,7 @@ export const makeLcdPoolPretty = (
 
   return {
     id: pool.id,
+    address: pool.address,
     denom: `gamm/pool/${pool.id}`,
     nickname,
     liquidity,
@@ -1027,11 +1028,11 @@ export const makeLcdPoolPretty = (
   }
 };
 
-export const getApiPoolsPretty = async (prices: PriceHash, api: OsmosisApiClient, liquidityLimit = 100_000) => {
-  const lcdPools = await api.getPools();
-  return lcdPools.pools
-    .map((pool) => makeLcdPoolPretty(prices, pool))
-    .filter(Boolean)
+export const makePoolsPrettyValues = (
+  pools: PrettyPool[],
+  liquidityLimit = 100_000
+): PromptValue[] => {
+  return pools
     .map((pool) => {
       if (new Dec(pool.liquidity).gt(new Dec(liquidityLimit))) {
         return {
@@ -1041,4 +1042,44 @@ export const getApiPoolsPretty = async (prices: PriceHash, api: OsmosisApiClient
       }
     })
     .filter(Boolean);
+};
+
+export const makePoolsPretty = (
+  prices: PriceHash,
+  pools: LcdPool[]
+): PrettyPool[] => {
+  return pools
+    // filter bc some some coins can be null if unsupported
+    .map((pool) => makeLcdPoolPretty(prices, pool))
+    .filter(Boolean);
+};
+
+
+export const makePoolPairs = (
+  pools: PrettyPool[],
+  liquidityLimit = 100_000
+): PrettyPair[] => {
+  return pools
+    .filter(Boolean)
+    .filter(pool => new Dec(pool.liquidity).gte(new Dec(liquidityLimit)))
+
+    .filter(pool => pool.tokens.length === 2) // only pairs
+    .map((pool) => {
+
+      const assetA = pool.tokens[0];
+      const assetAinfo = getOsmoAssetByDenom(assetA.denom);
+      const assetB = pool.tokens[1];
+      const assetBinfo = getOsmoAssetByDenom(assetB.denom);
+
+      return {
+        ...pool,
+        pool_address: pool.address,
+        base_name: assetAinfo.display,
+        base_symbol: assetAinfo.symbol,
+        base_address: assetAinfo.base,
+        quote_name: assetBinfo.display,
+        quote_symbol: assetBinfo.symbol,
+        quote_address: assetBinfo.base
+      }
+    })
 };

@@ -13,8 +13,9 @@ import {
   getTradesRequiredToGetBalances,
   getSwaps,
   calculateAmountWithSlippage,
-  makeLcdPoolPretty,
-  getApiPoolsPretty
+  makePoolPairs,
+  makePoolsPretty,
+  makePoolsPrettyValues
 } from '../utils/osmo';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
 import {
@@ -28,15 +29,15 @@ const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
 
 export default async (argv) => {
-  const validator = new OsmosisValidatorClient();
   const api = new OsmosisApiClient();
   const prices = await getPricesFromCoinGecko();
-
-  const getPools = async (argv) => {
-    return await getApiPoolsPretty(prices, api, argv['liquidity-limit']);
-  };
-
+  const lcdPools = await api.getPools();
+  const prettyPools = makePoolsPretty(prices, lcdPools.pools);
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
+  const poolListValues = makePoolsPrettyValues(
+    prettyPools,
+    argv['liquidity-limit']
+  );
 
   const { client, wallet: signer } = await osmoRestClient(argv);
   const [account] = await signer.getAccounts();
@@ -92,14 +93,13 @@ export default async (argv) => {
 
   // WHICH POOLS TO INVEST?
 
-  const poolList = await getPools(argv);
   let { poolId } = await prompt(
     [
       {
         type: 'checkbox',
         name: 'poolId',
         message: 'choose pools to invest in',
-        choices: poolList
+        choices: poolListValues
       }
     ],
     argv
@@ -156,7 +156,7 @@ export default async (argv) => {
 
   const poolWeightQuestions = poolId.map((p) => {
     const str = `gamm/pool/${p}`;
-    const name = poolList.find(({ value }) => value == p + '').name;
+    const name = poolListValues.find(({ value }) => value == p + '').name;
     return {
       type: 'number',
       name: `poolWeights[${str}][weight]`,
@@ -197,7 +197,7 @@ export default async (argv) => {
 
   // get pricing and pools info...
 
-  const pairs = await validator.getPairsSummary();
+  const pairs = makePoolPairs(prettyPools);
   const pools = await api.getPoolsPretty();
 
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
@@ -217,7 +217,7 @@ export default async (argv) => {
       desired
     });
 
-    const swaps = await getSwaps({ pools, trades, pairs: pairs.data });
+    const swaps = await getSwaps({ trades, pairs: pairs });
 
     printSwapForPoolAllocation(result.pools[i]);
 
@@ -246,6 +246,8 @@ export default async (argv) => {
         },
         tokenOutMinAmount: noDecimals(tokenOutMinAmount)
       });
+
+      console.log(JSON.stringify({ msg }, null, 2));
 
       const res = await signAndBroadcast({
         client: stargateClient,

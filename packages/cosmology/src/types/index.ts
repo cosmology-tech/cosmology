@@ -57,7 +57,7 @@ export interface TradeRoute {
     tokenOutDenom: CoinDenom;
     tokenOutSymbol: CoinSymbol;
     tokenInSymbol: CoinSymbol;
-    liquidity: number;
+    liquidity: string;
 }
 
 export interface Swap {
@@ -240,10 +240,24 @@ export interface ValidatorPair {
 export type GammPoolDenom = string;
 export interface PrettyPool {
     id: string;
+    address: string;
     denom: GammPoolDenom;
     nickname: string;
     liquidity: string;
     tokens: PrettyPoolAsset[]
+};
+export interface PromptValue {
+    name: string;
+    value: any;
+};
+export interface PrettyPair extends PrettyPool {
+    pool_address: string;
+    base_name: string;
+    base_symbol: string;
+    base_address: string;
+    quote_name: string;
+    quote_symbol: string;
+    quote_address: string;
 };
 
 export interface PrettyPoolAsset {
@@ -271,4 +285,28 @@ export interface LcdPool {
     }
     poolAssets: PoolAsset[],
     totalWeight: string;
+};
+
+export interface OsmosisDenomUnit {
+    denom: CoinDenom;
+    exponent: number;
+    aliases?: string[]
+}
+export interface OsmosisAsset {
+    description: string;
+    denom_units: OsmosisDenomUnit[];
+    base: CoinDenom;
+    name: string;
+    display: string;
+    symbol: CoinSymbol;
+    ibc: {
+        source_channel: string;
+        dst_channel: string;
+        source_denom: string;
+    },
+    logo_URIs: {
+        svg: string;
+        png: string;
+    },
+    coingecko_id: string;
 };

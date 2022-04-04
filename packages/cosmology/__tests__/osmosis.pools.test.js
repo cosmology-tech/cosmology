@@ -7,9 +7,9 @@ import pricesFixture from '../__fixtures__/coingecko/api/v3/simple/price/data.js
 
 import {
   makeLcdPoolPretty,
-  convertGeckoPricesToDenomPriceHash
+  convertGeckoPricesToDenomPriceHash,
+  makePoolPairs
 } from '../src/utils/osmo';
-import { OsmosisValidatorClient } from '../__fixtures__/clients/validator';
 import { OsmosisApiClient } from '../__fixtures__/clients/api';
 
 const api = new OsmosisApiClient();
@@ -18,5 +18,12 @@ const prices = convertGeckoPricesToDenomPriceHash(pricesFixture);
 it('pools', async () => {
   const lcdPools = await api.getPools();
   const pretty = makeLcdPoolPretty(prices, lcdPools.pools[0]);
-  console.log(pretty);
+  expect(pretty).toMatchSnapshot();
+});
+
+it('pairs', async () => {
+  const lcdPools = await api.getPools();
+  const pretty = makeLcdPoolPretty(prices, lcdPools.pools[0]);
+  const pairs = makePoolPairs([pretty]);
+  console.log(pairs);
 });
