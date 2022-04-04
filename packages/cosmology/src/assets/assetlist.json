@@ -136,6 +136,33 @@
             "coingecko_id": "persistence"
         },
         {
+            "description": "The PSTAKE token is primarily a governance token for the Liquid Staking Protocol.",
+            "denom_units": [
+                {
+                    "denom": "ibc/8061A06D3BD4D52C4A28FFECF7150D370393AF0BA661C3776C54FF32836C3961",
+                    "exponent": 0
+                },
+                {
+                    "denom": "pstake",
+                    "exponent": 18
+                }
+            ],
+            "base": "ibc/8061A06D3BD4D52C4A28FFECF7150D370393AF0BA661C3776C54FF32836C3961",
+            "name": "PSTAKE",
+            "display": "pstake",
+            "symbol": "PSTAKE",
+            "ibc": {
+                "source_channel": "channel-6",
+                "dst_channel": "channel-4",
+                "source_denom": "ibc/A6E3AF63B3C906416A9AF7A556C59EA4BD50E617EFFE6299B99700CCB780E444"
+            },
+            "logo_URIs": {
+                "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/pstake.png",
+                "svg": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/pstake.svg"
+            },
+            "coingecko_id": "pstake-finance"
+        },
+        {
             "description": "The IRIS token is the native governance token for the IrisNet chain.",
             "denom_units": [
                 {
@@ -1067,7 +1094,7 @@
                 "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/darc.png",
                 "svg": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/darc.svg"
             },
-            "coingecko_id": "konstellation"
+            "coingecko_id": "darcmatter-coin"
         },
         {
             "description": "The native staking and governance token of the Umee Network.",
@@ -1095,7 +1122,8 @@
             },
             "logo_URIs": {
                 "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/umee.png"
-            }
+            },
+            "coingecko_id": "umee"
         },
         {
             "description": "The native token of Gravity Bridge",
@@ -1188,6 +1216,64 @@
             "coingecko_id": "neta"
         },
         {
+            "description": "The native token cw20 for Marble DAO on Juno Chain",
+            "type_asset": "cw20",
+            "address": "juno1g2g7ucurum66d42g8k5twk34yegdq8c82858gz0tq2fc75zy7khssgnhjl",
+            "denom_units": [
+                {
+                    "denom": "ibc/F6B691D5F7126579DDC87357B09D653B47FDCE0A3383FF33C8D8B544FE29A8A6",
+                    "exponent": 0
+                },
+                {
+                    "denom": "marble",
+                    "exponent": 3
+                }
+            ],
+            "base": "ibc/F6B691D5F7126579DDC87357B09D653B47FDCE0A3383FF33C8D8B544FE29A8A6",
+            "name": "Marble",
+            "display": "marble",
+            "symbol": "MARBLE",
+            "ibc": {
+                "source_channel": "channel-47",
+                "dst_channel": "channel-169",
+                "source_denom": "marble"
+            },
+            "logo_URIs": {
+                "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/marble.png",
+                "svg": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/marble.svg"
+            },
+            "coingecko_id": "marble"
+        },
+        {
+            "description": "Hope Galaxy is an NFT collection based on its own native Token $HOPE, a cw20 token on Juno chain.",
+            "type_asset": "cw20",
+            "address": "juno1re3x67ppxap48ygndmrc7har2cnc7tcxtm9nplcas4v0gc3wnmvs3s807z",
+            "denom_units": [
+                {
+                    "denom": "ibc/C2A2E9CA95DDD4828B75124B5E27B8401C7D8493BC48353D418CBFC04565899B",
+                    "exponent": 0
+                },
+                {
+                    "denom": "hope",
+                    "exponent": 6
+                }
+            ],
+            "base": "ibc/C2A2E9CA95DDD4828B75124B5E27B8401C7D8493BC48353D418CBFC04565899B",
+            "name": "Hope Galaxy",
+            "display": "hope",
+            "symbol": "HOPE",
+            "ibc": {
+                "source_channel": "channel-47",
+                "dst_channel": "channel-169",
+                "source_denom": "hope"
+            },
+            "logo_URIs": {
+                "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/hope.png",
+                "svg": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/hope.svg"
+            },
+            "coingecko_id": "hope-galaxy"
+        },
+        {
             "description": "DEC is the native token of Decentr.",
             "denom_units": [
                 {
@@ -1216,6 +1302,95 @@
                 "svg": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/dec.svg"
             },
             "coingecko_id": "decentr"
+        },
+        {
+            "description": "The native EVM, governance and staking token of the Evmos Hub",
+            "denom_units": [
+                {
+                    "denom": "ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518",
+                    "exponent": 0,
+                    "aliases": [
+                        "attoevmos"
+                    ]
+                },
+                {
+                    "denom": "evmos",
+                    "exponent": 18
+                }
+            ],
+            "base": "ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518",
+            "name": "Evmos",
+            "display": "evmos",
+            "symbol": "EVMOS",
+            "ibc": {
+                "source_channel": "channel-0",
+                "dst_channel": "channel-204",
+                "source_denom": "aevmos"
+            },
+            "logo_URIs": {
+                "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/evmos.png",
+                "svg": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/evmos.svg"
+            },
+            "coingecko_id": "evmos"
+        },
+        {
+            "description": "The native token of Carbon",
+            "denom_units": [
+                {
+                    "denom": "ibc/8FEFAE6AECF6E2A255585617F781F35A8D5709A545A804482A261C0C9548A9D3",
+                    "exponent": 0,
+                    "aliases": [
+                        "swth"
+                    ]
+                },
+                {
+                    "denom": "dswth",
+                    "exponent": 8
+                }
+            ],
+            "base": "ibc/8FEFAE6AECF6E2A255585617F781F35A8D5709A545A804482A261C0C9548A9D3",
+            "name": "Carbon",
+            "display": "dswth",
+            "symbol": "SWTH",
+            "ibc": {
+                "source_channel": "channel-0",
+                "dst_channel": "channel-188",
+                "source_denom": "swth"
+            },
+            "logo_URIs": {
+                "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/swth.png",
+                "svg": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/swth.svg"
+            },
+            "coingecko_id": "switcheo"
+        },
+        {
+            "description": "The native token of Cerberus",
+            "denom_units": [
+                {
+                    "denom": "ibc/41999DF04D9441DAC0DF5D8291DF4333FBCBA810FFD63FDCE34FDF41EF37B6F7",
+                    "exponent": 0,
+                    "aliases": [
+                        "ucrbrus"
+                    ]
+                },
+                {
+                    "denom": "crbrus",
+                    "exponent": 6
+                }
+            ],
+            "base": "ibc/41999DF04D9441DAC0DF5D8291DF4333FBCBA810FFD63FDCE34FDF41EF37B6F7",
+            "name": "Cerberus",
+            "display": "crbrus",
+            "symbol": "CRBRUS",
+            "ibc": {
+                "source_channel": "channel-1",
+                "dst_channel": "channel-212",
+                "source_denom": "ucrbrus"
+            },
+            "logo_URIs": {
+                "png": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/crbrus.png"
+            },
+            "coingecko_id": "cerberus-2"
         }
     ]
 }
