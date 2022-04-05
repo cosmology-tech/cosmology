@@ -1,19 +1,24 @@
 // @ts-nocheck
-import validatorPricesFixture from '../__fixtures__/validator/tokens/v2/all/data.json';
-import pairsFixture from '../__fixtures__/validator/pairs/v1/summary/data.json';
 import poolsFixture from '../__fixtures__/lcd/osmosis/gamm/v1beta1/pools/data.json';
-import lockedPoolsFixture from '../__fixtures__/lcd/osmosis/lockup/v1beta1/account_locked_coins/osmo1/data.json';
+import geckoPricesFixtures from '../__fixtures__/coingecko/api/v3/simple/price/data.json';
 
 import {
   symbolsAndDisplayValuesToCoinsArray,
   getTradesRequiredToGetBalances,
   getSwaps,
-  getFilteredPoolsWithValues,
-  convertValidatorPricesToDenomPriceHash
+  convertGeckoPricesToDenomPriceHash,
+  makePoolPairs,
+  makePoolsPretty,
 } from '../src/utils/osmo';
+import { prettyPool } from '../src/clients/osmosis';
+import { LcdPool } from '../src/types';
 
-const prices = convertValidatorPricesToDenomPriceHash(validatorPricesFixture);
-const pools = getFilteredPoolsWithValues({ prices, pools: poolsFixture.pools });
+const prices = convertGeckoPricesToDenomPriceHash(geckoPricesFixtures);
+const lcdPools: LcdPool[] = poolsFixture.pools;
+const prettyPools = makePoolsPretty(prices, lcdPools);
+const pairs = makePoolPairs(prettyPools);
+const pools = lcdPools.map((pool) => prettyPool(pool));
+
 
 it('single route swaps', async () => {
   const balances = symbolsAndDisplayValuesToCoinsArray([
@@ -46,7 +51,7 @@ it('single route swaps', async () => {
     prices,
     pools,
     trades,
-    pairs: pairsFixture.data
+    pairs
   });
   swaps.forEach((swap) => {
     expect(swap.routes.length).toBe(1);
@@ -81,7 +86,7 @@ it('multi-hop route swaps', async () => {
     prices,
     pools,
     trades,
-    pairs: pairsFixture.data
+    pairs
   });
   swaps.forEach((swap) => {
     expect(swap.routes.length).toBe(2);
