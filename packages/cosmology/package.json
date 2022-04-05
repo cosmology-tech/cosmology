@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "cosmology",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "homepage": "https://github.com/pyramation/cosmology/tree/master/packages/cosmology#readme",
+  "homepage": "https://github.com/cosmology-finance/cosmology/tree/master/packages/cosmology#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "main/index.js",
   "module": "module/index.js",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pyramation/cosmology"
+    "url": "https://github.com/cosmology-finance/cosmology"
   },
   "scripts": {
     "build:main": "cross-env BABEL_ENV=production babel src --out-dir main --delete-dir-on-start --extensions \".tsx,.ts,.js\"",
@@ -40,7 +40,7 @@
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "bugs": {
-    "url": "https://github.com/pyramation/cosmology/issues"
+    "url": "https://github.com/cosmology-finance/cosmology/issues"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",

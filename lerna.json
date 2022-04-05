@@ -13,7 +13,7 @@
   "registry": "https://registry.npmjs.org",
   "command": {
     "create": {
-      "homepage": "https://github.com/pyramation/cosmology",
+      "homepage": "https://github.com/cosmology-finance/cosmology",
       "license": "SEE LICENSE IN LICENSE",
       "access": "restricted"
     },
