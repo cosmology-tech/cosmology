@@ -71,6 +71,10 @@ export default async (argv) => {
     };
   });
 
+  if (argv.all) {
+    argv.sell = display.map((item) => item.symbol);
+  }
+
   let { sell } = await prompt(
     [
       {
@@ -92,6 +96,16 @@ export default async (argv) => {
   });
 
   // WHICH POOLS TO INVEST?
+
+  Object.keys(argv).filter(a => a.startsWith('pool-')).forEach(poolWeight => {
+    if (typeof argv.poolId === 'undefined') {
+      argv.poolId = [];
+    } else if (argv.poolId && !Array.isArray(argv.poolId)) {
+      argv.poolId = [argv.poolId];
+    }
+    argv.poolId.push(poolWeight.split('-')[1]);
+  });
+
 
   let { poolId } = await prompt(
     [
@@ -155,23 +169,23 @@ export default async (argv) => {
   // const { tokenWeights } = await prompt(tokenWeightQuestions, argv);
 
   const poolWeightQuestions = poolId.map((p) => {
-    const str = `gamm/pool/${p}`;
     const name = poolListValues.find(({ value }) => value == p + '').name;
     return {
       type: 'number',
-      name: `poolWeights[${str}][weight]`,
+      name: `pool-${p}`,
       message: `enter weight for pool ${name} (${p})`,
       default: 1
     };
   });
 
-  const { poolWeights } = await prompt(poolWeightQuestions, argv);
-
+  const newArgv = await prompt(poolWeightQuestions, argv);
+  const poolWeights = Object.keys(newArgv).filter(a => a.startsWith('pool-'))
   const weights = [
-    ...Object.keys(poolWeights).map((gamm) => {
-      const weight = poolWeights[gamm].weight;
+    ...poolWeights.map((key) => {
+      const poolId = key.split('-')[1];
+      const weight = newArgv[key];
       return {
-        denom: gamm,
+        denom: `gamm/pool/${poolId}`,
         weight
       };
     })
@@ -184,8 +198,6 @@ export default async (argv) => {
     //   };
     // })
   ];
-
-  //
 
   const stargateClient = await getSigningOsmosisClient({
     rpcEndpoint,
