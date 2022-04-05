@@ -1,9 +1,4 @@
-import cases from 'jest-in-case';
-import {
-  convertGeckoPricesToDenomPriceHash,
-  symbolsAndDisplayValuesToCoinsArray,
-  getTradesRequiredToGetBalances
-} from '../src/utils/osmo';
+import { getTradesRequiredToGetBalances } from '../src/utils/osmo';
 
 const prices = {
   'ibc/0954E1C28EB7AF5B72D24F3BC2B47BBB2FDF91BDDFD57B74B99E133AED40972A': 5.4039031052,

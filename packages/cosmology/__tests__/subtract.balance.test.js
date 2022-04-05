@@ -1,18 +1,14 @@
 // @ts-nocheck
 import pricesFixture from '../__fixtures__/coingecko/api/v3/simple/price/data.json';
-import poolsFixture from '../__fixtures__/lcd/osmosis/gamm/v1beta1/pools/data.json';
-import cases from 'jest-in-case';
 
 import {
   symbolsAndDisplayValuesToCoinsArray,
   substractCoins,
   convertGeckoPricesToDenomPriceHash,
-  getFilteredPoolsWithValues,
   convertCoinsToDisplayValues
 } from '../src/utils/osmo';
 
 const prices = convertGeckoPricesToDenomPriceHash(pricesFixture);
-const pools = getFilteredPoolsWithValues({ prices, pools: poolsFixture.pools });
 
 it('subtraction', async () => {
   const balances = symbolsAndDisplayValuesToCoinsArray([

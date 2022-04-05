@@ -1,29 +1,17 @@
 // @ts-nocheck
 import validatorPricesFixture from '../__fixtures__/validator/tokens/v2/all/data.json';
-import bankFixture from '../__fixtures__/lcd/bank/balances/osmo1x/data.json';
 import poolsFixture from '../__fixtures__/lcd/osmosis/gamm/v1beta1/pools/data.json';
 import lockedPoolsFixture from '../__fixtures__/lcd/osmosis/lockup/v1beta1/account_locked_coins/osmo1/data.json';
 import cases from 'jest-in-case';
+import { displayUnitsToDenomUnits } from '../src/utils';
 import {
-  displayUnitsToDenomUnits,
-  baseUnitsToDisplayUnits,
-  getOsmosisSymbolIbcName
-} from '../src/utils';
-import Long from 'long';
-import {
-  getCoinGeckoIdForSymbol,
-  getSymbolForCoinGeckoId,
   osmoDenomToSymbol,
   symbolToOsmoDenom,
-  OsmosisToken,
   convertCoinToDisplayValues,
-  convertCoinsToDisplayValues,
   calculateCoinsTotalBalance,
   convertValidatorPricesToDenomPriceHash,
   getPoolByGammName,
   getUserPools,
-  convertPoolToDisplayValues,
-  convertPoolsToDisplayValues,
   getFilteredPoolsWithValues,
   symbolsAndDisplayValuesToCoinsArray,
   getTradesRequiredToGetBalances

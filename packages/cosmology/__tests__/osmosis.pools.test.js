@@ -21,5 +21,5 @@ it('pairs', async () => {
   const lcdPools = await api.getPools();
   const pretty = makeLcdPoolPretty(prices, lcdPools.pools[0]);
   const pairs = makePoolPairs([pretty]);
-  console.log(pairs);
+  expect(pairs).toMatchSnapshot();
 });
