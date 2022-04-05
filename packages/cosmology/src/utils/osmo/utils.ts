@@ -146,6 +146,31 @@ export const substractCoins = (balances1: CoinValue[], balances2: CoinValue[]): 
     return [...m, newCoin];
   }, []);
 };
+export const addCoins = (balances1: CoinValue[], balances2: CoinValue[]): CoinValue[] => {
+  return balances1.reduce((m, coin) => {
+    const newCoin = { ...coin };
+    const coins = balances2.filter(({ denom }) => denom == coin.denom);
+    coins.forEach((c2) => {
+      const a = new Dec(newCoin.amount);
+      const b = new Dec(c2.amount);
+      newCoin.amount = a.add(b).toString();
+      if (
+        coin.hasOwnProperty('displayAmount') &&
+        c2.hasOwnProperty('displayAmount')
+      ) {
+        const a = new Dec(newCoin.displayAmount);
+        const b = new Dec(c2.displayAmount);
+        newCoin.displayAmount = a.add(b).toString();
+      }
+      if (coin.hasOwnProperty('value') && c2.hasOwnProperty('value')) {
+        const a = new Dec(newCoin.value);
+        const b = new Dec(c2.value);
+        newCoin.value = a.add(b).toString();
+      }
+    });
+    return [...m, newCoin];
+  }, []);
+};
 
 export const convertCoinValueToCoin = (
   { prices, denom, value }: { prices: PriceHash, denom: CoinDenom, value: string | number }

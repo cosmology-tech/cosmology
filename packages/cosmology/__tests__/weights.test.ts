@@ -22,6 +22,27 @@ const prettyPools = makePoolsPretty(prices, lcdPools);
 const pairs = makePoolPairs(prettyPools);
 const pools = lcdPools.map((pool) => prettyPool(pool));
 
+const bank = {
+  total: '9647.3',
+  balances: [
+    {
+      // 36.63
+      symbol: 'ATOM',
+      amount: 10
+    },
+    {
+      // 1.81
+      symbol: 'AKT',
+      amount: 100
+    },
+    {
+      // 9.1
+      symbol: 'OSMO',
+      amount: 1000
+    }
+  ]
+};
+
 cases(
   'weights',
   async (opts) => {
@@ -31,7 +52,6 @@ cases(
       prices,
       coins: balances
     });
-    // - [x] get value of balance
     expect(new Dec(balanceValue).sub(new Dec(opts.total)).isZero());
 
     const weights = opts.weights;
@@ -41,54 +61,27 @@ cases(
       prices,
       balances
     });
-    console.log(weightCoins);
 
-    // - [x] get value of weights into coins/pools
     const poolsValue = weightCoins.pools.reduce((m, v) => {
       return m.add(new Dec(v.value));
     }, new Dec(0));
     const coinsValue = weightCoins.coins.reduce((m, v) => {
       return m.add(new Dec(v.value));
     }, new Dec(0));
+    const allocations = weightCoins.weights.reduce((m, v) => {
+      return m.add(new Dec(v.allocation));
+    }, new Dec(0));
+    expect(Math.round(allocations)).toBe(1);
+
+    // diff is zero or SUPER close to zero
     const diff = coinsValue.add(poolsValue).sub(new Dec(opts.total));
-    expect(diff.isZero()).toBe(true);
-
-    // - [ ] get value of calculated trades
-    const desired = weightCoins.pools[0].coins;
-    const trades = getTradesRequiredToGetBalances({
-      prices,
-      balances,
-      desired
-    });
-    const swaps = await getSwaps({ pools, trades, pairs });
-
-    console.log(swaps);
-
-    // - [ ] single weight (not multiple pools)
-    // - [ ] only pools weights
-    // - [ ] only coins weights
+    expect(diff.isZero() || (diff.gt(new Dec(0)) && diff.lt(new Dec(0.0000001)))).toBe(true);
+    expect(weightCoins).toMatchSnapshot();
   },
   [
     {
       name: 'simple',
-      total: '9647.3',
-      balances: [
-        {
-          // 36.63
-          symbol: 'ATOM',
-          amount: 10
-        },
-        {
-          // 1.81
-          symbol: 'AKT',
-          amount: 100
-        },
-        {
-          // 9.1
-          symbol: 'OSMO',
-          amount: 1000
-        }
-      ],
+      ...bank,
       weights: [
         {
           weight: 5,
@@ -117,24 +110,44 @@ cases(
       ]
     },
     {
-      name: 'single',
-      balances: [
+      name: 'coins-only',
+      ...bank,
+      weights: [
         {
-          // 36.63
-          symbol: 'ATOM',
-          amount: 10
+          weight: 90,
+          symbol: 'OSMO'
         },
         {
-          // 1.81
-          symbol: 'AKT',
-          amount: 100
+          weight: 2,
+          symbol: 'LUNA'
         },
         {
-          // 9.1
-          symbol: 'OSMO',
-          amount: 1000
+          weight: 10,
+          symbol: 'UST'
         }
-      ],
+      ]
+    },
+    {
+      name: 'pools-only',
+      ...bank,
+      weights: [
+        {
+          weight: 5,
+          denom: 'gamm/pool/1'
+        },
+        {
+          weight: 5,
+          poolId: '600'
+        },
+        {
+          weight: 5,
+          denom: 'gamm/pool/606'
+        }
+      ]
+    },
+    {
+      name: 'single',
+      ...bank,
       weights: [
         {
           weight: 5,

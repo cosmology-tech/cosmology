@@ -1,0 +1,410 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`weights coins-only 1`] = `Array []`;
+
+exports[`weights pools-only 1`] = `
+Array [
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "14771663.831629720000000000",
+        "poolId": "4",
+        "tokenInSymbol": "AKT",
+        "tokenOutDenom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "tokenOutSymbol": "ATOM",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "181.000000000000000000",
+      "buy": Object {
+        "amount": "4941304.9413049413050000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "4.941304941304941305",
+        "symbol": "ATOM",
+        "value": "181.000000000000000000",
+      },
+      "sell": Object {
+        "amount": "100000000.0000000000000000",
+        "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+        "displayAmount": "100.000000000000000000",
+        "symbol": "AKT",
+        "value": "181.000000000000000000",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "446862602.326974490000000000",
+        "poolId": "1",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "tokenOutSymbol": "ATOM",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "1060.583333333333331176",
+      "buy": Object {
+        "amount": "28953953.9539539538950000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "28.953953953953953895",
+        "symbol": "ATOM",
+        "value": "1060.583333333333331176",
+      },
+      "sell": Object {
+        "amount": "116547619.0476190473820000",
+        "denom": "uosmo",
+        "displayAmount": "116.547619047619047382",
+        "symbol": "OSMO",
+        "value": "1060.583333333333331176",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "446862602.326974490000000000",
+        "poolId": "1",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "tokenOutSymbol": "ATOM",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "1241.583333333333331176",
+      "buy": Object {
+        "amount": "33895258.8952588952000000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "33.895258895258895200",
+        "symbol": "ATOM",
+        "value": "1241.583333333333331176",
+      },
+      "sell": Object {
+        "amount": "136437728.9377289374920000",
+        "denom": "uosmo",
+        "displayAmount": "136.437728937728937492",
+        "symbol": "OSMO",
+        "value": "1241.583333333333331176",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "29047963.291985120000000000",
+        "poolId": "601",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+        "tokenOutSymbol": "CMDX",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "1607.883333333333333067",
+      "buy": Object {
+        "amount": "389317998.3857949959000000",
+        "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+        "displayAmount": "389.317998385794995900",
+        "symbol": "CMDX",
+        "value": "1607.883333333333333067",
+      },
+      "sell": Object {
+        "amount": "176690476.1904761904470000",
+        "denom": "uosmo",
+        "displayAmount": "176.690476190476190447",
+        "symbol": "OSMO",
+        "value": "1607.883333333333333067",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "446862602.326974490000000000",
+        "poolId": "1",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "tokenOutSymbol": "ATOM",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "1241.583333333333331176",
+      "buy": Object {
+        "amount": "33895258.8952588952000000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "33.895258895258895200",
+        "symbol": "ATOM",
+        "value": "1241.583333333333331176",
+      },
+      "sell": Object {
+        "amount": "136437728.9377289374920000",
+        "denom": "uosmo",
+        "displayAmount": "136.437728937728937492",
+        "symbol": "OSMO",
+        "value": "1241.583333333333331176",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "9589292.177392532888160000",
+        "poolId": "605",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
+        "tokenOutSymbol": "HUAHUA",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "1607.883333333333333334",
+      "buy": Object {
+        "amount": "378168883787.7333935438500000",
+        "denom": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
+        "displayAmount": "378168.883787733393543850",
+        "symbol": "HUAHUA",
+        "value": "1607.883333333333333334",
+      },
+      "sell": Object {
+        "amount": "176690476.1904761904760000",
+        "denom": "uosmo",
+        "displayAmount": "176.690476190476190476",
+        "symbol": "OSMO",
+        "value": "1607.883333333333333334",
+      },
+    },
+  },
+]
+`;
+
+exports[`weights simple 1`] = `
+Array [
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "17106657.243762510000000000",
+        "poolId": "3",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+        "tokenOutSymbol": "AKT",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "572.695312500000000000",
+      "buy": Object {
+        "amount": "316406250.0000000000000000",
+        "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+        "displayAmount": "316.406250000000000000",
+        "symbol": "AKT",
+        "value": "572.695312500000000000",
+      },
+      "sell": Object {
+        "amount": "62933550.8241758241760000",
+        "denom": "uosmo",
+        "displayAmount": "62.933550824175824176",
+        "symbol": "OSMO",
+        "value": "572.695312500000000000",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "446862602.326974490000000000",
+        "poolId": "1",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "tokenOutSymbol": "ATOM",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "387.395312499999998073",
+      "buy": Object {
+        "amount": "10575902.6071526071000000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "10.575902607152607100",
+        "symbol": "ATOM",
+        "value": "387.395312499999998073",
+      },
+      "sell": Object {
+        "amount": "42570913.4615384613270000",
+        "denom": "uosmo",
+        "displayAmount": "42.570913461538461327",
+        "symbol": "OSMO",
+        "value": "387.395312499999998073",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "446862602.326974490000000000",
+        "poolId": "1",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "tokenOutSymbol": "ATOM",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "387.395312499999998073",
+      "buy": Object {
+        "amount": "10575902.6071526071000000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "10.575902607152607100",
+        "symbol": "ATOM",
+        "value": "387.395312499999998073",
+      },
+      "sell": Object {
+        "amount": "42570913.4615384613270000",
+        "denom": "uosmo",
+        "displayAmount": "42.570913461538461327",
+        "symbol": "OSMO",
+        "value": "387.395312499999998073",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "29047963.291985120000000000",
+        "poolId": "601",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+        "tokenOutSymbol": "CMDX",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "753.695312499999999759",
+      "buy": Object {
+        "amount": "182492811.7433414043000000",
+        "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+        "displayAmount": "182.492811743341404300",
+        "symbol": "CMDX",
+        "value": "753.695312499999999759",
+      },
+      "sell": Object {
+        "amount": "82823660.7142857142590000",
+        "denom": "uosmo",
+        "displayAmount": "82.823660714285714259",
+        "symbol": "OSMO",
+        "value": "753.695312499999999759",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "446862602.326974490000000000",
+        "poolId": "1",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "tokenOutSymbol": "ATOM",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "387.395312499999998073",
+      "buy": Object {
+        "amount": "10575902.6071526071000000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "10.575902607152607100",
+        "symbol": "ATOM",
+        "value": "387.395312499999998073",
+      },
+      "sell": Object {
+        "amount": "42570913.4615384613270000",
+        "denom": "uosmo",
+        "displayAmount": "42.570913461538461327",
+        "symbol": "OSMO",
+        "value": "387.395312499999998073",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "9589292.177392532888160000",
+        "poolId": "605",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
+        "tokenOutSymbol": "HUAHUA",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "753.695312500000000000",
+      "buy": Object {
+        "amount": "177266664275.5000282236060000",
+        "denom": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
+        "displayAmount": "177266.664275500028223606",
+        "symbol": "HUAHUA",
+        "value": "753.695312500000000000",
+      },
+      "sell": Object {
+        "amount": "82823660.7142857142860000",
+        "denom": "uosmo",
+        "displayAmount": "82.823660714285714286",
+        "symbol": "OSMO",
+        "value": "753.695312500000000000",
+      },
+    },
+  },
+]
+`;
+
+exports[`weights single 1`] = `
+Array [
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "14771663.831629720000000000",
+        "poolId": "4",
+        "tokenInSymbol": "ATOM",
+        "tokenOutDenom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+        "tokenOutSymbol": "AKT",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "366.300000000000000000",
+      "buy": Object {
+        "amount": "202375690.6077348066300000",
+        "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+        "displayAmount": "202.375690607734806630",
+        "symbol": "AKT",
+        "value": "366.300000000000000000",
+      },
+      "sell": Object {
+        "amount": "10000000.0000000000000000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "10.000000000000000000",
+        "symbol": "ATOM",
+        "value": "366.300000000000000000",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "17106657.243762510000000000",
+        "poolId": "3",
+        "tokenInSymbol": "OSMO",
+        "tokenOutDenom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+        "tokenOutSymbol": "AKT",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "4276.349999999999999350",
+      "buy": Object {
+        "amount": "2362624309.3922651930110000",
+        "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+        "displayAmount": "2362.624309392265193011",
+        "symbol": "AKT",
+        "value": "4276.349999999999999350",
+      },
+      "sell": Object {
+        "amount": "469928571.4285714285000000",
+        "denom": "uosmo",
+        "displayAmount": "469.928571428571428500",
+        "symbol": "OSMO",
+        "value": "4276.349999999999999350",
+      },
+    },
+  },
+]
+`;
