@@ -148,7 +148,7 @@ There are a few methods to deal with mnemonics.
 
 ### METHOD 1 - plain text
 
-(Not recommended)
+(Not recommended) [video here](https://www.youtube.com/watch?v=K46jMo5pjvQ)
 
 ```sh
 export MNEMONIC="action brisk disagree just bunker design wasp hand night ghost runway fluid"
@@ -159,6 +159,9 @@ cosmology rebalance
 
 ### METHOD 2 - encrypted salt via env var `ENCRYPTED_SALT`
 
+[video here](https://www.youtube.com/watch?v=gHIpLZOpHaw)
+
+The encrypted salt is the recommended usage so that you don't store plain-text mnemonics.
 #### 1 First, generate a salt.
 
 ```sh
@@ -186,8 +189,9 @@ export ENCRYPTED_SALT=U2FsdGVkX183aSMtLlWua/uig/Qqd99TBILc63iW1AsJaKGykZGPvA/DXB
 # the mnemonic will be automatically decrypted by the system
 cosmology
 ```
-
 ### METHOD 3 - keychain
+
+[video here](https://www.youtube.com/watch?v=gHIpLZOpHaw)
 
 We can leverage the Mac OSX keychain. Don't worry though, we ONLY use encryption via the encrypted salt, even if some of you happen to trust storing mnemonics in OSX keychain. We only store encrypted values, period.
 ### 1 create an encryption key and encrypt it as described in the previous step
