@@ -5,6 +5,7 @@ import {
   getWalletFromMnemonic,
   baseUnitsToDisplayUnitsByDenom,
   getCosmosAssetInfo,
+  printTransactionResponse,
   gasEstimation
 } from '../utils';
 import { promptChain, promptMnemonic } from '../utils/prompt';
@@ -181,6 +182,7 @@ export default async (argv) => {
         console.log(
           `⚛️  success in staking ${displayAmount} ${argv.chainToken}`
         );
+        printTransactionResponse(result, chain);
       } catch (error) {
         console.log(error);
       }

@@ -1,11 +1,11 @@
-import { osmoDenomToSymbol, symbolToOsmoDenom } from '..';
 import { prompt } from '../utils/prompt';
 import { CosmosApiClient } from '../clients/cosmos';
 import {
   getWalletFromMnemonic,
   baseUnitsToDisplayUnitsByDenom,
   getCosmosAssetInfo,
-  gasEstimation
+  gasEstimation,
+  printTransactionResponse
 } from '../utils';
 import { promptChain, promptMnemonic } from '../utils/prompt';
 import {
@@ -141,14 +141,13 @@ export default async (argv) => {
       (result) => {
         try {
           assertIsDeliverTxSuccess(result);
-          // TODO needs mintscan per chain
-          // printOsmoTransactionResponse(result);
           stargateClient.disconnect();
           console.log(
             `⚛️  success in claiming ${totalClaimable.toString()} ${
               argv.chainToken
             } rewards`
           );
+          printTransactionResponse(result, chain);
         } catch (error) {
           console.log(error);
         }
