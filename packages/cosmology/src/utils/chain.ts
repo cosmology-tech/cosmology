@@ -33,6 +33,14 @@ export const getCosmosAssetInfo = (symbol) =>
 export const getOsmosisAssetInfo = (symbol) =>
   osmosisAssets.find((a) => a.symbol === symbol);
 
+export const getCosmosAssetInfoByDenom = (denom) =>
+  assets.find(
+    (a) =>
+      !!a.assets.find(
+        (asset) => !!asset.denom_units.find((unit) => unit.denom === denom)
+      )
+  );
+
 export const getOsmosisAssetInfoByDenom = (denom) => osmosisAssets.find(
   (a) =>
     !!a.denom_units.find(
@@ -102,7 +110,6 @@ export const getBaseAndDisplayUnits = (symbol) => {
   return { base, display };
 };
 
-// uses cosmos
 export const getBaseAndDisplayUnitsByDenom = (denom) => {
   if (denom.startsWith('gamm')) {
     return {
@@ -111,9 +118,16 @@ export const getBaseAndDisplayUnitsByDenom = (denom) => {
     };
   }
 
-  const coinInfo = getOsmosisAssetInfoByDenom(denom);
+  let coinInfo = getOsmosisAssetInfoByDenom(denom);
   if (!coinInfo) {
-    throw new Error(`coin:denom:${denom} not found.`);
+    // look for generic cosmos coins
+    const chainInfo = getCosmosAssetInfoByDenom(denom);
+    coinInfo = chainInfo.assets.find(
+      (asset) => asset.base === denom || asset.display === denom
+    );
+    if (!coinInfo) {
+      throw new Error(`coin:denom:${denom} not found.`);
+    }
   }
 
   const base = coinInfo.denom_units.find(
