@@ -1,4 +1,25 @@
+import { Coin } from '@cosmjs/amino';
 import { RestClient } from './rest';
+
+export interface Proposal {
+  content: {
+    title: string;
+    description: string;
+  }
+  proposal_id: string;
+  status: string;
+  final_tally_result: { yes: string; abstain: string; no: string; no_with_veto: string; };
+  submit_time: string;
+  deposit_end_time: string;
+  total_deposit: [Coin],
+  voting_start_time: string;
+  voting_end_time: string;
+}
+
+export interface ProposalsResponse {
+  pagination?: object;
+  proposals: Proposal[];
+}
 
 export class CosmosApiClient extends RestClient {
   constructor({ url }) {
@@ -26,6 +47,14 @@ export class CosmosApiClient extends RestClient {
    */
   async getCosmosTransaction(txHash) {
     const endpoint = `cosmos/tx/v1beta1/txs/${txHash}`;
+    return await this.request(endpoint);
+  }
+
+  async getProposals(proposalStatus: number = 2): Promise<ProposalsResponse> {
+    const endpoint = `cosmos/gov/v1beta1/proposals`;
+    if (proposalStatus) {
+      return await this.request(endpoint, { params: { proposal_status: proposalStatus } });
+    }
     return await this.request(endpoint);
   }
 

@@ -91,7 +91,10 @@ cases(
 
         const desired = addCoins(poolCoins, stakingCoins);
 
+
         console.log({ desired });
+
+
 
         const trades = getTradesRequiredToGetBalances({
             prices,

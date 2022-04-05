@@ -28,6 +28,7 @@ import _shamir_decrypt from './commands/shamir-decrypt';
 import _shamir_encrypt from './commands/shamir-encrypt';
 import _swap from './commands/swap';
 import _version from './commands/version';
+import _vote from './commands/vote';
 const Commands = {};
 Commands['claim'] = _claim;
 Commands['create-mnemonic-wallet'] = _create_mnemonic_wallet;
@@ -58,6 +59,7 @@ Commands['shamir-decrypt'] = _shamir_decrypt;
 Commands['shamir-encrypt'] = _shamir_encrypt;
 Commands['swap'] = _swap;
 Commands['version'] = _version;
+Commands['vote'] = _vote;
 
   export { Commands }; 
 

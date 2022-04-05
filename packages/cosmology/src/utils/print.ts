@@ -1,3 +1,4 @@
+import { ChainInfo } from '@keplr-wallet/types';
 import c from 'ansi-colors';
 import { BroadcastTxResponse, PoolAllocation, Swap } from '../types'
 
@@ -35,6 +36,31 @@ export const printOsmoTransactionResponse = (res: BroadcastTxResponse) => {
     console.log(c.bold.red('TX failed:'));
     console.log(res.rawLog);
     console.log(`TX: https://www.mintscan.io/osmosis/txs/${res.transactionHash}`);
+    process.exit(1);
+  }
+};
+
+export const printTransactionResponse = (res: BroadcastTxResponse, chain) => {
+
+  let explorer = chain.explorers.find(({ kind }) => kind === 'mintscan');
+  if (!explorer) {
+    explorer = chain.explorers[0];
+  }
+  let logTx = () => { };
+  if (explorer) {
+    logTx = () => {
+      const url = explorer.tx_page.replace('${txHash}', res.transactionHash);
+      console.log(`TX: ${url}`);
+    }
+  }
+  if (res.code == 0) {
+    console.log(c.bold.green(`success at height: ${res.height}`));
+    logTx();
+    console.log(`\n`);
+  } else {
+    console.log(c.bold.red('TX failed:'));
+    console.log(res.rawLog);
+    logTx();
     process.exit(1);
   }
 };

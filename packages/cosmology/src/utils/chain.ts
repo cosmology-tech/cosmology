@@ -1,31 +1,7 @@
 import { assets, chains } from '@cosmology/cosmos-registry';
-import { coin } from '@cosmjs/amino';
-
 import { assets as osmosisAssets } from '../assets/index';
-import { coins } from '@cosmjs/amino';
-import { gas } from '../messages/gas';
-import { osmoDenomToSymbol, symbolToOsmoDenom } from './osmo';
-import { CoinPretty, Dec, DecUtils, Int, IntPretty } from '@keplr-wallet/unit';
-import { prettyPool } from '../clients';
-import { noDecimals } from '../messages';
-
-export const getFeeForChainAndMsg = (chainId, message) => {
-  const chain = getChainByChainId(chainId);
-  const denom = chain.fees.fee_tokens[0].denom;
-  if (!gas?.[message]?.[denom]) {
-    console.log(
-      `WARNING: need fee information for ${chainId} : ${message} : ${denom}`
-    );
-    return {
-      amount: coins(0 + '', denom),
-      gas: '2000' // MUST BE STRING
-    };
-  }
-  return {
-    amount: coins(gas[message][denom].amount + '', denom),
-    gas: gas[message][denom].gas + '' // MUST BE STRING
-  };
-};
+import { symbolToOsmoDenom } from './osmo';
+import { Dec, IntPretty } from '@keplr-wallet/unit';
 
 export const getCosmosAssetInfo = (symbol) =>
   assets.find((a) => !!a.assets.find((i) => i.symbol === symbol));
