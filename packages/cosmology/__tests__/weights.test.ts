@@ -1,20 +1,26 @@
 // @ts-nocheck
-import pricesFixture from '../__fixtures__/coingecko/api/v3/simple/price/data.json';
-import pairsFixture from '../__fixtures__/validator/pairs/v1/summary/data.json';
 import poolsFixture from '../__fixtures__/lcd/osmosis/gamm/v1beta1/pools/data.json';
+import geckoPricesFixtures from '../__fixtures__/coingecko/api/v3/simple/price/data.json';
 import cases from 'jest-in-case';
 import {
-  convertGeckoPricesToDenomPriceHash,
   symbolsAndDisplayValuesToCoinsArray,
   getTradesRequiredToGetBalances,
-  convertWeightsIntoCoins,
-  getFilteredPoolsWithValues,
   getSwaps,
-  calculateCoinsTotalBalance
+  convertGeckoPricesToDenomPriceHash,
+  calculateCoinsTotalBalance,
+  convertWeightsIntoCoins,
+  makePoolPairs,
+  makePoolsPretty,
 } from '../src/utils/osmo';
+import { prettyPool } from '../src/clients/osmosis';
+import { LcdPool } from '../src/types';
 import { Dec } from '@keplr-wallet/unit';
-const prices = convertGeckoPricesToDenomPriceHash(pricesFixture);
-const pools = getFilteredPoolsWithValues({ prices, pools: poolsFixture.pools });
+
+const prices = convertGeckoPricesToDenomPriceHash(geckoPricesFixtures);
+const lcdPools: LcdPool[] = poolsFixture.pools;
+const prettyPools = makePoolsPretty(prices, lcdPools);
+const pairs = makePoolPairs(prettyPools);
+const pools = lcdPools.map((pool) => prettyPool(pool));
 
 cases(
   'weights',
@@ -54,7 +60,7 @@ cases(
       balances,
       desired
     });
-    const swaps = await getSwaps({ pools, trades, pairs: pairsFixture.data });
+    const swaps = await getSwaps({ pools, trades, pairs });
 
     console.log(swaps);
 
