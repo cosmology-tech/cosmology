@@ -115,6 +115,32 @@ cases(
           symbol: 'UST'
         }
       ]
+    },
+    {
+      name: 'single',
+      balances: [
+        {
+          // 36.63
+          symbol: 'ATOM',
+          amount: 10
+        },
+        {
+          // 1.81
+          symbol: 'AKT',
+          amount: 100
+        },
+        {
+          // 9.1
+          symbol: 'OSMO',
+          amount: 1000
+        }
+      ],
+      weights: [
+        {
+          weight: 5,
+          denom: 'gamm/pool/3'
+        }
+      ]
     }
   ]
 );

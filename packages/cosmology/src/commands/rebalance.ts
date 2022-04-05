@@ -168,6 +168,10 @@ export default async (argv) => {
 
   // const { tokenWeights } = await prompt(tokenWeightQuestions, argv);
 
+  if (poolId.length === 1) {
+    argv[`pool-${poolId[0]}`] = 1;
+  }
+
   const poolWeightQuestions = poolId.map((p) => {
     const name = poolListValues.find(({ value }) => value == p + '').name;
     return {
