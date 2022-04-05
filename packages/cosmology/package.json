@@ -70,10 +70,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.8",
-    "@cosmjs/amino": "0.28.1",
+    "@cosmjs/amino": "0.27.1",
     "@cosmjs/launchpad": "0.27.1",
-    "@cosmjs/proto-signing": "0.28.1",
-    "@cosmjs/stargate": "0.28.1",
+    "@cosmjs/proto-signing": "0.27.1",
+    "@cosmjs/stargate": "0.27.1",
     "@cosmology/cosmos-registry": "^0.0.9",
     "@keplr-wallet/types": "0.10.0",
     "@keplr-wallet/unit": "0.10.0",
