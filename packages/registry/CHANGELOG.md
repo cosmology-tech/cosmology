@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.9](https://github.com/cosmology-finance/cosmology/compare/@cosmology/cosmos-registry@0.0.8...@cosmology/cosmos-registry@0.0.9) (2022-04-05)
+
+**Note:** Version bump only for package @cosmology/cosmos-registry
+
+
+
+
+
 ## [0.0.8](https://github.com/cosmology-finance/cosmology/compare/@cosmology/cosmos-registry@0.0.7...@cosmology/cosmos-registry@0.0.8) (2022-04-05)
 
 **Note:** Version bump only for package @cosmology/cosmos-registry
