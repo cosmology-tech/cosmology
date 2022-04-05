@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "osmosis protobufs",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "homepage": "https://github.com/pyramation/cosmology/tree/master/packages/protobufs#readme",
+  "homepage": "https://github.com/cosmology-finance/cosmology/tree/master/packages/protobufs#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "main/index.js",
   "module": "module/index.js",
@@ -35,11 +35,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pyramation/cosmology/tree/master/packages/protobufs"
+    "url": "https://github.com/cosmology-finance/cosmology/tree/master/packages/protobufs"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/pyramation/cosmology/tree/master/packages/protobufs/issues"
+    "url": "https://github.com/cosmology-finance/cosmology/tree/master/packages/protobufs/issues"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",
