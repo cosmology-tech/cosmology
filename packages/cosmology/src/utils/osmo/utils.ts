@@ -21,10 +21,8 @@ import {
   LcdPool,
   LockedPool,
   LockedPoolDisplay,
-  Pair,
   Pool,
   PoolAllocation,
-  PoolAsset,
   PoolDisplay,
   PoolPretty,
   PrettyPair,
@@ -36,7 +34,7 @@ import {
   TradeRoute,
   ValidatorToken,
   OsmosisAsset
-} from '../../types';
+} from '../../..';
 
 export const getCoinGeckoIdForSymbol = (token: CoinSymbol): CoinGeckoToken => {
   const rec = osmosisAssets.find(({ symbol }) => symbol === token);

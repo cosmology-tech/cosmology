@@ -1,4 +1,4 @@
-import { Coin, CoinDenom, CoinGeckoToken, CoinGeckoUSDResponse, CoinSymbol, CoinValue, CoinWeight, DisplayCoin, LcdPool, LockedPool, LockedPoolDisplay, Pool, PoolAllocation, PoolDisplay, PoolPretty, PrettyPair, PrettyPool, PriceHash, PromptValue, Swap, Trade, TradeRoute, ValidatorToken, OsmosisAsset } from '../../types';
+import { Coin, CoinDenom, CoinGeckoToken, CoinGeckoUSDResponse, CoinSymbol, CoinValue, CoinWeight, DisplayCoin, LcdPool, LockedPool, LockedPoolDisplay, Pool, PoolAllocation, PoolDisplay, PoolPretty, PrettyPair, PrettyPool, PriceHash, PromptValue, Swap, Trade, TradeRoute, ValidatorToken, OsmosisAsset } from '../../..';
 export declare const getCoinGeckoIdForSymbol: (token: CoinSymbol) => CoinGeckoToken;
 /**
  * @param {CoinGeckoToken} geckoId

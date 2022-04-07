@@ -1,5 +1,5 @@
 import { CosmosApiClient } from './cosmos';
-import { LcdPool, Pool, PoolDisplay, PoolPretty } from '../types';
+import { LcdPool, Pool, PoolDisplay, PoolPretty } from '../..';
 export interface PoolsResponse {
     pools: LcdPool[];
     pagination: object;

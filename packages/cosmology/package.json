@@ -31,7 +31,7 @@
     "build:module": "cross-env MODULE=true babel src --out-dir module --delete-dir-on-start  --extensions \".tsx,.ts,.js\"",
     "build:commands": "cross-env NODE_ENV=development node ./bin/build.js",
     "build": "npm run build:module && npm run build:main",
-    "build:ts": "tsc --declaration --outDir ./types --emitDeclarationOnly",
+    "build:ts": "tsc --project ./tsconfig.json",
     "prepare": "npm run build",
     "lint": "eslint src --fix",
     "dev": "cross-env NODE_ENV=development babel-node src/cosmology --extensions \".tsx,.ts,.js\"",

@@ -1,6 +1,5 @@
-import { ChainInfo } from '@keplr-wallet/types';
 import c from 'ansi-colors';
-import { BroadcastTxResponse, PoolAllocation, Swap } from '../types'
+import { BroadcastTxResponse, PoolAllocation, Swap } from '../..'
 
 export const printSwapForPoolAllocation = (pool: PoolAllocation): void => {
   console.log(`\nSWAPS for ${c.bold.magenta(pool.name)}`);

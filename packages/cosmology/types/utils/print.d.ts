@@ -1,4 +1,4 @@
-import { BroadcastTxResponse, PoolAllocation, Swap } from '../types';
+import { BroadcastTxResponse, PoolAllocation, Swap } from '../..';
 export declare const printSwapForPoolAllocation: (pool: PoolAllocation) => void;
 export declare const printSwap: (swap: Swap) => void;
 export declare const printOsmoTransactionResponse: (res: BroadcastTxResponse) => void;

@@ -8,7 +8,7 @@ import {
   Pool,
   PoolDisplay,
   PoolPretty
-} from '../types'
+} from '../..'
 
 const assetHashMap = assets.reduce((m, asset) => {
   m[asset.base] = asset;

@@ -1,3 +1,4 @@
+
 export interface BroadcastTxResponse {
     height: number;
     code: number;
@@ -17,18 +18,21 @@ export interface PoolDisplay extends Pool {
     pricePerShareEn18: string;
     totalValue: string;
 }
+
 export interface PoolPretty extends Pool {
     nickname: string;
     images: PoolTokenImage[] | null;
-    poolAssetsPretty: PoolAssetPretty[];
+    poolAssetsPretty: PoolAssetPretty[]
 }
+
 export interface PoolTokenImage {
     token: CoinSymbol;
     images: {
         png: string;
         svg: string;
-    };
+    }
 }
+
 export interface PoolAsset {
     token: Coin;
     weight: string;
@@ -47,6 +51,7 @@ export interface PoolAssetDisplay {
     value: DisplayCoin;
     weight: string;
 }
+
 export interface TradeRoute {
     poolId: string;
     tokenOutDenom: CoinDenom;
@@ -54,10 +59,12 @@ export interface TradeRoute {
     tokenInSymbol: CoinSymbol;
     liquidity: string;
 }
+
 export interface Swap {
     trade: Trade;
     routes: TradeRoute[];
-}
+};
+
 export interface Pair {
     pool_address: string;
     pool_id: string;
@@ -120,20 +127,69 @@ export interface DisplayCoin {
     symbol: CoinSymbol;
 }
 export interface Trade {
-    sell: CoinValue;
+    sell: CoinValue
     buy: CoinValue;
     beliefValue: string;
 }
-export declare type CoinDenom = string;
-export declare type CoinSymbol = 'ATOM' | 'OSMO' | 'ION' | 'AKT' | 'DVPN' | 'IRIS' | 'CRO' | 'XPRT' | 'REGEN' | 'IOV' | 'NGM' | 'EEUR' | 'JUNO' | 'LIKE' | 'UST' | 'LUNA' | 'BCNA' | 'SCRT' | 'MED';
-export declare type CoinGeckoToken = 'cosmos' | 'osmosis' | 'ion' | 'akash-network' | 'sentinel' | 'iris-network' | 'crypto-com-chain' | 'persistence' | 'regen' | 'starname' | 'e-money' | 'e-money-eur' | 'juno-network' | 'likecoin' | 'terrausd' | 'terra-luna' | 'bitcanna' | 'terra-krw' | 'secret' | 'medibloc' | 'comdex' | 'cheqd-network' | 'vidulum';
+export type CoinDenom = string;
+
+export type CoinSymbol =
+    'ATOM' |
+    'OSMO' |
+    'ION' |
+    'AKT' |
+    'DVPN' |
+    'IRIS' |
+    'CRO' |
+    'XPRT' |
+    'REGEN' |
+    'IOV' |
+    'NGM' |
+    'EEUR' |
+    'JUNO' |
+    'LIKE' |
+    'UST' |
+    'LUNA' |
+    'BCNA' |
+    'SCRT' |
+    'MED';
+
+export type CoinGeckoToken =
+    'cosmos' |
+    'osmosis' |
+    'ion' |
+    'akash-network' |
+    'sentinel' |
+    'iris-network' |
+    'crypto-com-chain' |
+    'persistence' |
+    'regen' |
+    'starname' |
+    'e-money' |
+    'e-money-eur' |
+    'juno-network' |
+    'likecoin' |
+    'terrausd' |
+    'terra-luna' |
+    'bitcanna' |
+    'terra-krw' |
+    'secret' |
+    'medibloc' |
+    'comdex' |
+    'cheqd-network' |
+    'vidulum';
+
 export interface PriceHash {
     [key: CoinDenom]: number;
 }
+
 export interface CoinGeckoUSD {
     usd: number;
-}
-export declare type CoinGeckoUSDResponse = Record<CoinGeckoToken, CoinGeckoUSD>;
+};
+
+export type CoinGeckoUSDResponse = Record<CoinGeckoToken, CoinGeckoUSD>
+
+
 export interface ValidatorToken {
     price: number;
     denom: CoinDenom;
@@ -143,10 +199,12 @@ export interface ValidatorToken {
     volume_24h: number;
     volume_24h_change: number;
     name: string;
-}
+};
+
 export interface ValidatorTokenPrice {
     price: number;
 }
+
 export interface ValidatorCoinApr {
     start_date: string;
     denom: CoinDenom;
@@ -155,10 +213,12 @@ export interface ValidatorCoinApr {
     apr_7d: number;
     apr_14d: number;
 }
+
 export interface ValidatorPoolApr {
     pool_id: number;
-    apr_list: ValidatorCoinApr[];
+    apr_list: ValidatorCoinApr[]
 }
+
 export interface ValidatorPair {
     pool_address: string;
     pool_id: string;
@@ -176,19 +236,20 @@ export interface ValidatorPair {
     liquidity: number;
     liquidity_atom: number;
 }
-export declare type GammPoolDenom = string;
+
+export type GammPoolDenom = string;
 export interface PrettyPool {
     id: string;
     address: string;
     denom: GammPoolDenom;
     nickname: string;
     liquidity: string;
-    tokens: PrettyPoolAsset[];
-}
+    tokens: PrettyPoolAsset[]
+};
 export interface PromptValue {
     name: string;
     value: any;
-}
+};
 export interface PrettyPair extends PrettyPool {
     pool_address: string;
     base_name: string;
@@ -197,7 +258,8 @@ export interface PrettyPair extends PrettyPool {
     quote_name: string;
     quote_symbol: string;
     quote_address: string;
-}
+};
+
 export interface PrettyPoolAsset {
     denom: CoinDenom;
     symbol: CoinSymbol;
@@ -206,7 +268,8 @@ export interface PrettyPoolAsset {
     ratio: string;
     price: number;
     value: string;
-}
+};
+
 export interface LcdPool {
     "@type": string;
     address: string;
@@ -214,19 +277,20 @@ export interface LcdPool {
     "poolParams": {
         "swapFee": string;
         "exitFee": string;
-    };
+    }
     future_pool_governor: string;
     totalShares: {
         denom: GammPoolDenom;
         amount: string;
-    };
-    poolAssets: PoolAsset[];
+    }
+    poolAssets: PoolAsset[],
     totalWeight: string;
-}
+};
+
 export interface OsmosisDenomUnit {
     denom: CoinDenom;
     exponent: number;
-    aliases?: string[];
+    aliases?: string[]
 }
 export interface OsmosisAsset {
     description: string;
@@ -239,10 +303,10 @@ export interface OsmosisAsset {
         source_channel: string;
         dst_channel: string;
         source_denom: string;
-    };
+    },
     logo_URIs: {
         svg: string;
         png: string;
-    };
+    },
     coingecko_id: string;
-}
+};
