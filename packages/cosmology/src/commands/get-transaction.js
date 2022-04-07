@@ -1,7 +1,7 @@
-import { osmoRestClient, prompt } from '../utils';
+import { promptOsmoRestClient, prompt } from '../utils';
 
 export default async (argv) => {
-  const { client, wallet } = await osmoRestClient(argv);
+  const { client } = await promptOsmoRestClient(argv);
   const { txHash } = await prompt(
     [
       {

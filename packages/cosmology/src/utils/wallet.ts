@@ -1,4 +1,4 @@
-import { Secp256k1HdWallet } from '@cosmjs/amino';
+import { AccountData, Secp256k1HdWallet } from '@cosmjs/amino';
 import { Slip10RawIndex } from '@cosmjs/crypto';
 
 import { assets, chains } from '@cosmology/cosmos-registry';
@@ -13,7 +13,7 @@ export function makeHdPath(coinType = 118, account = 0) {
   ];
 }
 
-export const getWalletFromMnemonic = async ({ mnemonic, token }) => {
+export const getWalletFromMnemonic = async ({ mnemonic, token }): Promise<Secp256k1HdWallet> => {
   const chainFromAssets = assets.find(({ assets }) => {
     const found = assets.find(({ symbol }) => symbol === token);
     if (found) return true;
@@ -34,7 +34,7 @@ export const getWalletFromMnemonic = async ({ mnemonic, token }) => {
   }
 };
 
-export const getWalletFromMnemonicForChain = async ({ mnemonic, chain }) => {
+export const getWalletFromMnemonicForChain = async ({ mnemonic, chain }): Promise<Secp256k1HdWallet> => {
   try {
     const { bech32_prefix, slip44 } = chain;
     const wallet = await Secp256k1HdWallet.fromMnemonic(mnemonic, {
@@ -47,7 +47,7 @@ export const getWalletFromMnemonicForChain = async ({ mnemonic, chain }) => {
   }
 };
 
-export const getAccountFromMnemonic = async ({ mnemonic, token }) => {
+export const getAccountFromMnemonic = async ({ mnemonic, token }): Promise<AccountData> => {
   const wallet = await getWalletFromMnemonic({ mnemonic, token });
   const [mainAccount] = await wallet.getAccounts();
   return mainAccount;

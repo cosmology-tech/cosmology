@@ -5,27 +5,26 @@ import {
   getWalletFromMnemonic,
   getWalletFromMnemonicForChain
 } from '../utils/wallet';
+import { AccountData, Secp256k1HdWallet } from '@cosmjs/amino';
 
 const assetList = assets.reduce(
   (m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)],
   []
 );
 
-export const promptOsmoWallet = async (argv) => {
+export const promptOsmoWallet = async (argv): Promise<Secp256k1HdWallet> => {
   argv = await promptMnemonic(argv);
   const { mnemonic } = argv;
-  const account = await getWalletFromMnemonic({ mnemonic, token: 'OSMO' });
-  return account;
+  return await getWalletFromMnemonic({ mnemonic, token: 'OSMO' });
 };
 
-export const promptCosmosChainWallet = async (chain, argv) => {
+export const promptCosmosChainWallet = async (chain, argv): Promise<Secp256k1HdWallet> => {
   argv = await promptMnemonic(argv);
   const { mnemonic } = argv;
-  const account = await getWalletFromMnemonicForChain({ mnemonic, chain });
-  return account;
+  return await getWalletFromMnemonicForChain({ mnemonic, chain });
 };
 
-export const promptWalletOfToken = async (argv) => {
+export const promptWalletOfToken = async (argv): Promise<Secp256k1HdWallet> => {
   argv = await promptMnemonic(argv);
 
   const { token } = await prompt(
@@ -45,7 +44,7 @@ export const promptWalletOfToken = async (argv) => {
   return account;
 };
 
-export const promptAccountOfToken = async (argv) => {
+export const promptAccountOfToken = async (argv): Promise<AccountData> => {
   argv = await promptMnemonic(argv);
 
   const { token } = await prompt(
@@ -61,6 +60,5 @@ export const promptAccountOfToken = async (argv) => {
   );
   argv.token = token;
   const { mnemonic } = argv;
-  const account = await getAccountFromMnemonic({ mnemonic, token });
-  return account;
+  return await getAccountFromMnemonic({ mnemonic, token });
 };

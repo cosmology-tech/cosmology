@@ -1,12 +1,12 @@
 import { baseUnitsToDollarValue } from '../utils/chain';
-import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
+import { baseUnitsToDisplayUnits, promptOsmoRestClient } from '../utils';
 import { osmoDenomToSymbol } from '../utils/osmo';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
 
 export default async (argv) => {
-  const { client, wallet } = await osmoRestClient(argv);
-  const [account] = await wallet.getAccounts();
+  const { client, signer } = await promptOsmoRestClient(argv);
+  const [account] = await signer.getAccounts();
 
   try {
     const balances = await client.getBalances(account.address);

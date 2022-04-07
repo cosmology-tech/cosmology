@@ -1,13 +1,12 @@
-import { chains, assets } from '@cosmology/cosmos-registry';
+import { assets } from '@cosmology/cosmos-registry';
 import { printOsmoTransactionResponse, prompt } from '../utils';
-import { OsmosisApiClient } from '../clients/osmosis';
 import {
   baseUnitsToDisplayUnits,
   baseUnitsToDollarValue,
   dollarValueToDenomUnits,
   getPrice
 } from '../utils/chain';
-import { osmoRestClient } from '../utils';
+import { promptOsmoRestClient, promptOsmoSigningClient } from '../utils';
 import { osmoDenomToSymbol, symbolToOsmoDenom } from '../utils/osmo';
 import {
   lookupRoutesForTrade,
@@ -16,13 +15,10 @@ import {
   makePoolsPretty
 } from '../utils/osmo/utils';
 import { prettyPool } from '../clients/osmosis';
-import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
+import { noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
 import { signAndBroadcast } from '../messages/utils';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
-
-const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
-const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
 
 const assetList = assets
   .reduce((m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)], [])
@@ -35,14 +31,14 @@ function onlyUnique(value, index, self) {
 const assetsList = assetList.filter(onlyUnique);
 
 export default async (argv) => {
-  const api = new OsmosisApiClient();
+  const { client, signer } = await promptOsmoRestClient(argv);
+  const { client: stargateClient } = await promptOsmoSigningClient(argv);
   const prices = await getPricesFromCoinGecko();
-  const lcdPools = await api.getPools();
+  const lcdPools = await client.getPools();
   const prettyPools = makePoolsPretty(prices, lcdPools.pools);
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
-  const { client, wallet: signer } = await osmoRestClient(argv);
   const [account] = await signer.getAccounts();
-
+  const { address } = account;
   const accountBalances = await client.getBalances(account.address);
   const availableChoices = accountBalances.result.map(({ denom, amount }) => {
     const symbol = osmoDenomToSymbol(denom);
@@ -189,16 +185,8 @@ export default async (argv) => {
 
   // TX
 
-  const stargateClient = await getSigningOsmosisClient({
-    rpcEndpoint,
-    signer
-  });
-
-  const accounts = await signer.getAccounts();
-  const osmoAddress = accounts[0].address;
-
   const { msg, fee } = messages.swapExactAmountIn({
-    sender: osmoAddress,
+    sender: address,
     routes,
     tokenIn: {
       denom: tokenIn.denom,
@@ -208,12 +196,14 @@ export default async (argv) => {
     tokenOutMinAmount: noDecimals(tokenOut.amount)
   });
 
-  console.log(JSON.stringify(msg, null, 2));
+  if (argv.verbose) {
+    console.log(JSON.stringify(msg, null, 2));
+  }
 
   const res = await signAndBroadcast({
     client: stargateClient,
-    chainId: osmoChainConfig.chain_id,
-    address: osmoAddress,
+    chainId: argv.chainId,
+    address,
     msg,
     fee,
     memo: ''

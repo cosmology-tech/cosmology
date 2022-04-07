@@ -1,10 +1,12 @@
 import { coins } from '@cosmjs/amino';
-import { chains, assets } from '@cosmology/cosmos-registry';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { prompt } from '../utils';
-import { OsmosisApiClient } from '..';
-import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
-import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
+import {
+  baseUnitsToDisplayUnits,
+  promptOsmoRestClient,
+  promptOsmoSigningClient
+} from '../utils';
+import { noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
 import { signAndBroadcastBatch } from '../messages/utils';
 import {
@@ -28,13 +30,11 @@ import {
   printOsmoTransactionResponse
 } from '../utils/print';
 
-const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
-const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
-
 export default async (argv) => {
-  const api = new OsmosisApiClient();
+  const { client, signer } = await promptOsmoRestClient(argv);
+  const { client: stargateClient } = await promptOsmoSigningClient(argv);
   const prices = await getPricesFromCoinGecko();
-  const lcdPools = await api.getPools();
+  const lcdPools = await client.getPools();
   const prettyPools = makePoolsPretty(prices, lcdPools.pools);
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
   const poolListValues = makePoolsPrettyValues(
@@ -42,10 +42,9 @@ export default async (argv) => {
     argv['liquidity-limit']
   );
 
-  const { client, wallet: signer } = await osmoRestClient(argv);
   const [account] = await signer.getAccounts();
-  const address = account.address;
-  const accountBalances = await client.getBalances(account.address);
+  const { address } = account;
+  const accountBalances = await client.getBalances(address);
   const display = accountBalances.result
     .map(({ denom, amount }) => {
       if (denom.startsWith('gamm')) return;
@@ -136,14 +135,6 @@ export default async (argv) => {
     })
   ];
 
-  const stargateClient = await getSigningOsmosisClient({
-    rpcEndpoint,
-    signer
-  });
-
-  const accounts = await signer.getAccounts();
-  const osmoAddress = accounts[0].address;
-
   // get pricing and pools info...
   const pairs = makePoolPairs(prettyPools);
   const pools = lcdPools.pools.map((pool) => prettyPool(pool));
@@ -189,7 +180,7 @@ export default async (argv) => {
       );
 
       const { msg } = messages.swapExactAmountIn({
-        sender: osmoAddress,
+        sender: address,
         routes,
         tokenIn: {
           denom: sell.denom,
@@ -218,8 +209,8 @@ export default async (argv) => {
 
   const res = await signAndBroadcastBatch({
     client: stargateClient,
-    chainId: osmoChainConfig.chain_id,
-    address: osmoAddress,
+    chainId: argv.chainId,
+    address,
     msgs,
     fee,
     memo: ''

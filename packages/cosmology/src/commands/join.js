@@ -1,8 +1,6 @@
-import { chains } from '@cosmology/cosmos-registry';
 import { coin } from '@cosmjs/amino';
-import { prompt } from '../utils';
-import { OsmosisApiClient } from '../clients/osmosis';
-import { osmoRestClient } from '../utils';
+import { prompt, promptOsmoSigningClient } from '../utils';
+import { promptOsmoRestClient } from '../utils';
 import {
   calculateShareOutAmount,
   calculateCoinsNeededInPoolForValue,
@@ -10,19 +8,18 @@ import {
   makePoolsPretty,
   makePoolsPrettyValues
 } from '../utils/osmo';
-import { getSigningOsmosisClient } from '../messages/utils';
 import { messages } from '../messages/messages';
 import { signAndBroadcast } from '../messages/utils';
 import { getPricesFromCoinGecko } from '../clients/coingecko';
 import { printOsmoTransactionResponse } from '../utils/print';
 
-const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
-const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
-
 export default async (argv) => {
-  const api = new OsmosisApiClient();
+  const { client, signer } = await promptOsmoRestClient(argv);
+  const { client: stargateClient } = await promptOsmoSigningClient(argv);
+  const [account] = await signer.getAccounts();
+  const { address } = account;
   const prices = await getPricesFromCoinGecko();
-  const lcdPools = await api.getPools();
+  const lcdPools = await client.getPools();
   const prettyPools = makePoolsPretty(prices, lcdPools.pools);
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
   const poolListValues = makePoolsPrettyValues(
@@ -30,10 +27,7 @@ export default async (argv) => {
     argv['liquidity-limit']
   );
 
-  const { client, wallet: signer } = await osmoRestClient(argv);
-  const [account] = await signer.getAccounts();
-
-  const accountBalances = await client.getBalances(account.address);
+  const accountBalances = await client.getBalances(address);
   const balances = accountBalances.result;
 
   const { poolId } = await prompt(
@@ -97,17 +91,10 @@ export default async (argv) => {
     console.log(JSON.stringify(msg, null, 2));
   }
 
-  const accounts = await signer.getAccounts();
-  const osmoAddress = accounts[0].address;
-  const stargateClient = await getSigningOsmosisClient({
-    rpcEndpoint,
-    signer
-  });
-
   const res = await signAndBroadcast({
     client: stargateClient,
-    chainId: osmoChainConfig.chain_id,
-    address: osmoAddress,
+    chainId: argv.chainId,
+    address,
     msg,
     fee,
     memo: ''

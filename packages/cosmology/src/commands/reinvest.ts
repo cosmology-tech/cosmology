@@ -2,7 +2,7 @@ import { chains } from '@cosmology/cosmos-registry';
 import { coin } from '@cosmjs/amino';
 import { prompt } from '../utils';
 import { OsmosisApiClient } from '..';
-import { baseUnitsToDisplayUnits, osmoRestClient } from '../utils';
+import { baseUnitsToDisplayUnits, promptOsmoRestClient } from '../utils';
 import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
 import { messages } from '../messages/messages';
 import { signAndBroadcast } from '../messages/utils';
@@ -44,7 +44,7 @@ export default async (argv) => {
     argv['liquidity-limit']
   );
 
-  const { client, wallet: signer } = await osmoRestClient(argv);
+  const { client, wallet: signer } = await promptOsmoRestClient(argv);
   const [account] = await signer.getAccounts();
   const address = account.address;
   const accountBalances = await client.getBalances(account.address);

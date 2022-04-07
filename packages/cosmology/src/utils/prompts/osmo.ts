@@ -16,11 +16,11 @@ const osmosTestnetRpcs = ['http://143.244.147.126:26657'].map((value) => {
   };
 });
 
-export const osmoRpcClient = async (argv) => {
+export const promptOsmoSigningClient = async (argv) => {
   argv.chainToken = 'OSMO';
 
   const chain = await promptChain(argv);
-  const wallet = await promptOsmoWallet(argv);
+  const signer = await promptOsmoWallet(argv);
 
   try {
     const rpc = chain.apis.rpc
@@ -58,23 +58,23 @@ export const osmoRpcClient = async (argv) => {
     }
     const client = await getSigningOsmosisClient({
       rpcEndpoint: rpcEndpoint,
-      wallet
+      signer
     });
 
     argv.chainId = chainId;
     argv.rpcEndpoint = rpcEndpoint;
 
-    return { client, wallet };
+    return { client, signer };
   } catch (e) {
     console.log('error ' + e);
   }
 };
 
-export const osmoRestClient = async (argv) => {
+export const promptOsmoRestClient = async (argv) => {
   argv.chainToken = 'OSMO';
 
   const chain = await promptChain(argv);
-  const wallet = await promptOsmoWallet(argv);
+  const signer = await promptOsmoWallet(argv);
 
   try {
     const rest = chain.apis.rest
@@ -119,7 +119,7 @@ export const osmoRestClient = async (argv) => {
     argv.chainId = chainId;
     argv.restEndpoint = restEndpoint;
 
-    return { client, wallet };
+    return { client, signer };
   } catch (e) {
     console.log('error ' + e);
   }
