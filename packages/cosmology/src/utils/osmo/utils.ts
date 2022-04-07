@@ -34,7 +34,7 @@ import {
   TradeRoute,
   ValidatorToken,
   OsmosisAsset
-} from '../../..';
+} from '../../types';
 
 export const getCoinGeckoIdForSymbol = (token: CoinSymbol): CoinGeckoToken => {
   const rec = osmosisAssets.find(({ symbol }) => symbol === token);

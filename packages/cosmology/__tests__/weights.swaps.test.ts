@@ -14,7 +14,7 @@ import {
     addCoins
 } from '../src/utils/osmo';
 import { prettyPool } from '../src/clients/osmosis';
-import { CoinValue, LcdPool } from '../..';
+import { CoinValue, LcdPool } from '../src/types';
 import { Dec } from '@keplr-wallet/unit';
 
 

@@ -4,7 +4,7 @@ import {
   GasPrice
 } from '@cosmjs/stargate';
 
-import { CoinDenom } from '../..';
+import { CoinDenom } from '../types';
 
 export const gasEstimation = async (
   denom: CoinDenom,

@@ -4,11 +4,6 @@ import { MsgDelegate } from 'cosmjs-types/cosmos/staking/v1beta1/tx';
 import { MsgVote } from 'cosmjs-types/cosmos/gov/v1beta1/tx';
 import { Coin } from '@cosmjs/amino';
 
-export interface Route {
-  poolId: string;
-  tokenOutDenom: string;
-};
-
 export const messages = {
   transfer: ({
     sourcePort,

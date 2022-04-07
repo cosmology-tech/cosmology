@@ -1,5 +1,5 @@
 import c from 'ansi-colors';
-import { BroadcastTxResponse, PoolAllocation, Swap } from '../..'
+import { BroadcastTxResponse, PoolAllocation, Swap } from '../types'
 
 export const printSwapForPoolAllocation = (pool: PoolAllocation): void => {
   console.log(`\nSWAPS for ${c.bold.magenta(pool.name)}`);

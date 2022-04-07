@@ -1,6 +1,6 @@
 import { OsmosisApiClient } from '../../clients/osmosis';
 export declare const promptOsmoSigningClient: (argv: any) => Promise<{
-    client: any;
+    client: import("@cosmjs/stargate").SigningStargateClient;
     signer: import("@cosmjs/amino").Secp256k1HdWallet;
 }>;
 export declare const promptOsmoRestClient: (argv: any) => Promise<{

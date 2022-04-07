@@ -1,4 +1,4 @@
-import { Coin, CoinDenom, CoinGeckoToken, CoinGeckoUSDResponse, CoinSymbol, CoinValue, CoinWeight, DisplayCoin, LcdPool, LockedPool, LockedPoolDisplay, Pool, PoolAllocation, PoolDisplay, PoolPretty, PrettyPair, PrettyPool, PriceHash, PromptValue, Swap, Trade, TradeRoute, ValidatorToken, OsmosisAsset } from '../../..';
+import { Coin, CoinDenom, CoinGeckoToken, CoinGeckoUSDResponse, CoinSymbol, CoinValue, CoinWeight, DisplayCoin, LcdPool, LockedPool, LockedPoolDisplay, Pool, PoolAllocation, PoolDisplay, PoolPretty, PrettyPair, PrettyPool, PriceHash, PromptValue, Swap, Trade, TradeRoute, ValidatorToken, OsmosisAsset } from '../../types';
 export declare const getCoinGeckoIdForSymbol: (token: CoinSymbol) => CoinGeckoToken;
 /**
  * @param {CoinGeckoToken} geckoId
@@ -118,7 +118,7 @@ export declare const calculateShareOutAmount: (poolInfo: Pool, coinsNeeded: Coin
 export declare const calculateCoinsNeededInPoolForValue: (prices: PriceHash, poolInfo: PoolPretty, value: any) => {
     symbol: any;
     denom: string;
-    amount: any;
+    amount: string;
     displayAmount: string;
     shareTotalValue: string;
     totalDollarValue: string;

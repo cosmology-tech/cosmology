@@ -3,10 +3,6 @@ import { MsgWithdrawDelegatorReward } from 'cosmjs-types/cosmos/distribution/v1b
 import { MsgDelegate } from 'cosmjs-types/cosmos/staking/v1beta1/tx';
 import { MsgVote } from 'cosmjs-types/cosmos/gov/v1beta1/tx';
 import { Coin } from '@cosmjs/amino';
-export interface Route {
-    poolId: string;
-    tokenOutDenom: string;
-}
 export declare const messages: {
     transfer: ({ sourcePort, sourceChannel, token, sender, receiver, timeoutHeight, timeoutTimestamp }: {
         sourcePort: string;

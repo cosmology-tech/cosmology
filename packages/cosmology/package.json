@@ -7,7 +7,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "main": "main/index.js",
   "module": "module/index.js",
-  "typings": "index.d.ts",
+  "typings": "types/index.d.ts",
   "bin": {
     "cosmology": "main/cosmology.js"
   },
@@ -16,6 +16,8 @@
     "test": "__tests__"
   },
   "files": [
+    "types",
+    "src",
     "main",
     "module"
   ],

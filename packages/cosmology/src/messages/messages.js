@@ -1,17 +1,6 @@
 import { generateOsmoMessage as osmo } from './utils';
-
-/**
- * @typedef {{
- * poolId:string;
- * tokenOutDenom:string;
- * }} Route
- *
- * @typedef {{
- * amount:string;
- * denom:string;
- * }} Coin
- *
- */
+import { Coin } from '@cosmjs/amino';
+import { Route } from '../types';
 
 export const messages = {
   createPool: () => {

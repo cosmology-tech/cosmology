@@ -7,7 +7,7 @@ import {
   ValidatorPoolApr,
   ValidatorPair,
   ValidatorTokenPrice
-} from '../..';
+} from '../types';
 
 //  https://api-osmosis.imperator.co/swagger/#/
 export class OsmosisValidatorClient extends RestClient {

@@ -3,11 +3,11 @@
         "declaration": true,
         "declarationDir": "./types",
         "emitDeclarationOnly": true,
-        "isolatedModules": true
+        "isolatedModules": true,
+        "allowJs": true
     },
     "include": [
-        "src/**/*",
-        "index.d.ts"
+        "src/**/*"
     ],
     "exclude": [
         "node_modules",
