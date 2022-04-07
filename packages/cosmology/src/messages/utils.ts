@@ -12,7 +12,7 @@ import retry from 'retry';
 import { aminos } from './aminos';
 import { meta as metaInfo } from './meta';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
-import { BroadcastTxResponse } from '../types';
+import { BroadcastTxResponse } from '../..';
 
 export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }) => {
   // registry

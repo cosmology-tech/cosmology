@@ -11,7 +11,7 @@ import {
   makePoolsPretty,
 } from '../src/utils/osmo';
 import { prettyPool } from '../src/clients/osmosis';
-import { LcdPool } from '../src/types';
+import { LcdPool } from '../..';
 
 const prices = convertGeckoPricesToDenomPriceHash(geckoPricesFixtures);
 const lcdPools: LcdPool[] = poolsFixture.pools;

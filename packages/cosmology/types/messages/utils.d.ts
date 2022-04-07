@@ -1,5 +1,5 @@
 import { SigningStargateClient } from '@cosmjs/stargate';
-import { BroadcastTxResponse } from '../types';
+import { BroadcastTxResponse } from '../..';
 export declare const getSigningOsmosisClient: ({ rpcEndpoint, signer }: {
     rpcEndpoint: any;
     signer: any;
