@@ -13,7 +13,7 @@ import {
   makePoolsPretty,
 } from '../src/utils/osmo';
 import { prettyPool } from '../src/clients/osmosis';
-import { LcdPool } from '../src/types';
+import { LcdPool } from '../..';
 import { Dec } from '@keplr-wallet/unit';
 
 const prices = convertGeckoPricesToDenomPriceHash(geckoPricesFixtures);
