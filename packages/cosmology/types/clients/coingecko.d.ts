@@ -1,4 +1,4 @@
-import { PriceHash } from '../types';
+import { PriceHash } from '../..';
 /**
  * @typedef {('cosmos'|
  * 'osmosis'|

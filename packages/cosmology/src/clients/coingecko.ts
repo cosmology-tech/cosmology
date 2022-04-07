@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { assets } from '../assets';
-import { PriceHash } from '../types';
+import { PriceHash } from '../..';
 import { convertGeckoPricesToDenomPriceHash } from '../utils/osmo/utils';
 
 /**
