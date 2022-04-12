@@ -13,8 +13,11 @@ import { aminos } from './aminos';
 import { meta as metaInfo } from './meta';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { BroadcastTxResponse } from '../types';
+import { OfflineSigner } from '@cosmjs/proto-signing'
+import { CosmosApiClient } from '../clients';
 
-export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }) => {
+
+export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }: { rpcEndpoint: string, signer: OfflineSigner }) => {
   // registry
   const registry = new Registry(defaultRegistryTypes);
 
@@ -54,6 +57,13 @@ export const signAndBroadcast = async ({
   msg,
   fee,
   memo = ''
+}: {
+  client: SigningStargateClient,
+  chainId: string,
+  address: string,
+  msg: any,
+  fee: any,
+  memo: string
 }): Promise<BroadcastTxResponse> => {
   const { accountNumber, sequence } = await client.getSequence(address);
   const txRaw = await client.sign(address, [msg], fee, memo, {
@@ -72,6 +82,13 @@ export const signAndBroadcastBatch = async ({
   msgs,
   fee,
   memo = ''
+}: {
+  client: SigningStargateClient,
+  chainId: string,
+  address: string,
+  msgs: any[],
+  fee: any,
+  memo: string
 }) => {
   const { accountNumber, sequence } = await client.getSequence(address);
   const txRaw = await client.sign(address, msgs, fee, memo, {
@@ -129,6 +146,14 @@ export const signAndBroadcastTilTxExists = async ({
   msg,
   fee,
   memo = ''
+}: {
+  client: SigningStargateClient,
+  cosmos: CosmosApiClient,
+  chainId: string,
+  address: string,
+  msg: any,
+  fee: any,
+  memo: string
 }) => {
   const result = await signAndBroadcast({
     client,
@@ -168,7 +193,7 @@ export const generateOsmoMessage = (name, msg) => {
   };
 };
 
-export const estimateOsmoFee = async (client, address, msgs, memo) => {
+export const estimateOsmoFee = async (client: SigningStargateClient, address: string, msgs: any[], memo: string) => {
   const gasPrice = GasPrice.fromString('0.025uosmo');
   const gasEstimation = await client.simulate(address, msgs, memo);
   const fee = calculateFee(Math.round(gasEstimation * 1.3), gasPrice);
