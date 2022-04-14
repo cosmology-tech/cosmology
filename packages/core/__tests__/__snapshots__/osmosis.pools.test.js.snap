@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pairs 1`] = `
+Array [
+  Object {
+    "address": "osmo1mw0ac6rwlp5r8wapwk3zs6g29h8fcscxqakdzw9emkne6c8wjp9q0t3v8t",
+    "base_address": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+    "base_name": "atom",
+    "base_symbol": "ATOM",
+    "denom": "gamm/pool/1",
+    "id": "1",
+    "liquidity": "446862602.326974490000000000",
+    "nickname": "ATOM/OSMO",
+    "pool_address": "osmo1mw0ac6rwlp5r8wapwk3zs6g29h8fcscxqakdzw9emkne6c8wjp9q0t3v8t",
+    "quote_address": "uosmo",
+    "quote_name": "osmo",
+    "quote_symbol": "OSMO",
+    "tokens": Array [
+      Object {
+        "amount": "6196127370623",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "price": 36.63,
+        "ratio": "0.500000000000000000",
+        "symbol": "ATOM",
+        "value": "226964145.585920490000000000",
+        "weight": "536870912000000",
+      },
+      Object {
+        "amount": "24164665575940",
+        "denom": "uosmo",
+        "price": 9.1,
+        "ratio": "0.500000000000000000",
+        "symbol": "OSMO",
+        "value": "219898456.741054000000000000",
+        "weight": "536870912000000",
+      },
+    ],
+  },
+]
+`;
+
+exports[`pools 1`] = `
+Object {
+  "address": "osmo1mw0ac6rwlp5r8wapwk3zs6g29h8fcscxqakdzw9emkne6c8wjp9q0t3v8t",
+  "denom": "gamm/pool/1",
+  "id": "1",
+  "liquidity": "446862602.326974490000000000",
+  "nickname": "ATOM/OSMO",
+  "tokens": Array [
+    Object {
+      "amount": "6196127370623",
+      "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+      "price": 36.63,
+      "ratio": "0.500000000000000000",
+      "symbol": "ATOM",
+      "value": "226964145.585920490000000000",
+      "weight": "536870912000000",
+    },
+    Object {
+      "amount": "24164665575940",
+      "denom": "uosmo",
+      "price": 9.1,
+      "ratio": "0.500000000000000000",
+      "symbol": "OSMO",
+      "value": "219898456.741054000000000000",
+      "weight": "536870912000000",
+    },
+  ],
+}
+`;

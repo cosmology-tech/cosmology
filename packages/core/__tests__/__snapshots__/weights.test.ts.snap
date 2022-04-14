@@ -1,0 +1,378 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`weights coins-only 1`] = `
+Object {
+  "coins": Array [
+    Object {
+      "amount": "935420168.0672268905070000",
+      "denom": "uosmo",
+      "displayAmount": "935.420168067226890507",
+      "symbol": "OSMO",
+      "value": "8512.323529411764703612",
+    },
+    Object {
+      "amount": "2745069.5849374432750000",
+      "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
+      "displayAmount": "2.745069584937443275",
+      "symbol": "LUNA",
+      "value": "189.162745098039216065",
+    },
+    Object {
+      "amount": "945813725.4901960803230000",
+      "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
+      "displayAmount": "945.813725490196080323",
+      "symbol": "UST",
+      "value": "945.813725490196080323",
+    },
+  ],
+  "pools": Array [],
+  "weights": Array [
+    Object {
+      "allocation": "0.882352941176470588",
+      "denom": "uosmo",
+      "name": "OSMO",
+      "symbol": "OSMO",
+      "type": "coin",
+      "value": "8512.323529411764703612",
+      "weight": 90,
+    },
+    Object {
+      "allocation": "0.019607843137254902",
+      "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
+      "name": "LUNA",
+      "symbol": "LUNA",
+      "type": "coin",
+      "value": "189.162745098039216065",
+      "weight": 2,
+    },
+    Object {
+      "allocation": "0.098039215686274510",
+      "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
+      "name": "UST",
+      "symbol": "UST",
+      "type": "coin",
+      "value": "945.813725490196080323",
+      "weight": 10,
+    },
+  ],
+}
+`;
+
+exports[`weights pools-only 1`] = `
+Object {
+  "coins": Array [],
+  "pools": Array [
+    Object {
+      "amount": "2376432056878314521733.181243142486789150",
+      "coins": Array [
+        Object {
+          "amount": "43895258.8952588952590000",
+          "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+          "displayAmount": "43.895258895258895259",
+          "symbol": "ATOM",
+          "value": "1607.883333333333333334",
+        },
+        Object {
+          "amount": "176690476.1904761904760000",
+          "denom": "uosmo",
+          "displayAmount": "176.690476190476190476",
+          "symbol": "OSMO",
+          "value": "1607.883333333333333334",
+        },
+      ],
+      "denom": "gamm/pool/1",
+      "displayAmount": "-1",
+      "name": "ATOM/OSMO",
+      "value": "3215.766666666666666667",
+    },
+    Object {
+      "amount": "16254142779185931.775473185986593475",
+      "coins": Array [
+        Object {
+          "amount": "43895258.8952588952590000",
+          "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+          "displayAmount": "43.895258895258895259",
+          "symbol": "ATOM",
+          "value": "1607.883333333333333334",
+        },
+        Object {
+          "amount": "389317998.3857949959650000",
+          "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+          "displayAmount": "389.317998385794995965",
+          "symbol": "CMDX",
+          "value": "1607.883333333333333334",
+        },
+      ],
+      "denom": "gamm/pool/600",
+      "displayAmount": "-1",
+      "name": "ATOM/CMDX",
+      "value": "3215.766666666666666667",
+    },
+    Object {
+      "amount": "207954394987295161840313.294065110450998271",
+      "coins": Array [
+        Object {
+          "amount": "43895258.8952588952590000",
+          "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+          "displayAmount": "43.895258895258895259",
+          "symbol": "ATOM",
+          "value": "1607.883333333333333334",
+        },
+        Object {
+          "amount": "378168883787.7333935438500000",
+          "denom": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
+          "displayAmount": "378168.883787733393543850",
+          "symbol": "HUAHUA",
+          "value": "1607.883333333333333334",
+        },
+      ],
+      "denom": "gamm/pool/606",
+      "displayAmount": "-1",
+      "name": "ATOM/HUAHUA",
+      "value": "3215.766666666666666667",
+    },
+  ],
+  "weights": Array [
+    Object {
+      "allocation": "0.333333333333333333",
+      "denom": "gamm/pool/1",
+      "name": "ATOM/OSMO",
+      "poolId": "1",
+      "type": "pool",
+      "value": "3215.766666666666663451",
+      "weight": 5,
+    },
+    Object {
+      "allocation": "0.333333333333333333",
+      "denom": "gamm/pool/600",
+      "name": "ATOM/CMDX",
+      "poolId": "600",
+      "type": "pool",
+      "value": "3215.766666666666663451",
+      "weight": 5,
+    },
+    Object {
+      "allocation": "0.333333333333333333",
+      "denom": "gamm/pool/606",
+      "name": "ATOM/HUAHUA",
+      "poolId": "606",
+      "type": "pool",
+      "value": "3215.766666666666663451",
+      "weight": 5,
+    },
+  ],
+}
+`;
+
+exports[`weights simple 1`] = `
+Object {
+  "coins": Array [
+    Object {
+      "amount": "8749909.3019881004210000",
+      "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
+      "displayAmount": "8.749909301988100421",
+      "symbol": "LUNA",
+      "value": "602.956250000000000000",
+    },
+    Object {
+      "amount": "3014781250.0000000000000000",
+      "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
+      "displayAmount": "3014.781250000000000000",
+      "symbol": "UST",
+      "value": "3014.781250000000000000",
+    },
+  ],
+  "pools": Array [
+    Object {
+      "amount": "10443364212422823981383.680393125000654635",
+      "coins": Array [
+        Object {
+          "amount": "416406250.0000000000000000",
+          "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+          "displayAmount": "416.406250000000000000",
+          "symbol": "AKT",
+          "value": "753.695312500000000000",
+        },
+        Object {
+          "amount": "82823660.7142857142860000",
+          "denom": "uosmo",
+          "displayAmount": "82.823660714285714286",
+          "symbol": "OSMO",
+          "value": "753.695312500000000000",
+        },
+      ],
+      "denom": "gamm/pool/3",
+      "displayAmount": "-1",
+      "name": "AKT/OSMO",
+      "value": "1507.390625000000000000",
+    },
+    Object {
+      "amount": "1113952526661709932062.313239920996409930",
+      "coins": Array [
+        Object {
+          "amount": "20575902.6071526071530000",
+          "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+          "displayAmount": "20.575902607152607153",
+          "symbol": "ATOM",
+          "value": "753.695312500000000000",
+        },
+        Object {
+          "amount": "82823660.7142857142860000",
+          "denom": "uosmo",
+          "displayAmount": "82.823660714285714286",
+          "symbol": "OSMO",
+          "value": "753.695312500000000000",
+        },
+      ],
+      "denom": "gamm/pool/1",
+      "displayAmount": "-1",
+      "name": "ATOM/OSMO",
+      "value": "1507.390625000000000000",
+    },
+    Object {
+      "amount": "7619129427743405.519752266163153359",
+      "coins": Array [
+        Object {
+          "amount": "20575902.6071526071530000",
+          "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+          "displayAmount": "20.575902607152607153",
+          "symbol": "ATOM",
+          "value": "753.695312500000000000",
+        },
+        Object {
+          "amount": "182492811.7433414043580000",
+          "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+          "displayAmount": "182.492811743341404358",
+          "symbol": "CMDX",
+          "value": "753.695312500000000000",
+        },
+      ],
+      "denom": "gamm/pool/600",
+      "displayAmount": "-1",
+      "name": "ATOM/CMDX",
+      "value": "1507.390625000000000000",
+    },
+    Object {
+      "amount": "97478622650294607112636.752354254206427273",
+      "coins": Array [
+        Object {
+          "amount": "20575902.6071526071530000",
+          "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+          "displayAmount": "20.575902607152607153",
+          "symbol": "ATOM",
+          "value": "753.695312500000000000",
+        },
+        Object {
+          "amount": "177266664275.5000282236060000",
+          "denom": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
+          "displayAmount": "177266.664275500028223606",
+          "symbol": "HUAHUA",
+          "value": "753.695312500000000000",
+        },
+      ],
+      "denom": "gamm/pool/606",
+      "displayAmount": "-1",
+      "name": "ATOM/HUAHUA",
+      "value": "1507.390625000000000000",
+    },
+  ],
+  "weights": Array [
+    Object {
+      "allocation": "0.156250000000000000",
+      "denom": "gamm/pool/3",
+      "name": "AKT/OSMO",
+      "poolId": "3",
+      "type": "pool",
+      "value": "1507.390625000000000000",
+      "weight": 5,
+    },
+    Object {
+      "allocation": "0.156250000000000000",
+      "denom": "gamm/pool/1",
+      "name": "ATOM/OSMO",
+      "poolId": "1",
+      "type": "pool",
+      "value": "1507.390625000000000000",
+      "weight": 5,
+    },
+    Object {
+      "allocation": "0.156250000000000000",
+      "denom": "gamm/pool/600",
+      "name": "ATOM/CMDX",
+      "poolId": "600",
+      "type": "pool",
+      "value": "1507.390625000000000000",
+      "weight": 5,
+    },
+    Object {
+      "allocation": "0.156250000000000000",
+      "denom": "gamm/pool/606",
+      "name": "ATOM/HUAHUA",
+      "poolId": "606",
+      "type": "pool",
+      "value": "1507.390625000000000000",
+      "weight": 5,
+    },
+    Object {
+      "allocation": "0.062500000000000000",
+      "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
+      "name": "LUNA",
+      "symbol": "LUNA",
+      "type": "coin",
+      "value": "602.956250000000000000",
+      "weight": 2,
+    },
+    Object {
+      "allocation": "0.312500000000000000",
+      "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
+      "name": "UST",
+      "symbol": "UST",
+      "type": "coin",
+      "value": "3014.781250000000000000",
+      "weight": 10,
+    },
+  ],
+}
+`;
+
+exports[`weights single 1`] = `
+Object {
+  "coins": Array [],
+  "pools": Array [
+    Object {
+      "amount": "66837530959506073480855.554516000004189666",
+      "coins": Array [
+        Object {
+          "amount": "2665000000.0000000000000000",
+          "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
+          "displayAmount": "2665.000000000000000000",
+          "symbol": "AKT",
+          "value": "4823.650000000000000000",
+        },
+        Object {
+          "amount": "530071428.5714285714290000",
+          "denom": "uosmo",
+          "displayAmount": "530.071428571428571429",
+          "symbol": "OSMO",
+          "value": "4823.650000000000000000",
+        },
+      ],
+      "denom": "gamm/pool/3",
+      "displayAmount": "-1",
+      "name": "AKT/OSMO",
+      "value": "9647.300000000000000000",
+    },
+  ],
+  "weights": Array [
+    Object {
+      "allocation": "1.000000000000000000",
+      "denom": "gamm/pool/3",
+      "name": "AKT/OSMO",
+      "poolId": "3",
+      "type": "pool",
+      "value": "9647.300000000000000000",
+      "weight": 5,
+    },
+  ],
+}
+`;
