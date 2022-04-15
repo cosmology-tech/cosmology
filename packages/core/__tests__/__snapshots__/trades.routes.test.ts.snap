@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`multi-hop route swaps 1`] = `
+Array [
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "22208147.565563242800000000",
+        "poolId": "611",
+        "tokenInSymbol": "STARS",
+        "tokenOutDenom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "tokenOutSymbol": "ATOM",
+      },
+      Object {
+        "liquidity": "21336378.568016860000000000",
+        "poolId": "600",
+        "tokenInSymbol": "ATOM",
+        "tokenOutDenom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+        "tokenOutSymbol": "CMDX",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "413.000000000000000000",
+      "buy": Object {
+        "amount": "100000000.0000000000000000",
+        "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+        "displayAmount": "100.000000000000000000",
+        "symbol": "CMDX",
+        "value": "413.000000000000000000",
+      },
+      "sell": Object {
+        "amount": "582479359.3573264056370000",
+        "denom": "ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4",
+        "displayAmount": "582.479359357326405637",
+        "symbol": "STARS",
+        "value": "413.000000000000000000",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "22208147.565563242800000000",
+        "poolId": "611",
+        "tokenInSymbol": "STARS",
+        "tokenOutDenom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "tokenOutSymbol": "ATOM",
+      },
+      Object {
+        "liquidity": "5635833.451846260000000000",
+        "poolId": "565",
+        "tokenInSymbol": "ATOM",
+        "tokenOutDenom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
+        "tokenOutSymbol": "LUNA",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "6891.000000000000000000",
+      "buy": Object {
+        "amount": "100000000.0000000000000000",
+        "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
+        "displayAmount": "100.000000000000000000",
+        "symbol": "LUNA",
+        "value": "6891.000000000000000000",
+      },
+      "sell": Object {
+        "amount": "9718802095.2332597124550000",
+        "denom": "ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4",
+        "displayAmount": "9718.802095233259712455",
+        "symbol": "STARS",
+        "value": "6891.000000000000000000",
+      },
+    },
+  },
+]
+`;
+
+exports[`single route swaps 1`] = `
+Array [
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "22208147.565563242800000000",
+        "poolId": "611",
+        "tokenInSymbol": "ATOM",
+        "tokenOutDenom": "ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4",
+        "tokenOutSymbol": "STARS",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "709.038000000000000000",
+      "buy": Object {
+        "amount": "1000000000.0000000000000000",
+        "denom": "ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4",
+        "displayAmount": "1000.000000000000000000",
+        "symbol": "STARS",
+        "value": "709.038000000000000000",
+      },
+      "sell": Object {
+        "amount": "19356756.7567567567570000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "19.356756756756756757",
+        "symbol": "ATOM",
+        "value": "709.038000000000000000",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "21336378.568016860000000000",
+        "poolId": "600",
+        "tokenInSymbol": "ATOM",
+        "tokenOutDenom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+        "tokenOutSymbol": "CMDX",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "413.000000000000000000",
+      "buy": Object {
+        "amount": "100000000.0000000000000000",
+        "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
+        "displayAmount": "100.000000000000000000",
+        "symbol": "CMDX",
+        "value": "413.000000000000000000",
+      },
+      "sell": Object {
+        "amount": "11274911.2749112749110000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "11.274911274911274911",
+        "symbol": "ATOM",
+        "value": "413.000000000000000000",
+      },
+    },
+  },
+  Object {
+    "routes": Array [
+      Object {
+        "liquidity": "5565615.718224586788720000",
+        "poolId": "606",
+        "tokenInSymbol": "ATOM",
+        "tokenOutDenom": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
+        "tokenOutSymbol": "HUAHUA",
+      },
+    ],
+    "trade": Object {
+      "beliefValue": "42.517600000000000000",
+      "buy": Object {
+        "amount": "10000000000.0000000000000000",
+        "denom": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
+        "displayAmount": "10000.000000000000000000",
+        "symbol": "HUAHUA",
+        "value": "42.517600000000000000",
+      },
+      "sell": Object {
+        "amount": "1160731.6407316407320000",
+        "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+        "displayAmount": "1.160731640731640732",
+        "symbol": "ATOM",
+        "value": "42.517600000000000000",
+      },
+    },
+  },
+]
+`;

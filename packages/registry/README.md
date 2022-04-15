@@ -1,1 +1,3 @@
-# cosmos-networks
+# cosmos-registry
+ 
+ 

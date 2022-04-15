@@ -1,0 +1,100 @@
+{
+  "name": "@cosmology/cli",
+  "version": "0.1.22",
+  "description": "cosmology",
+  "author": "Dan Lynch <pyramation@gmail.com>",
+  "homepage": "https://github.com/cosmology-finance/cosmology/tree/master/packages/cli#readme",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "main/index.js",
+  "module": "module/index.js",
+  "typings": "types/index.d.ts",
+  "bin": {
+    "cosmology": "main/cosmology.js"
+  },
+  "directories": {
+    "lib": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "types",
+    "src",
+    "main",
+    "module"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cosmology-finance/cosmology"
+  },
+  "scripts": {
+    "build:main": "cross-env BABEL_ENV=production babel src --out-dir main --delete-dir-on-start --extensions \".tsx,.ts,.js\"",
+    "build:module": "cross-env MODULE=true babel src --out-dir module --delete-dir-on-start  --extensions \".tsx,.ts,.js\"",
+    "build:commands": "cross-env NODE_ENV=development node ./bin/build.js",
+    "build": "npm run build:module && npm run build:main",
+    "build:ts": "tsc --project ./tsconfig.json",
+    "prepare": "npm run build",
+    "lint": "eslint src --fix",
+    "dev": "cross-env NODE_ENV=development babel-node src/cosmology --extensions \".tsx,.ts,.js\"",
+    "watch": "cross-env NODE_ENV=development babel-watch src/cosmology --extensions \".tsx,.ts,.js\"",
+    "file": "cross-env NODE_ENV=development babel-watch src/file --extensions \".tsx,.ts,.js\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
+  },
+  "bugs": {
+    "url": "https://github.com/cosmology-finance/cosmology/issues"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.17.6",
+    "@babel/core": "7.17.8",
+    "@babel/eslint-parser": "^7.5.4",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "7.16.7",
+    "@babel/plugin-proposal-export-default-from": "7.16.7",
+    "@babel/plugin-proposal-object-rest-spread": "7.17.3",
+    "@babel/plugin-transform-runtime": "7.17.0",
+    "@babel/preset-env": "7.16.11",
+    "@babel/preset-typescript": "7.16.7",
+    "@types/jest": "^27.4.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-plugin-inline-json-import": "0.3.2",
+    "babel-watch": "^7.0.0",
+    "case": "1.6.3",
+    "cross-env": "^7.0.2",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "glob": "7.2.0",
+    "jest": "^27.5.1",
+    "jest-in-case": "^1.0.2",
+    "prettier": "^2.6.2",
+    "regenerator-runtime": "^0.13.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.17.8",
+    "@cosmjs/amino": "0.27.1",
+    "@cosmjs/launchpad": "0.27.1",
+    "@cosmjs/proto-signing": "0.27.1",
+    "@cosmjs/stargate": "0.27.1",
+    "@cosmology/core": "^0.1.22",
+    "@cosmology/cosmos-registry": "^0.0.12",
+    "@keplr-wallet/types": "0.10.0",
+    "@keplr-wallet/unit": "0.10.0",
+    "ansi-colors": "^4.1.1",
+    "axios": "0.26.1",
+    "class-autobind": "^0.1.4",
+    "cosmjs-types": "0.4.1",
+    "crypto-js": "4.1.1",
+    "fuzzy": "0.1.3",
+    "inquirerer": "0.1.3",
+    "keychain": "1.3.0",
+    "long": "5.2.0",
+    "minimist": "1.2.6",
+    "protobufjs": "6.11.2",
+    "retry": "0.13.1",
+    "secrets.js-grempe": "2.0.0",
+    "typescript": "^4.6.2"
+  }
+}
