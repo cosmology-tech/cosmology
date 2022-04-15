@@ -163,8 +163,10 @@ export default async (argv) => {
     messages.delegate({
       delegatorAddress: address,
       validatorAddress: validatorAddress,
-      amount: noDecimals(amount),
-      denom
+      amount: {
+        amount: noDecimals(amount),
+        denom
+      }
     })
   );
 

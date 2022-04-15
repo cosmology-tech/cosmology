@@ -64,10 +64,11 @@ const res = await signAndBroadcast({
 The swap command will make a trade between two currencies.
 
 ```js
-import { messages } from '@cosmology/core';
+import { messages, getOsmoFee } from '@cosmology/core';
 import { coin } from '@cosmjs/amino';
 
-const { msg, fee } = messages.swapExactAmountIn({
+const fee = getOsmoFee('swapExactAmountIn');
+const msg = messages.swapExactAmountIn({
   sender: address, // osmo address
   routes, // TradeRoute 
   tokenIn: coin(amount, denom), // Coin
@@ -124,7 +125,8 @@ const tokenOutMinAmount = calculateAmountWithSlippage(
   slippage
 );
 
-const { msg, fee } = messages.swapExactAmountIn({
+const fee = getOsmoFee('swapExactAmountIn');
+const msg = messages.swapExactAmountIn({
   sender: address, // osmo address
   routes, // TradeRoute 
   tokenIn: coin(amount, denom), // Coin
@@ -136,10 +138,11 @@ const { msg, fee } = messages.swapExactAmountIn({
 The join command will join a pool.
 
 ```js
-import { messages } from '@cosmology/core';
+import { messages, getOsmoFee } from '@cosmology/core';
 import { coin } from '@cosmjs/amino';
 
-const { msg, fee } = messages.joinPool({
+const fee = getOsmoFee('swapExactAmountIn');
+const msg = messages.joinPool({
   poolId, // string!
   sender: account.address, // osmo address
   shareOutAmount, // number as string with no decimals
@@ -176,7 +179,7 @@ The lock command will lock your gamms tokens for staking so you can earn rewards
 
 ```js
 import { messages } from '@cosmology/core';
-const { msg, fee } = messages.lockTokens({
+const msg = messages.lockTokens({
   owner, // osmom address
   coins, // Coin[]
   duration // duration as string

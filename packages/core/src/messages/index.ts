@@ -10,6 +10,8 @@ export const messages = {
   ...native
 };
 
-import { osmosis } from '../proto/generated/codecimpl';
+import * as telescope from '@cosmonauts/osmosis';
 
-export { osmosis };
+export {
+  telescope
+}
