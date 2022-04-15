@@ -1,5 +1,5 @@
-import { promptOsmoWallet } from '../helpers';
-import { prompt, promptChain } from '../prompt';
+import { promptOsmoWallet } from './helpers';
+import { prompt, promptChain } from './prompt';
 import { getSigningOsmosisClient } from '@cosmology/core';
 import { OsmosisApiClient } from '@cosmology/core';
 
