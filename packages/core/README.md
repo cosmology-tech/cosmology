@@ -131,8 +131,31 @@ const { msg, fee } = messages.joinPool({
   shareOutAmount, // number as string with no decimals
   tokenInMaxs // Coin[]
 });
-
 ```
+
+To calculate `shareOutAmount`, you will need one of two methods. See below.
+#### `calculateCoinsNeededInPoolForValue`
+
+If you want to specify a dollar vaoue to invest in a pool:
+
+```js
+coinsNeeded = calculateCoinsNeededInPoolForValue(prices, poolInfo, value);
+```
+#### `calculateMaxCoinsForPool`
+
+if you want to invest the maximum amount possible for a pool:
+
+```js
+coinsNeeded = calculateMaxCoinsForPool(prices, poolInfo, balances);
+```
+#### `calculateShareOutAmount`
+
+Once you have the coins needed from either `calculateCoinsNeededInPoolForValue` or `calculateMaxCoinsForPool`, you can use `calculateShareOutAmount` to get the `shareOutAmount` for the pool:
+
+```js
+const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
+```
+
 ### `lockTokens`
 
 The lock command will lock your gamms tokens for staking so you can earn rewards.
