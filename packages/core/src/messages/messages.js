@@ -51,9 +51,14 @@ export const messages = {
       tokenIn,
       tokenOutMinAmount
     }),
-  swapExactAmountOut: () => {
-    //
-  },
+  swapExactAmountOut: ({ sender, routes, tokenOut, tokenInMaxAmount }) =>
+    osmo('swapExactAmountOut', {
+      sender,
+      routes,
+      tokenOut,
+      tokenInMaxAmount
+    }),
+
   /**
    * @param {object} param0
    * @param {string} param0.owner

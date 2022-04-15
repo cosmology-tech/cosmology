@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fromObject 1`] = `
+Object {
+  "coins": Array [
+    Object {
+      "amount": "10236850525923652977",
+      "denom": "gamm/pool/3",
+    },
+  ],
+  "duration": Object {
+    "nanos": 0,
+    "seconds": "1209600",
+  },
+  "owner": "osmo1RedactedAddress",
+}
+`;
