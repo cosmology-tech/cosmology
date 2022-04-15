@@ -81,9 +81,11 @@ For swaps, you'll need a `TradeRoute` for it to work:
 
 ```js
 import { 
+  messages,
   lookupRoutesForTrade,
   prettyPool,
-  OsmosisApiClient 
+  OsmosisApiClient,
+  calculateAmountWithSlippage
 } from '@cosmology/core';
 
 const api = new OsmosisApiClient({
@@ -115,6 +117,18 @@ const routes = lookupRoutesForTrade({
     poolId,
     tokenOutDenom
   };
+});
+
+const tokenOutMinAmount = calculateAmountWithSlippage(
+  buy.amount,
+  slippage
+);
+
+const { msg, fee } = messages.swapExactAmountIn({
+  sender: address, // osmo address
+  routes, // TradeRoute 
+  tokenIn: coin(amount, denom), // Coin
+  tokenOutMinAmount // number as string with no decimals
 });
 ```
 ### `joinPool`
