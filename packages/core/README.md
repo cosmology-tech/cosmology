@@ -74,6 +74,47 @@ const { msg, fee } = messages.swapExactAmountIn({
   tokenOutMinAmount // number as string with no decimals
 });
 ```
+
+#### `lookupRoutesForTrade`
+
+```js
+import { 
+  lookupRoutesForTrade,
+  prettyPool,
+  OsmosisApiClient 
+} from '@cosmology/core';
+
+const api = new OsmosisApiClient({
+  url: restEndpoint
+});
+const lcdPools = await api.getPools();
+const pools = lcdPools.pools.map((pool) => prettyPool(pool));
+
+const routes = lookupRoutesForTrade({
+  pools,
+  trade: {
+    sell: {
+      denom: tokenIn.denom,
+      amount: tokenInAmount
+    },
+    buy: {
+      denom: tokenOut.denom,
+      amount: tokenOutAmount
+    },
+    beliefValue: value
+  },
+  pairs
+}).map((tradeRoute) => {
+  const {
+    poolId,
+    tokenOutDenom
+  } = tradeRoute;
+  return {
+    poolId,
+    tokenOutDenom
+  };
+});
+```
 ### `joinPool`
 
 The join command will join a pool.
