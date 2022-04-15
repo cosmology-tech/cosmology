@@ -11,6 +11,10 @@ Use `cosmology` to manage your daily rewards and investment strategies in Osmosi
 For osmosis, first get your signer/wallet and stargate signing client.
 
 ```js
+import { 
+  getWalletFromMnemonic,
+  getSigningOsmosisClient
+} from '@cosmology/core';
 const signer = await getWalletFromMnemonic({mnemonic, token: 'OSMO'});
 const client = await getSigningOsmosisClient({
   rpcEndpoint: rpcEndpoint,
@@ -22,8 +26,11 @@ For other chains, simply create a signing stargate client
 
 ```js
 import {
-  SigningStargateClient,
+  SigningStargateClient
 } from '@cosmjs/stargate';
+import { 
+  getWalletFromMnemonic
+} from '@cosmology/core';
 
 const signer = await getWalletFromMnemonic({mnemonic, token: 'AKT'});
 const client = await SigningStargateClient.connectWithSigner(
