@@ -58,6 +58,14 @@ export interface Route {
     poolId: string;
     tokenOutDenom: CoinDenom;
 }
+export interface SwapAmountInRoute {
+    poolId: string;
+    tokenOutDenom: CoinDenom;
+}
+export interface SwapAmountOutRoute {
+    poolId: string;
+    tokenInDenom: CoinDenom;
+}
 export interface Swap {
     trade: Trade;
     routes: TradeRoute[];

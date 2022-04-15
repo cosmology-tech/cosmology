@@ -1,7 +1,6 @@
 import { SigningStargateClient } from '@cosmjs/stargate';
 import { BroadcastTxResponse } from '../types';
 import { OfflineSigner } from '@cosmjs/proto-signing';
-import { CosmosApiClient } from '../clients';
 export declare const getSigningOsmosisClient: ({ rpcEndpoint, signer }: {
     rpcEndpoint: string;
     signer: OfflineSigner;
@@ -22,15 +21,6 @@ export declare const signAndBroadcastBatch: ({ client, chainId, address, msgs, f
     fee: any;
     memo: string;
 }) => Promise<import("@cosmjs/stargate").DeliverTxResponse>;
-export declare const signAndBroadcastTilTxExists: ({ client, cosmos, chainId, address, msg, fee, memo }: {
-    client: SigningStargateClient;
-    cosmos: CosmosApiClient;
-    chainId: string;
-    address: string;
-    msg: any;
-    fee: any;
-    memo: string;
-}) => Promise<unknown>;
 export declare const generateOsmoMessage: (name: any, msg: any) => {
     fee: {
         amount: import("@cosmjs/stargate").Coin[];

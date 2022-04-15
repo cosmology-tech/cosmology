@@ -1,11 +1,13 @@
-export namespace messages {
-    function createPool(): void;
-    function joinPool({ sender, poolId, shareOutAmount, tokenInMaxs }: {
+import { Coin } from '@cosmjs/amino';
+import { SwapAmountInRoute, SwapAmountOutRoute } from '../types';
+export declare const messages: {
+    createPool: () => never;
+    joinPool: ({ sender, poolId, shareOutAmount, tokenInMaxs }: {
         sender: string;
         poolId: string;
         shareOutAmount: string;
         tokenInMaxs: Coin[];
-    }): {
+    }) => {
         fee: {
             amount: Coin[];
             gas: string;
@@ -15,12 +17,12 @@ export namespace messages {
             value: any;
         };
     };
-    function joinSwapExternAmountIn({ sender, poolId, tokenIn, shareOutMinAmount }: {
+    joinSwapExternAmountIn: ({ sender, poolId, tokenIn, shareOutMinAmount }: {
         sender: string;
         poolId: string;
         tokenIn: Coin;
         shareOutMinAmount: string;
-    }): {
+    }) => {
         fee: {
             amount: Coin[];
             gas: string;
@@ -30,13 +32,13 @@ export namespace messages {
             value: any;
         };
     };
-    function exitPool(): void;
-    function swapExactAmountIn({ sender, routes, tokenIn, tokenOutMinAmount }: {
+    exitPool: () => never;
+    swapExactAmountIn: ({ sender, routes, tokenIn, tokenOutMinAmount }: {
         sender: string;
-        routes: Route[];
+        routes: SwapAmountInRoute[];
         tokenIn: Coin;
         tokenOutMinAmount: string;
-    }): {
+    }) => {
         fee: {
             amount: Coin[];
             gas: string;
@@ -46,12 +48,26 @@ export namespace messages {
             value: any;
         };
     };
-    function swapExactAmountOut(): void;
-    function lockTokens({ owner, duration, coins }: {
+    swapExactAmountOut: ({ sender, routes, tokenOut, tokenInMaxAmount }: {
+        sender: string;
+        routes: SwapAmountOutRoute[];
+        tokenOut: Coin;
+        tokenInMaxAmount: string;
+    }) => {
+        fee: {
+            amount: Coin[];
+            gas: string;
+        };
+        msg: {
+            typeUrl: any;
+            value: any;
+        };
+    };
+    lockTokens: ({ owner, duration, coins }: {
         owner: string;
         duration: string;
         coins: Coin[];
-    }): {
+    }) => {
         fee: {
             amount: Coin[];
             gas: string;
@@ -61,8 +77,6 @@ export namespace messages {
             value: any;
         };
     };
-    function beginUnlocking(): void;
-    function unlockPeriodLock(): void;
-}
-import { Coin } from "@cosmjs/amino";
-import { Route } from "../types";
+    beginUnlocking: () => never;
+    unlockPeriodLock: () => never;
+};

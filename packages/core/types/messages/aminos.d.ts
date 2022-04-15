@@ -71,9 +71,32 @@ export namespace aminos {
         export { fromAmino_4 as fromAmino };
     }
     namespace swapExactAmountOut {
-        export function toAmino_5(): void;
+        export function toAmino_5({ sender, routes, tokenOut, tokenInMaxAmount }: {
+            sender: any;
+            routes: any;
+            tokenOut: any;
+            tokenInMaxAmount: any;
+        }): {
+            sender: any;
+            routes: any;
+            tokenOut: {
+                denom: any;
+                amount: any;
+            };
+            tokenInMaxAmount: any;
+        };
         export { toAmino_5 as toAmino };
-        export function fromAmino_5(): void;
+        export function fromAmino_5({ sender, routes, tokenOut, tokenInMaxAmount }: {
+            sender: any;
+            routes: any;
+            tokenOut: any;
+            tokenInMaxAmount: any;
+        }): {
+            sender: any;
+            routes: any;
+            tokenOut: any;
+            tokenInMaxAmount: any;
+        };
         export { fromAmino_5 as fromAmino };
     }
     namespace lockTokens {
