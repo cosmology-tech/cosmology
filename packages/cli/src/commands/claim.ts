@@ -1,18 +1,21 @@
-import { prompt } from '../utils/prompt';
-import { CosmosApiClient } from '../clients/cosmos';
 import {
-  getWalletFromMnemonic,
+  messages,
   baseUnitsToDisplayUnitsByDenom,
-  getCosmosAssetInfo,
+  CosmosApiClient,
   gasEstimation,
+  getCosmosAssetInfo,
+  getWalletFromMnemonic
+} from '@cosmology/core';
+import {
+  prompt,
+  promptChain,
+  promptMnemonic,
   printTransactionResponse
 } from '../utils';
-import { promptChain, promptMnemonic } from '../utils/prompt';
 import {
   SigningStargateClient,
   assertIsDeliverTxSuccess
 } from '@cosmjs/stargate';
-import { messages } from '../messages/native';
 import { Dec } from '@keplr-wallet/unit';
 
 export default async (argv) => {

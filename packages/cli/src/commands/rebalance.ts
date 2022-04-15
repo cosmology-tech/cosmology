@@ -1,26 +1,28 @@
-import { prompt, promptOsmoSigningClient } from '../utils';
-import { baseUnitsToDisplayUnits, promptOsmoRestClient } from '../utils';
-import { noDecimals } from '../messages/utils';
-import { messages } from '../messages/messages';
-import { signAndBroadcast } from '../messages/utils';
 import {
-  getSellableBalance,
-  convertWeightsIntoCoins,
-  osmoDenomToSymbol,
-  getTradesRequiredToGetBalances,
-  getSwaps,
-  calculateAmountWithSlippage,
-  makePoolPairs,
-  makePoolsPretty,
-  makePoolsPrettyValues
-} from '../utils/osmo';
-import { prettyPool } from '../clients/osmosis';
-import { getPricesFromCoinGecko } from '../clients/coingecko';
-import {
+  prompt,
+  promptOsmoSigningClient,
+  promptOsmoRestClient,
   printSwap,
   printSwapForPoolAllocation,
   printOsmoTransactionResponse
-} from '../utils/print';
+} from '../utils';
+import {
+  baseUnitsToDisplayUnits,
+  calculateAmountWithSlippage,
+  convertWeightsIntoCoins,
+  getPricesFromCoinGecko,
+  getSellableBalance,
+  getSwaps,
+  getTradesRequiredToGetBalances,
+  makePoolPairs,
+  makePoolsPretty,
+  makePoolsPrettyValues,
+  messages,
+  noDecimals,
+  osmoDenomToSymbol,
+  prettyPool,
+  signAndBroadcast
+} from '@cosmology/core';
 import { Dec } from '@keplr-wallet/unit';
 
 export default async (argv) => {

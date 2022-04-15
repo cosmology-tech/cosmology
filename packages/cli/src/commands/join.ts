@@ -1,17 +1,20 @@
 import { coin } from '@cosmjs/amino';
-import { prompt, promptOsmoSigningClient } from '../utils';
-import { promptOsmoRestClient } from '../utils';
+import {
+  prompt,
+  promptOsmoRestClient,
+  promptOsmoSigningClient,
+  printOsmoTransactionResponse
+} from '../utils';
 import {
   calculateShareOutAmount,
   calculateCoinsNeededInPoolForValue,
   calculateMaxCoinsForPool,
   makePoolsPretty,
-  makePoolsPrettyValues
-} from '../utils/osmo';
-import { messages } from '../messages/messages';
-import { signAndBroadcast } from '../messages/utils';
-import { getPricesFromCoinGecko } from '../clients/coingecko';
-import { printOsmoTransactionResponse } from '../utils/print';
+  makePoolsPrettyValues,
+  messages,
+  signAndBroadcast,
+  getPricesFromCoinGecko
+} from '@cosmology/core';
 
 export default async (argv) => {
   const { client, signer } = await promptOsmoRestClient(argv);

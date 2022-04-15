@@ -1,8 +1,10 @@
-import { prompt, promptOsmoSigningClient } from '../utils';
-import { promptOsmoRestClient } from '../utils';
-import { messages } from '../messages/messages';
-import { signAndBroadcast } from '../messages/utils';
-import { printOsmoTransactionResponse } from '../utils/print';
+import {
+  prompt,
+  promptOsmoRestClient,
+  promptOsmoSigningClient,
+  printOsmoTransactionResponse
+} from '../utils';
+import { signAndBroadcast, messages } from '@cosmology/core';
 
 export default async (argv) => {
   const { client, signer } = await promptOsmoRestClient(argv);

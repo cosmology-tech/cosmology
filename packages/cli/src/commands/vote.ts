@@ -1,17 +1,19 @@
-import { prompt } from '../utils/prompt';
-import { CosmosApiClient } from '../clients/cosmos';
 import {
+  prompt,
+  printTransactionResponse,
+  promptChain,
+  promptMnemonic
+} from '../utils';
+import {
+  CosmosApiClient,
   getWalletFromMnemonic,
   getCosmosAssetInfo,
   gasEstimation,
-  printTransactionResponse
-} from '../utils';
-import { promptChain, promptMnemonic } from '../utils/prompt';
+  messages
+} from '@cosmology/core';
 import {
   SigningStargateClient
 } from '@cosmjs/stargate';
-import { messages } from '../messages/native';
-import { proposalStatusFromJSON } from 'cosmjs-types/cosmos/gov/v1beta1/gov';
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);

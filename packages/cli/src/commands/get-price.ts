@@ -1,6 +1,5 @@
 import { prompt, promptMnemonic } from '../utils';
-import { assets } from '../assets';
-import { getPrices } from '../clients/coingecko';
+import { assets, getPrices } from '@cosmology/core';
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);

@@ -1,15 +1,15 @@
 import { coins } from '@cosmjs/amino';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
-import { prompt } from '../utils';
 import {
-  baseUnitsToDisplayUnits,
+  prompt,
   promptOsmoRestClient,
   promptOsmoSigningClient
 } from '../utils';
-import { noDecimals } from '../messages/utils';
-import { messages } from '../messages/messages';
-import { signAndBroadcastBatch } from '../messages/utils';
 import {
+  baseUnitsToDisplayUnits,
+  messages,
+  noDecimals,
+  signAndBroadcastBatch,
   convertWeightsIntoCoins,
   osmoDenomToSymbol,
   convertCoinsToDisplayValues,
@@ -20,10 +20,10 @@ import {
   getSellableBalance,
   makePoolPairs,
   makePoolsPretty,
-  makePoolsPrettyValues
-} from '../utils/osmo';
-import { getPricesFromCoinGecko } from '../clients/coingecko';
-import { prettyPool } from '../clients/osmosis';
+  makePoolsPrettyValues,
+  getPricesFromCoinGecko,
+  prettyPool
+} from '@cosmology/core';
 import {
   printSwap,
   printSwapForPoolAllocation,

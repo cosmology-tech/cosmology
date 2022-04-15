@@ -1,10 +1,6 @@
 import { prompt } from '../utils';
-import { assets } from '../assets';
-import {
-  getPrices,
-  _getPricesFromCoinGecko,
-  allGeckoAssets
-} from '../clients/coingecko';
+import { assets } from '@cosmology/core';
+import { getPrices, _getPricesFromCoinGecko } from '@cosmology/core';
 
 export default async (argv) => {
   const { all } = await prompt(

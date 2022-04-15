@@ -1,11 +1,10 @@
-import { prompt } from '../utils/prompt';
-import { CosmosApiClient } from '../clients/cosmos';
 import {
+  CosmosApiClient,
   getWalletFromMnemonic,
   baseUnitsToDisplayUnitsByDenom,
   getCosmosAssetInfo
-} from '../utils';
-import { promptChain, promptMnemonic } from '../utils/prompt';
+} from '@cosmology/core';
+import { prompt, promptChain, promptMnemonic } from '../utils';
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);

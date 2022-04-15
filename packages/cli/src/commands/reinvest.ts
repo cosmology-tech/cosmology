@@ -1,12 +1,15 @@
 import { chains } from '@cosmology/cosmos-registry';
 import { coin } from '@cosmjs/amino';
-import { prompt } from '../utils';
-import { OsmosisApiClient } from '..';
-import { baseUnitsToDisplayUnits, promptOsmoRestClient } from '../utils';
-import { getSigningOsmosisClient, noDecimals } from '../messages/utils';
-import { messages } from '../messages/messages';
-import { signAndBroadcast } from '../messages/utils';
 import {
+  prompt,
+  printSwap,
+  printSwapForPoolAllocation,
+  printOsmoTransactionResponse,
+  promptOsmoRestClient
+} from '../utils';
+import {
+  OsmosisApiClient,
+  baseUnitsToDisplayUnits,
   convertWeightsIntoCoins,
   osmoDenomToSymbol,
   getTradesRequiredToGetBalances,
@@ -17,15 +20,14 @@ import {
   getSellableBalance,
   makePoolPairs,
   makePoolsPretty,
-  makePoolsPrettyValues
-} from '../utils/osmo';
-import { prettyPool } from '../clients/osmosis';
-import { getPricesFromCoinGecko } from '../clients/coingecko';
-import {
-  printSwap,
-  printSwapForPoolAllocation,
-  printOsmoTransactionResponse
-} from '../utils/print';
+  makePoolsPrettyValues,
+  getSigningOsmosisClient,
+  noDecimals,
+  messages,
+  signAndBroadcast,
+  prettyPool,
+  getPricesFromCoinGecko
+} from '@cosmology/core';
 import { Dec } from '@keplr-wallet/unit';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');

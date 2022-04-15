@@ -1,11 +1,11 @@
 import { prompt } from '../utils';
-import { decrypt } from '../utils/crypt';
+import { crypt } from '@cosmology/core';
 
 const questions = [
   {
     type: 'string',
-    name: 'str',
-    message: 'enter a string to decrypt',
+    name: 'secret',
+    message: 'enter a secret to encrypt',
     required: true
   },
   {
@@ -17,6 +17,6 @@ const questions = [
 ];
 
 export default async (argv) => {
-  const { salt, str } = await prompt(questions, argv);
-  console.log(decrypt(salt, str));
+  const { salt, secret } = await prompt(questions, argv);
+  console.log(crypt(salt, secret));
 };

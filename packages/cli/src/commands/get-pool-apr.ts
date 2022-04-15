@@ -1,7 +1,9 @@
-import { OsmosisApiClient } from '..';
-import { OsmosisValidatorClient } from '../clients/validator';
+import {
+  getPoolAprs,
+  OsmosisValidatorClient,
+  OsmosisApiClient
+} from '@cosmology/core';
 import { prompt } from '../utils';
-import { getPoolAprs } from '../utils/osmo';
 
 const validator = new OsmosisValidatorClient();
 const api = new OsmosisApiClient();

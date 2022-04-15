@@ -1,24 +1,27 @@
 import { assets } from '@cosmology/cosmos-registry';
-import { printOsmoTransactionResponse, prompt } from '../utils';
+import {
+  promptOsmoRestClient,
+  promptOsmoSigningClient,
+  printOsmoTransactionResponse,
+  prompt
+} from '../utils';
 import {
   baseUnitsToDisplayUnits,
   baseUnitsToDollarValue,
   dollarValueToDenomUnits,
-  getPrice
-} from '../utils/chain';
-import { promptOsmoRestClient, promptOsmoSigningClient } from '../utils';
-import { osmoDenomToSymbol, symbolToOsmoDenom } from '../utils/osmo';
-import {
+  getPrice,
   lookupRoutesForTrade,
   calculateAmountWithSlippage,
   makePoolPairs,
-  makePoolsPretty
-} from '../utils/osmo/utils';
-import { prettyPool } from '../clients/osmosis';
-import { noDecimals } from '../messages/utils';
-import { messages } from '../messages/messages';
-import { signAndBroadcast } from '../messages/utils';
-import { getPricesFromCoinGecko } from '../clients/coingecko';
+  makePoolsPretty,
+  osmoDenomToSymbol,
+  symbolToOsmoDenom,
+  prettyPool,
+  noDecimals,
+  messages,
+  signAndBroadcast,
+  getPricesFromCoinGecko
+} from '@cosmology/core';
 
 const assetList = assets
   .reduce((m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)], [])

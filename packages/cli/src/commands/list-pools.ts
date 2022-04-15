@@ -1,4 +1,4 @@
-import { OsmosisApiClient } from '../clients/osmosis';
+import { OsmosisApiClient } from '@cosmology/core';
 import { prompt } from '../utils';
 
 export default async (argv) => {

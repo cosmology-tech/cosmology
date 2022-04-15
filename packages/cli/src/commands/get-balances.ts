@@ -1,8 +1,11 @@
-import { baseUnitsToDollarValue } from '../utils/chain';
-import { baseUnitsToDisplayUnits, promptOsmoRestClient } from '../utils';
-import { osmoDenomToSymbol } from '../utils/osmo';
+import {
+  getPricesFromCoinGecko,
+  osmoDenomToSymbol,
+  baseUnitsToDisplayUnits,
+  baseUnitsToDollarValue
+} from '@cosmology/core';
+import { promptOsmoRestClient } from '../utils';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
-import { getPricesFromCoinGecko } from '../clients/coingecko';
 
 export default async (argv) => {
   const { client, signer } = await promptOsmoRestClient(argv);

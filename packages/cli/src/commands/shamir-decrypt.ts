@@ -1,5 +1,5 @@
 import { prompt } from '../utils';
-import { hexToUtf8 } from '../utils/crypt';
+import { hexToUtf8 } from '@cosmology/core';
 import * as secrets from 'secrets.js-grempe';
 
 const questions = [

@@ -1,4 +1,4 @@
-import { utf8ToHex } from '../utils/crypt';
+import { utf8ToHex } from '@cosmology/core';
 import { prompt } from '../utils';
 import * as secrets from 'secrets.js-grempe';
 
