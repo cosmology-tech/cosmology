@@ -22,53 +22,32 @@ export class OsmosisValidatorClient extends RestClient {
     return await this.request(endpoint);
   }
 
-  /**
-   * @returns {Promise<ValidatorToken[]>}
-   */
-  async getTokens() {
+  async getTokens(): Promise<ValidatorToken[]> {
     const endpoint = `tokens/v2/all`;
     return await this.request(endpoint);
   }
 
-  /**
-   * @param {CoinSymbol} symbol
-   * @returns {Promise<ValidatorToken[]>}
-   */
-  async getToken(symbol) {
+  async getToken(symbol: CoinSymbol): Promise<ValidatorToken[]> {
     const endpoint = `tokens/v2/${symbol}`;
     return await this.request(endpoint);
   }
 
-  /**
-   * @param {CoinSymbol} symbol
-   * @returns {Promise<ValidatorTokenPrice[]>}
-   */
-  async getTokenPrice(symbol) {
+  async getTokenPrice(symbol: CoinSymbol): Promise<ValidatorTokenPrice[]> {
     const endpoint = `tokens/v2/price/${symbol}`;
     return await this.request(endpoint);
   }
 
-  /**
-   * @returns {Promise<ValidatorPoolApr[]>}
-   */
-  async getPoolAprs() {
+  async getPoolAprs(): Promise<ValidatorPoolApr[]> {
     const endpoint = `apr/v2/all`;
     return await this.request(endpoint);
   }
 
-  /**
-   * @param {CoinSymbol} symbol
-   * @returns {Promise<ValidatorPoolApr[]>}
-   */
-  async getPoolApr(symbol) {
+  async getPoolApr(symbol: CoinSymbol): Promise<ValidatorPoolApr[]> {
     const endpoint = `apr/v2/${symbol}`;
     return await this.request(endpoint);
   }
 
-  /**
-   * @returns {Promise<ValidatorPair[]>}
-   */
-  async getPairsSummary() {
+  async getPairsSummary(): Promise<ValidatorPair[]> {
     const endpoint = `pairs/v1/summary`;
     return await this.request(endpoint);
   }

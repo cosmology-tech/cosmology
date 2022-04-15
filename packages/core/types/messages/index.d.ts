@@ -1,7 +1,8 @@
-export * from "./meta";
-export * from "./aminos";
-export * from "./utils";
-export const messages: {
+/// <reference types="long" />
+export * from './meta';
+export * from './aminos';
+export * from './utils';
+export declare const messages: {
     transfer: ({ sourcePort, sourceChannel, token, sender, receiver, timeoutHeight, timeoutTimestamp }: {
         sourcePort: string;
         sourceChannel: string;
@@ -143,5 +144,5 @@ export const messages: {
     beginUnlocking: () => never;
     unlockPeriodLock: () => never;
 };
+import { osmosis } from '../proto/generated/codecimpl';
 export { osmosis };
-import { osmosis } from "../proto/generated/codecimpl";

@@ -27,7 +27,7 @@ export declare class CosmosApiClient extends RestClient {
     constructor({ url }: {
         url: any;
     });
-    getTransaction(txHash: any): Promise<any>;
+    getTransaction(txHash: any): Promise<unknown>;
     /**
      * @returns {Promise<{
      *   tx: {
@@ -41,7 +41,7 @@ export declare class CosmosApiClient extends RestClient {
      *   }
      * }>}
      */
-    getCosmosTransaction(txHash: any): Promise<any>;
+    getCosmosTransaction(txHash: any): Promise<unknown>;
     getProposals(proposalStatus?: number): Promise<ProposalsResponse>;
     /**
      * @returns {Promise<{
@@ -59,13 +59,13 @@ export declare class CosmosApiClient extends RestClient {
      *   }
      * }>}
      */
-    getLatestBlock(): Promise<any>;
-    getBalances(address: any): Promise<any>;
-    authInfo(address: any): Promise<any>;
-    getUnbondingDelegations(address: any): Promise<any>;
-    getDelegations(address: any): Promise<any>;
-    getDelegatorValidatorInfo(delegatorAddr: any, validatorAddr: any): Promise<any>;
-    getValidatorInfo(validatorAddr: any): Promise<any>;
-    getValidators(status: any): Promise<any>;
-    getRewards(address: any): Promise<any>;
+    getLatestBlock(): Promise<unknown>;
+    getBalances(address: any): Promise<unknown>;
+    authInfo(address: any): Promise<unknown>;
+    getUnbondingDelegations(address: any): Promise<unknown>;
+    getDelegations(address: any): Promise<unknown>;
+    getDelegatorValidatorInfo(delegatorAddr: any, validatorAddr: any): Promise<unknown>;
+    getValidatorInfo(validatorAddr: any): Promise<unknown>;
+    getValidators(status: any): Promise<unknown>;
+    getRewards(address: any): Promise<unknown>;
 }

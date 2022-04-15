@@ -10,8 +10,8 @@ const parseRoutes = (routes) =>
 
 export const aminos = {
   createPool: {
-    toAmino: () => {},
-    fromAmino: () => {}
+    toAmino: () => { },
+    fromAmino: () => { }
   },
   joinPool: {
     toAmino: ({ sender, poolId, shareOutAmount, tokenInMaxs }) => ({
@@ -28,12 +28,12 @@ export const aminos = {
     })
   },
   joinSwapExternAmountIn: {
-    toAmino: () => {},
-    fromAmino: () => {}
+    toAmino: () => { },
+    fromAmino: () => { }
   },
   exitPool: {
-    toAmino: () => {},
-    fromAmino: () => {}
+    toAmino: () => { },
+    fromAmino: () => { }
   },
   swapExactAmountIn: {
     toAmino: ({ sender, routes, tokenIn, tokenOutMinAmount }) => ({
@@ -91,11 +91,11 @@ export const aminos = {
     }
   },
   beginUnlocking: {
-    toAmino: () => {},
-    fromAmino: () => {}
+    toAmino: () => { },
+    fromAmino: () => { }
   },
   unlockPeriodLock: {
-    toAmino: () => {},
-    fromAmino: () => {}
+    toAmino: () => { },
+    fromAmino: () => { }
   }
 };

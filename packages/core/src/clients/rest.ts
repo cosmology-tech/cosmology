@@ -2,6 +2,10 @@ import axios from 'axios';
 import retry from 'retry';
 
 export class RestClient {
+  url: string;
+  _clientType: string;
+  instance: any;
+
   constructor({ url }) {
     this.url = url.endsWith('/') ? url : `${url}/`;
     this._clientType = 'API';
@@ -33,8 +37,7 @@ export class RestClient {
           console.log(`STATUS CODE: ${e?.response?.status}`);
           console.log(`STATUS TEXT: ${e?.response?.statusText}`);
           console.error(
-            `${this._clientType} response error: ${
-              e.response ? e.response.data : e
+            `${this._clientType} response error: ${e.response ? e.response.data : e
             }`
           );
           const statusNum = Number(e?.response?.status);

@@ -1,9 +1,9 @@
-export class RestClient {
+export declare class RestClient {
+    url: string;
+    _clientType: string;
+    instance: any;
     constructor({ url }: {
         url: any;
     });
-    url: any;
-    _clientType: string;
-    instance: import("axios").AxiosInstance;
-    request(endpoint: any, opts?: {}): Promise<any>;
+    request(endpoint: any, opts?: {}): Promise<unknown>;
 }
