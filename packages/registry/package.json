@@ -1,6 +1,6 @@
 {
   "name": "@cosmology/cosmos-registry",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "crypto networks",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/cosmology-finance/cosmology/tree/master/packages/cosmos-networks#readme",
