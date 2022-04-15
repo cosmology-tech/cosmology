@@ -8,6 +8,8 @@ Use `cosmology` to manage your daily rewards and investment strategies in Osmosi
 
 ## usage
 
+### stargate client
+
 For osmosis, first get your signer/wallet and stargate signing client.
 
 ```js
@@ -37,6 +39,22 @@ const client = await SigningStargateClient.connectWithSigner(
   rpcEndpoint,
   signer
 );
+```
+
+### broadcasting messages
+
+Once you have your messages, you can broadcast them with `signAndBroadcast`:
+
+```js
+import { signAndBroadcast } from '@cosmology/core';
+const res = await signAndBroadcast({
+  client: stargateClient,
+  chainId: argv.chainId, // e.g. 'osmosis-1'
+  address,
+  msg,
+  fee,
+  memo: ''
+});
 ```
 
 ## commands
