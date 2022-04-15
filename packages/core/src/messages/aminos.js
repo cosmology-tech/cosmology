@@ -53,8 +53,21 @@ export const aminos = {
     })
   },
   swapExactAmountOut: {
-    toAmino: () => {},
-    fromAmino: () => {}
+    toAmino: ({ sender, routes, tokenOut, tokenInMaxAmount }) => ({
+      sender,
+      routes,
+      tokenOut: {
+        denom: tokenOut.denom,
+        amount: Long.fromNumber(tokenOut.amount).toString()
+      },
+      tokenInMaxAmount: Long.fromNumber(tokenInMaxAmount).toString()
+    }),
+    fromAmino: ({ sender, routes, tokenOut, tokenInMaxAmount }) => ({
+      sender,
+      routes,
+      tokenOut,
+      tokenInMaxAmount
+    })
   },
   lockTokens: {
     toAmino: ({ owner, duration, coins }) => {
