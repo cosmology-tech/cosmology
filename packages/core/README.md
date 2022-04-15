@@ -7,6 +7,31 @@ npm install @cosmology/core
 Use `cosmology` to manage your daily rewards and investment strategies in Osmosis and the Cosmos. Make cryptocurrency trades, join liquidity pools, and stake rewards.
 
 ## usage
+
+For osmosis, first get your signer/wallet and stargate signing client.
+
+```js
+const signer = await getWalletFromMnemonic({mnemonic, token: 'OSMO'});
+const client = await getSigningOsmosisClient({
+  rpcEndpoint: rpcEndpoint,
+  signer
+});
+```
+
+For other chains, simply create a signing stargate client
+
+```js
+import {
+  SigningStargateClient,
+} from '@cosmjs/stargate';
+
+const signer = await getWalletFromMnemonic({mnemonic, token: 'AKT'});
+const client = await SigningStargateClient.connectWithSigner(
+  rpcEndpoint,
+  signer
+);
+```
+
 ## commands
 
 ### `swapExactAmountIn`
