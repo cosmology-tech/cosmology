@@ -193,6 +193,16 @@ export const generateOsmoMessage = (name, msg) => {
   };
 };
 
+export const getOsmoFee = (name) => {
+  if (!metaInfo[name]) throw new Error('missing message.');
+  const gas = metaInfo[name].gas + ''; // TEST if needs string or if number is ok
+  const fee = {
+    amount: coins(0, 'uosmo'),
+    gas
+  };
+  return fee;
+};
+
 export const estimateOsmoFee = async (client: SigningStargateClient, address: string, msgs: any[], memo: string) => {
   const gasPrice = GasPrice.fromString('0.025uosmo');
   const gasEstimation = await client.simulate(address, msgs, memo);

@@ -22,7 +22,8 @@ import {
   makePoolsPretty,
   makePoolsPrettyValues,
   getPricesFromCoinGecko,
-  prettyPool
+  prettyPool,
+  getOsmoFee
 } from '@cosmology/core';
 import {
   printSwap,
@@ -179,7 +180,7 @@ export default async (argv) => {
         slippage
       );
 
-      const { msg } = messages.swapExactAmountIn({
+      const msg = messages.swapExactAmountIn({
         sender: address,
         routes,
         tokenIn: {

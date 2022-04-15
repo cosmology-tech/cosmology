@@ -4,7 +4,7 @@ import {
   promptOsmoSigningClient,
   printOsmoTransactionResponse
 } from '../utils';
-import { signAndBroadcast, messages } from '@cosmology/core';
+import { signAndBroadcast, messages, getOsmoFee } from '@cosmology/core';
 
 export default async (argv) => {
   const { client, signer } = await promptOsmoRestClient(argv);
@@ -71,7 +71,9 @@ export default async (argv) => {
   const coins = [gammTokens.find((gamm) => gamm.poolId === poolId)].map(
     ({ denom, amount }) => ({ amount, denom })
   );
-  const { msg, fee } = messages.lockTokens({
+
+  const fee = getOsmoFee('lockTokens');
+  const msg = messages.lockTokens({
     owner: account.address,
     coins,
     duration

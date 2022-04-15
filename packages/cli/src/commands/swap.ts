@@ -20,7 +20,8 @@ import {
   noDecimals,
   messages,
   signAndBroadcast,
-  getPricesFromCoinGecko
+  getPricesFromCoinGecko,
+  getOsmoFee
 } from '@cosmology/core';
 
 const assetList = assets
@@ -188,7 +189,9 @@ export default async (argv) => {
 
   // TX
 
-  const { msg, fee } = messages.swapExactAmountIn({
+
+  const fee = getOsmoFee('swapExactAmountIn');
+  const msg = messages.swapExactAmountIn({
     sender: address,
     routes,
     tokenIn: {

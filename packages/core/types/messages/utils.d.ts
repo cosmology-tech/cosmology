@@ -31,5 +31,9 @@ export declare const generateOsmoMessage: (name: any, msg: any) => {
         value: any;
     };
 };
+export declare const getOsmoFee: (name: any) => {
+    amount: import("@cosmjs/stargate").Coin[];
+    gas: string;
+};
 export declare const estimateOsmoFee: (client: SigningStargateClient, address: string, msgs: any[], memo: string) => Promise<import("@cosmjs/stargate").StdFee>;
 export declare const noDecimals: (num: any) => string;

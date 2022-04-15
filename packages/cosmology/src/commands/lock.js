@@ -69,6 +69,7 @@ export default async (argv) => {
   const coins = [gammTokens.find((gamm) => gamm.poolId === poolId)].map(
     ({ denom, amount }) => ({ amount, denom })
   );
+
   const { msg, fee } = messages.lockTokens({
     owner: account.address,
     coins,

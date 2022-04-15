@@ -26,7 +26,8 @@ import {
   messages,
   signAndBroadcast,
   prettyPool,
-  getPricesFromCoinGecko
+  getPricesFromCoinGecko,
+  getOsmoFee
 } from '@cosmology/core';
 import { Dec } from '@keplr-wallet/unit';
 
@@ -198,7 +199,8 @@ export default async (argv) => {
         slippage
       );
 
-      const { msg, fee } = messages.swapExactAmountIn({
+      const fee = getOsmoFee('swapExactAmountIn');
+      const msg = messages.swapExactAmountIn({
         sender: osmoAddress,
         routes,
         tokenIn: {
@@ -235,7 +237,8 @@ export default async (argv) => {
     );
     const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
 
-    const { msg, fee } = messages.joinPool({
+    const fee = getOsmoFee('joinPool');
+    const msg = messages.joinPool({
       poolId,
       sender: osmoAddress,
       shareOutAmount,
@@ -279,7 +282,8 @@ export default async (argv) => {
     const coins = [gammTokens.find((gamm) => gamm.poolId === poolId)].map(
       ({ denom, amount }) => ({ amount, denom })
     );
-    const lockInfo = messages.lockTokens({
+    const lockFee = getOsmoFee('lockTokens');
+    const lockMsg = messages.lockTokens({
       owner: account.address,
       coins,
       duration: '1209600'
@@ -289,8 +293,8 @@ export default async (argv) => {
       client: stargateClient,
       chainId: osmoChainConfig.chain_id,
       address: osmoAddress,
-      msg: lockInfo.msg,
-      fee: lockInfo.fee,
+      msg: lockMsg,
+      fee: lockFee,
       memo: ''
     });
 

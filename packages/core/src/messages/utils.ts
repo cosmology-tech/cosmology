@@ -14,8 +14,6 @@ import { meta as metaInfo } from './meta';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { BroadcastTxResponse } from '../types';
 import { OfflineSigner } from '@cosmjs/proto-signing'
-import { CosmosApiClient } from '../clients';
-
 
 export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }: { rpcEndpoint: string, signer: OfflineSigner }) => {
   // registry
@@ -140,7 +138,7 @@ function getCosmosTx({ cosmos, transactionHash }) {
 
 export const generateOsmoMessage = (name, msg) => {
   if (!metaInfo[name]) throw new Error('missing message.');
-  const gas = metaInfo[name].gas + ''; // TEST if needs string or if number is ok
+  const gas = metaInfo[name].gas + '';
   const fee = {
     amount: coins(0, 'uosmo'),
     gas
@@ -153,6 +151,16 @@ export const generateOsmoMessage = (name, msg) => {
       value: msg
     }
   };
+};
+
+export const getOsmoFee = (name) => {
+  if (!metaInfo[name]) throw new Error('missing message.');
+  const gas = metaInfo[name].gas + '';
+  const fee = {
+    amount: coins(0, 'uosmo'),
+    gas
+  };
+  return fee;
 };
 
 export const estimateOsmoFee = async (client: SigningStargateClient, address: string, msgs: any[], memo: string) => {

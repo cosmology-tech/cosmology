@@ -21,7 +21,8 @@ import {
   noDecimals,
   osmoDenomToSymbol,
   prettyPool,
-  signAndBroadcast
+  signAndBroadcast,
+  getOsmoFee
 } from '@cosmology/core';
 import { Dec } from '@keplr-wallet/unit';
 
@@ -241,7 +242,8 @@ export default async (argv) => {
         slippage
       );
 
-      const { msg, fee } = messages.swapExactAmountIn({
+      const fee = getOsmoFee('swapExactAmountIn');
+      const msg = messages.swapExactAmountIn({
         sender: address,
         routes,
         tokenIn: {
