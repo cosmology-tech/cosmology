@@ -4,7 +4,7 @@ import { MsgDelegate } from 'cosmjs-types/cosmos/staking/v1beta1/tx';
 import { MsgVote } from 'cosmjs-types/cosmos/gov/v1beta1/tx';
 import { Coin } from '@cosmjs/amino';
 
-export const messages = {
+export const native = {
   transfer: ({
     sourcePort,
     sourceChannel,

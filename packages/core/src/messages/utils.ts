@@ -138,44 +138,6 @@ function getCosmosTx({ cosmos, transactionHash }) {
   });
 }
 
-export const signAndBroadcastTilTxExists = async ({
-  client,
-  cosmos,
-  chainId,
-  address,
-  msg,
-  fee,
-  memo = ''
-}: {
-  client: SigningStargateClient,
-  cosmos: CosmosApiClient,
-  chainId: string,
-  address: string,
-  msg: any,
-  fee: any,
-  memo: string
-}) => {
-  const result = await signAndBroadcast({
-    client,
-    chainId,
-    address,
-    msg,
-    fee,
-    memo
-  });
-
-  if (result.transactionHash) {
-    const results = await getCosmosTx({
-      cosmos,
-      transactionHash: result.transactionHash
-    });
-    return results;
-  }
-
-  console.log(result);
-  throw new Error('no tx hash');
-};
-
 export const generateOsmoMessage = (name, msg) => {
   if (!metaInfo[name]) throw new Error('missing message.');
   const gas = metaInfo[name].gas + ''; // TEST if needs string or if number is ok
