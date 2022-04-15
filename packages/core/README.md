@@ -77,6 +77,8 @@ const { msg, fee } = messages.swapExactAmountIn({
 
 #### `lookupRoutesForTrade`
 
+For swaps, you'll need a `TradeRoute` for it to work:
+
 ```js
 import { 
   lookupRoutesForTrade,
