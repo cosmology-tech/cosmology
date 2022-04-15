@@ -1,4 +1,4 @@
-# cosmology
+# @cosmology/cli
 
 ```
 npm install -g @cosmology/cli
