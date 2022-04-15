@@ -136,7 +136,7 @@ const { msg, fee } = messages.joinPool({
 To calculate `shareOutAmount`, you will need one of two methods. See below.
 #### `calculateCoinsNeededInPoolForValue`
 
-If you want to specify a dollar vaoue to invest in a pool:
+If you want to specify a dollar value to invest in a pool:
 
 ```js
 coinsNeeded = calculateCoinsNeededInPoolForValue(prices, poolInfo, value);
