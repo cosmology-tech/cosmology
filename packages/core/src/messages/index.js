@@ -9,3 +9,7 @@ export const messages = {
   ...msgs,
   ...native
 };
+
+import { osmosis } from '../proto/generated/codecimpl';
+
+export { osmosis };
