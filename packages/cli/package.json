@@ -1,6 +1,6 @@
 {
   "name": "@cosmology/cli",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "description": "cosmology",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/cosmology-finance/cosmology/tree/master/packages/cli#readme",
@@ -78,7 +78,7 @@
     "@cosmjs/launchpad": "0.27.1",
     "@cosmjs/proto-signing": "0.27.1",
     "@cosmjs/stargate": "0.27.1",
-    "@cosmology/core": "^0.1.29",
+    "@cosmology/core": "^0.1.30",
     "@cosmology/cosmos-registry": "^0.0.13",
     "@keplr-wallet/types": "0.10.0",
     "@keplr-wallet/unit": "0.10.0",
