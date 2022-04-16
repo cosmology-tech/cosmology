@@ -21,16 +21,6 @@ export declare const signAndBroadcastBatch: ({ client, chainId, address, msgs, f
     fee: any;
     memo: string;
 }) => Promise<import("@cosmjs/stargate").DeliverTxResponse>;
-export declare const generateOsmoMessage: (name: any, msg: any) => {
-    fee: {
-        amount: import("@cosmjs/stargate").Coin[];
-        gas: string;
-    };
-    msg: {
-        typeUrl: any;
-        value: any;
-    };
-};
 export declare const getOsmoFee: (name: any) => {
     amount: import("@cosmjs/stargate").Coin[];
     gas: string;

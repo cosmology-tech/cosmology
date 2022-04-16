@@ -15,9 +15,17 @@ import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { BroadcastTxResponse } from '../types';
 import { OfflineSigner } from '@cosmjs/proto-signing'
 
+// import { osmosis } from '@cosmonauts/osmosis';
+
 export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }: { rpcEndpoint: string, signer: OfflineSigner }) => {
   // registry
   const registry = new Registry(defaultRegistryTypes);
+
+  // const additions = {
+  //   ...osmosis.gamm.v1beta1.AminoConverter,
+  //   ...osmosis.lockup.AminoConverter,
+  //   ...osmosis.superfluid.AminoConverter
+  // };
 
   // aminotypes
   const aminoTypes = new AminoTypes({
@@ -96,61 +104,6 @@ export const signAndBroadcastBatch = async ({
   });
   const txBytes = TxRaw.encode(txRaw).finish();
   return await client.broadcastTx(txBytes);
-};
-
-function getCosmosTx({ cosmos, transactionHash }) {
-  const operation = retry.operation({
-    retries: 5,
-    factor: 2,
-    minTimeout: 1 * 1000,
-    maxTimeout: 60 * 1000
-  });
-
-  return new Promise((resolve, reject) => {
-    operation.attempt(async () => {
-      let results;
-      let err;
-      try {
-        results = await cosmos.getCosmosTransaction(transactionHash);
-      } catch (e) {
-        console.log(e);
-        err = true;
-      }
-
-      if (operation.retry(err)) {
-        return;
-      }
-
-      // perhaps a tautology but semantics are that we
-      // want to ensure tx is in the chain
-      if (results.tx_response.txhash === transactionHash) {
-        if (results.tx_response.code == 0) {
-          resolve(results);
-        } else {
-          reject(results.tx_response.raw_log);
-        }
-      } else {
-        reject(operation.mainError());
-      }
-    });
-  });
-}
-
-export const generateOsmoMessage = (name, msg) => {
-  if (!metaInfo[name]) throw new Error('missing message.');
-  const gas = metaInfo[name].gas + '';
-  const fee = {
-    amount: coins(0, 'uosmo'),
-    gas
-  };
-
-  return {
-    fee,
-    msg: {
-      typeUrl: metaInfo[name].amino,
-      value: msg
-    }
-  };
 };
 
 export const getOsmoFee = (name) => {
