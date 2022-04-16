@@ -74,26 +74,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.8",
-    "@cosmjs/amino": "0.27.1",
-    "@cosmjs/launchpad": "0.27.1",
-    "@cosmjs/proto-signing": "0.27.1",
-    "@cosmjs/stargate": "0.27.1",
-    "@cosmology/cosmos-registry": "^0.0.13",
-    "@keplr-wallet/types": "0.10.0",
-    "@keplr-wallet/unit": "0.10.0",
-    "ansi-colors": "^4.1.1",
-    "axios": "0.26.1",
-    "class-autobind": "^0.1.4",
-    "cosmjs-types": "0.4.1",
-    "crypto-js": "4.1.1",
-    "fuzzy": "0.1.3",
-    "inquirerer": "0.1.3",
-    "keychain": "1.3.0",
-    "long": "5.2.0",
-    "minimist": "1.2.6",
-    "protobufjs": "6.11.2",
-    "retry": "0.13.1",
-    "secrets.js-grempe": "2.0.0",
-    "typescript": "^4.6.2"
+    "@cosmology/cli": "0.2.2",
+    "@cosmology/core": "0.2.2"
   }
 }

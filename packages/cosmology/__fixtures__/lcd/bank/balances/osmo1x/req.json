@@ -1,4 +1,0 @@
-{
-    "url": "https://lcd-osmosis.keplr.app/bank/balances/{osmoAddress}",
-    "method": "GET"
-}
