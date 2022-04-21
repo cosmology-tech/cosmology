@@ -1551,20 +1551,6 @@
   resolved "https://registry.npmjs.org/@cosmjs/utils/-/utils-0.24.1.tgz#0adfefe63b7f17222bc2bc12f71296f35e7ad378"
   integrity sha512-VA3WFx1lMFb7esp9BqHWkDgMvHoA3D9w+uDRvWhVRpUpDc7RYHxMbWExASjz+gNblTCg556WJGzF64tXnf9tdQ==
 
-"@cosmonauts/osmosis@0.0.42":
-  version "0.0.42"
-  resolved "https://registry.npmjs.org/@cosmonauts/osmosis/-/osmosis-0.0.42.tgz#b4bc70a72d7b8cd0058b83357ebc36de85a6c18f"
-  integrity sha512-XCX/tEIk9AB0mHzGlvGF/92GN7YK4pZ4UdxuZOe5HAED5PKNAIxRXe8zocjiCp2uNnA2y7MYg/n8FsX8SQA0nw==
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    "@cosmjs/amino" "0.27.1"
-    "@cosmjs/proto-signing" "0.27.1"
-    "@cosmjs/stargate" "0.27.1"
-    "@cosmjs/tendermint-rpc" "^0.28.0"
-    long "^5.2.0"
-    protobufjs "^6.11.2"
-    rxjs "^7.5.5"
-
 "@eslint/eslintrc@^1.2.1":
   version "1.2.1"
   resolved "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-1.2.1.tgz#8b5e1c49f4077235516bc9ec7d41378c0f69b8c6"
@@ -2741,6 +2727,20 @@
   integrity sha512-s1zLBjWhdEI2zwaoSgyOFoKSl109CUcVBCc7biPJ3aAf6LGLU6szDvi31JPU7bxfla2lqfhjbbg/5DdFNxOwHw==
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
+
+"@osmonauts/osmosis@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.npmjs.org/@osmonauts/osmosis/-/osmosis-0.1.5.tgz#394bae1bacc100d9cfb02cf133d5dfde919555a7"
+  integrity sha512-spYqMDoI8nhemuZfd7GTMUC6lak9DKs29MwOCTKAUMYawqQQfVszbr65PFfLHeiGYOdIQ5obYxzq5FJKdNo6Bg==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    "@cosmjs/amino" "0.27.1"
+    "@cosmjs/proto-signing" "0.27.1"
+    "@cosmjs/stargate" "0.27.1"
+    "@cosmjs/tendermint-rpc" "^0.28.0"
+    long "^5.2.0"
+    protobufjs "^6.11.2"
+    rxjs "^7.5.5"
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"

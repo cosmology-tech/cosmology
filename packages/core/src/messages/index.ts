@@ -1,5 +1,4 @@
-export * from './meta';
-export * from './aminos';
+export * from './gas';
 export * from './utils';
 
 import { messages as msgs } from './messages';
@@ -10,7 +9,7 @@ export const messages = {
   ...native
 };
 
-import * as telescope from '@cosmonauts/osmosis';
+import * as telescope from '@osmonauts/osmosis';
 
 export {
   telescope

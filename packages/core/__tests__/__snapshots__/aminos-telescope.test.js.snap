@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`aminos 1`] = `
+Object {
+  "/osmosis.gamm.v1beta1.MsgExitPool": Object {
+    "aminoType": "osmosis/gamm/exit-pool",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgExitSwapExternAmountOut": Object {
+    "aminoType": "osmosis/gamm/exit-swap-extern-amount-out",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgExitSwapShareAmountIn": Object {
+    "aminoType": "osmosis/gamm/exit-swap-share-amount-in",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgJoinPool": Object {
+    "aminoType": "osmosis/gamm/join-pool",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgJoinSwapExternAmountIn": Object {
+    "aminoType": "osmosis/gamm/join-swap-extern-amount-in",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgJoinSwapShareAmountOut": Object {
+    "aminoType": "osmosis/gamm/join-swap-share-amount-out",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgSwapExactAmountIn": Object {
+    "aminoType": "osmosis/gamm/swap-exact-amount-in",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgSwapExactAmountOut": Object {
+    "aminoType": "osmosis/gamm/swap-exact-amount-out",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.lockup.MsgBeginUnlocking": Object {
+    "aminoType": "osmosis/lockup/begin-unlocking",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.lockup.MsgBeginUnlockingAll": Object {
+    "aminoType": "osmosis/lockup/begin-unlocking-all",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.lockup.MsgLockTokens": Object {
+    "aminoType": "osmosis/lockup/lock-tokens",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.superfluid.MsgLockAndSuperfluidDelegate": Object {
+    "aminoType": "osmosis/superfluid/lock-and-superfluid-delegate",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.superfluid.MsgSuperfluidDelegate": Object {
+    "aminoType": "osmosis/superfluid/superfluid-delegate",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.superfluid.MsgSuperfluidUnbondLock": Object {
+    "aminoType": "osmosis/superfluid/superfluid-unbond-lock",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.superfluid.MsgSuperfluidUndelegate": Object {
+    "aminoType": "osmosis/superfluid/superfluid-undelegate",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+}
+`;
+
+exports[`lockTokens.fromAmino 1`] = `
+Object {
+  "coins": Array [
+    Object {
+      "amount": "1000",
+      "denom": "mydenom",
+    },
+  ],
+  "duration": Object {
+    "nanos": 0,
+    "seconds": "100",
+  },
+  "owner": "osmo1addresshere",
+}
+`;
+
+exports[`lockTokens.toAmino 1`] = `
+Object {
+  "coins": Array [
+    Object {
+      "amount": "1000",
+      "denom": "mydenom",
+    },
+  ],
+  "duration": Object {
+    "nanos": 0,
+    "seconds": "100",
+  },
+  "owner": "osmo1addresshere",
+}
+`;

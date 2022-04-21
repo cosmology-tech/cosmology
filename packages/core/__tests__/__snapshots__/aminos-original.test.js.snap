@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`aminos 1`] = `
+Object {
+  "/osmosis.gamm.v1beta1.MsgCreatePool": Object {
+    "aminoType": "osmosis/gamm/create-pool",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgExitPool": Object {
+    "aminoType": "osmosis/gamm/exit-pool",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgJoinPool": Object {
+    "aminoType": "osmosis/gamm/join-pool",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgJoinSwapExternAmountIn": Object {
+    "aminoType": "osmosis/gamm/join-swap-extern-amount-in",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgSwapExactAmountIn": Object {
+    "aminoType": "osmosis/gamm/swap-exact-amount-in",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.gamm.v1beta1.MsgSwapExactAmountOut": Object {
+    "aminoType": "osmosis/gamm/swap-exact-amount-out",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.lockup.MsgBeginUnlocking": Object {
+    "aminoType": "osmosis/lockup/begin-unlock-period-lock",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.lockup.MsgLockTokens": Object {
+    "aminoType": "osmosis/lockup/lock-tokens",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "undefined": Object {
+    "aminoType": "osmosis/lockup/unlock-period-lock",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+}
+`;
+
+exports[`lockTokens multiple aminos 1`] = `
+Object {
+  "coins": Array [
+    Object {
+      "amount": "1000",
+      "denom": "mydenom",
+    },
+  ],
+  "duration": "NaN",
+  "owner": "osmo1addresshere",
+}
+`;
+
+exports[`lockTokens multiple aminos 2`] = `
+Object {
+  "coins": Array [
+    Object {
+      "amount": "1000",
+      "denom": "mydenom",
+    },
+  ],
+  "duration": Object {
+    "nanos": NaN,
+    "seconds": Long {
+      "high": 0,
+      "low": 0,
+      "unsigned": false,
+    },
+  },
+  "owner": "osmo1addresshere",
+}
+`;
+
+exports[`lockTokens.fromAmino 1`] = `
+Object {
+  "coins": Array [
+    Object {
+      "amount": "1000",
+      "denom": "mydenom",
+    },
+  ],
+  "duration": Object {
+    "nanos": NaN,
+    "seconds": Long {
+      "high": 0,
+      "low": 0,
+      "unsigned": false,
+    },
+  },
+  "owner": "osmo1addresshere",
+}
+`;
+
+exports[`lockTokens.toAmino 1`] = `
+Object {
+  "coins": Array [
+    Object {
+      "amount": "1000",
+      "denom": "mydenom",
+    },
+  ],
+  "duration": "NaN",
+  "owner": "osmo1addresshere",
+}
+`;

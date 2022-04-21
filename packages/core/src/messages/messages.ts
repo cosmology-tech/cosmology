@@ -1,4 +1,4 @@
-import { osmosis } from '@cosmonauts/osmosis/main/proto/osmosis';
+import { osmosis } from '@osmonauts/osmosis/main/proto/osmosis';
 
 export const messages = {
   ...osmosis.gamm.v1beta1.json,

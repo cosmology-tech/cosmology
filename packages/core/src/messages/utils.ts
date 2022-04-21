@@ -8,44 +8,31 @@ import { Registry } from '@cosmjs/proto-signing';
 import { TxRaw } from 'cosmjs-types/cosmos/tx/v1beta1/tx';
 import { coins } from '@cosmjs/amino';
 import { defaultRegistryTypes } from '@cosmjs/stargate';
-import retry from 'retry';
-import { aminos } from './aminos';
-import { meta as metaInfo } from './meta';
+import { gas as gasInfo } from './gas';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { BroadcastTxResponse } from '../types';
 import { OfflineSigner } from '@cosmjs/proto-signing'
 
-// import { osmosis } from '@cosmonauts/osmosis';
+import { osmosis } from '@osmonauts/osmosis';
 
 export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }: { rpcEndpoint: string, signer: OfflineSigner }) => {
   // registry
   const registry = new Registry(defaultRegistryTypes);
 
-  // const additions = {
-  //   ...osmosis.gamm.v1beta1.AminoConverter,
-  //   ...osmosis.lockup.AminoConverter,
-  //   ...osmosis.superfluid.AminoConverter
-  // };
+  const additions = {
+    ...osmosis.gamm.v1beta1.AminoConverter,
+    ...osmosis.lockup.AminoConverter,
+    ...osmosis.superfluid.AminoConverter
+  };
 
   // aminotypes
   const aminoTypes = new AminoTypes({
-    additions: Object.keys(aminos).reduce((m, key) => {
-      const meta = metaInfo[key];
-      const { toAmino, fromAmino } = aminos[key];
-      m[meta.amino] = {
-        aminoType: meta.type,
-        toAmino,
-        fromAmino
-      };
-      return m;
-    }, {})
+    additions
   });
 
-  // register the goods
-  Object.keys(aminos).forEach((key) => {
-    const meta = metaInfo[key];
-    registry.register(meta.amino, meta.osmosis);
-  });
+  osmosis.gamm.v1beta1.load(registry);
+  osmosis.lockup.load(registry);
+  osmosis.superfluid.load(registry);
 
   const client = await SigningStargateClient.connectWithSigner(
     rpcEndpoint,
@@ -107,8 +94,8 @@ export const signAndBroadcastBatch = async ({
 };
 
 export const getOsmoFee = (name) => {
-  if (!metaInfo[name]) throw new Error('missing message.');
-  const gas = metaInfo[name].gas + '';
+  if (!gasInfo.osmosis[name]) throw new Error('missing message.');
+  const gas = gasInfo.osmosis[name].gas + '';
   const fee = {
     amount: coins(0, 'uosmo'),
     gas
