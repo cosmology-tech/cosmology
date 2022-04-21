@@ -1,4 +1,4 @@
-import { cosmos, ibc } from '@cosmonauts/osmosis';
+import { cosmos, ibc } from '@osmonauts/osmosis';
 
 export const native = {
   ...cosmos.staking.v1beta1.messages,
