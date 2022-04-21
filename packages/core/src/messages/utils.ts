@@ -30,15 +30,9 @@ export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }: { rpcEndp
     additions
   });
 
-  const registerModule = (mod) => {
-    Object.keys(mod.registry).forEach(typeUrl => {
-      registry.register(typeUrl, mod.registry[typeUrl]);
-    });
-  };
-
-  registerModule(osmosis.gamm.v1beta1);
-  registerModule(osmosis.lockup);
-  registerModule(osmosis.superfluid);
+  osmosis.gamm.v1beta1.load(registry);
+  osmosis.lockup.load(registry);
+  osmosis.superfluid.load(registry);
 
   const client = await SigningStargateClient.connectWithSigner(
     rpcEndpoint,

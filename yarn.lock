@@ -2728,10 +2728,10 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@osmonauts/osmosis@0.1.4":
-  version "0.1.4"
-  resolved "https://registry.npmjs.org/@osmonauts/osmosis/-/osmosis-0.1.4.tgz#c82d8c4bebbeeee247d0fc0def41cc85e67d85e7"
-  integrity sha512-Cm7moKz/QsAks+HXI8sKys4zZG84yl3wx+bq2BGp7gVw/KEnxVypxgcoCaS9EIhPiw0ZUQCcN2ilWZ7WNrV8mg==
+"@osmonauts/osmosis@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.npmjs.org/@osmonauts/osmosis/-/osmosis-0.1.5.tgz#394bae1bacc100d9cfb02cf133d5dfde919555a7"
+  integrity sha512-spYqMDoI8nhemuZfd7GTMUC6lak9DKs29MwOCTKAUMYawqQQfVszbr65PFfLHeiGYOdIQ5obYxzq5FJKdNo6Bg==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@cosmjs/amino" "0.27.1"
