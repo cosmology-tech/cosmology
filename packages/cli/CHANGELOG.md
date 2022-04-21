@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/cosmology-finance/cosmology/compare/@cosmology/cli@0.2.3...@cosmology/cli@0.3.0) (2022-04-21)
+
+**Note:** Version bump only for package @cosmology/cli
+
+
+
+
+
 ## [0.2.3](https://github.com/cosmology-finance/cosmology/compare/@cosmology/cli@0.2.2...@cosmology/cli@0.2.3) (2022-04-16)
 
 **Note:** Version bump only for package @cosmology/cli
