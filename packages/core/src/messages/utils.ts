@@ -19,15 +19,11 @@ export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }: { rpcEndp
   // registry
   const registry = new Registry(defaultRegistryTypes);
 
-  const additions = {
+  // aminotypes
+  const aminoTypes = new AminoTypes({
     ...osmosis.gamm.v1beta1.AminoConverter,
     ...osmosis.lockup.AminoConverter,
     ...osmosis.superfluid.AminoConverter
-  };
-
-  // aminotypes
-  const aminoTypes = new AminoTypes({
-    additions
   });
 
   osmosis.gamm.v1beta1.load(registry);
