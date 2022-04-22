@@ -2700,10 +2700,10 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@osmonauts/osmosis@0.1.10":
-  version "0.1.10"
-  resolved "https://registry.npmjs.org/@osmonauts/osmosis/-/osmosis-0.1.10.tgz#0822995724a7a45251feb54eb7a2aa4dbd8bce0b"
-  integrity sha512-X25SBzKXWDJ9nNAq6UAYoklCyLVdQ+oI6FLPuFAwEWsaK4DTfQg2ekJRm3W8BIf8bTgtyDwWK8kc8CVPyEJ/sg==
+"@osmonauts/osmosis@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/@osmonauts/osmosis/-/osmosis-0.2.0.tgz#08450378728d96a11ed3480d902efc0600a0f395"
+  integrity sha512-AkFfZXRTgOjIA0Wy0FN9p78dtXizSan4YYiheDWyl6VltCZmm8laLiWdEs6Orl4djHcSAffgKf9v7IjN2dfPrg==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@cosmjs/amino" "0.28.4"
