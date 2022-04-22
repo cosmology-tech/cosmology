@@ -1,22 +1,34 @@
 export declare const gas: {
-    MsgSend: {
-        uosmo: {
-            amount: number;
-            gas: string;
+    osmosis: {
+        createPool: {
+            gas: number;
         };
-        uatom: {
-            amount: number;
-            gas: string;
+        joinPool: {
+            gas: number;
+            shareCoinDecimals: number;
         };
-    };
-    MsgTransfer: {
-        uosmo: {
-            amount: number;
-            gas: string;
+        joinSwapExternAmountIn: {
+            gas: number;
+            shareCoinDecimals: number;
         };
-        uatom: {
-            amount: number;
-            gas: string;
+        exitPool: {
+            gas: number;
+            shareCoinDecimals: number;
+        };
+        swapExactAmountIn: {
+            gas: number;
+        };
+        swapExactAmountOut: {
+            gas: number;
+        };
+        lockTokens: {
+            gas: number;
+        };
+        beginUnlocking: {
+            gas: number;
+        };
+        unlockPeriodLock: {
+            gas: number;
         };
     };
 };

@@ -1,10 +1,6 @@
 import { SigningStargateClient } from '@cosmjs/stargate';
 import { BroadcastTxResponse } from '../types';
-import { OfflineSigner } from '@cosmjs/proto-signing';
-export declare const getSigningOsmosisClient: ({ rpcEndpoint, signer }: {
-    rpcEndpoint: string;
-    signer: OfflineSigner;
-}) => Promise<SigningStargateClient>;
+export { getSigningOsmosisClient } from '@osmonauts/osmosis';
 export declare const signAndBroadcast: ({ client, chainId, address, msg, fee, memo }: {
     client: SigningStargateClient;
     chainId: string;

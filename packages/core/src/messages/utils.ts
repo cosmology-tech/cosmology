@@ -1,43 +1,15 @@
 import {
-  AminoTypes,
   calculateFee,
   GasPrice,
   SigningStargateClient
 } from '@cosmjs/stargate';
-import { Registry } from '@cosmjs/proto-signing';
 import { TxRaw } from 'cosmjs-types/cosmos/tx/v1beta1/tx';
 import { coins } from '@cosmjs/amino';
-import { defaultRegistryTypes } from '@cosmjs/stargate';
 import { gas as gasInfo } from './gas';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { BroadcastTxResponse } from '../types';
-import { OfflineSigner } from '@cosmjs/proto-signing'
 
-import { osmosis } from '@osmonauts/osmosis';
-
-export const getSigningOsmosisClient = async ({ rpcEndpoint, signer }: { rpcEndpoint: string, signer: OfflineSigner }) => {
-  // registry
-  const registry = new Registry(defaultRegistryTypes);
-
-  // aminotypes
-  const aminoTypes = new AminoTypes({
-    ...osmosis.gamm.v1beta1.AminoConverter,
-    ...osmosis.lockup.AminoConverter,
-    ...osmosis.superfluid.AminoConverter
-  });
-
-  osmosis.gamm.v1beta1.load(registry);
-  osmosis.lockup.load(registry);
-  osmosis.superfluid.load(registry);
-
-  const client = await SigningStargateClient.connectWithSigner(
-    rpcEndpoint,
-    signer,
-    { registry: registry, aminoTypes: aminoTypes }
-  );
-
-  return client;
-};
+export { getSigningOsmosisClient } from '@osmonauts/osmosis';
 
 export const signAndBroadcast = async ({
   client,
