@@ -1,6 +1,6 @@
 {
   "name": "cosmology",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "cosmology",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/cosmology-finance/cosmology/tree/master/packages/cosmology#readme",
@@ -74,7 +74,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.8",
-    "@cosmology/cli": "^0.3.1",
-    "@cosmology/core": "^0.3.1"
+    "@cosmology/cli": "^0.3.2",
+    "@cosmology/core": "^0.3.2"
   }
 }

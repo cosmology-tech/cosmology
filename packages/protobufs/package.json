@@ -1,6 +1,6 @@
 {
   "name": "@cosmology/protobufs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "osmosis protobufs",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/cosmology-finance/cosmology/tree/master/packages/protobufs#readme",
