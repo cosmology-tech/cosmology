@@ -2,7 +2,9 @@ import {
   prompt,
   printTransactionResponse,
   promptChain,
-  promptMnemonic
+  promptMnemonic,
+  promptRestEndpoint,
+  promptRpcEndpoint
 } from '../utils';
 import {
   CosmosApiClient,
@@ -18,31 +20,9 @@ import {
 export default async (argv) => {
   argv = await promptMnemonic(argv);
   const chain = await promptChain(argv);
+  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
+  const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
 
-
-  const { restEndpoint } = await prompt(
-    [
-      {
-        type: 'list',
-        message: 'restEndpoint',
-        name: 'restEndpoint',
-        choices: chain.apis.rest.map((e) => e.address)
-      }
-    ],
-    argv
-  );
-
-  const { rpcEndpoint } = await prompt(
-    [
-      {
-        type: 'list',
-        message: 'rpcEndpoint',
-        name: 'rpcEndpoint',
-        choices: chain.apis.rpc.map((e) => e.address)
-      }
-    ],
-    argv
-  );
   const client = new CosmosApiClient({
     url: restEndpoint
   });

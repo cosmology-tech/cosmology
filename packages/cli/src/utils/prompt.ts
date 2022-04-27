@@ -186,6 +186,47 @@ export const promptMnemonic = async (argv = {}) => {
   );
 };
 
+export const promptRpcEndpoint = async (choices: string[], argv) => {
+  if (process.env.RPC_ENDPOINT) {
+    argv.rpcEndpoint = process.env.RPC_ENDPOINT;
+  }
+
+  const { rpcEndpoint } = await prompt(
+    [
+      {
+        type: 'list',
+        message: 'rpcEndpoint',
+        name: 'rpcEndpoint',
+        choices
+      }
+    ],
+    argv
+  );
+
+  return rpcEndpoint;
+
+};
+
+export const promptRestEndpoint = async (choices: string[], argv) => {
+  if (process.env.REST_ENDPOINT) {
+    argv.restEndpoint = process.env.REST_ENDPOINT;
+  }
+
+  const { restEndpoint } = await prompt(
+    [
+      {
+        type: 'list',
+        message: 'restEndpoint',
+        name: 'restEndpoint',
+        choices
+      }
+    ],
+    argv
+  );
+
+  return restEndpoint;
+}
+
 export const promptChain = async (argv) => {
   const { chainToken } = await prompt(
     [
@@ -203,6 +244,11 @@ export const promptChain = async (argv) => {
 };
 
 export const promptChainIdAndChain = async (argv) => {
+
+  if (process.env.CHAIN_ID) {
+    argv.chainId = process.env.CHAIN_ID;
+  }
+
   const { chainId } = await prompt(
     [
       {

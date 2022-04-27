@@ -4,23 +4,13 @@ import {
   baseUnitsToDisplayUnitsByDenom,
   getCosmosAssetInfo
 } from '@cosmology/core';
-import { prompt, promptChain, promptMnemonic } from '../utils';
+import { prompt, promptChain, promptMnemonic, promptRestEndpoint } from '../utils';
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);
   const chain = await promptChain(argv);
 
-  const { restEndpoint } = await prompt(
-    [
-      {
-        type: 'list',
-        message: 'restEndpoint',
-        name: 'restEndpoint',
-        choices: chain.apis.rest.map((e) => e.address)
-      }
-    ],
-    argv
-  );
+  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
 
   const client = new CosmosApiClient({
     url: restEndpoint

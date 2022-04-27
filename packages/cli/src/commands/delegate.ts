@@ -2,7 +2,9 @@ import {
   prompt,
   promptChain,
   promptMnemonic,
-  printTransactionResponse
+  printTransactionResponse,
+  promptRestEndpoint,
+  promptRpcEndpoint
 } from '../utils';
 import {
   baseUnitsToDisplayUnitsByDenom,
@@ -35,17 +37,7 @@ export default async (argv) => {
     argv
   );
 
-  const { restEndpoint } = await prompt(
-    [
-      {
-        type: 'list',
-        message: 'restEndpoint',
-        name: 'restEndpoint',
-        choices: chain.apis.rest.map((e) => e.address)
-      }
-    ],
-    argv
-  );
+  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
 
   const client = new CosmosApiClient({
     url: restEndpoint
@@ -62,18 +54,7 @@ export default async (argv) => {
     token: argv.chainToken
   });
 
-  const { rpcEndpoint } = await prompt(
-    [
-      {
-        type: 'list',
-        message: 'rpcEndpoint',
-        name: 'rpcEndpoint',
-        choices: chain.apis.rpc.map((e) => e.address)
-      }
-    ],
-    argv
-  );
-
+  const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
   const stargateClient = await SigningStargateClient.connectWithSigner(
     rpcEndpoint,
     signer
