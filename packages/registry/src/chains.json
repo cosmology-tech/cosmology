@@ -3899,7 +3899,7 @@
       ],
       "rest": [
         {
-          "address": "https://lcd-osmosis.blockapsis.com",
+          "address": "/api/simple-forward?url=https%3A%2F%2Flcd-osmosis.blockapsis.com",
           "provider": "chainapsis"
         },
         {
@@ -6033,7 +6033,7 @@
     "status": "live",
     "network_type": "testnet",
     "pretty_name": "Osmosis",
-    "chain_id": "osmosis-testnet-0",
+    "chain_id": "osmo-test-4",
     "origin_chain_id": "osmosis-1",
     "bech32_prefix": "osmo",
     "daemon_name": "osmosisd",
@@ -6056,13 +6056,13 @@
     "apis": {
       "rpc": [
         {
-          "address": "http://143.244.147.126:26657",
+          "address": "https://testnet-rpc.osmosis.zone",
           "type": "testnet"
         }
       ],
       "rest": [
         {
-          "address": "http://143.244.147.126:1317",
+          "address": "https://testnet-rest.osmosis.zone",
           "type": "testnet"
         }
       ]

@@ -13,7 +13,7 @@ import {
 export class OsmosisValidatorClient extends RestClient {
   constructor ({ url = 'https://api-osmosis.imperator.co/' } = {}) {
     super({ url })
-    // this._clientType = 'Osmosis Validator';
+    this._clientType = 'Osmosis Validator'
     autobind(this) // React ES6 doesn't bind this -> meaning we get 'unable to read property 'request' of undefined
   }
 
@@ -38,6 +38,8 @@ export class OsmosisValidatorClient extends RestClient {
   }
 
   async getPoolAprs (): Promise<ValidatorPoolApr[]> {
+    console.log('Here')
+    debugger
     const endpoint = `apr/v2/all`
     return await this.request(endpoint)
   }

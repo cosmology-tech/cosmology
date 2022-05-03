@@ -11,7 +11,9 @@
   "genesis": {
     "genesis_url": "https://github.com/osmosis-labs/networks/raw/main/osmosis-1/genesis.json"
   },
-  "key_algos": ["secp256k1"],
+  "key_algos": [
+    "secp256k1"
+  ],
   "slip44": 118,
   "fees": {
     "fee_tokens": [
@@ -24,7 +26,10 @@
   "codebase": {
     "git_repo": "https://github.com/osmosis-labs/osmosis",
     "recommended_version": "v7.0.3",
-    "compatible_versions": ["v7.0.3", "v7.0.2"]
+    "compatible_versions": [
+      "v7.0.3",
+      "v7.0.2"
+    ]
   },
   "peers": {
     "seeds": [
@@ -194,7 +199,7 @@
     ],
     "rest": [
       {
-        "address": "https://lcd-osmosis.blockapsis.com",
+        "address": "/api/simple-forward?url=https%3A%2F%2Flcd-osmosis.blockapsis.com",
         "provider": "chainapsis"
       },
       {
