@@ -2700,19 +2700,28 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@osmonauts/osmosis@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/@osmonauts/osmosis/-/osmosis-0.2.0.tgz#08450378728d96a11ed3480d902efc0600a0f395"
-  integrity sha512-AkFfZXRTgOjIA0Wy0FN9p78dtXizSan4YYiheDWyl6VltCZmm8laLiWdEs6Orl4djHcSAffgKf9v7IjN2dfPrg==
+"@osmonauts/helpers@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.npmjs.org/@osmonauts/helpers/-/helpers-0.3.1.tgz#95c6b5c9608263998a8f59877c539501a6caa7da"
+  integrity sha512-/bCDyeXEe6W31V6lcmRKXRcmAOz+K2JXTCEchCO8XJCqdOXSmks3dob2TyTITpZj2unDntVv/Kz6YeCREQNkvg==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    long "^5.2.0"
+    protobufjs "^6.11.2"
+
+"@osmonauts/osmosis@0.4.5":
+  version "0.4.5"
+  resolved "https://registry.npmjs.org/@osmonauts/osmosis/-/osmosis-0.4.5.tgz#76eee917ac3d3d33f5df6874043b1e92e6634230"
+  integrity sha512-m2rHA7gL4isBjbHBiindIGRprBMotJqmxwrFIwRhzqAg0L7Q1ZNO9Z9vw7ZYO1pMZMRaq2IY61Zg4hnOODKpwA==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@cosmjs/amino" "0.28.4"
     "@cosmjs/proto-signing" "0.28.4"
     "@cosmjs/stargate" "0.28.4"
     "@cosmjs/tendermint-rpc" "^0.28.4"
+    "@osmonauts/helpers" "0.3.1"
     long "^5.2.0"
     protobufjs "^6.11.2"
-    rxjs "^7.5.5"
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -8461,13 +8470,6 @@ rxjs@^6.4.0, rxjs@^6.6.0:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^7.5.5:
-  version "7.5.5"
-  resolved "https://registry.npmjs.org/rxjs/-/rxjs-7.5.5.tgz#2ebad89af0f560f460ad5cc4213219e1f7dd4e9f"
-  integrity sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw==
-  dependencies:
-    tslib "^2.1.0"
-
 safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.2, safe-buffer@^5.2.0, safe-buffer@^5.2.1, safe-buffer@~5.2.0:
   version "5.2.1"
   resolved "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
@@ -9182,11 +9184,6 @@ tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tslib@^2.1.0:
-  version "2.3.1"
-  resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
-  integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
 tsutils@^3.21.0:
   version "3.21.0"
