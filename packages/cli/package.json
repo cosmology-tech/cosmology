@@ -34,6 +34,7 @@
     "build:commands": "cross-env NODE_ENV=development node ./bin/build.js",
     "build": "npm run build:module && npm run build:main",
     "build:ts": "tsc --project ./tsconfig.json",
+    "buidl": "npm run build && npm run build:ts",
     "prepare": "npm run build",
     "lint": "eslint src --fix",
     "dev": "cross-env NODE_ENV=development babel-node src/cosmology --extensions \".tsx,.ts,.js\"",

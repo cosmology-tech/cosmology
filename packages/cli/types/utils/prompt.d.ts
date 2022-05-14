@@ -11,6 +11,8 @@ export declare const getKeychainPassword: ({ account, service }: {
 export declare const prompt: (questions?: any[], argv?: {}) => Promise<any>;
 export declare const getKeychainAccount: () => string;
 export declare const promptMnemonic: (argv?: {}) => Promise<any>;
+export declare const promptRpcEndpoint: (choices: string[], argv: any) => Promise<any>;
+export declare const promptRestEndpoint: (choices: string[], argv: any) => Promise<any>;
 export declare const promptChain: (argv: any) => Promise<any>;
 export declare const promptChainIdAndChain: (argv: any) => Promise<any>;
 export declare const getPools: (validator: any, argv: any) => Promise<{
