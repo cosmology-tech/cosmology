@@ -2709,10 +2709,10 @@
     long "^5.2.0"
     protobufjs "^6.11.2"
 
-"@osmonauts/osmosis@0.4.4":
-  version "0.4.4"
-  resolved "https://registry.npmjs.org/@osmonauts/osmosis/-/osmosis-0.4.4.tgz#954b0b9777381ac080090b0f4c98c2be337f63a1"
-  integrity sha512-+jMcV9YsjbllK+quX5YRVfnJuMIVmV+ccCKotvY8fl5Q0Iq8UG6SFl+rd+PzGQq6ta9v903jLAe9ABG4VnjoGg==
+"@osmonauts/osmosis@0.4.5":
+  version "0.4.5"
+  resolved "https://registry.npmjs.org/@osmonauts/osmosis/-/osmosis-0.4.5.tgz#76eee917ac3d3d33f5df6874043b1e92e6634230"
+  integrity sha512-m2rHA7gL4isBjbHBiindIGRprBMotJqmxwrFIwRhzqAg0L7Q1ZNO9Z9vw7ZYO1pMZMRaq2IY61Zg4hnOODKpwA==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@cosmjs/amino" "0.28.4"
