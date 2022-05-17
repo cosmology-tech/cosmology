@@ -4,7 +4,7 @@
 npm install -g cosmology
 ```
 
-Use `cosmology` to manage your daily rewards and investment strategies in Osmosis and the Cosmos. Make cryptocurrency trades, join liquidity pools, and stake rewards.
+Use `cosmology` to build web3 applications on top of Osmosis and the Cosmos. Make cryptocurrency trades, join liquidity pools, and stake rewards.
 
 ## usage
 
