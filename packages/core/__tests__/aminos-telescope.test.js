@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { osmosis } from '@osmonauts/osmosis';
+import { osmosis } from 'osmojs';
 
 it('aminos', async () => {
   const additions = {

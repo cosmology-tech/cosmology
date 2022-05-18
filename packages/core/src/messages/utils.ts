@@ -9,7 +9,7 @@ import { gas as gasInfo } from './gas';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { BroadcastTxResponse } from '../types';
 
-export { getSigningOsmosisClient } from '@osmonauts/osmosis';
+export { getSigningOsmosisClient } from 'osmojs';
 
 export const signAndBroadcast = async ({
   client,

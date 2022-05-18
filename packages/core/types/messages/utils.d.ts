@@ -1,6 +1,6 @@
 import { SigningStargateClient } from '@cosmjs/stargate';
 import { BroadcastTxResponse } from '../types';
-export { getSigningOsmosisClient } from '@osmonauts/osmosis';
+export { getSigningOsmosisClient } from 'osmojs';
 export declare const signAndBroadcast: ({ client, chainId, address, msg, fee, memo }: {
     client: SigningStargateClient;
     chainId: string;
