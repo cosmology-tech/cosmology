@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.8](https://github.com/cosmology-finance/cosmology/compare/@cosmology/core@0.5.7...@cosmology/core@0.5.8) (2022-05-18)
+
+**Note:** Version bump only for package @cosmology/core
+
+
+
+
+
 ## [0.5.7](https://github.com/cosmology-finance/cosmology/compare/@cosmology/core@0.5.6...@cosmology/core@0.5.7) (2022-05-18)
 
 **Note:** Version bump only for package @cosmology/core
