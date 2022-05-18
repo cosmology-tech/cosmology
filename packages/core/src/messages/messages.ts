@@ -10,3 +10,4 @@ export const messages = {
   ...cosmos.bank.v1beta1.MessageComposer.fromPartial,
   ...cosmos.staking.v1beta1.MessageComposer.fromPartial,
   ...cosmos.gov.v1beta1.MessageComposer.fromPartial
+};
