@@ -84,7 +84,7 @@
     "cosmjs-types": "0.5.0",
     "crypto-js": "4.1.1",
     "long": "5.2.0",
-    "osmojs": "0.4.24",
+    "osmojs": "0.4.48",
     "protobufjs": "6.11.2",
     "retry": "0.13.1",
     "secrets.js-grempe": "2.0.0",

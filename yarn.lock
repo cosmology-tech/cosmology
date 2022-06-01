@@ -2700,28 +2700,22 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@osmonauts/helpers@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.npmjs.org/@osmonauts/helpers/-/helpers-0.3.2.tgz#800602bb06e080782fa5a0bbade6bff0a5ecb815"
-  integrity sha512-juxSajRWzUyz2YDEucwGOPdW9nydMzvDnEi3z3MA407qT7HlgYEtG/dCtNJ3CzKlpT6GqAytMdUkUoHjv5KkuA==
+"@osmonauts/helpers@^0.3.4":
+  version "0.3.4"
+  resolved "https://registry.npmjs.org/@osmonauts/helpers/-/helpers-0.3.4.tgz#554512238657f91e97ac5f607b53c8935defc4ad"
+  integrity sha512-c20B25IhqKBoEDSE+VysG/R19kNFq+RgD2p838GLo9bOOH3tT7UOuUYBmqat9qGHFaNpFkaYZ+3yqtMTh9zxzg==
   dependencies:
     "@babel/runtime" "^7.11.2"
     long "^5.2.0"
     protobufjs "^6.11.2"
 
-"@osmonauts/osmosis@0.4.6":
-  version "0.4.6"
-  resolved "https://registry.npmjs.org/@osmonauts/osmosis/-/osmosis-0.4.6.tgz#873b62d1856977815bb7c6967428b5b010468f9c"
-  integrity sha512-w7kCjxALSY14UdfVEhnkphlfxIKI4tUN7ylzVY9/FCz5I0WrxjvTQzZSoghNoAxH1gR4fSWj2k1KkdfHDY1yXg==
+"@osmonauts/lcd@^0.3.4":
+  version "0.3.4"
+  resolved "https://registry.npmjs.org/@osmonauts/lcd/-/lcd-0.3.4.tgz#bbcc9af8b2c0ef61045f353f26d1336230d55ea2"
+  integrity sha512-VlPN+ip2PgFuF3lVcCwoFSZ5ZTd8FdNl+LKv0dmr14OK6wkuAOzuAK6XqPOe2QbZ6Wii6arEqj/e/bLKAQcvWw==
   dependencies:
     "@babel/runtime" "^7.11.2"
-    "@cosmjs/amino" "0.28.4"
-    "@cosmjs/proto-signing" "0.28.4"
-    "@cosmjs/stargate" "0.28.4"
-    "@cosmjs/tendermint-rpc" "^0.28.4"
-    "@osmonauts/helpers" "^0.3.2"
-    long "^5.2.0"
-    protobufjs "^6.11.2"
+    axios "0.26.1"
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -7506,17 +7500,18 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-osmojs@0.4.24:
-  version "0.4.24"
-  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.4.24.tgz#11b3ae7f9b637cf48ca591ba95d68594f5a53110"
-  integrity sha512-Ae7lTXhOTsUIicawIN9Ki6Hjm7qPDnE5yKeLsX0pg7DMI87v62JDPmX/6aMD3tBgf0VUZQRzUMQ1qkdtIclP5A==
+osmojs@0.4.48:
+  version "0.4.48"
+  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.4.48.tgz#1ce12691aa37d894b6a9c59bf71ed2e94a43f0f3"
+  integrity sha512-ozptSzI5TODO9JfhSB4py1kUS5D9NA9MdxggZgg5aoZYio+uPox+0EbPIZs+C3xmi+Ot92JvSy5uIZOIXQf+8A==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@cosmjs/amino" "0.28.4"
     "@cosmjs/proto-signing" "0.28.4"
     "@cosmjs/stargate" "0.28.4"
     "@cosmjs/tendermint-rpc" "^0.28.4"
-    "@osmonauts/helpers" "^0.3.2"
+    "@osmonauts/helpers" "^0.3.4"
+    "@osmonauts/lcd" "^0.3.4"
     long "^5.2.0"
     protobufjs "^6.11.2"
 
