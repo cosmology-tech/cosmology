@@ -1,4 +1,64 @@
 export declare const messages: {
+    submitProposal(value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgSubmitProposal): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgSubmitProposal;
+    };
+    vote(value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgVote): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgVote;
+    };
+    voteWeighted(value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgVoteWeighted): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgVoteWeighted;
+    };
+    deposit(value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgDeposit): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgDeposit;
+    };
+    createValidator(value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgCreateValidator): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgCreateValidator;
+    };
+    editValidator(value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgEditValidator): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgEditValidator;
+    };
+    delegate(value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgDelegate): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgDelegate;
+    };
+    beginRedelegate(value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgBeginRedelegate): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgBeginRedelegate;
+    };
+    undelegate(value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgUndelegate): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgUndelegate;
+    };
+    send(value: import("osmojs/types/proto/cosmos/bank/v1beta1/tx").MsgSend): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/bank/v1beta1/tx").MsgSend;
+    };
+    multiSend(value: import("osmojs/types/proto/cosmos/bank/v1beta1/tx").MsgMultiSend): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/bank/v1beta1/tx").MsgMultiSend;
+    };
+    setWithdrawAddress(value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgSetWithdrawAddress): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgSetWithdrawAddress;
+    };
+    withdrawDelegatorReward(value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgWithdrawDelegatorReward): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgWithdrawDelegatorReward;
+    };
+    withdrawValidatorCommission(value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgWithdrawValidatorCommission): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgWithdrawValidatorCommission;
+    };
+    fundCommunityPool(value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgFundCommunityPool): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgFundCommunityPool;
+    };
     lockTokens(value: import("osmojs/types/proto/osmosis/lockup/tx").MsgLockTokens): {
         typeUrl: string;
         value: import("osmojs/types/proto/osmosis/lockup/tx").MsgLockTokens;
