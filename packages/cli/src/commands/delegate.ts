@@ -110,7 +110,10 @@ export default async (argv) => {
         type: 'list',
         message: 'validatorAddress',
         name: 'validatorAddress',
-        choices: validators
+        choices: validators // shuffle validators for decentralization
+          .map(value => ({ value, sort: Math.random() }))
+          .sort((a, b) => a.sort - b.sort)
+          .map(({ value }) => value)
       }
     ],
     argv
