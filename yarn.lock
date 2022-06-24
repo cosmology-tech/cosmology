@@ -2746,19 +2746,19 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@osmonauts/helpers@^0.3.5":
-  version "0.3.5"
-  resolved "https://registry.npmjs.org/@osmonauts/helpers/-/helpers-0.3.5.tgz#c036fa1a1a51464f643173cde02a8184601466be"
-  integrity sha512-NW8S0aAyOd2GLl6STyDcV1JbIKy2yJryj19zC+P647LYD/1eV4GEzgBXQ3G691ia+dZNQEQFpcfu+SFqIL5Q7A==
+"@osmonauts/helpers@^0.3.8":
+  version "0.3.8"
+  resolved "https://registry.npmjs.org/@osmonauts/helpers/-/helpers-0.3.8.tgz#77a57cdd20922cd477f21de9662a403620e2c848"
+  integrity sha512-6xM/DGjLctziRVT2DuR7/MQ/HqfHAcqOaGF4z77Jeh3RWQ78zWiaRVxBefRQdKaqrh5LhXL6VebUdiy9IGwTTA==
   dependencies:
     "@babel/runtime" "^7.18.3"
     long "^5.2.0"
     protobufjs "^6.11.3"
 
-"@osmonauts/lcd@^0.3.5":
-  version "0.3.5"
-  resolved "https://registry.npmjs.org/@osmonauts/lcd/-/lcd-0.3.5.tgz#e451e471564ca179115c16a22eda0f2aba453a24"
-  integrity sha512-VUIwDp90ZD0GQGQ3jbttAfZCSKUU1dJbKFlMYqc0GZGIiWa9Ka6ZYUKQCpiwYXqjksLGWoFvTIX3YfLkQwvTqA==
+"@osmonauts/lcd@^0.3.8":
+  version "0.3.8"
+  resolved "https://registry.npmjs.org/@osmonauts/lcd/-/lcd-0.3.8.tgz#796bbe8249102f9672d46f25b5176581eff4c483"
+  integrity sha512-fIDY6nzDxO6bWDfwRs2I+5zpVt+Yu++uBfz/M/gyEEbzoHcc4SU2ExLYliK+XBDtZkXx7S35cEuxhRUkNBd6oQ==
   dependencies:
     "@babel/runtime" "^7.18.3"
     axios "0.27.2"
@@ -7464,18 +7464,18 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-osmojs@0.4.53:
-  version "0.4.53"
-  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.4.53.tgz#7676ac586d9dd8ebb8a9b00bbd3f82e048a9a8b4"
-  integrity sha512-5ml35Nx6gpVQLho+XrbzZptA1025S5XloRHLluvlNtIfVwILYp1E509WakGnjE9r5nxj/3eG9ThM5Yf8MfmWmg==
+osmojs@0.4.56:
+  version "0.4.56"
+  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.4.56.tgz#b6ebc6e73571353a975a1726ebbe60aa7bb035e0"
+  integrity sha512-OvcIjOGmjMy0/In9eNWI/CGkIaWgc3zOVxyhoY0EiAgr9VNEZgZtkW2wvaRff+gIOb12viEbLoAIbMA5eMIXMg==
   dependencies:
     "@babel/runtime" "^7.18.3"
     "@cosmjs/amino" "0.28.7"
     "@cosmjs/proto-signing" "0.28.7"
     "@cosmjs/stargate" "0.28.7"
     "@cosmjs/tendermint-rpc" "^0.28.7"
-    "@osmonauts/helpers" "^0.3.5"
-    "@osmonauts/lcd" "^0.3.5"
+    "@osmonauts/helpers" "^0.3.8"
+    "@osmonauts/lcd" "^0.3.8"
     long "^5.2.0"
     protobufjs "^6.11.3"
 
