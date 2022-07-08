@@ -206,7 +206,7 @@ export const getChain = async ({ token }) => {
     if (found) return true;
   });
   const chain = chains.find(
-    ({ chain_id }) => chain_id == chainFromAssets.chain_id
+    ({ chain_name }) => chain_name == chainFromAssets.chain_name
   );
   return chain;
 };

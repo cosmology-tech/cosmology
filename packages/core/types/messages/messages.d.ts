@@ -1,4 +1,8 @@
 export declare const messages: {
+    transfer(value: import("osmojs/types/proto/ibc/applications/transfer/v1/tx").MsgTransfer): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/ibc/applications/transfer/v1/tx").MsgTransfer;
+    };
     submitProposal(value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgSubmitProposal): {
         typeUrl: string;
         value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgSubmitProposal;

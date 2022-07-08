@@ -58,6 +58,11 @@
             "provider": "EZStaking.io"
           },
           {
+            "id": "21484408a7bcf0134689ddf52a7d9c8299cb65b5",
+            "address": "176.9.139.74:36656",
+            "provider": "BitCanna"
+          },
+          {
             "id": "7b2d10d188926ea25eb209f037fe4e67e16e06b6",
             "address": "92.222.25.18:26656",
             "provider": "StakeLab"
@@ -105,20 +110,32 @@
                 "provider": "ParanormalBrothers"
               },
               {
-                "address": "https://rpc.bitcanna.ezstaking.io/",
-                "provider": "ezstaking.io"
+                "address": "https://rpc.bitcanna.ezstaking.io",
+                "provider": "EZStaking.io"
               },
               {
                 "address": "https://rpc-bitcanna.itastakers.com/",
                 "provider": "itastaker"
+             },
+             {
+                "address": "https://bitcanna-rpc.polkachu.com",
+                "provider": "Polkachu"
+             },
+             {
+                "address": "https://rpc-bitcanna-ia.notional.ventures/",
+                "provider": "Notional"
              }
         ],
         "grpc": [
             {
                 "address": "https://grpc.bitcanna.io",
                 "provider": "bitcanna"
+            },
+            {
+                "address": "grpc-bitcanna-ia.notional.ventures:443",
+                "provider": "Notional"
             }
-        ],      
+        ],
         "rest": [
             {
                 "address": "https://lcd.bitcanna.io",
@@ -126,15 +143,19 @@
             },
             {
                 "address": "https://lcd.bitcanna.ezstaking.io/",
-                "provider": "ezstaking.io"
+                "provider": "EZStaking.io"
             },
             {
                 "address": "https://lcd-bitcanna.itastakers.com/",
                 "provider": "itastaker"
+            },
+            {
+                "address": "https://api-bitcanna-ia.notional.ventures/",
+                "provider": "Notional"
             }
         ]
     },
-    "explorers": [ 
+    "explorers": [
             {
                 "kind": "forbole",
                 "url": "https://cosmos-explorer.bitcanna.io",
@@ -144,7 +165,7 @@
                 "kind": "ping-pub",
                 "url": "https://ping.pub/bitcanna",
                 "tx_page": "https://ping.pub/bitcanna/tx/${txHash}"
-            },        
+            },
             {
                 "kind": "mintscan",
                 "url": "https://www.mintscan.io/bitcanna/",
