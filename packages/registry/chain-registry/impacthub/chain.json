@@ -80,6 +80,14 @@
             {
                 "address": "https://impacthub.ixo.world/rpc/",
                 "provider": "ixoworld"
+            },
+            {
+                "address": "https://rpc.ixo.ezstaking.io",
+                "provider": "EZStaking.io"
+            },
+            {
+                "address": "https://rpc-ixo-ia.notional.ventures/",
+                "provider": "Notional"
             }
         ],
         "rest": [
@@ -98,6 +106,24 @@
             {
                 "address": "https://impacthub.ixo.world/rest/",
                 "provider": "ixoworld"
+            },
+            {
+                "address": "https://lcd.ixo.ezstaking.io",
+                "provider": "EZStaking.io"
+            },
+            {
+                "address": "https://api-ixo-ia.notional.ventures/",
+                "provider": "Notional"
+            }
+        ],
+        "grpc": [
+            {
+                "address": "impacthub-grpc.ixo.earth:443",
+                "provider": "ixoworld"
+            },
+            {
+                "address": "grpc-ixo-ia.notional.ventures:443",
+                "provider": "Notional"
             }
         ]
     },

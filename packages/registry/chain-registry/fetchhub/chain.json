@@ -4,19 +4,22 @@
     "status": "live",
     "network_type": "mainnet",
     "pretty_name": "Fetch Hub",
-    "chain_id": "fetchhub-3",
+    "chain_id": "fetchhub-4",
     "bech32_prefix": "fetch",
     "daemon_name": "fetchd",
     "node_home": "$HOME/.fetchd",
     "genesis": {
-        "genesis_url": "https://storage.googleapis.com/fetch-ai-mainnet-v2-genesis/genesis-fetchhub3.json"
+        "genesis_url": "https://storage.googleapis.com/fetch-ai-mainnet-v2-genesis/genesis-fetchhub4.json"
     },
     "slip44": 118,
     "codebase": {
         "git_repo": "https://github.com/fetchai/fetchd",
-        "recommended_version": "v0.9.0",
+        "recommended_version": "v0.10.3",
         "compatible_versions": [
-            "v0.9.0"
+            "v0.10.3",
+            "v0.10.2",
+            "v0.10.1",
+            "v0.10.0"
         ]
     },
     "peers": {
@@ -60,18 +63,34 @@
             {
                 "address": "https://rpc-fetchhub.fetch.ai:443",
                 "provider": "fetch.ai"
+            },
+            {
+                "address": "https://fetchapi.terminet.io",
+                "provider": "Terminet"
+            },                   
+            {
+                "address": "https://rpc-fetchhub-ia.notional.ventures/",
+                "provider": "Notional"
             }
         ],
         "rest": [
             {
                 "address": "https://rest-fetchhub.fetch.ai",
                 "provider": "fetch.ai"
+            },
+            {
+                "address": "https://api-fetchhub-ia.notional.ventures/",
+                "provider": "Notional"
             }
         ],
         "grpc": [
             {
                 "address": "https://grpc-fetchhub.fetch.ai:443",
                 "provider": "fetch.ai"
+            },
+            {
+                "address": "grpc-fetchhub-ia.notional.ventures:443",
+                "provider": "Notional"
             }
         ]
     },

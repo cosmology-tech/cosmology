@@ -46,6 +46,10 @@
     "rpc": [
       {
         "address": "https://main.rpc.agoric.net:443"
+      },
+      {
+        "address": "https://agoric-rpc.polkachu.com",
+        "provider": "Polkachu"
       }
     ],
     "rest": [
@@ -54,5 +58,12 @@
       }
     ],
     "grpc": []
-  }
+  },
+  "explorers": [
+      {
+        "kind": "explorers.guru",
+        "url": "https://agoric.explorers.guru/",
+        "tx_page": "https://agoric.explorers.guru/transaction/{txHash}"
+      }
+   ]
 }

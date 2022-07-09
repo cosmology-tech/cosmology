@@ -92,6 +92,18 @@
             },
             {
                 "address": "http://akash.c29r3.xyz:80/rpc"
+            },
+            {
+                "address": "https://rpc-akash.ecostake.com",
+                "provider": "ecostake"
+            },
+            {
+                "address": "https://akash-rpc.polkachu.com",
+                "provider": "Polkachu"
+            },
+            {
+                "address": "https://rpc-akash-ia.notional.ventures/",
+                "provider": "Notional"
             }
         ],
         "rest": [
@@ -100,19 +112,38 @@
             },
             {
                 "address": "https://api.akash.smartnodes.one"
+            },
+            {
+                "address": "https://rest-akash.ecostake.com",
+                "provider": "ecostake"
+            },
+            {
+                "address": "https://api-akash-ia.notional.ventures/",
+                "provider": "Notional"
+            }
+        ],
+        "grpc": [
+            {
+                "address": "grpc-akash-ia.notional.ventures:443",
+                "provider": "Notional"
             }
         ]
     },
     "explorers": [
         {
-            "kind": "mintscan",
-            "url": "https://www.mintscan.io/akash",
-            "tx_page": "https://www.mintscan.io/akash/txs/${txHash}"
+          "kind": "mintscan",
+          "url": "https://www.mintscan.io/akash",
+          "tx_page": "https://www.mintscan.io/akash/txs/${txHash}"
         },
         {
-            "kind": "ping.pub",
-            "url": "https://ping.pub/akash-network",
-            "tx_page": "https://ping.pub/akash-network/tx/${txHash}"
+          "kind": "ping.pub",
+          "url": "https://ping.pub/akash-network",
+          "tx_page": "https://ping.pub/akash-network/tx/${txHash}"
+        },
+        {
+          "kind": "bigdipper",
+          "url": "https://akash.bigdipper.live/",
+          "tx_page": "https://akash.bigdipper.live/transactions/${txHash}"
         }
-    ]
+      ]
 }

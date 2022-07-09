@@ -23,6 +23,11 @@
             {
                 "id": "aebb8431609cb126a977592446f5de252d8b7fa1",
                 "address": "104.236.201.138:26656"
+            },
+            {
+                "id": "d309774e794b111a0fa2056f40aed9d488b6195e",
+                "address": "regen-seed.sunshinevalidation.io:32064",
+                "provider": "sunshine-validation"
             }
         ],
         "persistent_peers": [
@@ -53,12 +58,24 @@
             {
                 "address": "http://rpc.regen.forbole.com:80",
                 "provider": "forbole"
+            },
+            {
+                "address": "https://rpc-regen-ia.notional.ventures/",
+                "provider": "Notional"
+            },
+            {
+                "address": "https://rpc-regen.ecostake.com",
+                "provider": "ecostake"
             }
         ],
         "grpc": [
             {
                 "address": "regen.stakesystems.io:2083",
                 "provider": "stakesystems"
+            },
+            {
+                "address": "grpc-regen-ia.notional.ventures:443",
+                "provider": "Notional"
             }
         ],
         "rest": [
@@ -69,6 +86,14 @@
             {
                 "address": "https://regen.stakesystems.io",
                 "provider": "stakesystems"
+            },
+            {
+                "address": "https://api-regen-ia.notional.ventures/",
+                "provider": "Notional"
+            },
+            {
+                "address": "https://rest-regen.ecostake.com",
+                "provider": "ecostake"
             }
         ]
     },

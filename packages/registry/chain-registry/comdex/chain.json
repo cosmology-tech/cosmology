@@ -89,6 +89,18 @@
             {
                 "address": "https://rpc-comdex.zenchainlabs.io/",
                 "provider": "zenchainlabs"
+            },
+            {
+                "address": "https://comdex-rpc.polkachu.com",
+                "provider": "Polkachu"
+            },
+            {
+                "address": "https://rpc.comdex.ezstaking.io",
+                "provider": "EZStaking.io"
+            },
+            {
+                "address": "https://rpc-comdex-ia.notional.ventures/",
+                "provider": "Notional"
             }
         ],
         "rest": [
@@ -107,6 +119,20 @@
             {
                 "address": "https://api-comdex.zenchainlabs.io/",
                 "provider": "zenchainlabs"
+            },
+            {
+                "address": "https://lcd.comdex.ezstaking.io",
+                "provider": "EZStaking.io"
+            },
+            {
+                "address": "https://api-comdex-ia.notional.ventures/",
+                "provider": "Notional"
+            }
+        ],
+        "grpc": [
+            {
+                "address": "grpc-comdex-ia.notional.ventures:443",
+                "provider": "Notional"
             }
         ]
     },

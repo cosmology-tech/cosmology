@@ -1,6 +1,21 @@
-# chain-registry
+# Chain Registry
 
-This repo contains a `chain.json` and `assetlist.json` for a number of cosmos-sdk based chains.  A `chain.json` contains data that makes it easy to start running or interacting with a node.  
+This repo contains a `chain.json` and `assetlist.json` for a number of cosmos-sdk based chains.  A `chain.json` contains data that makes it easy to start running or interacting with a node.
+
+Schema files containing the recommended metadata structure can be found in the `*.schema.json` files located in the root directory. Schemas are still undergoing revision as user needs are surfaced. Optional fields may be added beyond what is contained in the schema files.
+
+Once schemas have matured and client needs are better understood Chain Registry data is intended to migrate to an on-chain representation hosted on the Cosmos Hub, i.e. the Cosmos Chain Name Service. If you are interested in this effort please join the discussion [here](https://github.com/cosmos/chain-registry/issues/291)!
+
+## Web Endpoints
+- https://registry.ping.pub (Update every 24H)
+
+## APIs
+- https://github.com/cmwaters/skychart
+- https://github.com/empowerchain/cosmos-chain-directory
+
+## Web Interfaces
+- https://cosmos.directory
+- https://chain-registry.netlify.com
 
 ## Contributing
 
@@ -34,7 +49,10 @@ A sample `chain.json` includes the following information.
         "fee_tokens": [
             {
                 "denom": "uosmo",
-                "fixed_min_gas_price": 0
+                "fixed_min_gas_price": 0,
+                "low_gas_price": 0,
+                "average_gas_price": 0.025,
+                "high_gas_price": 0.04
             }
         ]
     },
@@ -120,9 +138,14 @@ A sample `chain.json` includes the following information.
         {
             "kind": "mintscan",
             "url": "https://www.mintscan.io/osmosis",
-            "tx_page": "https://www.mintscan.io/osmosis/txs/${txHash}"
+            "tx_page": "https://www.mintscan.io/osmosis/txs/${txHash}",
+            "account_page": "https://www.mintscan.io/osmosis/account/${accountAddress}"
         }
-    ]
+    ],
+    "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmosis-chain-logo.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmosis-chain-logo.svg"
+    }
 }
 ```
 
@@ -140,7 +163,7 @@ An example assetlist json contains the following structure:
 
 ```
 {
-    "chain_id": "steak-chain-1",
+    "chain_name": "steak-chain-1",
     "assets": [
         {
             "description": "The native token of Steak Chain",
@@ -195,3 +218,47 @@ An example assetlist json contains the following structure:
 }
 ```
 
+## IBC Data
+
+The metadata contained in these files represents a path abstraction between two IBC-connected networks. This information is particularly useful when relaying packets and acknowledgments across chains.
+
+This schema also allows us to provide helpful info to describe open channels.
+
+Note: when creating these files, please ensure the the chains in both the file name and the references of `chain-1` and `chain-2` in the json file are in alphabetical order. Ex: `Achain-Zchain.json`. The chain names used must match name of the chain's directory here in the chain-registry.
+
+An example ibc metadata file contains the following structure:
+
+```json
+{
+    "$schema": "../ibc_data.schema.json",
+    "chain-1": {
+      "chain-name": "juno",
+      "client-id": "07-tendermint-0",
+      "connection-id": "connection-0"
+    },
+    "chain-2": {
+      "chain-name": "osmosis",
+      "client-id": "07-tendermint-1457",
+      "connection-id": "connection-1142"
+    },
+    "channels": [
+      {
+        "chain-1": {
+          "channel-id": "channel-0",
+          "port-id": "transfer"
+        },
+        "chain-2": {
+          "channel-id": "channel-42",
+          "port-id": "transfer"
+        },
+        "ordering": "unordered",
+        "version": "ics20-1",
+        "tags": {
+          "status": "live",
+          "preferred": true,
+          "dex": "osmosis"
+        }
+      }
+    ]
+  }
+  ```

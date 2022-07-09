@@ -99,6 +99,14 @@
             {
                 "address": "https://rpc-cerberus.ecostake.com",
                 "provider": "ecostake"
+            },
+            {
+                "address": "https://cerberus-rpc.polkachu.com",
+                "provider": "Polkachu"
+            },
+            {
+                "address": "https://rpc-cerberus-ia.notional.ventures/",
+                "provider": "Notional"
             }
         ],
         "rest": [
@@ -109,6 +117,16 @@
             {
                 "address": "https://rest-cerberus.ecostake.com",
                 "provider": "ecostake"
+            },
+            {
+                "address": "https://api-cerberus-ia.notional.ventures/",
+                "provider": "Notional"
+            }
+        ],
+        "grpc": [
+            {
+                "address": "grpc-cerberus-ia.notional.ventures:443",
+                "provider": "Notional"
             }
         ]
     },
@@ -122,6 +140,11 @@
             "kind": "ping.pub",
             "url": "https://ping.pub/cerberus",
             "tx_page": "https://ping.pub/cerberus/tx/${txHash}"
+        },
+        {
+            "kind": "mintscan",
+            "url": "https://www.mintscan.io/cerberus",
+            "tx_page": "https://www.mintscan.io/cerberus/txs/{txHash}"
         }
     ]
 }

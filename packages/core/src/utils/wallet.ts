@@ -19,7 +19,7 @@ export const getWalletFromMnemonic = async ({ mnemonic, token }): Promise<Secp25
     if (found) return true;
   });
   const chain = chains.find(
-    ({ chain_id }) => chain_id == chainFromAssets.chain_id
+    ({ chain_name }) => chain_name == chainFromAssets.chain_name
   );
 
   try {
@@ -35,6 +35,7 @@ export const getWalletFromMnemonic = async ({ mnemonic, token }): Promise<Secp25
 };
 
 export const getWalletFromMnemonicForChain = async ({ mnemonic, chain }): Promise<Secp256k1HdWallet> => {
+
   try {
     const { bech32_prefix, slip44 } = chain;
     const wallet = await Secp256k1HdWallet.fromMnemonic(mnemonic, {
