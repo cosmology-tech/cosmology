@@ -1,3 +1,0 @@
-# cosmos-registry
- 
- 

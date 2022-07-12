@@ -76,7 +76,7 @@ it('multi-hop route swaps', async () => {
       amount: 100
     },
     {
-      symbol: 'LUNA',
+      symbol: 'LUNC',
       amount: 100
     }
   ]);

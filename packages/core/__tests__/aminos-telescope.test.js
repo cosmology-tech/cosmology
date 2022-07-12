@@ -10,7 +10,7 @@ it('aminos', async () => {
   expect(additions).toMatchSnapshot();
 });
 
-it('lockTokens.fromAmino', async () => {
+xit('lockTokens.fromAmino', async () => {
   const fromAmino = osmosis.lockup.AminoConverter[
     '/osmosis.lockup.MsgLockTokens'
   ].fromAmino({
@@ -28,7 +28,7 @@ it('lockTokens.fromAmino', async () => {
   });
   expect(fromAmino).toMatchSnapshot();
 });
-it('lockTokens.toAmino', async () => {
+xit('lockTokens.toAmino', async () => {
   const toAmino = osmosis.lockup.AminoConverter[
     '/osmosis.lockup.MsgLockTokens'
   ].toAmino({

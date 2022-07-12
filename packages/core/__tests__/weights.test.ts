@@ -101,11 +101,11 @@ cases(
         },
         {
           weight: 2,
-          symbol: 'LUNA'
+          symbol: 'LUNC'
         },
         {
           weight: 10,
-          symbol: 'UST'
+          symbol: 'USTC'
         }
       ]
     },
@@ -119,11 +119,11 @@ cases(
         },
         {
           weight: 2,
-          symbol: 'LUNA'
+          symbol: 'LUNC'
         },
         {
           weight: 10,
-          symbol: 'UST'
+          symbol: 'USTC'
         }
       ]
     },

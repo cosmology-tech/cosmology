@@ -11955,7 +11955,7 @@
     ],
     "560": [
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 80066785.428693,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -11977,7 +11977,7 @@
     ],
     "561": [
         {
-            "symbol": "LUNA",
+            "symbol": "LUNC",
             "amount": 702394.054173,
             "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
             "coingecko_id": "terra-luna",
@@ -11999,7 +11999,7 @@
     ],
     "562": [
         {
-            "symbol": "LUNA",
+            "symbol": "LUNC",
             "amount": 656033.614675,
             "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
             "coingecko_id": "terra-luna",
@@ -12009,7 +12009,7 @@
             "price": 69.06
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 45045997.10567,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12021,7 +12021,7 @@
     ],
     "563": [
         {
-            "symbol": "LUNA",
+            "symbol": "LUNC",
             "amount": 9e-06,
             "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
             "coingecko_id": "terra-luna",
@@ -12043,7 +12043,7 @@
     ],
     "564": [
         {
-            "symbol": "LUNA",
+            "symbol": "LUNC",
             "amount": 7.4e-05,
             "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
             "coingecko_id": "terra-luna",
@@ -12065,7 +12065,7 @@
     ],
     "565": [
         {
-            "symbol": "LUNA",
+            "symbol": "LUNC",
             "amount": 38876.975044,
             "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
             "coingecko_id": "terra-luna",
@@ -12097,7 +12097,7 @@
             "price": 33.27
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 0.000477,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12119,7 +12119,7 @@
             "price": 1.08013
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 4635662.71328,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12131,7 +12131,7 @@
     ],
     "568": [
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 12.543962,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12317,7 +12317,7 @@
     ],
     "575": [
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 2.633529,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12393,7 +12393,7 @@
             "price": 0.21715535193489957
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 352998.602278,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12459,7 +12459,7 @@
             "price": 16.4264828760518
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 197907.3799,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12481,7 +12481,7 @@
             "price": 0.00085426
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 52.72145,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12503,7 +12503,7 @@
             "price": 0.00085426
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 1316.649708,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12635,7 +12635,7 @@
             "price": 5.95
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 0.000443,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12647,7 +12647,7 @@
     ],
     "589": [
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 0.113913,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12743,7 +12743,7 @@
             "price": 16.4264828760518
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 0.013423,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12785,7 +12785,7 @@
             "price": 0.37392104768571366
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 1072959.532789,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12807,7 +12807,7 @@
             "price": 0.01115682
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 0.199066,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -12829,7 +12829,7 @@
             "price": 0.01115682
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 0.613667,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -13193,7 +13193,7 @@
     ],
     "609": [
         {
-            "symbol": "LUNA",
+            "symbol": "LUNC",
             "amount": 0.424224,
             "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
             "coingecko_id": "terra-luna",
@@ -13203,7 +13203,7 @@
             "price": 69.06
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 33.671134,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -13237,7 +13237,7 @@
     ],
     "610": [
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 270609.251807,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -13291,7 +13291,7 @@
             "price": 3.92
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 108171.884756,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -13335,7 +13335,7 @@
             "price": 1.12
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 9843.222605,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -13357,7 +13357,7 @@
             "price": 0.015246718548174842
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 213380.312316,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",
@@ -13533,7 +13533,7 @@
             "price": 5.95
         },
         {
-            "symbol": "UST",
+            "symbol": "USTC",
             "amount": 0.148102,
             "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
             "coingecko_id": "terrausd",

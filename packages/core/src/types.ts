@@ -159,8 +159,8 @@ export type CoinSymbol =
     'EEUR' |
     'JUNO' |
     'LIKE' |
-    'UST' |
-    'LUNA' |
+    'USTC' |
+    'LUNC' |
     'BCNA' |
     'SCRT' |
     'MED';

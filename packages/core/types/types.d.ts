@@ -137,7 +137,7 @@ export interface Trade {
     beliefValue: string;
 }
 export declare type CoinDenom = string;
-export declare type CoinSymbol = 'ATOM' | 'OSMO' | 'ION' | 'AKT' | 'DVPN' | 'IRIS' | 'CRO' | 'XPRT' | 'REGEN' | 'IOV' | 'NGM' | 'EEUR' | 'JUNO' | 'LIKE' | 'UST' | 'LUNA' | 'BCNA' | 'SCRT' | 'MED';
+export declare type CoinSymbol = 'ATOM' | 'OSMO' | 'ION' | 'AKT' | 'DVPN' | 'IRIS' | 'CRO' | 'XPRT' | 'REGEN' | 'IOV' | 'NGM' | 'EEUR' | 'JUNO' | 'LIKE' | 'USTC' | 'LUNC' | 'BCNA' | 'SCRT' | 'MED';
 export declare type CoinGeckoToken = 'cosmos' | 'osmosis' | 'ion' | 'akash-network' | 'sentinel' | 'iris-network' | 'crypto-com-chain' | 'persistence' | 'regen' | 'starname' | 'e-money' | 'e-money-eur' | 'juno-network' | 'likecoin' | 'terrausd' | 'terra-luna' | 'bitcanna' | 'terra-krw' | 'secret' | 'medibloc' | 'comdex' | 'cheqd-network' | 'vidulum';
 export interface PriceHash {
     [key: CoinDenom]: number;

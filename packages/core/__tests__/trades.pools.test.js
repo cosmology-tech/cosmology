@@ -75,13 +75,13 @@ cases(
         },
         {
           weight: 2,
-          symbol: 'LUNA',
+          symbol: 'LUNC',
           denom:
             'ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0'
         },
         {
           weight: 10,
-          symbol: 'UST',
+          symbol: 'USTC',
           denom:
             'ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC'
         }
@@ -96,7 +96,7 @@ cases(
         },
         {
           weight: 2,
-          symbol: 'LUNA'
+          symbol: 'LUNC'
         },
         {
           weight: 10,
@@ -175,13 +175,13 @@ describe('pool allocations', () => {
     },
     {
       weight: 2,
-      symbol: 'LUNA',
+      symbol: 'LUNC',
       denom:
         'ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0'
     },
     {
       weight: 10,
-      symbol: 'UST',
+      symbol: 'USTC',
       denom:
         'ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC'
     }

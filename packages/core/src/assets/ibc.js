@@ -283,7 +283,7 @@ export const EmbedChainInfos = [
     chainId: 'columbus-5',
     chainName: 'Terra',
     stakeCurrency: {
-      coinDenom: 'LUNA',
+      coinDenom: 'LUNC',
       coinMinimalDenom: 'uluna',
       coinDecimals: 6,
       coinGeckoId: 'terra-luna',
@@ -295,14 +295,14 @@ export const EmbedChainInfos = [
     bech32Config: Bech32Address.defaultBech32Config('terra'),
     currencies: [
       {
-        coinDenom: 'LUNA',
+        coinDenom: 'LUNC',
         coinMinimalDenom: 'uluna',
         coinDecimals: 6,
         coinGeckoId: 'terra-luna',
         coinImageUrl: window.location.origin + '/public/assets/tokens/luna.png'
       },
       {
-        coinDenom: 'UST',
+        coinDenom: 'USTC',
         coinMinimalDenom: 'uusd',
         coinDecimals: 6,
         coinGeckoId: 'terrausd',
@@ -318,14 +318,14 @@ export const EmbedChainInfos = [
     ],
     feeCurrencies: [
       {
-        coinDenom: 'LUNA',
+        coinDenom: 'LUNC',
         coinMinimalDenom: 'uluna',
         coinDecimals: 6,
         coinGeckoId: 'terra-luna',
         coinImageUrl: window.location.origin + '/public/assets/tokens/luna.png'
       },
       {
-        coinDenom: 'UST',
+        coinDenom: 'USTC',
         coinMinimalDenom: 'uusd',
         coinDecimals: 6,
         coinGeckoId: 'terrausd',

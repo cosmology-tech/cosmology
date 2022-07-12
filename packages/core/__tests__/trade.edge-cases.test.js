@@ -51,7 +51,7 @@ const prices = {
 
 const balances = [
   {
-    symbol: 'LUNA',
+    symbol: 'LUNC',
     denom:
       'ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0',
     amount: '39243',
@@ -67,7 +67,7 @@ const balances = [
 
 const desired = [
   {
-    symbol: 'LUNA',
+    symbol: 'LUNC',
     denom:
       'ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0',
     amount: '2462785.489292157',

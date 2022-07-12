@@ -12,7 +12,7 @@
     {
         "price": 52.7,
         "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
-        "symbol": "LUNA",
+        "symbol": "LUNC",
         "liquidity": 80951777.7166738,
         "liquidity_24h_change": 2.6627240736,
         "volume_24h": 13659699.084233476,
@@ -242,7 +242,7 @@
     {
         "price": 1,
         "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
-        "symbol": "UST",
+        "symbol": "USTC",
         "liquidity": 126621686.57304199,
         "liquidity_24h_change": 1.1422128584,
         "volume_24h": 25933144.99148733,
