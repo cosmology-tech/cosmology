@@ -1,5 +1,13 @@
 # @cosmology/cli
 
+<p align="center" width="100%">
+  <a href="https://github.com/cosmology-finance/cosmology/actions/workflows/run-tests.yml">
+    <img height="20" src="https://github.com/cosmology-finance/cosmology/actions/workflows/run-tests.yml/badge.svg" />
+  </a>
+   <a href="https://github.com/cosmology-finance/cosmology/blob/main/LICENSE"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+   <a href="https://www.npmjs.com/package/@osmonauts/telescope"><img height="20" src="https://img.shields.io/github/package-json/v/cosmology-finance/cosmology?filename=packages%2Fcosmology%2Fpackage.json"></a>
+</p>
+
 ```
 npm install -g @cosmology/cli
 ```
