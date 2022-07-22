@@ -8,6 +8,7 @@ module.exports = (api) => {
       '@babel/proposal-object-rest-spread',
       '@babel/proposal-class-properties',
       '@babel/proposal-export-default-from',
+      '@babel/plugin-proposal-numeric-separator',
       'babel-plugin-inline-json-import'
     ],
     presets: useESModules ? [
