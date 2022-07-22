@@ -217,14 +217,18 @@ export const convertCoinToDisplayValues = ({ prices, coin }: { prices: PriceHash
 };
 
 export const convertCoinsToDisplayValues = ({ prices, coins }: { prices: PriceHash, coins: Coin[] }): CoinValue[] =>
-  coins.map((coin) => convertCoinToDisplayValues({ prices, coin }));
+  coins.map((coin) => convertCoinToDisplayValues({ prices, coin })).filter(Boolean);
 
 export const calculateCoinsTotalBalance = ({ prices, coins }: { prices: PriceHash, coins: Coin[] }): string => {
   return convertCoinsToDisplayValues({ prices, coins }).reduce((m, v) => {
-    const { value } = v;
-    const val = new Dec(value);
-    const mv = new Dec(m);
-    return val.add(mv).toString();
+    try {
+      const { value } = v;
+      const val = new Dec(value);
+      const mv = new Dec(m);
+      return val.add(mv).toString();
+    } catch (e) {
+      return m;
+    }
   }, '0');
 };
 
