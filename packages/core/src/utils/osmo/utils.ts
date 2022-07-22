@@ -985,15 +985,25 @@ export const getSellableBalance = async ({ client, address, sell }) => {
   return accountBalances.result
     .map(({ denom, amount }) => {
       const symbol = osmoDenomToSymbol(denom);
-      const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-      if (new Dec(displayAmount).lt(new Dec(0.0001))) return;
-      if (!sell.includes(symbol)) return;
-      return {
-        symbol,
-        denom,
-        amount,
-        displayAmount
-      };
+      try {
+        const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+        if (new Dec(displayAmount).lt(new Dec(0.0001))) return;
+        if (!sell.includes(symbol)) return;
+        return {
+          symbol,
+          denom,
+          amount,
+          displayAmount
+        };
+      } catch (e) {
+        // likely unknown denom
+        return {
+          symbol,
+          denom,
+          amount,
+          displayAmount: amount
+        };
+      }
     })
     .filter(Boolean);
 };
