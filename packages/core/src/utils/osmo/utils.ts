@@ -1001,12 +1001,7 @@ export const getSellableBalance = async ({ client, address, sell }) => {
         };
       } catch (e) {
         // likely unknown denom
-        return {
-          symbol,
-          denom,
-          amount,
-          displayAmount: amount
-        };
+        return;
       }
     })
     .filter(Boolean);
