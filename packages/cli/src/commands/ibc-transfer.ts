@@ -131,14 +131,24 @@ export default async (argv) => {
                 console.log('WARNING: cannot find ' + denom);
                 return;
             }
-            const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-            if (new Dec(displayAmount).lte(new Dec(0.0001))) return;
-            return {
-                symbol,
-                denom,
-                amount,
-                displayAmount
-            };
+            try {
+                const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+                if (new Dec(displayAmount).lte(new Dec(0.0001))) return;
+                return {
+                    symbol,
+                    denom,
+                    amount,
+                    displayAmount
+                };
+            } catch (e) {
+                return {
+                    symbol,
+                    denom,
+                    amount,
+                    displayAmount: amount
+                }
+            }
+
         })
         .filter(Boolean);
 
