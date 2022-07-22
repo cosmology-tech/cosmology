@@ -98,6 +98,9 @@ export const getBaseAndDisplayUnitsByDenom = (denom) => {
   if (!coinInfo) {
     // look for generic cosmos coins
     const chainInfo = getCosmosAssetInfoByDenom(denom);
+    if (!chainInfo || !chainInfo.assets) {
+      throw new Error(`coin:denom:${denom} not found.`);
+    }
     coinInfo = chainInfo.assets.find(
       (asset) => asset.base === denom || asset.display === denom
     );
