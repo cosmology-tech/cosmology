@@ -6931,10 +6931,10 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-osmojs@0.9.1:
-  version "0.9.1"
-  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.9.1.tgz#bdf49923e9872c44d7114fbf88985020acd88b6d"
-  integrity sha512-nsHohV5tMiclSy+LpivzlwUulNSn1uI2eX6PFvf+7jarVtbjotaFlGj1XE0eQOIhuF2jzz1z6/BlaVifqBilFA==
+osmojs@0.9.3:
+  version "0.9.3"
+  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.9.3.tgz#8a25f8833be7c6bb52e47964d39c5b870d82ee35"
+  integrity sha512-D4eiGXkyNz+Q6JAxUQZHKQ2lWCGNYD5DTnjqsnsyXXClEv8olS+SVzO4Q+WEMZzeISuBCZR80w7hPKRDrZAClw==
   dependencies:
     "@babel/runtime" "^7.18.9"
     "@cosmjs/amino" "0.28.11"
