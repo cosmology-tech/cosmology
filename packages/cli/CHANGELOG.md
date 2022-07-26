@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.10](https://github.com/cosmology-tech/cosmology/compare/@cosmology/cli@0.6.9...@cosmology/cli@0.6.10) (2022-07-26)
+
+**Note:** Version bump only for package @cosmology/cli
+
+
+
+
+
 ## [0.6.9](https://github.com/cosmology-tech/cosmology/compare/@cosmology/cli@0.6.8...@cosmology/cli@0.6.9) (2022-07-24)
 
 **Note:** Version bump only for package @cosmology/cli
