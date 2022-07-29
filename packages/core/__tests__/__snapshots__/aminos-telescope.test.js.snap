@@ -52,28 +52,38 @@ Object {
     "fromAmino": [Function],
     "toAmino": [Function],
   },
+  "/osmosis.lockup.MsgExtendLockup": Object {
+    "aminoType": "osmosis/lockup/extend-lockup",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
   "/osmosis.lockup.MsgLockTokens": Object {
     "aminoType": "osmosis/lockup/lock-tokens",
     "fromAmino": [Function],
     "toAmino": [Function],
   },
   "/osmosis.superfluid.MsgLockAndSuperfluidDelegate": Object {
-    "aminoType": "osmosis/superfluid/lock-and-superfluid-delegate",
+    "aminoType": "osmosis/lock-and-superfluid-delegate",
     "fromAmino": [Function],
     "toAmino": [Function],
   },
   "/osmosis.superfluid.MsgSuperfluidDelegate": Object {
-    "aminoType": "osmosis/superfluid/superfluid-delegate",
+    "aminoType": "osmosis/superfluid-delegate",
     "fromAmino": [Function],
     "toAmino": [Function],
   },
   "/osmosis.superfluid.MsgSuperfluidUnbondLock": Object {
-    "aminoType": "osmosis/superfluid/superfluid-unbond-lock",
+    "aminoType": "osmosis/superfluid-unbond-lock",
     "fromAmino": [Function],
     "toAmino": [Function],
   },
   "/osmosis.superfluid.MsgSuperfluidUndelegate": Object {
-    "aminoType": "osmosis/superfluid/superfluid-undelegate",
+    "aminoType": "osmosis/superfluid-undelegate",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.superfluid.MsgUnPoolWhitelistedPool": Object {
+    "aminoType": "osmosis/unpool-whitelisted-pool",
     "fromAmino": [Function],
     "toAmino": [Function],
   },
