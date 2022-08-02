@@ -77,5 +77,6 @@
     "@babel/runtime": "^7.18.9",
     "@cosmology/cli": "^0.8.1",
     "@cosmology/core": "^0.8.1"
-  }
+  },
+  "gitHead": "5628f25ed4faedfd9c2d376eeea6a9cb21532d14"
 }
