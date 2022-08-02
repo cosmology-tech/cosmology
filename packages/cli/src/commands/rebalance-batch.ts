@@ -22,8 +22,7 @@ import {
   makePoolsPretty,
   makePoolsPrettyValues,
   getPricesFromCoinGecko,
-  prettyPool,
-  getOsmoFee
+  prettyPool
 } from '@cosmology/core';
 import {
   printSwap,

@@ -26,9 +26,9 @@ import {
   messages,
   signAndBroadcast,
   prettyPool,
-  getPricesFromCoinGecko,
-  getOsmoFee
+  getPricesFromCoinGecko
 } from '@cosmology/core';
+import { FEES } from 'osmojs';
 import { Dec } from '@keplr-wallet/unit';
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
@@ -47,7 +47,7 @@ export default async (argv) => {
     argv['liquidity-limit']
   );
 
-  const { client, wallet: signer } = await promptOsmoRestClient(argv);
+  const { client, signer } = await promptOsmoRestClient(argv);
   const [account] = await signer.getAccounts();
   const address = account.address;
   const accountBalances = await client.getBalances(account.address);
@@ -199,7 +199,7 @@ export default async (argv) => {
         slippage
       );
 
-      const fee = getOsmoFee('swapExactAmountIn');
+      const fee = FEES.osmosis.swapExactAmountIn(argv.fee || 'low');
       const msg = messages.swapExactAmountIn({
         sender: osmoAddress,
         routes,
@@ -237,7 +237,7 @@ export default async (argv) => {
     );
     const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
 
-    const fee = getOsmoFee('joinPool');
+    const fee = FEES.osmosis.joinPool(argv.fee || 'low');
     const msg = messages.joinPool({
       poolId,
       sender: osmoAddress,
@@ -282,7 +282,7 @@ export default async (argv) => {
     const coins = [gammTokens.find((gamm) => gamm.poolId === poolId)].map(
       ({ denom, amount }) => ({ amount, denom })
     );
-    const lockFee = getOsmoFee('lockTokens');
+    const lockFee = FEES.osmosis.lockTokens(argv.fee || 'low');
     const lockMsg = messages.lockTokens({
       owner: account.address,
       coins,

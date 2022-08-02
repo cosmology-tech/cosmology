@@ -21,10 +21,10 @@ import {
   noDecimals,
   osmoDenomToSymbol,
   prettyPool,
-  signAndBroadcast,
-  getOsmoFee
+  signAndBroadcast
 } from '@cosmology/core';
 import { Dec } from '@keplr-wallet/unit';
+import { FEES } from 'osmojs';
 
 export default async (argv) => {
   const { client, signer } = await promptOsmoRestClient(argv);
@@ -251,7 +251,7 @@ export default async (argv) => {
         slippage
       );
 
-      const fee = getOsmoFee('swapExactAmountIn');
+      const fee = FEES.osmosis.swapExactAmountIn(argv.fee || 'low');
       const msg = messages.swapExactAmountIn({
         sender: address,
         routes,

@@ -72,10 +72,11 @@ const res = await signAndBroadcast({
 The swap command will make a trade between two currencies.
 
 ```js
-import { messages, getOsmoFee } from '@cosmology/core';
+import { messages } from '@cosmology/core';
+import { FEES } from 'osmojs';
 import { coin } from '@cosmjs/amino';
 
-const fee = getOsmoFee('swapExactAmountIn');
+const fee = FEES.osmosis.swapExactAmountIn('low'); // low, medium, high
 const msg = messages.swapExactAmountIn({
   sender: address, // osmo address
   routes, // TradeRoute 
@@ -133,7 +134,7 @@ const tokenOutMinAmount = calculateAmountWithSlippage(
   slippage
 );
 
-const fee = getOsmoFee('swapExactAmountIn');
+const fee = FEES.osmosis.swapExactAmountIn(argv.fee || 'low'); // low, medium, high
 const msg = messages.swapExactAmountIn({
   sender: address, // osmo address
   routes, // TradeRoute 
@@ -146,10 +147,10 @@ const msg = messages.swapExactAmountIn({
 The join command will join a pool.
 
 ```js
-import { messages, getOsmoFee } from '@cosmology/core';
+import { messages } from '@cosmology/core';
 import { coin } from '@cosmjs/amino';
 
-const fee = getOsmoFee('swapExactAmountIn');
+const fee = FEES.osmosis.swapExactAmountIn(argv.fee || 'low'); // low, medium, high
 const msg = messages.joinPool({
   poolId, // string!
   sender: account.address, // osmo address

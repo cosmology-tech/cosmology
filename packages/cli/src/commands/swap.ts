@@ -20,9 +20,10 @@ import {
   noDecimals,
   messages,
   signAndBroadcast,
-  getPricesFromCoinGecko,
-  getOsmoFee
+  getPricesFromCoinGecko
 } from '@cosmology/core';
+
+import { FEES } from 'osmojs';
 
 const assetList = assets
   .reduce((m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)], [])
@@ -190,7 +191,7 @@ export default async (argv) => {
   // TX
 
 
-  const fee = getOsmoFee('swapExactAmountIn');
+  const fee = FEES.osmosis.swapExactAmountIn(argv.fee || 'low');
   const msg = messages.swapExactAmountIn({
     sender: address,
     routes,

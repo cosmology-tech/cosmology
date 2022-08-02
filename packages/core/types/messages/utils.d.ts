@@ -17,9 +17,5 @@ export declare const signAndBroadcastBatch: ({ client, chainId, address, msgs, f
     fee: any;
     memo: string;
 }) => Promise<import("@cosmjs/stargate").DeliverTxResponse>;
-export declare const getOsmoFee: (name: any) => {
-    amount: import("@cosmjs/stargate").Coin[];
-    gas: string;
-};
 export declare const estimateOsmoFee: (client: SigningStargateClient, address: string, msgs: any[], memo: string) => Promise<import("@cosmjs/stargate").StdFee>;
 export declare const noDecimals: (num: any) => string;

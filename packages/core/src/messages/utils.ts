@@ -4,12 +4,10 @@ import {
   SigningStargateClient
 } from '@cosmjs/stargate';
 import { TxRaw } from 'cosmjs-types/cosmos/tx/v1beta1/tx';
-import { coins } from '@cosmjs/amino';
-import { gas as gasInfo } from './gas';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { BroadcastTxResponse } from '../types';
-
 export { getSigningOsmosisClient } from 'osmojs';
+
 
 export const signAndBroadcast = async ({
   client,
@@ -59,16 +57,6 @@ export const signAndBroadcastBatch = async ({
   });
   const txBytes = TxRaw.encode(txRaw).finish();
   return await client.broadcastTx(txBytes);
-};
-
-export const getOsmoFee = (name) => {
-  if (!gasInfo.osmosis[name]) throw new Error('missing message.');
-  const gas = gasInfo.osmosis[name].gas + '';
-  const fee = {
-    amount: coins(0, 'uosmo'),
-    gas
-  };
-  return fee;
 };
 
 export const estimateOsmoFee = async (client: SigningStargateClient, address: string, msgs: any[], memo: string) => {

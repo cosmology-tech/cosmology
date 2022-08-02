@@ -1,47 +1,21 @@
 import { coins } from '@cosmjs/amino';
-import {
-    calculateFee,
-    GasPrice,
-} from '@cosmjs/stargate';
 import Long from 'long';
 import {
     prompt,
-    promptOsmoSigningClient,
     promptRpcEndpoint,
     promptRestEndpoint,
-    printSwap,
-    promptMnemonic,
-    printSwapForPoolAllocation,
-    printOsmoTransactionResponse
+    promptMnemonic
 } from '../utils';
 import {
     baseUnitsToDisplayUnits,
-    calculateAmountWithSlippage,
-    convertWeightsIntoCoins,
-    getPricesFromCoinGecko,
     getSellableBalance,
-    getSwaps,
-    getTradesRequiredToGetBalances,
-    makePoolPairs,
-    makePoolsPretty,
-    makePoolsPrettyValues,
     messages,
     getWalletFromMnemonicForChain,
-    noDecimals,
     osmoDenomToSymbol,
-    prettyPool,
-    signAndBroadcast,
-    getOsmoFee,
-    CosmosApiClient,
-    assets as osmosisAssets
+    CosmosApiClient
 } from '@cosmology/core';
-import {
-    SigningStargateClient,
-    assertIsDeliverTxSuccess
-} from '@cosmjs/stargate';
-import {
-    ibc
-} from '@cosmology/cosmos-registry';
+import { assertIsDeliverTxSuccess } from '@cosmjs/stargate';
+import { ibc } from '@cosmology/cosmos-registry';
 import { Dec } from '@keplr-wallet/unit';
 import { chains } from '@cosmology/cosmos-registry';
 import { getSigningIbcClient } from 'osmojs';
@@ -79,10 +53,10 @@ export default async (argv) => {
         argv
     );
 
-    const prices = await getPricesFromCoinGecko();
     const chain = chains.find(c =>
         c.chain_name === fromChain
     );
+
     const chain2 = chains.find(c =>
         c.chain_name === toChain
     );

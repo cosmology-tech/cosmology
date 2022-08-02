@@ -75,6 +75,10 @@ export declare const messages: {
         typeUrl: string;
         value: import("osmojs/types/proto/osmosis/lockup/tx").MsgBeginUnlocking;
     };
+    extendLockup(value: import("osmojs/types/proto/osmosis/lockup/tx").MsgExtendLockup): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/osmosis/lockup/tx").MsgExtendLockup;
+    };
     superfluidDelegate(value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgSuperfluidDelegate): {
         typeUrl: string;
         value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgSuperfluidDelegate;
@@ -90,6 +94,10 @@ export declare const messages: {
     lockAndSuperfluidDelegate(value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgLockAndSuperfluidDelegate): {
         typeUrl: string;
         value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgLockAndSuperfluidDelegate;
+    };
+    unPoolWhitelistedPool(value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgUnPoolWhitelistedPool): {
+        typeUrl: string;
+        value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgUnPoolWhitelistedPool;
     };
     joinPool(value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgJoinPool): {
         typeUrl: string;

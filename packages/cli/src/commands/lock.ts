@@ -4,7 +4,8 @@ import {
   promptOsmoSigningClient,
   printOsmoTransactionResponse
 } from '../utils';
-import { signAndBroadcast, messages, getOsmoFee } from '@cosmology/core';
+import { signAndBroadcast, messages } from '@cosmology/core';
+import { FEES } from 'osmojs';
 
 export default async (argv) => {
   const { client, signer } = await promptOsmoRestClient(argv);
@@ -72,7 +73,7 @@ export default async (argv) => {
     ({ denom, amount }) => ({ amount, denom })
   );
 
-  const fee = getOsmoFee('lockTokens');
+  const fee = FEES.osmosis.lockTokens(argv.fee || 'low');
   const msg = messages.lockTokens({
     owner: account.address,
     coins,
