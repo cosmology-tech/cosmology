@@ -1,4 +1,4 @@
-import { chains } from '@cosmology/cosmos-registry';
+import { chains } from 'chain-registry';
 import { coin } from '@cosmjs/amino';
 import {
   prompt,

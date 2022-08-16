@@ -15,9 +15,9 @@ import {
     CosmosApiClient
 } from '@cosmology/core';
 import { assertIsDeliverTxSuccess } from '@cosmjs/stargate';
-import { ibc } from '@cosmology/cosmos-registry';
+import { ibc } from 'chain-registry';
 import { Dec } from '@keplr-wallet/unit';
-import { chains } from '@cosmology/cosmos-registry';
+import { chains } from 'chain-registry';
 import { getSigningIbcClient } from 'osmojs';
 
 const chainList = chains

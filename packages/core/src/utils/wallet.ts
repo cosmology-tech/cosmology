@@ -1,7 +1,7 @@
 import { AccountData, Secp256k1HdWallet } from '@cosmjs/amino';
 import { Slip10RawIndex } from '@cosmjs/crypto';
 
-import { assets, chains } from '@cosmology/cosmos-registry';
+import { assets, chains } from 'chain-registry';
 
 export function makeHdPath(coinType = 118, account = 0) {
   return [

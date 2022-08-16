@@ -1,7 +1,7 @@
 import keychain from 'keychain';
 import { filter } from 'fuzzy';
 import { assets as osmosisAssets } from '@cosmology/core';
-import { assets, chains } from '@cosmology/cosmos-registry';
+import { assets, chains } from 'chain-registry';
 import { prompt as inquirerer } from 'inquirerer';
 import { getChain, getChainByChainId } from '@cosmology/core';
 import { crypt, decrypt } from '@cosmology/core';

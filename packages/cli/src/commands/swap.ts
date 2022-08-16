@@ -1,4 +1,6 @@
-import { assets } from '@cosmology/cosmos-registry';
+import { assets } from 'chain-registry';
+import { ibc_assets } from '@chain-registry/osmosis';
+
 import {
   promptOsmoRestClient,
   promptOsmoSigningClient,
@@ -22,18 +24,15 @@ import {
   signAndBroadcast,
   getPricesFromCoinGecko
 } from '@cosmology/core';
+import { Dec } from '@keplr-wallet/unit';
 
 import { FEES } from 'osmojs';
 
-const assetList = assets
-  .reduce((m, { assets }) => [...m, ...assets.map(({ symbol }) => symbol)], [])
+const list = ibc_assets.assets;
+
+const assetList = list
+  .reduce((m, v) => [...m, v.symbol], [])
   .sort();
-
-function onlyUnique(value, index, self) {
-  return self.indexOf(value) === index;
-}
-
-const assetsList = assetList.filter(onlyUnique);
 
 export default async (argv) => {
   const { client, signer } = await promptOsmoRestClient(argv);
@@ -45,22 +44,63 @@ export default async (argv) => {
   const [account] = await signer.getAccounts();
   const { address } = account;
   const accountBalances = await client.getBalances(account.address);
-  const availableChoices = accountBalances.result.map(({ denom, amount }) => {
-    const symbol = osmoDenomToSymbol(denom);
-    const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-    return {
-      name: `${symbol} (${displayAmount})`,
-      value: symbol
-    };
-  });
-  const balances = accountBalances.result.map(({ denom, amount }) => {
-    const symbol = osmoDenomToSymbol(denom);
-    return {
-      symbol,
-      denom,
-      amount
-    };
-  });
+
+
+  const availableChoices = accountBalances.result
+    .map(({ denom, amount }) => {
+      if (denom.startsWith('gamm')) return;
+      const symbol = osmoDenomToSymbol(denom);
+      if (!symbol) {
+        console.log('WARNING: cannot find ' + denom);
+        return;
+      }
+      try {
+        const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+        if (new Dec(displayAmount).lte(new Dec(0.0001))) return;
+        return {
+          name: `${symbol} (${displayAmount})`,
+          value: symbol
+
+        };
+      } catch (e) {
+        return {
+          name: `${symbol} [${amount}]`,
+          value: symbol
+        }
+      }
+    })
+    .filter(Boolean);
+
+
+  const balances = accountBalances.result
+    .map(({ denom, amount }) => {
+      if (denom.startsWith('gamm')) return;
+      const symbol = osmoDenomToSymbol(denom);
+      if (!symbol) {
+        console.log('WARNING: cannot find ' + denom);
+        return;
+      }
+      try {
+        const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+        if (new Dec(displayAmount).lte(new Dec(0.0001))) return;
+        return {
+          symbol,
+          denom,
+          amount,
+          displayAmount
+        };
+      } catch (e) {
+        return {
+          symbol,
+          denom,
+          amount,
+          displayAmount: amount
+        }
+      }
+    })
+    .filter(Boolean);
+
+
 
   const { sell } = await prompt(
     [
@@ -80,7 +120,7 @@ export default async (argv) => {
         type: 'list',
         name: 'buy',
         message: 'choose token to buy',
-        choices: assetsList
+        choices: assetList
       }
     ],
     argv

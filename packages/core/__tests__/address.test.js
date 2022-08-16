@@ -2,7 +2,7 @@
 import cases from 'jest-in-case';
 import { Slip10RawIndex } from '@cosmjs/crypto';
 import { Secp256k1HdWallet } from '@cosmjs/amino';
-import { chains } from '@cosmology/cosmos-registry';
+import { chains } from 'chain-registry';
 
 export const combineAll = (array) => {
   const res = [];

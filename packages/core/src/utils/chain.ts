@@ -1,4 +1,4 @@
-import { assets, chains } from '@cosmology/cosmos-registry';
+import { assets, chains } from 'chain-registry';
 import { assets as osmosisAssets } from '../assets/index';
 import { symbolToOsmoDenom } from './osmo';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
