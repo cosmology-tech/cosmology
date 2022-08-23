@@ -1,5 +1,5 @@
 import { assets } from 'chain-registry';
-import { ibc_assets } from '@chain-registry/osmosis';
+import { asset_list } from '@chain-registry/osmosis';
 
 import {
   promptOsmoRestClient,
@@ -28,7 +28,7 @@ import { Dec } from '@keplr-wallet/unit';
 
 import { FEES } from 'osmojs';
 
-const list = ibc_assets.assets;
+const list = asset_list.assets;
 
 const assetList = list
   .reduce((m, v) => [...m, v.symbol], [])
