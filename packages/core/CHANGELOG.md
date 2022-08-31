@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/cosmology-tech/cosmology/compare/@cosmology/core@0.10.2...@cosmology/core@0.11.0) (2022-08-31)
+
+
+### Features
+
+* increase getPools pagination limit to 1000 ([0c6be8f](https://github.com/cosmology-tech/cosmology/commit/0c6be8f382dc86c176739cf6141ebc026742e993))
+
+
+
+
+
 ## [0.10.2](https://github.com/cosmology-tech/cosmology/compare/@cosmology/core@0.10.1...@cosmology/core@0.10.2) (2022-08-23)
 
 **Note:** Version bump only for package @cosmology/core
