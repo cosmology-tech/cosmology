@@ -274,6 +274,15 @@ https://www.notion.so/Stake-Systems-LCD-RPC-gRPC-Instances-04a99a9a9aa14247a4294
 * defaults to NOT using pools with less than 100k in liquidity
 * smaller tokens with volatility may need higher slippage values
 
+## Credits
+
+🛠 Built by Cosmology — if you like our tools, please consider delegating to [our validator ⚛️](https://cosmology.tech/validator)
+
+Code built with the help of these related projects:
+
+* [@osmonauts/telescope](https://github.com/osmosis-labs/telescope) a "babel for the Cosmos", Telescope is a TypeScript Transpiler for Cosmos Protobufs.
+* [osmojs](https://github.com/osmosis-labs/osmojs) OsmosJS makes it easy to compose and broadcast Osmosis and Cosmos messages.
+
 ## Disclaimer
 
 AS DESCRIBED IN THE COSMOLOGY LICENSES, THE SOFTWARE IS PROVIDED “AS IS”, AT YOUR OWN RISK, AND WITHOUT WARRANTIES OF ANY KIND.
