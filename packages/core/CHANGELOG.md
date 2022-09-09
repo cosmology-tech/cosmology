@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/cosmology-tech/cosmology/compare/@cosmology/core@0.11.1...@cosmology/core@0.12.0) (2022-09-09)
+
+
+### Features
+
+* add missing agoric asset in assetlist.json ([45944cf](https://github.com/cosmology-tech/cosmology/commit/45944cf43fb0d6d2b6fa634ad02420b316068df9))
+
+
+
+
+
 ## [0.11.1](https://github.com/cosmology-tech/cosmology/compare/@cosmology/core@0.11.0...@cosmology/core@0.11.1) (2022-09-08)
 
 **Note:** Version bump only for package @cosmology/core
