@@ -174,9 +174,9 @@ export default async (argv) => {
         throw new Error('cannot find IBC info');
     }
 
-    const key = flipped ? 'chain-2' : 'chain-1';
-    const source_port = ibcInfo.channels[0][key]['port-id'];
-    const source_channel = ibcInfo.channels[0][key]['channel-id'];
+    const key = flipped ? 'chain_2' : 'chain_1';
+    const source_port = ibcInfo.channels[0][key].port_id;
+    const source_channel = ibcInfo.channels[0][key].channel_id;
 
     if (balances.length !== 1) {
         throw new Error('one at a time for now');
