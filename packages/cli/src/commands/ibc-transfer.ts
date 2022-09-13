@@ -156,16 +156,16 @@ export default async (argv) => {
 
     let flipped = false;
     let ibcInfo = ibc.find(i =>
-        i['chain-1']['chain-name'] === fromChain
+        i.chain_1.chain_name === fromChain
         &&
-        i['chain-2']['chain-name'] === toChain
+        i.chain_2.chain_name === toChain
     );
 
     if (!ibcInfo) {
         ibcInfo = ibc.find(i =>
-            i['chain-1']['chain-name'] === toChain
+            i.chain_1.chain_name === toChain
             &&
-            i['chain-2']['chain-name'] === fromChain
+            i.chain_2.chain_name === fromChain
         );
         flipped = true;
     }
