@@ -4,20 +4,20 @@ import {
     prompt,
     promptRpcEndpoint,
     promptRestEndpoint,
-    promptMnemonic
+    promptMnemonic,
+    printTransactionResponse
 } from '../utils';
 import {
     baseUnitsToDisplayUnits,
-    getSellableBalance,
-    getWalletFromMnemonicForChain,
-    osmoDenomToSymbol,
-    CosmosApiClient
+    getSellableBalanceTelescopeVersion,
+    osmoDenomToSymbol
 } from '@cosmology/core';
 import { assertIsDeliverTxSuccess } from '@cosmjs/stargate';
 import { ibc } from 'chain-registry';
 import { Dec } from '@keplr-wallet/unit';
 import { chains } from 'chain-registry';
-import { getSigningIbcClient, ibc as ibcProto } from 'osmojs';
+import { getSigningIbcClient, ibc as ibcProto, cosmos } from 'osmojs';
+import { signAndBroadcast, getOfflineSignerAmino } from 'cosmjs-utils';
 
 const {
     transfer
@@ -68,26 +68,23 @@ export default async (argv) => {
         throw new Error('chain not found');
     }
 
-    const signer = await getWalletFromMnemonicForChain({
-        mnemonic: argv.mnemonic,
-        chain
-    });
-    const signer2 = await getWalletFromMnemonicForChain({
-        mnemonic: argv.mnemonic,
-        chain: chain2
-    });
-
     const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
     const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
+
+    const signer = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain });
+    const signer2 = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain: chain2 });
+    const [account] = await signer.getAccounts();
+    const [toAccount] = await signer2.getAccounts();
+    const { address } = account;
+
     const ibcClient = await getSigningIbcClient({
         rpcEndpoint,
         signer
     });
-    const [account] = await signer.getAccounts();
-    const [toAccount] = await signer2.getAccounts();
-    const { address } = account;
-    const client = new CosmosApiClient({ url: restEndpoint });
-    const accountBalances = await client.getBalances(address);
+    const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
+    const accountBalances = await client.cosmos.bank.v1beta1.allBalances({
+        address
+    })
 
     if (fromChain !== 'osmosis') {
         // NOTE OSMO only
@@ -97,7 +94,7 @@ export default async (argv) => {
         return;
     }
 
-    const display = accountBalances.result
+    const display = accountBalances.balances
         .map(({ denom, amount }) => {
             if (denom.startsWith('gamm')) return;
 
@@ -151,7 +148,7 @@ export default async (argv) => {
     );
     if (!Array.isArray(send)) send = [send];
 
-    let balances = await getSellableBalance({
+    let balances = await getSellableBalanceTelescopeVersion({
         client,
         address,
         sell: send
@@ -216,18 +213,17 @@ export default async (argv) => {
         gas: '250000'
     };
 
-    ibcClient.signAndBroadcast(address, [msg], fee, '').then(
-        (result) => {
-            try {
-                assertIsDeliverTxSuccess(result);
-                ibcClient.disconnect();
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        (error) => {
-            console.log(error);
-        }
-    );
+    const res = await signAndBroadcast({
+        client: ibcClient,
+        chainId: chain.chain_id,
+        address,
+        msgs: [msg],
+        fee,
+        memo: ''
+    });
+
+    assertIsDeliverTxSuccess(res);
+    ibcClient.disconnect();
+    printTransactionResponse(res, chain);
 
 };

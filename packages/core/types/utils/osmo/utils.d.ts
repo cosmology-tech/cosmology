@@ -130,6 +130,11 @@ export declare const getSellableBalance: ({ client, address, sell }: {
     address: any;
     sell: any;
 }) => Promise<any>;
+export declare const getSellableBalanceTelescopeVersion: ({ client, address, sell }: {
+    client: any;
+    address: any;
+    sell: any;
+}) => Promise<any>;
 export declare const makeLcdPoolPretty: (prices: PriceHash, pool: LcdPool) => PrettyPool;
 export declare const makePoolsPrettyValues: (pools: PrettyPool[], liquidityLimit?: number) => PromptValue[];
 export declare const makePoolsPretty: (prices: PriceHash, pools: LcdPool[]) => PrettyPool[];

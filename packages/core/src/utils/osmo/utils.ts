@@ -1007,6 +1007,31 @@ export const getSellableBalance = async ({ client, address, sell }) => {
     .filter(Boolean);
 };
 
+export const getSellableBalanceTelescopeVersion = async ({ client, address, sell }) => {
+  const accountBalances = await client.cosmos.bank.v1beta1.allBalances({
+    address
+  });
+  return accountBalances.balances
+    .map(({ denom, amount }) => {
+      const symbol = osmoDenomToSymbol(denom);
+      try {
+        const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+        if (new Dec(displayAmount).lt(new Dec(0.0001))) return;
+        if (!sell.includes(symbol)) return;
+        return {
+          symbol,
+          denom,
+          amount,
+          displayAmount
+        };
+      } catch (e) {
+        // likely unknown denom
+        return;
+      }
+    })
+    .filter(Boolean);
+};
+
 
 
 

@@ -1,27 +1,20 @@
-import { OsmosisApiClient } from '@cosmology/core';
-import { prompt } from '../utils';
+import { osmosis } from 'osmojs';
+import { promptChain, promptRestEndpoint } from '../utils';
 
 export default async (argv) => {
   let pools;
 
-  const { includeDetails } = await prompt(
-    [
-      {
-        type: 'confirm',
-        name: 'includeDetails',
-        message: 'include details, like images?',
-        default: false
-      }
-    ],
-    argv
-  );
+  argv.chainToken = 'OSMO';
+
+  const chain = await promptChain(argv);
+  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
+  const client = await osmosis.ClientFactory.createLCDClient({ restEndpoint });
 
   try {
-    const client = new OsmosisApiClient();
-    pools = await client.getPoolsPretty({ includeDetails });
+    pools = await client.osmosis.gamm.v1beta1.pools()
   } catch (e) {
     console.log(e);
     return console.log('error fetching pools');
   }
-  console.log(pools);
+  console.log(JSON.stringify(pools, null, 2));
 };
