@@ -7,14 +7,10 @@ import {
   promptRpcEndpoint
 } from '../utils';
 import {
-  CosmosApiClient,
   getWalletFromMnemonic,
   getCosmosAssetInfo,
   gasEstimation
 } from '@cosmology/core';
-import {
-  SigningStargateClient
-} from '@cosmjs/stargate';
 
 import { cosmos, getSigningCosmosClient } from 'osmojs'
 
@@ -28,12 +24,12 @@ export default async (argv) => {
   const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
 
-  const client = new CosmosApiClient({
-    url: restEndpoint
+  const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
+  const proposalReponse = await client.cosmos.gov.v1beta1.proposals({
+    proposal_status: 2 // PROPOSAL_STATUS_VOTING_PERIOD
   });
 
-  const propResp = await client.getProposals(2);
-  const propIds = propResp.proposals.map(prop => {
+  const propIds = proposalReponse.proposals.map(prop => {
     return {
       name: `(${prop.proposal_id}) ${prop.content.title}`,
       value: prop.proposal_id
@@ -68,7 +64,6 @@ export default async (argv) => {
     argv
   );
 
-
   // check re-stake (w display or base?)
   const denom = getCosmosAssetInfo(argv.chainToken).assets.find(
     (a) => a.symbol === argv.chainToken
@@ -90,10 +85,14 @@ export default async (argv) => {
 
   const { address } = mainAccount;
 
-  const delegations = await client.getDelegations(address);
+  const delegations = await client.cosmos.staking.v1beta1.delegatorDelegations({
+    delegator_addr: address
+  });
 
-  if (!delegations.result || !delegations.result.length) {
+  const num = Number(delegations?.pagination?.total);
+  if (num <= 0 || Number.isNaN(num)) {
     console.log('no delegations. You cannot vote. Exiting.');
+    process.exit(1);
   }
 
   const voteMessages = [];
