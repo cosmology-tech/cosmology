@@ -1,11 +1,12 @@
-import { assets } from 'chain-registry';
 import { asset_list } from '@chain-registry/osmosis';
 
 import {
-  promptOsmoRestClient,
-  promptOsmoSigningClient,
   printOsmoTransactionResponse,
-  prompt
+  prompt,
+  promptChain,
+  promptRestEndpoint,
+  promptRpcEndpoint,
+  promptMnemonic
 } from '../utils';
 import {
   baseUnitsToDisplayUnits,
@@ -20,12 +21,12 @@ import {
   symbolToOsmoDenom,
   prettyPool,
   noDecimals,
-  signAndBroadcast,
   getPricesFromCoinGecko
 } from '@cosmology/core';
 import { Dec } from '@keplr-wallet/unit';
 
-import { FEES, osmosis } from 'osmojs';
+import { signAndBroadcast, getOfflineSignerAmino } from 'cosmjs-utils';
+import { FEES, osmosis, getSigningOsmosisClient } from 'osmojs';
 
 const {
   swapExactAmountIn
@@ -38,18 +39,29 @@ const assetList = list
   .sort();
 
 export default async (argv) => {
-  const { client, signer } = await promptOsmoRestClient(argv);
-  const { client: stargateClient } = await promptOsmoSigningClient(argv);
+  argv.chainToken = 'OSMO';
+
+  const { mnemonic } = await promptMnemonic(argv);
+  const chain = await promptChain(argv);
+  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
+  const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
+  // END PROMPTS
+
+  const client = await osmosis.ClientFactory.createLCDClient({ restEndpoint });
+  const signer = await getOfflineSignerAmino({ mnemonic, chain });
   const prices = await getPricesFromCoinGecko();
-  const lcdPools = await client.getPools();
+  const lcdPools = await client.osmosis.gamm.v1beta1.pools();
   const prettyPools = makePoolsPretty(prices, lcdPools.pools);
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
   const [account] = await signer.getAccounts();
   const { address } = account;
-  const accountBalances = await client.getBalances(account.address);
+
+  const accountBalances = await client.cosmos.bank.v1beta1.allBalances({
+    address: account.address
+  })
 
 
-  const availableChoices = accountBalances.result
+  const availableChoices = accountBalances.balances
     .map(({ denom, amount }) => {
       if (denom.startsWith('gamm')) return;
       const symbol = osmoDenomToSymbol(denom);
@@ -75,7 +87,7 @@ export default async (argv) => {
     .filter(Boolean);
 
 
-  const balances = accountBalances.result
+  const balances = accountBalances.balances
     .map(({ denom, amount }) => {
       if (denom.startsWith('gamm')) return;
       const symbol = osmoDenomToSymbol(denom);
@@ -131,7 +143,7 @@ export default async (argv) => {
   if (Array.isArray(sell)) throw new Error('only atomic swaps right now.');
   if (Array.isArray(buy)) throw new Error('only atomic swaps right now.');
 
-  const tokenInBal = accountBalances.result.find(({ denom, amount }) => {
+  const tokenInBal = accountBalances.balances.find(({ denom, amount }) => {
     return osmoDenomToSymbol(denom) == sell;
   });
 
@@ -250,11 +262,16 @@ export default async (argv) => {
     console.log(JSON.stringify(msg, null, 2));
   }
 
+  const stargateClient = await getSigningOsmosisClient({
+    rpcEndpoint,
+    signer
+  })
+
   const res = await signAndBroadcast({
     client: stargateClient,
-    chainId: argv.chainId,
+    chainId: chain.chain_id,
     address,
-    msg,
+    msgs: [msg],
     fee,
     memo: ''
   });
