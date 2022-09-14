@@ -4,19 +4,29 @@ import {
   baseUnitsToDisplayUnits,
   baseUnitsToDollarValue
 } from '@cosmology/core';
-import { promptOsmoRestClient } from '../utils';
+import { promptChain, promptMnemonic, promptOsmoRestClient, promptRestEndpoint } from '../utils';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
+import { getOfflineSignerAmino } from 'cosmjs-utils';
+import { osmosis } from 'osmojs';
 
 export default async (argv) => {
-  const { client, signer } = await promptOsmoRestClient(argv);
+  argv.chainToken = 'OSMO';
+
+  argv = await promptMnemonic(argv);
+  const chain = await promptChain(argv);
+  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
+  const client = await osmosis.ClientFactory.createLCDClient({ restEndpoint });
+  const signer = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain });
   const [account] = await signer.getAccounts();
 
   try {
-    const balances = await client.getBalances(account.address);
+    const balances = await client.cosmos.bank.v1beta1.allBalances({
+      address: account.address
+    })
 
     const prices = await getPricesFromCoinGecko();
 
-    const display = balances.result.map(({ denom, amount }) => {
+    const display = balances.balances.map(({ denom, amount }) => {
       try {
         const symbol = osmoDenomToSymbol(denom);
         const displayAmount = baseUnitsToDisplayUnits(symbol, amount);

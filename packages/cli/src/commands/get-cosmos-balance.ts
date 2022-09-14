@@ -1,20 +1,17 @@
 import {
-  CosmosApiClient,
   getWalletFromMnemonic,
   baseUnitsToDisplayUnitsByDenom,
   getCosmosAssetInfo
 } from '@cosmology/core';
-import { prompt, promptChain, promptMnemonic, promptRestEndpoint } from '../utils';
-
+import { promptChain, promptMnemonic, promptRestEndpoint } from '../utils';
+import { cosmos } from 'osmojs';
 export default async (argv) => {
   argv = await promptMnemonic(argv);
   const chain = await promptChain(argv);
 
   const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
 
-  const client = new CosmosApiClient({
-    url: restEndpoint
-  });
+  const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
 
   const denom = getCosmosAssetInfo(argv.chainToken).assets.find(
     (a) => a.symbol === argv.chainToken
@@ -30,15 +27,17 @@ export default async (argv) => {
 
   const { address } = mainAccount;
 
-  const balances = await client.getBalances(address);
-  if (!balances || !balances.result || !balances.result.length) {
+  const balances = await client.cosmos.bank.v1beta1.allBalances({
+    address
+  })
+  if (!balances || !balances.balances || !balances.balances.length) {
     console.log('no balance!');
     return;
   }
 
-  const bal = balances.result.find((el) => el.denom === denom);
+  const bal = balances.balances.find((el) => el.denom === denom);
   const readableBalance = baseUnitsToDisplayUnitsByDenom(bal.denom, bal.amount);
   console.log({ [argv.chainToken]: readableBalance });
 
-  console.log(JSON.stringify(balances.result, null, 2));
+  console.log(JSON.stringify(balances.balances, null, 2));
 };
