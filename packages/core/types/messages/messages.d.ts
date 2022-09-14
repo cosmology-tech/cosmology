@@ -1,134 +1,134 @@
 export declare const messages: {
-    transfer(value: import("osmojs/types/proto/ibc/applications/transfer/v1/tx").MsgTransfer): {
+    transfer(value: import("osmojs/types/codegen/ibc/applications/transfer/v1/tx").MsgTransfer): {
         typeUrl: string;
-        value: import("osmojs/types/proto/ibc/applications/transfer/v1/tx").MsgTransfer;
+        value: import("osmojs/types/codegen/ibc/applications/transfer/v1/tx").MsgTransfer;
     };
-    submitProposal(value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgSubmitProposal): {
+    submitProposal(value: import("osmojs/types/codegen/cosmos/gov/v1beta1/tx").MsgSubmitProposal): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgSubmitProposal;
+        value: import("osmojs/types/codegen/cosmos/gov/v1beta1/tx").MsgSubmitProposal;
     };
-    vote(value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgVote): {
+    vote(value: import("osmojs/types/codegen/cosmos/gov/v1beta1/tx").MsgVote): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgVote;
+        value: import("osmojs/types/codegen/cosmos/gov/v1beta1/tx").MsgVote;
     };
-    voteWeighted(value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgVoteWeighted): {
+    voteWeighted(value: import("osmojs/types/codegen/cosmos/gov/v1beta1/tx").MsgVoteWeighted): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgVoteWeighted;
+        value: import("osmojs/types/codegen/cosmos/gov/v1beta1/tx").MsgVoteWeighted;
     };
-    deposit(value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgDeposit): {
+    deposit(value: import("osmojs/types/codegen/cosmos/gov/v1beta1/tx").MsgDeposit): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/gov/v1beta1/tx").MsgDeposit;
+        value: import("osmojs/types/codegen/cosmos/gov/v1beta1/tx").MsgDeposit;
     };
-    createValidator(value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgCreateValidator): {
+    createValidator(value: import("osmojs/types/codegen/cosmos/staking/v1beta1/tx").MsgCreateValidator): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgCreateValidator;
+        value: import("osmojs/types/codegen/cosmos/staking/v1beta1/tx").MsgCreateValidator;
     };
-    editValidator(value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgEditValidator): {
+    editValidator(value: import("osmojs/types/codegen/cosmos/staking/v1beta1/tx").MsgEditValidator): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgEditValidator;
+        value: import("osmojs/types/codegen/cosmos/staking/v1beta1/tx").MsgEditValidator;
     };
-    delegate(value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgDelegate): {
+    delegate(value: import("osmojs/types/codegen/cosmos/staking/v1beta1/tx").MsgDelegate): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgDelegate;
+        value: import("osmojs/types/codegen/cosmos/staking/v1beta1/tx").MsgDelegate;
     };
-    beginRedelegate(value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgBeginRedelegate): {
+    beginRedelegate(value: import("osmojs/types/codegen/cosmos/staking/v1beta1/tx").MsgBeginRedelegate): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgBeginRedelegate;
+        value: import("osmojs/types/codegen/cosmos/staking/v1beta1/tx").MsgBeginRedelegate;
     };
-    undelegate(value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgUndelegate): {
+    undelegate(value: import("osmojs/types/codegen/cosmos/staking/v1beta1/tx").MsgUndelegate): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/staking/v1beta1/tx").MsgUndelegate;
+        value: import("osmojs/types/codegen/cosmos/staking/v1beta1/tx").MsgUndelegate;
     };
-    send(value: import("osmojs/types/proto/cosmos/bank/v1beta1/tx").MsgSend): {
+    send(value: import("osmojs/types/codegen/cosmos/bank/v1beta1/tx").MsgSend): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/bank/v1beta1/tx").MsgSend;
+        value: import("osmojs/types/codegen/cosmos/bank/v1beta1/tx").MsgSend;
     };
-    multiSend(value: import("osmojs/types/proto/cosmos/bank/v1beta1/tx").MsgMultiSend): {
+    multiSend(value: import("osmojs/types/codegen/cosmos/bank/v1beta1/tx").MsgMultiSend): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/bank/v1beta1/tx").MsgMultiSend;
+        value: import("osmojs/types/codegen/cosmos/bank/v1beta1/tx").MsgMultiSend;
     };
-    setWithdrawAddress(value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgSetWithdrawAddress): {
+    setWithdrawAddress(value: import("osmojs/types/codegen/cosmos/distribution/v1beta1/tx").MsgSetWithdrawAddress): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgSetWithdrawAddress;
+        value: import("osmojs/types/codegen/cosmos/distribution/v1beta1/tx").MsgSetWithdrawAddress;
     };
-    withdrawDelegatorReward(value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgWithdrawDelegatorReward): {
+    withdrawDelegatorReward(value: import("osmojs/types/codegen/cosmos/distribution/v1beta1/tx").MsgWithdrawDelegatorReward): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgWithdrawDelegatorReward;
+        value: import("osmojs/types/codegen/cosmos/distribution/v1beta1/tx").MsgWithdrawDelegatorReward;
     };
-    withdrawValidatorCommission(value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgWithdrawValidatorCommission): {
+    withdrawValidatorCommission(value: import("osmojs/types/codegen/cosmos/distribution/v1beta1/tx").MsgWithdrawValidatorCommission): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgWithdrawValidatorCommission;
+        value: import("osmojs/types/codegen/cosmos/distribution/v1beta1/tx").MsgWithdrawValidatorCommission;
     };
-    fundCommunityPool(value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgFundCommunityPool): {
+    fundCommunityPool(value: import("osmojs/types/codegen/cosmos/distribution/v1beta1/tx").MsgFundCommunityPool): {
         typeUrl: string;
-        value: import("osmojs/types/proto/cosmos/distribution/v1beta1/tx").MsgFundCommunityPool;
+        value: import("osmojs/types/codegen/cosmos/distribution/v1beta1/tx").MsgFundCommunityPool;
     };
-    lockTokens(value: import("osmojs/types/proto/osmosis/lockup/tx").MsgLockTokens): {
+    lockTokens(value: import("osmojs/types/codegen/osmosis/lockup/tx").MsgLockTokens): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/lockup/tx").MsgLockTokens;
+        value: import("osmojs/types/codegen/osmosis/lockup/tx").MsgLockTokens;
     };
-    beginUnlockingAll(value: import("osmojs/types/proto/osmosis/lockup/tx").MsgBeginUnlockingAll): {
+    beginUnlockingAll(value: import("osmojs/types/codegen/osmosis/lockup/tx").MsgBeginUnlockingAll): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/lockup/tx").MsgBeginUnlockingAll;
+        value: import("osmojs/types/codegen/osmosis/lockup/tx").MsgBeginUnlockingAll;
     };
-    beginUnlocking(value: import("osmojs/types/proto/osmosis/lockup/tx").MsgBeginUnlocking): {
+    beginUnlocking(value: import("osmojs/types/codegen/osmosis/lockup/tx").MsgBeginUnlocking): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/lockup/tx").MsgBeginUnlocking;
+        value: import("osmojs/types/codegen/osmosis/lockup/tx").MsgBeginUnlocking;
     };
-    extendLockup(value: import("osmojs/types/proto/osmosis/lockup/tx").MsgExtendLockup): {
+    extendLockup(value: import("osmojs/types/codegen/osmosis/lockup/tx").MsgExtendLockup): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/lockup/tx").MsgExtendLockup;
+        value: import("osmojs/types/codegen/osmosis/lockup/tx").MsgExtendLockup;
     };
-    superfluidDelegate(value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgSuperfluidDelegate): {
+    superfluidDelegate(value: import("osmojs/types/codegen/osmosis/superfluid/tx").MsgSuperfluidDelegate): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgSuperfluidDelegate;
+        value: import("osmojs/types/codegen/osmosis/superfluid/tx").MsgSuperfluidDelegate;
     };
-    superfluidUndelegate(value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgSuperfluidUndelegate): {
+    superfluidUndelegate(value: import("osmojs/types/codegen/osmosis/superfluid/tx").MsgSuperfluidUndelegate): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgSuperfluidUndelegate;
+        value: import("osmojs/types/codegen/osmosis/superfluid/tx").MsgSuperfluidUndelegate;
     };
-    superfluidUnbondLock(value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgSuperfluidUnbondLock): {
+    superfluidUnbondLock(value: import("osmojs/types/codegen/osmosis/superfluid/tx").MsgSuperfluidUnbondLock): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgSuperfluidUnbondLock;
+        value: import("osmojs/types/codegen/osmosis/superfluid/tx").MsgSuperfluidUnbondLock;
     };
-    lockAndSuperfluidDelegate(value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgLockAndSuperfluidDelegate): {
+    lockAndSuperfluidDelegate(value: import("osmojs/types/codegen/osmosis/superfluid/tx").MsgLockAndSuperfluidDelegate): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgLockAndSuperfluidDelegate;
+        value: import("osmojs/types/codegen/osmosis/superfluid/tx").MsgLockAndSuperfluidDelegate;
     };
-    unPoolWhitelistedPool(value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgUnPoolWhitelistedPool): {
+    unPoolWhitelistedPool(value: import("osmojs/types/codegen/osmosis/superfluid/tx").MsgUnPoolWhitelistedPool): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/superfluid/tx").MsgUnPoolWhitelistedPool;
+        value: import("osmojs/types/codegen/osmosis/superfluid/tx").MsgUnPoolWhitelistedPool;
     };
-    joinPool(value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgJoinPool): {
+    joinPool(value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgJoinPool): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgJoinPool;
+        value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgJoinPool;
     };
-    exitPool(value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgExitPool): {
+    exitPool(value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgExitPool): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgExitPool;
+        value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgExitPool;
     };
-    swapExactAmountIn(value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgSwapExactAmountIn): {
+    swapExactAmountIn(value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgSwapExactAmountIn): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgSwapExactAmountIn;
+        value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgSwapExactAmountIn;
     };
-    swapExactAmountOut(value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgSwapExactAmountOut): {
+    swapExactAmountOut(value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgSwapExactAmountOut): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgSwapExactAmountOut;
+        value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgSwapExactAmountOut;
     };
-    joinSwapExternAmountIn(value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgJoinSwapExternAmountIn): {
+    joinSwapExternAmountIn(value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgJoinSwapExternAmountIn): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgJoinSwapExternAmountIn;
+        value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgJoinSwapExternAmountIn;
     };
-    joinSwapShareAmountOut(value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgJoinSwapShareAmountOut): {
+    joinSwapShareAmountOut(value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgJoinSwapShareAmountOut): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgJoinSwapShareAmountOut;
+        value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgJoinSwapShareAmountOut;
     };
-    exitSwapExternAmountOut(value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgExitSwapExternAmountOut): {
+    exitSwapExternAmountOut(value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgExitSwapExternAmountOut): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgExitSwapExternAmountOut;
+        value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgExitSwapExternAmountOut;
     };
-    exitSwapShareAmountIn(value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgExitSwapShareAmountIn): {
+    exitSwapShareAmountIn(value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgExitSwapShareAmountIn): {
         typeUrl: string;
-        value: import("osmojs/types/proto/osmosis/gamm/v1beta1/tx").MsgExitSwapShareAmountIn;
+        value: import("osmojs/types/codegen/osmosis/gamm/v1beta1/tx").MsgExitSwapShareAmountIn;
     };
 };

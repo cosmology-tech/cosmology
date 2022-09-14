@@ -13,14 +13,20 @@ import {
   gasEstimation,
   getCosmosAssetInfo,
   getWalletFromMnemonic,
-  messages,
   noDecimals
 } from '@cosmology/core';
+
 import {
   SigningStargateClient,
   assertIsDeliverTxSuccess
 } from '@cosmjs/stargate';
+
 import { Dec } from '@keplr-wallet/unit';
+import { cosmos, getSigningCosmosClient } from 'osmojs';
+
+const {
+  delegate
+} = cosmos.staking.v1beta1.MessageComposer.fromPartial;
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);
@@ -55,10 +61,10 @@ export default async (argv) => {
   });
 
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
-  const stargateClient = await SigningStargateClient.connectWithSigner(
+  const stargateClient = await getSigningCosmosClient({
     rpcEndpoint,
     signer
-  );
+  });
 
   const [mainAccount] = await signer.getAccounts();
 
@@ -144,9 +150,9 @@ export default async (argv) => {
   const amount = await displayUnitsToDenomUnits(argv.chainToken, displayAmount);
 
   messagesToDelegate.push(
-    messages.delegate({
-      delegatorAddress: address,
-      validatorAddress: validatorAddress,
+    delegate({
+      delegator_address: address,
+      validator_address: validatorAddress,
       amount: {
         amount: noDecimals(amount),
         denom

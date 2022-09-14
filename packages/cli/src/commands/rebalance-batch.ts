@@ -7,7 +7,6 @@ import {
 } from '../utils';
 import {
   baseUnitsToDisplayUnits,
-  messages,
   noDecimals,
   signAndBroadcastBatch,
   convertWeightsIntoCoins,
@@ -24,11 +23,18 @@ import {
   getPricesFromCoinGecko,
   prettyPool
 } from '@cosmology/core';
+
 import {
   printSwap,
   printSwapForPoolAllocation,
   printOsmoTransactionResponse
 } from '../utils/print';
+
+import { osmosis } from 'osmojs';
+
+const {
+  swapExactAmountIn
+} = osmosis.gamm.v1beta1.MessageComposer.withTypeUrl;
 
 export default async (argv) => {
   const { client, signer } = await promptOsmoRestClient(argv);
@@ -179,7 +185,7 @@ export default async (argv) => {
         slippage
       );
 
-      const msg = messages.swapExactAmountIn({
+      const msg = swapExactAmountIn({
         sender: address,
         routes,
         tokenIn: {

@@ -91,12 +91,19 @@ For swaps, you'll need a `TradeRoute` for it to work:
 
 ```js
 import { 
-  messages,
   lookupRoutesForTrade,
   prettyPool,
   OsmosisApiClient,
   calculateAmountWithSlippage
 } from '@cosmology/core';
+
+import {
+  osmosis
+} from 'osmojs';
+
+const {
+  swapExactAmountIn
+} = osmosis.gamm.v1beta1.MessageComposer.withTypeUrl;
 
 const api = new OsmosisApiClient({
   url: restEndpoint
@@ -135,7 +142,7 @@ const tokenOutMinAmount = calculateAmountWithSlippage(
 );
 
 const fee = FEES.osmosis.swapExactAmountIn(argv.fee || 'low'); // low, medium, high
-const msg = messages.swapExactAmountIn({
+const msg = swapExactAmountIn({
   sender: address, // osmo address
   routes, // TradeRoute 
   tokenIn: coin(amount, denom), // Coin
@@ -147,11 +154,15 @@ const msg = messages.swapExactAmountIn({
 The join command will join a pool.
 
 ```js
-import { messages } from '@cosmology/core';
 import { coin } from '@cosmjs/amino';
+import { osmosis } from 'osmojs';
 
-const fee = FEES.osmosis.swapExactAmountIn(argv.fee || 'low'); // low, medium, high
-const msg = messages.joinPool({
+const {
+  joinPool
+} = osmosis.gamm.v1beta1.MessageComposer.withTypeUrl;
+
+const fee = FEES.osmosis.joinPool(argv.fee || 'low'); // low, medium, high
+const msg = joinPool({
   poolId, // string!
   sender: account.address, // osmo address
   shareOutAmount, // number as string with no decimals
@@ -187,9 +198,14 @@ const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
 The lock command will lock your gamms tokens for staking so you can earn rewards.
 
 ```js
-import { messages } from '@cosmology/core';
-const msg = messages.lockTokens({
-  owner, // osmom address
+import { osmosis } from 'osmojs';
+
+const {
+  lockTokens
+} = osmosis.lockup.MessageComposer.withTypeUrl;
+
+const msg = lockTokens({
+  owner, // osmo address
   coins, // Coin[]
   duration // duration as string
 });
@@ -197,12 +213,19 @@ const msg = messages.lockTokens({
 ```
 ### `withdrawDelegatorReward`
 
+
 Claim rewards from staking.
 
 ```js
-const msg = messages.withdrawDelegatorReward({
-  delegatorAddress: address,
-  validatorAddress: validator_address
+import { cosmos } from 'osmojs';
+
+const {
+  withdrawDelegatorReward
+} = cosmos.distribution.v1beta1.MessageComposer.fromPartial;
+
+const msg = withdrawDelegatorReward({
+  delegator_address: address,
+  validator_address: validator_address
 });
 ```
 ### `delegate`
@@ -210,11 +233,19 @@ const msg = messages.withdrawDelegatorReward({
 Delegate to a validator.
 
 ```js
-const msg = messages.delegate({
-  delegatorAddress,
-  validatorAddress,
-  amount,
-  denom
+import { cosmos } from 'osmojs';
+
+const {
+  delegate
+} = cosmos.staking.v1beta1.MessageComposer.fromPartial;
+
+const msg = delegate({
+  delegator_address,
+  validator_address,
+  amount: {
+    amount,
+    denom
+  }
 });
 ```
 ## known issues

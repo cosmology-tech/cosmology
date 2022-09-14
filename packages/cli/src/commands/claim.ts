@@ -1,5 +1,4 @@
 import {
-  messages,
   baseUnitsToDisplayUnitsByDenom,
   CosmosApiClient,
   gasEstimation,
@@ -19,6 +18,11 @@ import {
   assertIsDeliverTxSuccess
 } from '@cosmjs/stargate';
 import { Dec } from '@keplr-wallet/unit';
+import { cosmos, getSigningCosmosClient } from 'osmojs';
+
+const {
+  withdrawDelegatorReward
+} = cosmos.distribution.v1beta1.MessageComposer.fromPartial;
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);
@@ -55,10 +59,10 @@ export default async (argv) => {
 
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
 
-  const stargateClient = await SigningStargateClient.connectWithSigner(
+  const stargateClient = await getSigningCosmosClient({
     rpcEndpoint,
     signer
-  );
+  });
 
   const [mainAccount] = await signer.getAccounts();
 
@@ -90,9 +94,9 @@ export default async (argv) => {
         totalClaimable = totalClaimable.add(new Dec(value));
 
         messagesToClaim.push(
-          messages.withdrawDelegatorReward({
-            delegatorAddress: address,
-            validatorAddress: validator_address
+          withdrawDelegatorReward({
+            delegator_address: address,
+            validator_address
           })
         );
       }

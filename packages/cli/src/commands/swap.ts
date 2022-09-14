@@ -20,13 +20,16 @@ import {
   symbolToOsmoDenom,
   prettyPool,
   noDecimals,
-  messages,
   signAndBroadcast,
   getPricesFromCoinGecko
 } from '@cosmology/core';
 import { Dec } from '@keplr-wallet/unit';
 
-import { FEES } from 'osmojs';
+import { FEES, osmosis } from 'osmojs';
+
+const {
+  swapExactAmountIn
+} = osmosis.gamm.v1beta1.MessageComposer.withTypeUrl;
 
 const list = asset_list.assets;
 
@@ -232,7 +235,7 @@ export default async (argv) => {
 
 
   const fee = FEES.osmosis.swapExactAmountIn(argv.fee || 'low');
-  const msg = messages.swapExactAmountIn({
+  const msg = swapExactAmountIn({
     sender: address,
     routes,
     tokenIn: {

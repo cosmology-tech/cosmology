@@ -1,14 +1,14 @@
-export declare const getCosmosAssetInfo: (symbol: any) => any;
+export declare const getCosmosAssetInfo: (symbol: any) => import("@chain-registry/types").AssetList;
 export declare const getOsmosisAssetInfo: (symbol: any) => any;
-export declare const getCosmosAssetInfoByDenom: (denom: any) => any;
+export declare const getCosmosAssetInfoByDenom: (denom: any) => import("@chain-registry/types").AssetList;
 export declare const getOsmosisAssetInfoByDenom: (denom: any) => any;
 export declare const getOsmosisAssetIbcInfo: (symbol: any) => any;
 export declare const getOsmosisAssetDenom: (symbol: any) => any;
-export declare const getNameOfChain: (chain_id: any) => any;
-export declare const getChainByChainId: (chain_id: any) => any;
+export declare const getNameOfChain: (chain_id: any) => string;
+export declare const getChainByChainId: (chain_id: any) => import("@chain-registry/types").Chain;
 export declare const getBaseAndDisplayUnitsGenericCosmos: (symbol: any) => {
-    base: any;
-    display: any;
+    base: import("@chain-registry/types").AssetDenomUnit;
+    display: import("@chain-registry/types").AssetDenomUnit;
 };
 export declare const getBaseAndDisplayUnits: (symbol: any) => {
     base: any;
@@ -31,4 +31,4 @@ export declare const baseUnitsToDisplayUnits: (symbol: any, amount: any) => stri
 export declare const baseUnitsToDisplayUnitsByDenom: (denom: any, amount: any) => string;
 export declare const getChain: ({ token }: {
     token: any;
-}) => Promise<any>;
+}) => Promise<import("@chain-registry/types").Chain>;

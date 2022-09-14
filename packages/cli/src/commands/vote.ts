@@ -10,12 +10,17 @@ import {
   CosmosApiClient,
   getWalletFromMnemonic,
   getCosmosAssetInfo,
-  gasEstimation,
-  messages
+  gasEstimation
 } from '@cosmology/core';
 import {
   SigningStargateClient
 } from '@cosmjs/stargate';
+
+import { cosmos, getSigningCosmosClient } from 'osmojs'
+
+const {
+  vote: createVoteMsg
+} = cosmos.gov.v1beta1.MessageComposer.fromPartial;
 
 export default async (argv) => {
   argv = await promptMnemonic(argv);
@@ -76,10 +81,10 @@ export default async (argv) => {
   });
 
 
-  const stargateClient = await SigningStargateClient.connectWithSigner(
+  const stargateClient = await getSigningCosmosClient({
     rpcEndpoint,
     signer
-  );
+  });
 
   const [mainAccount] = await signer.getAccounts();
 
@@ -93,7 +98,11 @@ export default async (argv) => {
 
   const voteMessages = [];
 
-  voteMessages.push(messages.vote({ voter: address, proposalId, option: vote }));
+  voteMessages.push(createVoteMsg({
+    voter: address,
+    proposal_id: proposalId,
+    option: vote
+  }));
 
   const fee = await gasEstimation(
     denom,

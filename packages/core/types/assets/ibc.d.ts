@@ -19,7 +19,7 @@ export const EmbedChainInfos: ({
     bip44: {
         coinType: number;
     };
-    bech32Config: any;
+    bech32Config: import("@keplr-wallet/cosmos/node_modules/@keplr-wallet/types").Bech32Config;
     currencies: {
         coinDenom: string;
         coinMinimalDenom: string;
@@ -53,7 +53,7 @@ export const EmbedChainInfos: ({
     bip44: {
         coinType: number;
     };
-    bech32Config: any;
+    bech32Config: import("@keplr-wallet/cosmos/node_modules/@keplr-wallet/types").Bech32Config;
     currencies: {
         coinDenom: string;
         coinMinimalDenom: string;
@@ -87,7 +87,7 @@ export const EmbedChainInfos: ({
     bip44: {
         coinType: number;
     };
-    bech32Config: any;
+    bech32Config: import("@keplr-wallet/cosmos/node_modules/@keplr-wallet/types").Bech32Config;
     currencies: {
         coinDenom: string;
         coinMinimalDenom: string;
@@ -125,7 +125,7 @@ export const EmbedChainInfos: ({
     bip44: {
         coinType: number;
     };
-    bech32Config: any;
+    bech32Config: import("@keplr-wallet/cosmos/node_modules/@keplr-wallet/types").Bech32Config;
     currencies: {
         coinDenom: string;
         coinMinimalDenom: string;

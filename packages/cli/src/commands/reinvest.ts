@@ -23,13 +23,21 @@ import {
   makePoolsPrettyValues,
   getSigningOsmosisClient,
   noDecimals,
-  messages,
   signAndBroadcast,
   prettyPool,
   getPricesFromCoinGecko
 } from '@cosmology/core';
-import { FEES } from 'osmojs';
+import { FEES, osmosis } from 'osmojs';
 import { Dec } from '@keplr-wallet/unit';
+
+const {
+  swapExactAmountIn,
+  joinPool
+} = osmosis.gamm.v1beta1.MessageComposer.withTypeUrl;
+
+const {
+  lockTokens
+} = osmosis.lockup.MessageComposer.withTypeUrl;
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
 const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
@@ -200,7 +208,7 @@ export default async (argv) => {
       );
 
       const fee = FEES.osmosis.swapExactAmountIn(argv.fee || 'low');
-      const msg = messages.swapExactAmountIn({
+      const msg = swapExactAmountIn({
         sender: osmoAddress,
         routes,
         tokenIn: {
@@ -238,7 +246,7 @@ export default async (argv) => {
     const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
 
     const fee = FEES.osmosis.joinPool(argv.fee || 'low');
-    const msg = messages.joinPool({
+    const msg = joinPool({
       poolId,
       sender: osmoAddress,
       shareOutAmount,
@@ -283,7 +291,7 @@ export default async (argv) => {
       ({ denom, amount }) => ({ amount, denom })
     );
     const lockFee = FEES.osmosis.lockTokens(argv.fee || 'low');
-    const lockMsg = messages.lockTokens({
+    const lockMsg = lockTokens({
       owner: account.address,
       coins,
       duration: '1209600'

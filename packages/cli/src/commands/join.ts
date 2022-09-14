@@ -11,12 +11,15 @@ import {
   calculateMaxCoinsForPool,
   makePoolsPretty,
   makePoolsPrettyValues,
-  messages,
   signAndBroadcast,
   getPricesFromCoinGecko
 } from '@cosmology/core';
 
-import { FEES } from 'osmojs';
+import { FEES, osmosis } from 'osmojs';
+
+const {
+  joinPool
+} = osmosis.gamm.v1beta1.MessageComposer.withTypeUrl;
 
 export default async (argv) => {
   const { client, signer } = await promptOsmoRestClient(argv);
@@ -85,7 +88,7 @@ export default async (argv) => {
 
 
   const fee = FEES.osmosis.joinPool(argv.fee || 'low');
-  const msg = messages.joinPool({
+  const msg = joinPool({
     poolId: poolId + '', // string!
     sender: account.address,
     shareOutAmount,

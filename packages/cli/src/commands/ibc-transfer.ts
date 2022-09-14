@@ -9,7 +9,6 @@ import {
 import {
     baseUnitsToDisplayUnits,
     getSellableBalance,
-    messages,
     getWalletFromMnemonicForChain,
     osmoDenomToSymbol,
     CosmosApiClient
@@ -18,7 +17,11 @@ import { assertIsDeliverTxSuccess } from '@cosmjs/stargate';
 import { ibc } from 'chain-registry';
 import { Dec } from '@keplr-wallet/unit';
 import { chains } from 'chain-registry';
-import { getSigningIbcClient } from 'osmojs';
+import { getSigningIbcClient, ibc as ibcProto } from 'osmojs';
+
+const {
+    transfer
+} = ibcProto.applications.transfer.v1.MessageComposer.withTypeUrl;
 
 const chainList = chains
     .map(({ chain_name }) => chain_name)
@@ -190,22 +193,22 @@ export default async (argv) => {
     // 2. deposit assets into osmosis
     // 3. save some for fees when NOT osmo (e.g. other direction) 
 
-    const msg = messages.transfer({
-        sourcePort: source_port,
-        sourceChannel: source_channel,
+    const msg = transfer({
+        source_port,
+        source_channel,
         token: {
             denom: balances[0].denom,
             amount: balances[0].amount
         },
         sender: account.address,
         receiver: toAccount.address,
-        timeoutHeight: undefined,
+        timeout_height: undefined,
         // timeoutHeight: {
         //     revisionNumber: "1",
         //     revisionHeight: "3670610"
         // },
         // 20 mins in nanos
-        timeoutTimestamp: Long.fromString(timeoutInNanos + '')
+        timeout_timestamp: Long.fromString(timeoutInNanos + '')
     });
 
     const fee = {
