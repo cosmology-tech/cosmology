@@ -12,17 +12,16 @@ import {
   displayUnitsToDenomUnits,
   gasEstimation,
   getCosmosAssetInfo,
-  getWalletFromMnemonic,
   noDecimals
 } from '@cosmology/core';
 
 import {
-  SigningStargateClient,
   assertIsDeliverTxSuccess
 } from '@cosmjs/stargate';
 
 import { Dec } from '@keplr-wallet/unit';
 import { cosmos, getSigningCosmosClient } from 'osmojs';
+import { signAndBroadcast, getOfflineSignerAmino } from 'cosmjs-utils';
 
 const {
   delegate
@@ -45,9 +44,7 @@ export default async (argv) => {
 
   const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
 
-  const client = new CosmosApiClient({
-    url: restEndpoint
-  });
+  const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
 
   // check re-stake (w display or base?)
   const denom = getCosmosAssetInfo(argv.chainToken).assets.find(
@@ -55,11 +52,7 @@ export default async (argv) => {
   ).base;
   if (!denom) throw new Error('cannot find asset base unit');
 
-  const signer = await getWalletFromMnemonic({
-    mnemonic: argv.mnemonic,
-    token: argv.chainToken
-  });
-
+  const signer = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain });
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
   const stargateClient = await getSigningCosmosClient({
     rpcEndpoint,
@@ -70,15 +63,20 @@ export default async (argv) => {
 
   const { address } = mainAccount;
 
-  const delegations = await client.getDelegations(address);
+  const delegations = await client.cosmos.staking.v1beta1.delegatorDelegations({
+    delegator_addr: address
+  })
 
   const validators = [];
-  if (delegations.result && delegations.result.length) {
-    const vals = delegations.result.map(
+  if (delegations.delegation_responses && delegations.delegation_responses.length) {
+    const vals = delegations.delegation_responses.map(
       (val) => val.delegation.validator_address
     );
     for (let v = 0; v < vals.length; v++) {
-      const info = await client.getValidatorInfo(vals[v]);
+      const info = await client.cosmos.staking.v1beta1.validator({
+        validator_addr: vals[v]
+      });
+
       validators.push({
         name: info.validator.description.moniker,
         value: vals[v]
@@ -86,13 +84,15 @@ export default async (argv) => {
     }
   }
 
-  const balances = await client.getBalances(address);
-  if (!balances || !balances.result || !balances.result.length) {
+  const balances = await client.cosmos.bank.v1beta1.allBalances({
+    address
+  })
+  if (!balances || !balances.balances || !balances.balances.length) {
     console.log('no balance!');
     return;
   }
 
-  const bal = balances.result.find((el) => el.denom === denom);
+  const bal = balances.balances.find((el) => el.denom === denom);
 
   if (!bal) {
     console.log(`no ${argv.chainToken} balance!`);
@@ -169,21 +169,20 @@ export default async (argv) => {
     1.3
   );
 
-  stargateClient.signAndBroadcast(address, messagesToDelegate, fee, '').then(
-    (result) => {
-      try {
-        assertIsDeliverTxSuccess(result);
-        stargateClient.disconnect();
-        console.log(
-          `⚛️  success in staking ${displayAmount} ${argv.chainToken}`
-        );
-        printTransactionResponse(result, chain);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    (error) => {
-      console.log(error);
-    }
+  const result = await signAndBroadcast({
+    client: stargateClient,
+    chainId: chain.chain_id,
+    address,
+    msgs: messagesToDelegate,
+    fee,
+    memo: ''
+  });
+
+  assertIsDeliverTxSuccess(result);
+  stargateClient.disconnect();
+  console.log(
+    `⚛️  success in staking ${displayAmount} ${argv.chainToken}`
   );
+  printTransactionResponse(result, chain);
+
 };
