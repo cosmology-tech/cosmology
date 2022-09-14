@@ -8,7 +8,6 @@ import {
 } from '../utils';
 import {
   baseUnitsToDisplayUnitsByDenom,
-  CosmosApiClient,
   displayUnitsToDenomUnits,
   gasEstimation,
   getCosmosAssetInfo,

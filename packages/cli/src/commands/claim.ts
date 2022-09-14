@@ -1,9 +1,7 @@
 import {
   baseUnitsToDisplayUnitsByDenom,
-  CosmosApiClient,
   gasEstimation,
   getCosmosAssetInfo,
-  getWalletFromMnemonic
 } from '@cosmology/core';
 import {
   prompt,
@@ -14,11 +12,11 @@ import {
   promptRpcEndpoint
 } from '../utils';
 import {
-  SigningStargateClient,
   assertIsDeliverTxSuccess
 } from '@cosmjs/stargate';
 import { Dec } from '@keplr-wallet/unit';
 import { cosmos, getSigningCosmosClient } from 'osmojs';
+import { signAndBroadcast, getOfflineSignerAmino } from 'cosmjs-utils';
 
 const {
   withdrawDelegatorReward
@@ -40,25 +38,16 @@ export default async (argv) => {
   );
 
   const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
-
-  const client = new CosmosApiClient({
-    url: restEndpoint
-  });
+  const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
 
   // check re-stake (w display or base?)
   const denom = getCosmosAssetInfo(argv.chainToken).assets.find(
     (a) => a.symbol === argv.chainToken
   ).base;
   if (!denom) throw new Error('cannot find asset base unit');
-  const defaultGasPrice = '0.0025' + denom;
 
-  const signer = await getWalletFromMnemonic({
-    mnemonic: argv.mnemonic,
-    token: argv.chainToken
-  });
-
+  const signer = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain });
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
-
   const stargateClient = await getSigningCosmosClient({
     rpcEndpoint,
     signer
@@ -68,16 +57,22 @@ export default async (argv) => {
 
   const { address } = mainAccount;
 
-  const delegations = await client.getDelegations(address);
+  const delegations = await client.cosmos.staking.v1beta1.delegatorDelegations({
+    delegator_addr: address
+  })
 
-  if (!delegations.result || !delegations.result.length) {
+  if (!delegations.delegation_responses || !delegations.delegation_responses.length) {
     console.log('no delegations. Exiting.');
   }
 
   const messagesToClaim = [];
   let totalClaimable = new Dec(0);
 
-  const rewards = await client.getRewards(address);
+  const rewards = await client.cosmos.distribution.v1beta1.delegationTotalRewards({
+    delegator_address: address
+  });
+
+
   if (rewards && rewards.rewards && rewards.rewards.length) {
     rewards.rewards.forEach((data) => {
       const { validator_address, reward } = data;
@@ -126,24 +121,24 @@ export default async (argv) => {
     console.log(
       `${totalClaimable} ${argv.chainToken} available, starting claim process...`
     );
-    stargateClient.signAndBroadcast(address, messagesToClaim, fee, '').then(
-      (result) => {
-        try {
-          assertIsDeliverTxSuccess(result);
-          stargateClient.disconnect();
-          console.log(
-            `⚛️  success in claiming ${totalClaimable.toString()} ${argv.chainToken
-            } rewards`
-          );
-          printTransactionResponse(result, chain);
-        } catch (error) {
-          console.log(error);
-        }
-      },
-      (error) => {
-        console.log(error);
-      }
+
+    const result = await signAndBroadcast({
+      client: stargateClient,
+      chainId: chain.chain_id,
+      address,
+      msgs: messagesToClaim,
+      fee,
+      memo: ''
+    })
+
+    assertIsDeliverTxSuccess(result);
+    stargateClient.disconnect();
+    console.log(
+      `⚛️  success in claiming ${totalClaimable.toString()} ${argv.chainToken
+      } rewards`
     );
+    printTransactionResponse(result, chain);
+
   } else {
     console.log(
       `${minAmount} not available (${totalClaimable.toString()} < minAmount)`
