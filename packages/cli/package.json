@@ -1,6 +1,6 @@
 {
   "name": "@cosmology/cli",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "cosmology",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/cosmology-tech/cosmology/tree/master/packages/cli#readme",
