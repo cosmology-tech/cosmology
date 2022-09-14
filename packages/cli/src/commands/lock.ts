@@ -1,24 +1,38 @@
 import {
+  printOsmoTransactionResponse,
   prompt,
-  promptOsmoRestClient,
-  promptOsmoSigningClient,
-  printOsmoTransactionResponse
+  promptChain,
+  promptMnemonic,
+  promptRestEndpoint,
+  promptRpcEndpoint,
 } from '../utils';
-import { signAndBroadcast } from '@cosmology/core';
-import { FEES, osmosis } from 'osmojs';
+
+import { signAndBroadcast, getOfflineSignerAmino } from 'cosmjs-utils';
+import { FEES, osmosis, getSigningOsmosisClient } from 'osmojs';
 
 const {
   lockTokens
 } = osmosis.lockup.MessageComposer.withTypeUrl;
 
 export default async (argv) => {
-  const { client, signer } = await promptOsmoRestClient(argv);
-  const { client: stargateClient } = await promptOsmoSigningClient(argv);
+  argv.chainToken = 'OSMO';
+
+  const { mnemonic } = await promptMnemonic(argv);
+  const chain = await promptChain(argv);
+  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
+  const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
+  // END PROMPTS
+
+  const client = await osmosis.ClientFactory.createLCDClient({ restEndpoint });
+  const signer = await getOfflineSignerAmino({ mnemonic, chain });
+
   const [account] = await signer.getAccounts();
   const { address } = account;
-  const accountBalances = await client.getBalances(address);
+  const accountBalances = await client.cosmos.bank.v1beta1.allBalances({
+    address: account.address
+  })
 
-  const gammTokens = accountBalances.result
+  const gammTokens = accountBalances.balances
     .filter((a) => a.denom.startsWith('gamm'))
     .map((obj) => {
       return {
@@ -88,11 +102,16 @@ export default async (argv) => {
     console.log(JSON.stringify(msg, null, 2));
   }
 
+  const stargateClient = await getSigningOsmosisClient({
+    rpcEndpoint,
+    signer
+  })
+
   const res = await signAndBroadcast({
     client: stargateClient,
-    chainId: argv.chainId,
+    chainId: chain.chain_id,
     address,
-    msg,
+    msgs: [msg],
     fee,
     memo: ''
   });
