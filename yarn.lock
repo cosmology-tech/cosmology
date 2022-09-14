@@ -2975,10 +2975,10 @@
     long "^5.2.0"
     protobufjs "^6.11.3"
 
-"@osmonauts/lcd@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@osmonauts/lcd/-/lcd-0.4.0.tgz#94c14df420559530e5fbaec2b64e6e0603629605"
-  integrity sha512-DjzU2ZqJ6DHkRpNfIfut1LIVYxdqo5IQf9sgYPiDF2hmTCxvYeAZ6uvCuiUiKJO0QdjBs3criv0/CH+Ytl5dsA==
+"@osmonauts/lcd@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@osmonauts/lcd/-/lcd-0.4.1.tgz#78df03e256796c43de8291efb6aab4fab1c1b3df"
+  integrity sha512-N8QzBk2VopBlism9P1y/aoly2G32U/9NJuls/yL6eubVtAZ61OWb+wV7pzaT+zQmDkylehFPCmdGD4JiTJxQig==
   dependencies:
     "@babel/runtime" "^7.18.9"
     axios "0.27.2"
@@ -7358,10 +7358,10 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-osmojs@0.15.0:
-  version "0.15.0"
-  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.15.0.tgz#e389b9fd22904b0979821cefc5ec94c291f3c2da"
-  integrity sha512-A8LxWplqsW6Kwmx1wxU6pK7EKrg+G/ganmEu/EHr4xLxQiDiGD3OfLhV0wAsJcHfaD2IUTWzlzA3RZURATWWLQ==
+osmojs@0.15.3:
+  version "0.15.3"
+  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.15.3.tgz#46707be76de1dc786cf6f4ac6ea049e297a53de3"
+  integrity sha512-Ssx9om7qYVk/F3JDQ3TYds1hy+yUtD5uOeWBTrD372uPpI+ADXaun07bqXbSOwCUfsZMBWlD7AVDBWpIZdckdQ==
   dependencies:
     "@babel/runtime" "^7.19.0"
     "@cosmjs/amino" "0.28.13"
@@ -7369,7 +7369,7 @@ osmojs@0.15.0:
     "@cosmjs/stargate" "0.28.13"
     "@cosmjs/tendermint-rpc" "^0.28.13"
     "@osmonauts/helpers" "^0.4.3"
-    "@osmonauts/lcd" "^0.4.0"
+    "@osmonauts/lcd" "^0.4.1"
     long "^5.2.0"
     protobufjs "^6.11.3"
 

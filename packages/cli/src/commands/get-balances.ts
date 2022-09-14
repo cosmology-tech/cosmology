@@ -4,7 +4,7 @@ import {
   baseUnitsToDisplayUnits,
   baseUnitsToDollarValue
 } from '@cosmology/core';
-import { promptChain, promptMnemonic, promptOsmoRestClient, promptRestEndpoint } from '../utils';
+import { promptChain, promptMnemonic, promptRestEndpoint } from '../utils';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { getOfflineSignerAmino } from 'cosmjs-utils';
 import { osmosis } from 'osmojs';
