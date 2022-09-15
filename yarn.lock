@@ -1241,6 +1241,15 @@
     "@keplr-wallet/cosmos" "^0.10.3"
     "@keplr-wallet/crypto" "^0.10.11"
 
+"@chain-registry/types@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.npmjs.org/@chain-registry/types/-/types-0.8.0.tgz#7fc626be9c21bbf5087c4c11d24af22aecb324ee"
+  integrity sha512-rkQgSxbztvG7ow33XRP5kyjNS+WhE+Y+ZSup9iBVoIBxwgy9s9AtdcnIgGvhG+jvFnoz5THoKYya9Vd5jCNCJw==
+  dependencies:
+    "@babel/runtime" "^7.18.3"
+    "@keplr-wallet/cosmos" "^0.10.3"
+    "@keplr-wallet/crypto" "^0.10.11"
+
 "@confio/ics23@^0.6.8":
   version "0.6.8"
   resolved "https://registry.npmjs.org/@confio/ics23/-/ics23-0.6.8.tgz#2a6b4f1f2b7b20a35d9a0745bb5a446e72930b3d"
@@ -3852,13 +3861,13 @@ caseless@~0.12.0:
   resolved "https://registry.npmjs.org/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==
 
-chain-registry@0.10.3:
-  version "0.10.3"
-  resolved "https://registry.npmjs.org/chain-registry/-/chain-registry-0.10.3.tgz#d3ff23c49a670adf710e5c33e2bb247b9695c1c3"
-  integrity sha512-AvBo2WpPmZUB+3LQ2lEKOQF5IB5OGqkhVw9DYN2yM9dFq+f5QNm62N0ekLzv+qRDYT5QAS2ofSsmIdqwLYwGzA==
+chain-registry@0.11.0:
+  version "0.11.0"
+  resolved "https://registry.npmjs.org/chain-registry/-/chain-registry-0.11.0.tgz#fe42de9db905551d5725d0e5f63c5d9d69f076ea"
+  integrity sha512-T3uhnfvU+stR8Dmno6s0rx3Kh9TYl29URjR1kqs4TH3dhM9XmN/5sMnHRXBfljkGVewqwHgbhXiFa1LM8SQNiQ==
   dependencies:
     "@babel/runtime" "^7.18.3"
-    "@chain-registry/types" "^0.7.1"
+    "@chain-registry/types" "^0.8.0"
 
 chalk@^1.0.0, chalk@^1.1.3:
   version "1.1.3"
@@ -7358,10 +7367,10 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-osmojs@0.15.3:
-  version "0.15.3"
-  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.15.3.tgz#46707be76de1dc786cf6f4ac6ea049e297a53de3"
-  integrity sha512-Ssx9om7qYVk/F3JDQ3TYds1hy+yUtD5uOeWBTrD372uPpI+ADXaun07bqXbSOwCUfsZMBWlD7AVDBWpIZdckdQ==
+osmojs@0.16.1:
+  version "0.16.1"
+  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.16.1.tgz#e179ce93c737875df397a3b35fd5d880bcfc20b2"
+  integrity sha512-lRvda+XG55iQgKVyaKKFvQGzbYkcFIQkrXJ5+KVHe7I4XH4iAjSi0c/0JYSg3gKxcJnKQM851pnLlmfrlPAPaQ==
   dependencies:
     "@babel/runtime" "^7.19.0"
     "@cosmjs/amino" "0.28.13"

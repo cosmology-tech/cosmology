@@ -1,4 +1,5 @@
 
+import _claim_validator from './commands/claim-validator';
 import _claim from './commands/claim';
 import _create_mnemonic_wallet from './commands/create-mnemonic-wallet';
 import _decrypt from './commands/decrypt';
@@ -33,6 +34,7 @@ import _swap from './commands/swap';
 import _version from './commands/version';
 import _vote from './commands/vote';
 const Commands = {};
+Commands['claim-validator'] = _claim_validator;
 Commands['claim'] = _claim;
 Commands['create-mnemonic-wallet'] = _create_mnemonic_wallet;
 Commands['decrypt'] = _decrypt;
