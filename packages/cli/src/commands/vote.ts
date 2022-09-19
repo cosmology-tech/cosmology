@@ -26,7 +26,7 @@ export default async (argv) => {
 
   const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
   const proposalReponse = await client.cosmos.gov.v1beta1.proposals({
-    proposal_status: 2 // PROPOSAL_STATUS_VOTING_PERIOD
+    proposalStatus: 2 // PROPOSAL_STATUS_VOTING_PERIOD
   });
 
   const propIds = proposalReponse.proposals.map(prop => {
@@ -86,7 +86,7 @@ export default async (argv) => {
   const { address } = mainAccount;
 
   const delegations = await client.cosmos.staking.v1beta1.delegatorDelegations({
-    delegator_addr: address
+    delegatorAddr: address
   });
 
   const num = Number(delegations?.pagination?.total);
@@ -99,7 +99,7 @@ export default async (argv) => {
 
   voteMessages.push(createVoteMsg({
     voter: address,
-    proposal_id: proposalId,
+    proposalId,
     option: vote
   }));
 
