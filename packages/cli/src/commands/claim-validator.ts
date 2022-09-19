@@ -78,7 +78,7 @@ export default async (argv) => {
   );
 
   const msg = withdrawValidatorCommission({
-    validator_address
+    validatorAddress: validator_address
   });
 
   const fee = await gasEstimation(

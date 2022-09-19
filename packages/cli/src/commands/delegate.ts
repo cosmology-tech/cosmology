@@ -63,7 +63,7 @@ export default async (argv) => {
   const { address } = mainAccount;
 
   const delegations = await client.cosmos.staking.v1beta1.delegatorDelegations({
-    delegator_addr: address
+    delegatorAddr: address
   })
 
   const validators = [];
@@ -73,7 +73,7 @@ export default async (argv) => {
     );
     for (let v = 0; v < vals.length; v++) {
       const info = await client.cosmos.staking.v1beta1.validator({
-        validator_addr: vals[v]
+        validatorAddr: vals[v]
       });
 
       validators.push({
@@ -150,8 +150,8 @@ export default async (argv) => {
 
   messagesToDelegate.push(
     delegate({
-      delegator_address: address,
-      validator_address: validatorAddress,
+      delegatorAddress: address,
+      validatorAddress: validatorAddress,
       amount: {
         amount: noDecimals(amount),
         denom

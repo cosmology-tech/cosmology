@@ -191,21 +191,21 @@ export default async (argv) => {
     // 3. save some for fees when NOT osmo (e.g. other direction) 
 
     const msg = transfer({
-        source_port,
-        source_channel,
+        sourcePort: source_port,
+        sourceChannel: source_channel,
         token: {
             denom: balances[0].denom,
             amount: balances[0].amount
         },
         sender: account.address,
         receiver: toAccount.address,
-        timeout_height: undefined,
+        timeoutHeight: undefined,
         // timeoutHeight: {
         //     revisionNumber: "1",
         //     revisionHeight: "3670610"
         // },
         // 20 mins in nanos
-        timeout_timestamp: Long.fromString(timeoutInNanos + '')
+        timeoutTimestamp: Long.fromString(timeoutInNanos + '')
     });
 
     const fee = {

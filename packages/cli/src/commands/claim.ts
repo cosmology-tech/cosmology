@@ -58,7 +58,7 @@ export default async (argv) => {
   const { address } = mainAccount;
 
   const delegations = await client.cosmos.staking.v1beta1.delegatorDelegations({
-    delegator_addr: address
+    delegatorAddr: address
   })
 
   if (!delegations.delegation_responses || !delegations.delegation_responses.length) {
@@ -69,7 +69,7 @@ export default async (argv) => {
   let totalClaimable = new Dec(0);
 
   const rewards = await client.cosmos.distribution.v1beta1.delegationTotalRewards({
-    delegator_address: address
+    delegatorAddress: address
   });
 
 
@@ -90,8 +90,8 @@ export default async (argv) => {
 
         messagesToClaim.push(
           withdrawDelegatorReward({
-            delegator_address: address,
-            validator_address
+            delegatorAddress: address,
+            validatorAddress: validator_address
           })
         );
       }
