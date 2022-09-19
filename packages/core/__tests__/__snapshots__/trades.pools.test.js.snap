@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`allocations 1`] = `
-Object {
+{
   "amount": "10079809779553769.930301553081206795",
-  "coins": Array [
-    Object {
+  "coins": [
+    {
       "amount": "27221113.1586131586130000",
       "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
       "displayAmount": "27.221113158613158613",
       "symbol": "ATOM",
       "value": "997.109375000000000000",
     },
-    Object {
+    {
       "amount": "241430841.4043583535110000",
       "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
       "displayAmount": "241.430841404358353511",
@@ -27,8 +27,8 @@ Object {
 `;
 
 exports[`canonicalizeCoinWeights 3 weights 1`] = `
-Array [
-  Object {
+[
+  {
     "allocation": "0.294117647058823529",
     "denom": "gamm/pool/606",
     "name": "ATOM/HUAHUA",
@@ -37,7 +37,7 @@ Array [
     "value": undefined,
     "weight": 5,
   },
-  Object {
+  {
     "allocation": "0.117647058823529412",
     "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
     "name": "LUNC",
@@ -46,7 +46,7 @@ Array [
     "value": undefined,
     "weight": 2,
   },
-  Object {
+  {
     "allocation": "0.588235294117647059",
     "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
     "name": "USTC",
@@ -59,8 +59,8 @@ Array [
 `;
 
 exports[`canonicalizeCoinWeights many weights 1`] = `
-Array [
-  Object {
+[
+  {
     "allocation": "0.156250000000000000",
     "denom": "gamm/pool/3",
     "name": "AKT/OSMO",
@@ -69,7 +69,7 @@ Array [
     "value": undefined,
     "weight": 5,
   },
-  Object {
+  {
     "allocation": "0.156250000000000000",
     "denom": "gamm/pool/1",
     "name": "ATOM/OSMO",
@@ -78,7 +78,7 @@ Array [
     "value": undefined,
     "weight": 5,
   },
-  Object {
+  {
     "allocation": "0.156250000000000000",
     "denom": "gamm/pool/600",
     "name": "ATOM/CMDX",
@@ -87,7 +87,7 @@ Array [
     "value": undefined,
     "weight": 5,
   },
-  Object {
+  {
     "allocation": "0.156250000000000000",
     "denom": "gamm/pool/606",
     "name": "ATOM/HUAHUA",
@@ -96,7 +96,7 @@ Array [
     "value": undefined,
     "weight": 5,
   },
-  Object {
+  {
     "allocation": "0.062500000000000000",
     "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
     "name": "LUNC",
@@ -105,7 +105,7 @@ Array [
     "value": undefined,
     "weight": 2,
   },
-  Object {
+  {
     "allocation": "0.312500000000000000",
     "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
     "name": "USTC",
@@ -118,8 +118,8 @@ Array [
 `;
 
 exports[`canonicalizeCoinWeights pools only 1`] = `
-Array [
-  Object {
+[
+  {
     "allocation": "0.333333333333333333",
     "denom": "gamm/pool/3",
     "name": "AKT/OSMO",
@@ -128,7 +128,7 @@ Array [
     "value": undefined,
     "weight": 5,
   },
-  Object {
+  {
     "allocation": "0.333333333333333333",
     "denom": "gamm/pool/1",
     "name": "ATOM/OSMO",
@@ -137,7 +137,7 @@ Array [
     "value": undefined,
     "weight": 5,
   },
-  Object {
+  {
     "allocation": "0.333333333333333333",
     "denom": "gamm/pool/600",
     "name": "ATOM/CMDX",
@@ -150,16 +150,16 @@ Array [
 `;
 
 exports[`pool allocations determines pool allocations 1`] = `
-Object {
-  "coins": Array [
-    Object {
+{
+  "coins": [
+    {
       "amount": "11575787.2587432883470000",
       "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
       "displayAmount": "11.575787258743288347",
       "symbol": "LUNC",
       "value": "797.687500000000000000",
     },
-    Object {
+    {
       "amount": "3988437500.0000000000000000",
       "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
       "displayAmount": "3988.437500000000000000",
@@ -167,18 +167,18 @@ Object {
       "value": "3988.437500000000000000",
     },
   ],
-  "pools": Array [
-    Object {
+  "pools": [
+    {
       "amount": "13816161769941071851647.602215900239793010",
-      "coins": Array [
-        Object {
+      "coins": [
+        {
           "amount": "550889157.4585635359120000",
           "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
           "displayAmount": "550.889157458563535912",
           "symbol": "AKT",
           "value": "997.109375000000000000",
         },
-        Object {
+        {
           "amount": "109572458.7912087912090000",
           "denom": "uosmo",
           "displayAmount": "109.572458791208791209",
@@ -191,17 +191,17 @@ Object {
       "name": "AKT/OSMO",
       "value": "1994.218750000000000000",
     },
-    Object {
+    {
       "amount": "1473715557491049709546.847706727444692291",
-      "coins": Array [
-        Object {
+      "coins": [
+        {
           "amount": "27221113.1586131586130000",
           "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
           "displayAmount": "27.221113158613158613",
           "symbol": "ATOM",
           "value": "997.109375000000000000",
         },
-        Object {
+        {
           "amount": "109572458.7912087912090000",
           "denom": "uosmo",
           "displayAmount": "109.572458791208791209",
@@ -214,17 +214,17 @@ Object {
       "name": "ATOM/OSMO",
       "value": "1994.218750000000000000",
     },
-    Object {
+    {
       "amount": "10079809779553769.930301553081206795",
-      "coins": Array [
-        Object {
+      "coins": [
+        {
           "amount": "27221113.1586131586130000",
           "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
           "displayAmount": "27.221113158613158613",
           "symbol": "ATOM",
           "value": "997.109375000000000000",
         },
-        Object {
+        {
           "amount": "241430841.4043583535110000",
           "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
           "displayAmount": "241.430841404358353511",
@@ -237,17 +237,17 @@ Object {
       "name": "ATOM/CMDX",
       "value": "1994.218750000000000000",
     },
-    Object {
+    {
       "amount": "128960399374509973835019.422045271364695955",
-      "coins": Array [
-        Object {
+      "coins": [
+        {
           "amount": "27221113.1586131586130000",
           "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
           "displayAmount": "27.221113158613158613",
           "symbol": "ATOM",
           "value": "997.109375000000000000",
         },
-        Object {
+        {
           "amount": "234516853020.8666528684590000",
           "denom": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
           "displayAmount": "234516.853020866652868459",
@@ -261,8 +261,8 @@ Object {
       "value": "1994.218750000000000000",
     },
   ],
-  "weights": Array [
-    Object {
+  "weights": [
+    {
       "allocation": "0.156250000000000000",
       "denom": "gamm/pool/3",
       "name": "AKT/OSMO",
@@ -271,7 +271,7 @@ Object {
       "value": "1994.218750000000000000",
       "weight": 5,
     },
-    Object {
+    {
       "allocation": "0.156250000000000000",
       "denom": "gamm/pool/1",
       "name": "ATOM/OSMO",
@@ -280,7 +280,7 @@ Object {
       "value": "1994.218750000000000000",
       "weight": 5,
     },
-    Object {
+    {
       "allocation": "0.156250000000000000",
       "denom": "gamm/pool/600",
       "name": "ATOM/CMDX",
@@ -289,7 +289,7 @@ Object {
       "value": "1994.218750000000000000",
       "weight": 5,
     },
-    Object {
+    {
       "allocation": "0.156250000000000000",
       "denom": "gamm/pool/606",
       "name": "ATOM/HUAHUA",
@@ -298,7 +298,7 @@ Object {
       "value": "1994.218750000000000000",
       "weight": 5,
     },
-    Object {
+    {
       "allocation": "0.062500000000000000",
       "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
       "name": "LUNC",
@@ -307,7 +307,7 @@ Object {
       "value": "797.687500000000000000",
       "weight": 2,
     },
-    Object {
+    {
       "allocation": "0.312500000000000000",
       "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
       "name": "USTC",
@@ -321,17 +321,17 @@ Object {
 `;
 
 exports[`pool allocations determines pool allocations 2`] = `
-Array [
-  Object {
+[
+  {
     "beliefValue": "797.687499999999996753",
-    "buy": Object {
+    "buy": {
       "amount": "11575787.2587432883000000",
       "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
       "displayAmount": "11.575787258743288300",
       "symbol": "LUNC",
       "value": "797.687499999999996753",
     },
-    "sell": Object {
+    "sell": {
       "amount": "21776890.5268905268020000",
       "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
       "displayAmount": "21.776890526890526802",
@@ -339,16 +339,16 @@ Array [
       "value": "797.687499999999996753",
     },
   },
-  Object {
+  {
     "beliefValue": "2865.312500000000003247",
-    "buy": Object {
+    "buy": {
       "amount": "2865312500.0000000032470000",
       "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
       "displayAmount": "2865.312500000000003247",
       "symbol": "USTC",
       "value": "2865.312500000000003247",
     },
-    "sell": Object {
+    "sell": {
       "amount": "78223109.4731094731980000",
       "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
       "displayAmount": "78.223109473109473198",
@@ -356,16 +356,16 @@ Array [
       "value": "2865.312500000000003247",
     },
   },
-  Object {
+  {
     "beliefValue": "1123.124999999999996753",
-    "buy": Object {
+    "buy": {
       "amount": "1123124999.9999999967530000",
       "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
       "displayAmount": "1123.124999999999996753",
       "symbol": "USTC",
       "value": "1123.124999999999996753",
     },
-    "sell": Object {
+    "sell": {
       "amount": "123420329.6703296699730000",
       "denom": "uosmo",
       "displayAmount": "123.420329670329669973",
@@ -377,19 +377,19 @@ Array [
 `;
 
 exports[`pool allocations pool trades 1`] = `
-Object {
+{
   "name": "AKT/OSMO",
-  "trades": Array [
-    Object {
+  "trades": [
+    {
       "beliefValue": "997.109374999999999979",
-      "buy": Object {
+      "buy": {
         "amount": "550889157.4585635359000000",
         "denom": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
         "displayAmount": "550.889157458563535900",
         "symbol": "AKT",
         "value": "997.109374999999999979",
       },
-      "sell": Object {
+      "sell": {
         "amount": "27221113.1586131586130000",
         "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
         "displayAmount": "27.221113158613158613",
@@ -402,26 +402,26 @@ Object {
 `;
 
 exports[`pool allocations pool trades 2`] = `
-Object {
+{
   "name": "ATOM/OSMO",
-  "trades": Array [],
+  "trades": [],
 }
 `;
 
 exports[`pool allocations pool trades 3`] = `
-Object {
+{
   "name": "ATOM/CMDX",
-  "trades": Array [
-    Object {
+  "trades": [
+    {
       "beliefValue": "997.109374999999999955",
-      "buy": Object {
+      "buy": {
         "amount": "241430841.4043583535000000",
         "denom": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
         "displayAmount": "241.430841404358353500",
         "symbol": "CMDX",
         "value": "997.109374999999999955",
       },
-      "sell": Object {
+      "sell": {
         "amount": "27221113.1586131586120000",
         "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
         "displayAmount": "27.221113158613158612",
@@ -434,19 +434,19 @@ Object {
 `;
 
 exports[`pool allocations pool trades 4`] = `
-Object {
+{
   "name": "ATOM/HUAHUA",
-  "trades": Array [
-    Object {
+  "trades": [
+    {
       "beliefValue": "997.109375000000000000",
-      "buy": Object {
+      "buy": {
         "amount": "234516853020.8666528684590000",
         "denom": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
         "displayAmount": "234516.853020866652868459",
         "symbol": "HUAHUA",
         "value": "997.109375000000000000",
       },
-      "sell": Object {
+      "sell": {
         "amount": "27221113.1586131586130000",
         "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
         "displayAmount": "27.221113158613158613",
