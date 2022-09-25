@@ -1157,7 +1157,7 @@
     pirates "^4.0.5"
     source-map-support "^0.5.16"
 
-"@babel/runtime@^7.11.2", "@babel/runtime@^7.18.3", "@babel/runtime@^7.18.9", "@babel/runtime@^7.19.0", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.11.2", "@babel/runtime@^7.18.9", "@babel/runtime@^7.19.0", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4":
   version "7.19.0"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.19.0.tgz#22b11c037b094d27a8a2504ea4dcff00f50e2259"
   integrity sha512-eR8Lo9hnDS7tqkO7NsV+mKvCmv5boaXFSZ70DnfhcgiEne8hv9oCEd36Klw74EtizEqLsy4YnW8UWwpBVolHZA==
@@ -1203,22 +1203,22 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@chain-registry/osmosis@0.10.0":
-  version "0.10.0"
-  resolved "https://registry.npmjs.org/@chain-registry/osmosis/-/osmosis-0.10.0.tgz#2b5ea39ba2ca53df7dcc621a2cf68de08f5f8584"
-  integrity sha512-wiqSA7su4uRSOCY0uG2n/turtWqnMC4tM8mr3/GLEjbMA9OGFpFxRk9all/1H3fiTXpmpqPApgWn/eIz/gh9Ug==
+"@chain-registry/osmosis@0.13.0":
+  version "0.13.0"
+  resolved "https://registry.npmjs.org/@chain-registry/osmosis/-/osmosis-0.13.0.tgz#069002ecde796c05aa1153b0b2d36ec344bc276f"
+  integrity sha512-I7v28rXKpyXhcoJGNpJiqpaHn+GRmgaMGabEnZMUWPadKqLOTw2g7f/noPZfI8Oqi+Mur8E/MX7k98rvH6vYfA==
   dependencies:
-    "@babel/runtime" "^7.18.3"
-    "@chain-registry/types" "^0.8.0"
+    "@babel/runtime" "^7.19.0"
+    "@chain-registry/types" "^0.11.0"
 
-"@chain-registry/types@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.npmjs.org/@chain-registry/types/-/types-0.8.0.tgz#7fc626be9c21bbf5087c4c11d24af22aecb324ee"
-  integrity sha512-rkQgSxbztvG7ow33XRP5kyjNS+WhE+Y+ZSup9iBVoIBxwgy9s9AtdcnIgGvhG+jvFnoz5THoKYya9Vd5jCNCJw==
+"@chain-registry/types@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.npmjs.org/@chain-registry/types/-/types-0.11.0.tgz#86e7241f30812e3651d173379fd4edc22bb3ac2c"
+  integrity sha512-VtsJ+/iM4Iwj4hiDB5SK6scenonONTyLTRuuUVZOERU7U0+WwaKb9H0br0ZKiralCQJKhwDTdJfxGSdYsAy70Q==
   dependencies:
-    "@babel/runtime" "^7.18.3"
-    "@keplr-wallet/cosmos" "^0.10.3"
-    "@keplr-wallet/crypto" "^0.10.11"
+    "@babel/runtime" "^7.19.0"
+    "@keplr-wallet/cosmos" "^0.10.24"
+    "@keplr-wallet/crypto" "^0.10.24"
 
 "@confio/ics23@^0.6.8":
   version "0.6.8"
@@ -2105,7 +2105,7 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@keplr-wallet/cosmos@^0.10.3":
+"@keplr-wallet/cosmos@^0.10.24":
   version "0.10.24"
   resolved "https://registry.npmjs.org/@keplr-wallet/cosmos/-/cosmos-0.10.24.tgz#1dbaaa65158b4a9614996813c04c35afb38c840e"
   integrity sha512-fKaHoto4+AYL/HKR3ieZYMwYXlN8yTuQuIghAxDXHHaW8r+G2qrt7U1bLZR9E8e9/YxaxzBjiL2Xpd0WNdkjrQ==
@@ -2122,7 +2122,7 @@
     long "^4.0.0"
     protobufjs "^6.11.2"
 
-"@keplr-wallet/crypto@0.10.24", "@keplr-wallet/crypto@^0.10.11":
+"@keplr-wallet/crypto@0.10.24", "@keplr-wallet/crypto@^0.10.24":
   version "0.10.24"
   resolved "https://registry.npmjs.org/@keplr-wallet/crypto/-/crypto-0.10.24.tgz#9beba4aee83652e604b4edb6cdf2357d20d4a213"
   integrity sha512-NBXOrX+qeVa4Pqr+g5VIswtPz3cIBlF869pIX98F9AN1xLWkSwqysNLWNPgCQaQGqtqrA1izagW3oGmePSpRPQ==
@@ -2154,12 +2154,32 @@
     long "^4.0.0"
     secretjs "^0.17.0"
 
+"@keplr-wallet/types@0.11.4":
+  version "0.11.4"
+  resolved "https://registry.npmjs.org/@keplr-wallet/types/-/types-0.11.4.tgz#d00c937a1b3e514b4ab014d24c4db33fb79c8186"
+  integrity sha512-VMjpskLqSzIBTl9rgoUo221lI2S5WZlWXW33qDUc/mx/y43d2edRmwUXyEwGzjFxtIbFcsVXoioNWEfXpyHqkQ==
+  dependencies:
+    "@cosmjs/launchpad" "^0.24.0-alpha.25"
+    "@cosmjs/proto-signing" "^0.24.0-alpha.25"
+    axios "^0.27.2"
+    long "^4.0.0"
+    secretjs "0.17.7"
+
 "@keplr-wallet/unit@0.10.24":
   version "0.10.24"
   resolved "https://registry.npmjs.org/@keplr-wallet/unit/-/unit-0.10.24.tgz#770109a46743c0fe16f9aaca930ad4b455d7f07b"
   integrity sha512-8wDLpBUc/yQ6pWJOotk8V4OlxjPqU8V1OJgzYSQDF4FD9/BjRGifXY1LkYp2QhaJ7c6vKhw8v773SgmBq5w5vg==
   dependencies:
     "@keplr-wallet/types" "0.10.24"
+    big-integer "^1.6.48"
+    utility-types "^3.10.0"
+
+"@keplr-wallet/unit@0.11.4":
+  version "0.11.4"
+  resolved "https://registry.npmjs.org/@keplr-wallet/unit/-/unit-0.11.4.tgz#a899e65ed4aa40a751a088a2412579ceab287871"
+  integrity sha512-YQ3CQUL+bTa3zANPnKcMX9XnIMmcFUipEKGodiIwBBIvkaRGP4pqTzTyd4SLm+O+IdkX08fj7wFymBJt944i7g==
+  dependencies:
+    "@keplr-wallet/types" "0.11.4"
     big-integer "^1.6.48"
     utility-types "^3.10.0"
 
@@ -3043,10 +3063,10 @@
   dependencies:
     "@octokit/openapi-types" "^12.11.0"
 
-"@osmonauts/helpers@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.npmjs.org/@osmonauts/helpers/-/helpers-0.5.0.tgz#afc4c3d43e991af5bbd48a5274ea6b501dc7ef48"
-  integrity sha512-GMr7DSLs8z97Ql4fO1Z/MP3tqIdmFLcaE4rJMzP7pbdLvf8f3IzRj6hYhfrAxrR/dYIJKabxhrJ9OuE36Jnrpg==
+"@osmonauts/helpers@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.npmjs.org/@osmonauts/helpers/-/helpers-0.6.0.tgz#86324110ba1ec76637836ef6ec12ce263e1a7a97"
+  integrity sha512-l62tWR/0W4R+5wRvMeRK0zlaJ8WZhULKsQAZ7kNzggL0pbndIAV+0BJ/jEBbNletoeGtuV8rpi6Wo+w+RmtZGw==
   dependencies:
     "@babel/runtime" "^7.18.9"
     "@cosmjs/amino" "0.28.13"
@@ -3057,10 +3077,10 @@
     long "^5.2.0"
     protobufjs "^6.11.3"
 
-"@osmonauts/lcd@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.npmjs.org/@osmonauts/lcd/-/lcd-0.5.0.tgz#a5a2fba15458ddd933c5cdfa9f34068c10216734"
-  integrity sha512-RDyAinstXDXbls4sd1ESInAWMtdbSeCh6IEcE1INczY+7dy8qr8e3BE4y8Tqu+EOgVux662y1zTj6ieBiEMu6Q==
+"@osmonauts/lcd@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.npmjs.org/@osmonauts/lcd/-/lcd-0.6.0.tgz#9545b793b77b4a175e6dc733341940fe192c6655"
+  integrity sha512-vz9VavXrEfxZoXbSAfNfk90MLpn34XtBYPV3L9YilE+s56AhqYxUh83nne9J5somnTRfGnyR3oeV8C+lHkqiuA==
   dependencies:
     "@babel/runtime" "^7.18.9"
     axios "0.27.2"
@@ -3934,13 +3954,13 @@ caseless@~0.12.0:
   resolved "https://registry.npmjs.org/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==
 
-chain-registry@0.11.0:
-  version "0.11.0"
-  resolved "https://registry.npmjs.org/chain-registry/-/chain-registry-0.11.0.tgz#fe42de9db905551d5725d0e5f63c5d9d69f076ea"
-  integrity sha512-T3uhnfvU+stR8Dmno6s0rx3Kh9TYl29URjR1kqs4TH3dhM9XmN/5sMnHRXBfljkGVewqwHgbhXiFa1LM8SQNiQ==
+chain-registry@0.14.0:
+  version "0.14.0"
+  resolved "https://registry.npmjs.org/chain-registry/-/chain-registry-0.14.0.tgz#2672ee375a098f1d1f32aa352f79e77ec6b9c62c"
+  integrity sha512-7nsE0pkdUEuLWxVsLiLTvwrnGFH8ju8aB3y6c/SXZszwsRIQ4umZ2to9KNQHjvVVc2KkiX0//HkZjh+vUxTsOw==
   dependencies:
-    "@babel/runtime" "^7.18.3"
-    "@chain-registry/types" "^0.8.0"
+    "@babel/runtime" "^7.19.0"
+    "@chain-registry/types" "^0.11.0"
 
 chalk@^1.0.0, chalk@^1.1.3:
   version "1.1.3"
@@ -7396,18 +7416,18 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-osmojs@0.18.1:
-  version "0.18.1"
-  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.18.1.tgz#791c6298a75c9fbaa384fecc9a2971c12787a169"
-  integrity sha512-l7FI1iFJ61spQbvTaPQTBL+0EBQ2AzCxsZcrSeSo+hf/JSPpO3DQoIc+ygjJjoFaIEQQpMybqzBpPVtceXuG+w==
+osmojs@0.23.0:
+  version "0.23.0"
+  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.23.0.tgz#5fcb485146a9aa0cf10feeb6a0eb4a49dc205bac"
+  integrity sha512-n/8DImpZOEmeON9WzuqZgVP/sYvpn5xufFnKKC3xYxFmqvfeOmxjHeDFmKhb/J4VHQuaGxDclo7bVRiGxg3xGw==
   dependencies:
     "@babel/runtime" "^7.19.0"
     "@cosmjs/amino" "0.29.0"
     "@cosmjs/proto-signing" "0.29.0"
     "@cosmjs/stargate" "0.29.0"
     "@cosmjs/tendermint-rpc" "^0.29.0"
-    "@osmonauts/helpers" "^0.5.0"
-    "@osmonauts/lcd" "^0.5.0"
+    "@osmonauts/helpers" "^0.6.0"
+    "@osmonauts/lcd" "^0.6.0"
     long "^5.2.0"
     protobufjs "^6.11.3"
 
@@ -8242,7 +8262,7 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-secretjs@^0.17.0:
+secretjs@0.17.7, secretjs@^0.17.0:
   version "0.17.7"
   resolved "https://registry.npmjs.org/secretjs/-/secretjs-0.17.7.tgz#a1aef5866a35cf673be9ddd717d20729afd056ac"
   integrity sha512-j39l9+vR2A8067QBqDDejS7LmRLgdkG4uRw2Ar6HMfzDGo26eTh7cIXVlVu/yHBumxtQzKun20epOXwuYHXjQg==
