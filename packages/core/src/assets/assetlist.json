@@ -1440,8 +1440,7 @@
         "source_denom": "uusdt"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axlusdt.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axlusdt.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/uusdt L@3x.png"
       },
       "coingecko_id": "tether"
     },
@@ -1469,8 +1468,7 @@
         "source_denom": "uusdc"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axlusdc.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axlusdc.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/uausdc L@3x.png"
       },
       "coingecko_id": "usd-coin"
     },
@@ -1498,8 +1496,7 @@
         "source_denom": "frax-wei"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axlfrax.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axlfrax.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/frax-wei L@3x.png"
       },
       "coingecko_id": "frax"
     },
@@ -1527,8 +1524,7 @@
         "source_denom": "dai-wei"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axldai.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axldai.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/dai-wei L@3x.png"
       },
       "coingecko_id": "dai"
     },
@@ -1556,7 +1552,7 @@
         "source_denom": "weth-wei"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axlweth.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/weth-wei L@3x.png"
       },
       "coingecko_id": "weth"
     },
@@ -1584,7 +1580,7 @@
         "source_denom": "wbtc-satoshi"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axlwbtc.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/wbtc-satoshi L@3x.png"
       },
       "coingecko_id": "wrapped-bitcoin"
     },
@@ -1669,8 +1665,7 @@
         "source_denom": "gravity0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gusdc.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gusdc.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gusdc.png"
       },
       "coingecko_id": "usd-coin"
     },
@@ -1698,8 +1693,7 @@
         "source_denom": "gravity0x6B175474E89094C44Da98b954EedeAC495271d0F"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gdai.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gdai.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gdai.png"
       },
       "coingecko_id": "dai"
     },
@@ -2388,8 +2382,7 @@
         "source_denom": "link-wei"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axllink.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axllink.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/link-wei L@3x.png"
       },
       "coingecko_id": "chainlink"
     },
@@ -2417,7 +2410,7 @@
         "source_denom": "aave-wei"
       },
       "logo_URIs": {
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/aave.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/aave-wei L@3x.png"
       },
       "coingecko_id": "aave"
     },
@@ -2445,7 +2438,7 @@
         "source_denom": "ape-wei"
       },
       "logo_URIs": {
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/ape.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/ape-wei L@3x.png"
       },
       "coingecko_id": "apecoin"
     },
@@ -2473,7 +2466,7 @@
         "source_denom": "axs-wei"
       },
       "logo_URIs": {
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/axs.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/axs-wei L@3x.png"
       },
       "coingecko_id": "axie-infinity"
     },
@@ -2501,8 +2494,7 @@
         "source_denom": "mkr-wei"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axlmkr.png",
-	"svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axlmkr.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/mkr-wei L@3x.png"
       },
       "coingecko_id": "maker"
     },
@@ -2530,7 +2522,7 @@
         "source_denom": "rai-wei"
       },
       "logo_URIs": {
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/rai.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/rai-wei L@3x.png"
       },
       "coingecko_id": "rai"
     },
@@ -2558,7 +2550,7 @@
         "source_denom": "shib-wei"
       },
       "logo_URIs": {
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/shib.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/shib-wei L@3x.png"
       },
       "coingecko_id": "shiba-inu"
     },
@@ -2586,7 +2578,7 @@
         "source_denom": "uni-wei"
       },
       "logo_URIs": {
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/uni.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/uni-wei L@3x.png"
       },
       "coingecko_id": "uniswap"
     },
@@ -2614,7 +2606,7 @@
         "source_denom": "xcn-wei"
       },
       "logo_URIs": {
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/xcn.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/xcn-wei L@3x.png"
       },
       "coingecko_id": "chain-2"
     },
@@ -2677,8 +2669,7 @@
         "source_denom": "wglmr-wei"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/moonbeam/images/glmr.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/moonbeam/images/glmr.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/wdev-wei.png"
       },
       "coingecko_id": "wrapped-moonbeam"
     },
@@ -2709,8 +2700,7 @@
         "source_denom": "dot-planck"
       },
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axldot.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axldot.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/dot-planck L@3x.png"
       },
       "coingecko_id": "polkadot"
     },
@@ -2959,7 +2949,7 @@
       "base": "ibc/C6B6BFCB6EE49A7CAB1A7E7B021DE35B99D525AC660844952F0F6C78DCB2A57B",
       "name": "StakeEasy seJUNO",
       "display": "sejuno",
-      "symbol": "SEJUNO",
+      "symbol": "seJUNO",
       "ibc": {
         "source_channel": "channel-47",
         "dst_channel": "channel-169",
@@ -2988,7 +2978,7 @@
       "base": "ibc/C2DF5C3949CA835B221C575625991F09BAB4E48FB9C11A4EE357194F736111E3",
       "name": "StakeEasy bJUNO",
       "display": "bjuno",
-      "symbol": "BJUNO",
+      "symbol": "bJUNO",
       "ibc": {
         "source_channel": "channel-47",
         "dst_channel": "channel-169",
@@ -3026,12 +3016,12 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/strd.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/strd.svg"
       },
-      "coingecko_id": ""
+      "coingecko_id": "stride"
     },
     {
+      "description": "Staking derivative stATOM for staked ATOM by Stride",
       "denom_units": [
         {
-          "description": "Staking derivative stATOM for staked ATOM by Stride",
           "denom": "ibc/C140AFD542AE77BD7DCC83F13FDD8C5E5BB8C4929785E6EC2F4C636F98F17901",
           "exponent": 0,
           "aliases": ["stuatom"]
@@ -3042,7 +3032,7 @@
         }
       ],
       "base": "ibc/C140AFD542AE77BD7DCC83F13FDD8C5E5BB8C4929785E6EC2F4C636F98F17901",
-      "name": "stATOM",
+      "name": "Stride Staked Atom",
       "display": "statom",
       "symbol": "stATOM",
       "ibc": {
@@ -3055,6 +3045,92 @@
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/statom.svg"
       },
       "coingecko_id": "stride-staked-atom"
+    },
+    {
+      "description": "StakeEasy governance token",
+      "type_asset": "cw20",
+      "address": "juno19rqljkh95gh40s7qdx40ksx3zq5tm4qsmsrdz9smw668x9zdr3lqtg33mf",
+      "denom_units": [
+        {
+          "denom": "ibc/18A676A074F73B9B42DA4F9DFC8E5AEF334C9A6636DDEC8D34682F52F1DECDF6",
+          "exponent": 0,
+          "aliases": ["cw20:juno19rqljkh95gh40s7qdx40ksx3zq5tm4qsmsrdz9smw668x9zdr3lqtg33mf"]
+        },
+        {
+          "denom": "seasy",
+          "exponent": 6
+        }
+      ],
+      "base": "ibc/18A676A074F73B9B42DA4F9DFC8E5AEF334C9A6636DDEC8D34682F52F1DECDF6",
+      "name": "StakeEasy SEASY",
+      "display": "seasy",
+      "symbol": "SEASY",
+      "ibc": {
+        "source_channel": "channel-47",
+        "dst_channel": "channel-169",
+        "source_denom": "cw20:juno19rqljkh95gh40s7qdx40ksx3zq5tm4qsmsrdz9smw668x9zdr3lqtg33mf"
+      },
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/seasy.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/seasy.svg"
+      }
+    },
+    {
+      "description": "Staking derivative stSTARS for staked STARS by Stride",
+      "denom_units": [
+        {
+          "denom": "ibc/5DD1F95ED336014D00CE2520977EC71566D282F9749170ADC83A392E0EA7426A",
+          "exponent": 0,
+          "aliases": ["stustars"]
+        },
+        {
+          "denom": "ststars",
+          "exponent": 6
+        }
+      ],
+      "base": "ibc/5DD1F95ED336014D00CE2520977EC71566D282F9749170ADC83A392E0EA7426A",
+      "name": "Stride Staked Stars",
+      "display": "ststars",
+      "symbol": "stSTARS",
+      "ibc": {
+        "source_channel": "channel-5",
+        "dst_channel": "channel-326",
+        "source_denom": "stustars"
+      },
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/ststars.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/ststars.svg"
+      }    
+    },
+    {
+      "description": "The native staking and governance token of the Axelar chain",
+      "denom_units": [
+        {
+          "denom": "ibc/903A61A498756EA560B85A85132D3AEE21B5DEDD41213725D22ABF276EA6945E",
+          "exponent": 0,
+          "aliases": [
+            "uaxl"
+          ]
+        },
+        {
+          "denom": "axl",
+          "exponent": 6
+        }
+      ],
+      "base": "ibc/903A61A498756EA560B85A85132D3AEE21B5DEDD41213725D22ABF276EA6945E",
+      "name": "Axelar",
+      "display": "axl",
+      "symbol": "AXL",
+      "logo_URIs": {
+      	"png": "https://raw.githubusercontent.com/axelarnetwork/axelar-docs/main/public/images/assets/axl.png",
+        "svg": "https://raw.githubusercontent.com/axelarnetwork/axelar-docs/main/public/images/assets/axl.svg"
+      },
+      "ibc": {
+        "source_channel": "channel-3",
+        "dst_channel": "channel-208",
+        "source_denom": "uaxl"
+      },
+      "coingecko_id": "axelar"
     }
   ]
 }

@@ -78,7 +78,7 @@
     "@keplr-wallet/types": "0.11.4",
     "@keplr-wallet/unit": "0.11.4",
     "axios": "0.27.2",
-    "chain-registry": "0.14.0",
+    "chain-registry": "1.0.0",
     "class-autobind": "^0.1.4",
     "cosmjs-types": "0.5.1",
     "crypto-js": "4.1.1",
