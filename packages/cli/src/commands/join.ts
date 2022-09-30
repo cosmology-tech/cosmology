@@ -4,7 +4,6 @@ import {
   printOsmoTransactionResponse,
   promptMnemonic,
   promptChain,
-  promptRestEndpoint,
   promptRpcEndpoint
 } from '../utils';
 import {
@@ -106,7 +105,7 @@ export default async (argv) => {
   );
 
   const poolResponse = await client.osmosis.gamm.v1beta1.pool({
-    poolId
+    poolId: Long.fromValue(poolId)
   });
 
   const pool = osmosis.gamm.v1beta1.Pool.decode(poolResponse.pool.value);
