@@ -64,9 +64,6 @@ export default async (argv) => {
     argv['liquidity-limit']
   );
 
-  console.log(JSON.stringify(poolListValues, null, 2));
-  return;
-
   const [account] = await signer.getAccounts();
   const { address } = account;
 
