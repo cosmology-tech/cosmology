@@ -71,6 +71,7 @@ export default async (argv) => {
     address
   });
 
+
   const display = accountBalances.balances
     .map(({ denom, amount }) => {
       if (denom.startsWith('gamm')) return;
