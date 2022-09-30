@@ -3,7 +3,6 @@ import {
   promptChain,
   promptMnemonic,
   printTransactionResponse,
-  promptRestEndpoint,
   promptRpcEndpoint
 } from '../utils';
 import {
@@ -41,9 +40,8 @@ export default async (argv) => {
     argv
   );
 
-  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
-
-  const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
+  const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
+  const client = await cosmos.ClientFactory.createRPCQueryClient({ rpcEndpoint })
 
   // check re-stake (w display or base?)
   const denom = getCosmosAssetInfo(argv.chainToken).assets.find(
@@ -52,7 +50,6 @@ export default async (argv) => {
   if (!denom) throw new Error('cannot find asset base unit');
 
   const signer = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain });
-  const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
   const stargateClient = await getSigningCosmosClient({
     rpcEndpoint,
     signer
@@ -67,9 +64,14 @@ export default async (argv) => {
   })
 
   const validators = [];
-  if (delegations.delegation_responses && delegations.delegation_responses.length) {
-    const vals = delegations.delegation_responses.map(
-      (val) => val.delegation.validator_address
+
+  // NOTE: API is camel for RPC
+  // if (delegations.delegation_responses && delegations.delegation_responses.length) {
+  if (delegations.delegationResponses && delegations.delegationResponses.length) {
+    const vals = delegations.delegationResponses.map(
+      // NOTE: API is camel for RPC
+      // (val) => val.delegation.validator_address
+      (val) => val.delegation.validatorAddress
     );
     for (let v = 0; v < vals.length; v++) {
       const info = await client.cosmos.staking.v1beta1.validator({

@@ -8,7 +8,6 @@ import {
   promptChain,
   promptMnemonic,
   printTransactionResponse,
-  promptRestEndpoint,
   promptRpcEndpoint
 } from '../utils';
 import {
@@ -37,8 +36,8 @@ export default async (argv) => {
     argv
   );
 
-  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
-  const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
+  const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
+  const client = await cosmos.ClientFactory.createRPCQueryClient({ rpcEndpoint });
 
   // check re-stake (w display or base?)
   const denom = getCosmosAssetInfo(argv.chainToken).assets.find(
@@ -47,7 +46,6 @@ export default async (argv) => {
   if (!denom) throw new Error('cannot find asset base unit');
 
   const signer = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain });
-  const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
   const stargateClient = await getSigningCosmosClient({
     rpcEndpoint,
     signer
@@ -61,9 +59,18 @@ export default async (argv) => {
     delegatorAddr: address
   })
 
-  if (!delegations.delegation_responses || !delegations.delegation_responses.length) {
+  console.log(delegations);
+
+  // NOTE: API is camel for RPC
+  if (!delegations.delegationResponses || !delegations.delegationResponses.length) {
     console.log('no delegations. Exiting.');
+    return;
   }
+
+  // if (!delegations.delegation_responses || !delegations.delegation_responses.length) {
+  //   console.log('no delegations. Exiting.');
+  //   return;
+  // }
 
   const messagesToClaim = [];
   let totalClaimable = new Dec(0);
@@ -72,26 +79,30 @@ export default async (argv) => {
     delegatorAddress: address
   });
 
-
   if (rewards && rewards.rewards && rewards.rewards.length) {
     rewards.rewards.forEach((data) => {
-      const { validator_address, reward } = data;
+
+      // const { validator_address, reward } = data;
+      // NOTE: API is camel for RPC
+      const { validatorAddress, reward } = data;
 
       if (reward && reward.length) {
         // question for later: why does reward array have other coins like ATOM in it? (for OSMO).
         const rewardWeWant = reward.find((r) => r.denom === denom);
         if (!rewardWeWant) return;
 
-        const value = baseUnitsToDisplayUnitsByDenom(
-          rewardWeWant.denom,
-          rewardWeWant.amount
-        );
-        totalClaimable = totalClaimable.add(new Dec(value));
+        // const value = baseUnitsToDisplayUnitsByDenom(
+        //   rewardWeWant.denom.trim(),
+        //   rewardWeWant.amount + ''
+        // );
+        // console.log('rewardWeWant.denom, rewardWeWant.amount, value', rewardWeWant.denom, rewardWeWant.amount, value);
+        // totalClaimable = totalClaimable.add(new Dec(value));
+        totalClaimable = totalClaimable.add(new Dec(rewardWeWant.amount));
 
         messagesToClaim.push(
           withdrawDelegatorReward({
             delegatorAddress: address,
-            validatorAddress: validator_address
+            validatorAddress
           })
         );
       }
@@ -119,7 +130,7 @@ export default async (argv) => {
   }
   if (totalClaimable.gte(new Dec(minAmount))) {
     console.log(
-      `${totalClaimable} ${argv.chainToken} available, starting claim process...`
+      `${totalClaimable} ${denom} available, starting claim process...`
     );
 
     const result = await signAndBroadcast({
@@ -134,7 +145,7 @@ export default async (argv) => {
     assertIsDeliverTxSuccess(result);
     stargateClient.disconnect();
     console.log(
-      `⚛️  success in claiming ${totalClaimable.toString()} ${argv.chainToken
+      `⚛️  success in claiming ${totalClaimable.toString()} ${denom
       } rewards`
     );
     printTransactionResponse(result, chain);
