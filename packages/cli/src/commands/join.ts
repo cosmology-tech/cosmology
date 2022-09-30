@@ -30,19 +30,22 @@ export default async (argv) => {
 
   const { mnemonic } = await promptMnemonic(argv);
   const chain = await promptChain(argv);
-  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
   // END PROMPTS
 
-  const client = await osmosis.ClientFactory.createLCDClient({ restEndpoint });
+  const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
   const signer = await getOfflineSignerAmino({ mnemonic, chain });
+
+  const rpcPools = await client.osmosis.gamm.v1beta1.pools();
+  const rawPools = rpcPools.pools.map(({ value }) => {
+    return osmosis.gamm.v1beta1.Pool.decode(value);
+  });
 
   const [account] = await signer.getAccounts();
   const { address } = account;
   const prices = await getPricesFromCoinGecko();
-  const lcdPools = await client.osmosis.gamm.v1beta1.pools()
 
-  const prettyPools = makePoolsPretty(prices, lcdPools.pools);
+  const prettyPools = makePoolsPretty(prices, rawPools);
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
   const poolListValues = makePoolsPrettyValues(
     prettyPools,
@@ -93,10 +96,13 @@ export default async (argv) => {
     argv
   );
 
-  const pool = await client.osmosis.gamm.v1beta1.pool({
+  const poolResponse = await client.osmosis.gamm.v1beta1.pool({
     poolId
-  })
-  const poolInfo = prettyPool(pool.pool, { includeDetails: false });
+  });
+
+  const pool = osmosis.gamm.v1beta1.Pool.decode(poolResponse.pool.value);
+
+  const poolInfo = prettyPool(pool, { includeDetails: false });
   let coinsNeeded;
   if (!max) {
     coinsNeeded = calculateCoinsNeededInPoolForValue(prices, poolInfo, value);

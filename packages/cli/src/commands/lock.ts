@@ -3,7 +3,6 @@ import {
   prompt,
   promptChain,
   promptMnemonic,
-  promptRestEndpoint,
   promptRpcEndpoint,
 } from '../utils';
 
@@ -19,11 +18,10 @@ export default async (argv) => {
 
   const { mnemonic } = await promptMnemonic(argv);
   const chain = await promptChain(argv);
-  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
   // END PROMPTS
 
-  const client = await osmosis.ClientFactory.createLCDClient({ restEndpoint });
+  const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
   const signer = await getOfflineSignerAmino({ mnemonic, chain });
 
   const [account] = await signer.getAccounts();

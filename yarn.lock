@@ -7292,10 +7292,10 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-osmojs@0.23.0:
-  version "0.23.0"
-  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.23.0.tgz#5fcb485146a9aa0cf10feeb6a0eb4a49dc205bac"
-  integrity sha512-n/8DImpZOEmeON9WzuqZgVP/sYvpn5xufFnKKC3xYxFmqvfeOmxjHeDFmKhb/J4VHQuaGxDclo7bVRiGxg3xGw==
+osmojs@0.24.0:
+  version "0.24.0"
+  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.24.0.tgz#dae86771034c036076a796d2758399e6a4f99f29"
+  integrity sha512-wzbVLKwP6kCUdGjote1/Zf15wBI6w+NB0dwVHuuwQXFbZ/Sl7Mcd2LetfS26bAlkJyEPkOc1ww6ju848APcnzA==
   dependencies:
     "@babel/runtime" "^7.19.0"
     "@cosmjs/amino" "0.29.0"
