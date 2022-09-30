@@ -24,13 +24,14 @@ import {
   signAndBroadcast
 } from '@cosmology/core';
 import { Dec } from '@keplr-wallet/unit';
+import Long from 'long';
+
+import { FEES, osmosis, getSigningOsmosisClient } from 'osmojs';
+import { getOfflineSignerAmino } from 'cosmjs-utils';
 
 const {
   swapExactAmountIn
 } = osmosis.gamm.v1beta1.MessageComposer.withTypeUrl;
-
-import { FEES, osmosis, getSigningOsmosisClient } from 'osmojs';
-import { getOfflineSignerAmino } from 'cosmjs-utils';
 
 export default async (argv) => {
   argv.chainToken = 'OSMO';
@@ -42,7 +43,15 @@ export default async (argv) => {
   const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
   const signer = await getOfflineSignerAmino({ mnemonic, chain });
 
-  const rpcPools = await client.osmosis.gamm.v1beta1.pools();
+  const rpcPools = await client.osmosis.gamm.v1beta1.pools({
+    pagination: {
+      key: new Uint8Array(),
+      offset: Long.fromNumber(0),
+      limit: Long.fromNumber(1500),
+      countTotal: false,
+      reverse: false
+    }
+  });
   const rawPools = rpcPools.pools.map(({ value }) => {
     return osmosis.gamm.v1beta1.Pool.decode(value);
   });
@@ -54,6 +63,9 @@ export default async (argv) => {
     prettyPools,
     argv['liquidity-limit']
   );
+
+  console.log(JSON.stringify(poolListValues, null, 2));
+  return;
 
   const [account] = await signer.getAccounts();
   const { address } = account;
