@@ -13,7 +13,6 @@ export default async (argv) => {
   argv.chainToken = 'OSMO';
 
   argv = await promptMnemonic(argv);
-  const { mnemonic } = await promptMnemonic(argv);
   const chain = await promptChain(argv);
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
 
