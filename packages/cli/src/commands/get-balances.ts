@@ -4,7 +4,7 @@ import {
   baseUnitsToDisplayUnits,
   baseUnitsToDollarValue
 } from '@cosmology/core';
-import { promptChain, promptMnemonic, promptRestEndpoint } from '../utils';
+import { promptChain, promptMnemonic, promptRpcEndpoint } from '../utils';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 import { getOfflineSignerAmino } from 'cosmjs-utils';
 import { osmosis } from 'osmojs';
@@ -13,9 +13,11 @@ export default async (argv) => {
   argv.chainToken = 'OSMO';
 
   argv = await promptMnemonic(argv);
+  const { mnemonic } = await promptMnemonic(argv);
   const chain = await promptChain(argv);
-  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
-  const client = await osmosis.ClientFactory.createLCDClient({ restEndpoint });
+  const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
+
+  const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
   const signer = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain });
   const [account] = await signer.getAccounts();
 
