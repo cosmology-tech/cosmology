@@ -6,6 +6,7 @@
   "homepage": "https://github.com/cosmology-tech/cosmology/tree/master/packages/cosmology#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "main/index.js",
+  "module": "module/index.d.ts",
   "typings": "types/index.d.ts",
   "bin": {
     "cosmology": "main/cosmology.js"
@@ -17,6 +18,7 @@
   "files": [
     "types",
     "src",
+    "module",
     "main"
   ],
   "publishConfig": {
@@ -27,9 +29,11 @@
     "url": "https://github.com/cosmology-tech/cosmology"
   },
   "scripts": {
-    "build": "cross-env BABEL_ENV=production babel src --out-dir main --delete-dir-on-start --extensions \".tsx,.ts,.js\"",
+    "build:main": "cross-env BABEL_ENV=production babel src --out-dir main --delete-dir-on-start --extensions \".tsx,.ts,.js\"",
+    "build:module": "cross-env MODULE=true babel src --out-dir module --delete-dir-on-start  --extensions \".tsx,.ts,.js\"",
     "build:commands": "cross-env NODE_ENV=development node ./bin/build.js",
     "build:ts": "tsc --project ./tsconfig.json",
+    "build": "npm run build:module && npm run build:main",
     "buidl": "npm run build && npm run build:ts",
     "prepare": "npm run build",
     "lint": "eslint src --fix",
