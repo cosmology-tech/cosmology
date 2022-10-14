@@ -13,8 +13,8 @@ export declare const getKeychainAccount: () => string;
 export declare const promptMnemonic: (argv?: {}) => Promise<any>;
 export declare const promptRpcEndpoint: (choices: string[], argv: any) => Promise<any>;
 export declare const promptRestEndpoint: (choices: string[], argv: any) => Promise<any>;
-export declare const promptChain: (argv: any) => Promise<any>;
-export declare const promptChainIdAndChain: (argv: any) => Promise<any>;
+export declare const promptChain: (argv: any) => Promise<import("@chain-registry/types").Chain>;
+export declare const promptChainIdAndChain: (argv: any) => Promise<import("@chain-registry/types").Chain>;
 export declare const getPools: (validator: any, argv: any) => Promise<{
     name: any;
     value: string;
