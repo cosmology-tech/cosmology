@@ -5,10 +5,12 @@ import {
   printSwap,
   printSwapForPoolAllocation,
   printOsmoTransactionResponse,
-  promptOsmoRestClient
+  promptRpcEndpoint,
+  promptMnemonic,
+  promptChain,
+  getPoolsDecoded
 } from '../utils';
 import {
-  OsmosisApiClient,
   baseUnitsToDisplayUnits,
   convertWeightsIntoCoins,
   osmoDenomToSymbol,
@@ -29,6 +31,9 @@ import {
 } from '@cosmology/core';
 import { FEES, osmosis } from 'osmojs';
 import { Dec } from '@keplr-wallet/unit';
+import { getOfflineSignerAmino } from 'cosmjs-utils';
+import Long from 'long';
+
 
 const {
   swapExactAmountIn,
@@ -40,26 +45,37 @@ const {
 } = osmosis.lockup.MessageComposer.withTypeUrl;
 
 const osmoChainConfig = chains.find((el) => el.chain_name === 'osmosis');
-const rpcEndpoint = osmoChainConfig.apis.rpc[0].address;
 const sleep = (milliseconds) =>
   new Promise((resolve) => setTimeout(resolve, milliseconds));
 
 export default async (argv) => {
-  const api = new OsmosisApiClient();
+
+  argv.chainToken = 'OSMO';
+
+  const { mnemonic } = await promptMnemonic(argv);
+  const chain = await promptChain(argv);
+  const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
+
+  const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
+  const signer = await getOfflineSignerAmino({ mnemonic, chain });
+
+  const rawPools = await getPoolsDecoded(osmosis, client);
   const prices = await getPricesFromCoinGecko();
-  const lcdPools = await api.getPools();
-  const prettyPools = makePoolsPretty(prices, lcdPools.pools);
+  const prettyPools = makePoolsPretty(prices, rawPools);
+
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
   const poolListValues = makePoolsPrettyValues(
     prettyPools,
     argv['liquidity-limit']
   );
 
-  const { client, signer } = await promptOsmoRestClient(argv);
   const [account] = await signer.getAccounts();
   const address = account.address;
-  const accountBalances = await client.getBalances(account.address);
-  const display = accountBalances.result
+  const accountBalances = await client.cosmos.bank.v1beta1.allBalances({
+    address
+  });
+
+  const display = accountBalances.balances
     .map(({ denom, amount }) => {
       if (denom.startsWith('gamm')) return;
       const symbol = osmoDenomToSymbol(denom);
@@ -67,16 +83,26 @@ export default async (argv) => {
         console.log('WARNING: cannot find ' + denom);
         return;
       }
-      const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
-      if (new Dec(displayAmount).lte(new Dec(0.0001))) return;
-      return {
-        symbol,
-        denom,
-        amount,
-        displayAmount
-      };
+      try {
+        const displayAmount = baseUnitsToDisplayUnits(symbol, amount);
+        if (new Dec(displayAmount).lte(new Dec(0.0001))) return;
+        return {
+          symbol,
+          denom,
+          amount,
+          displayAmount
+        };
+      } catch (e) {
+        return {
+          symbol,
+          denom,
+          amount,
+          displayAmount: amount
+        }
+      }
     })
     .filter(Boolean);
+
 
   // GET THE COINS THAT THE USER IS WILLING TO PART WITH
 
@@ -171,8 +197,7 @@ export default async (argv) => {
 
   // get pricing and pools info...
   const pairs = makePoolPairs(prettyPools);
-  const pools = lcdPools.pools.map((pool) => prettyPool(pool));
-
+  const pools = rawPools.map((pool) => prettyPool(pool));
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
 
   // pools
@@ -259,7 +284,7 @@ export default async (argv) => {
 
     const res = await signAndBroadcast({
       client: stargateClient,
-      chainId: osmoChainConfig.chain_id,
+      chainId: chain.chain_id,
       address: osmoAddress,
       msg,
       fee,
@@ -272,9 +297,11 @@ export default async (argv) => {
 
     // get balances again for gamm
     await sleep(3000);
-    const newBalances = await client.getBalances(account.address);
+    const newBalances = await client.cosmos.bank.v1beta1.allBalances({
+      address
+    });
 
-    const gammTokens = newBalances.result
+    const gammTokens = newBalances.balances
       .filter((a) => a.denom.startsWith('gamm'))
       .map((obj) => {
         return {
@@ -299,7 +326,7 @@ export default async (argv) => {
 
     const lockRes = await signAndBroadcast({
       client: stargateClient,
-      chainId: osmoChainConfig.chain_id,
+      chainId: chain.chain_id,
       address: osmoAddress,
       msg: lockMsg,
       fee: lockFee,

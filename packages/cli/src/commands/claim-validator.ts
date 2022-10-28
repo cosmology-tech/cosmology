@@ -8,7 +8,6 @@ import {
   promptChain,
   promptMnemonic,
   printTransactionResponse,
-  promptRestEndpoint,
   promptRpcEndpoint,
   getFuzzySearch,
   getFuzzySearchNames
@@ -28,16 +27,16 @@ const {
 export default async (argv) => {
   argv = await promptMnemonic(argv);
   const chain = await promptChain(argv);
-  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
-  const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
 
   const denom = getCosmosAssetInfo(argv.chainToken).assets.find(
     (a) => a.symbol === argv.chainToken
   ).base;
   if (!denom) throw new Error('cannot find asset base unit');
 
-  const signer = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain });
+  const { mnemonic } = await promptMnemonic(argv);
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
+  const client = await cosmos.ClientFactory.createRPCQueryClient({ rpcEndpoint });
+  const signer = await getOfflineSignerAmino({ mnemonic, chain });
   const stargateClient = await getSigningCosmosClient({
     rpcEndpoint,
     signer
@@ -48,9 +47,10 @@ export default async (argv) => {
   const { address } = mainAccount;
 
   const data = await client.cosmos.staking.v1beta1.validators({
-    // The validator bond status. Must be either 'bonded', 'unbonded', or 'unbonding'.
-    // status: 'bonded'
-    status: 'BOND_STATUS_BONDED'
+    // status: 'BOND_STATUS_BONDED'
+    status: cosmos.staking.v1beta1.bondStatusToJSON(
+      cosmos.staking.v1beta1.BondStatus.BOND_STATUS_BONDED
+    )
   })
 
   const validators = data.validators.filter(validator => {
@@ -61,7 +61,7 @@ export default async (argv) => {
   const choices = validators.map(validator => {
     return {
       name: validator.description.moniker,
-      value: validator.operator_address
+      value: validator.operatorAddress
     }
   });
 
