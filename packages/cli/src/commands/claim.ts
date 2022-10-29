@@ -1,7 +1,6 @@
 import {
   baseUnitsToDisplayUnitsByDenom,
   gasEstimation,
-  getCosmosAssetInfo,
 } from '@cosmology/core';
 import {
   prompt,
@@ -11,12 +10,13 @@ import {
   promptRpcEndpoint
 } from '../utils';
 import {
+  decodeCosmosSdkDecFromProto,
   assertIsDeliverTxSuccess
 } from '@cosmjs/stargate';
 import { Dec } from '@keplr-wallet/unit';
 import { cosmos, getSigningCosmosClient } from 'osmojs';
 import { signAndBroadcast, getOfflineSignerAmino } from 'cosmjs-utils';
-
+import { assets } from 'chain-registry'
 const {
   withdrawDelegatorReward
 } = cosmos.distribution.v1beta1.MessageComposer.fromPartial;
@@ -39,11 +39,12 @@ export default async (argv) => {
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
   const client = await cosmos.ClientFactory.createRPCQueryClient({ rpcEndpoint });
 
-  // check re-stake (w display or base?)
-  const denom = getCosmosAssetInfo(argv.chainToken).assets.find(
-    (a) => a.symbol === argv.chainToken
-  ).base;
-  if (!denom) throw new Error('cannot find asset base unit');
+  const assetList = assets.find((a) => !!a.assets.find((i) => i.symbol === argv.chainToken));
+  const assetInfo = assetList.assets.find(a => a.symbol === argv.chainToken);
+
+  if (!assetInfo) throw new Error('cannot find asset base unit');
+
+  const denom = assetInfo.base;
 
   const signer = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain });
   const stargateClient = await getSigningCosmosClient({
@@ -57,9 +58,7 @@ export default async (argv) => {
 
   const delegations = await client.cosmos.staking.v1beta1.delegatorDelegations({
     delegatorAddr: address
-  })
-
-  console.log(delegations);
+  });
 
   // NOTE: API is camel for RPC
   if (!delegations.delegationResponses || !delegations.delegationResponses.length) {
@@ -90,15 +89,8 @@ export default async (argv) => {
         // question for later: why does reward array have other coins like ATOM in it? (for OSMO).
         const rewardWeWant = reward.find((r) => r.denom === denom);
         if (!rewardWeWant) return;
-
-        // const value = baseUnitsToDisplayUnitsByDenom(
-        //   rewardWeWant.denom.trim(),
-        //   rewardWeWant.amount + ''
-        // );
-        // console.log('rewardWeWant.denom, rewardWeWant.amount, value', rewardWeWant.denom, rewardWeWant.amount, value);
-        // totalClaimable = totalClaimable.add(new Dec(value));
-        totalClaimable = totalClaimable.add(new Dec(rewardWeWant.amount));
-
+        // https://github.com/osmosis-labs/telescope/issues/247
+        totalClaimable = totalClaimable.add(new Dec(decodeCosmosSdkDecFromProto(rewardWeWant.amount).toString()));
         messagesToClaim.push(
           withdrawDelegatorReward({
             delegatorAddress: address,
@@ -128,9 +120,17 @@ export default async (argv) => {
     console.log(JSON.stringify(fee, null, 2));
     return;
   }
-  if (totalClaimable.gte(new Dec(minAmount))) {
+
+
+  const totalClaimableInDisplayUnits = new Dec(baseUnitsToDisplayUnitsByDenom(
+    denom,
+    totalClaimable.toString()
+  ));
+
+  if (totalClaimableInDisplayUnits.gte(new Dec(minAmount))) {
+
     console.log(
-      `${totalClaimable} ${denom} available, starting claim process...`
+      `${totalClaimableInDisplayUnits} ${assetInfo.symbol} available, starting claim process...`
     );
 
     const result = await signAndBroadcast({
@@ -145,14 +145,14 @@ export default async (argv) => {
     assertIsDeliverTxSuccess(result);
     stargateClient.disconnect();
     console.log(
-      `⚛️  success in claiming ${totalClaimable.toString()} ${denom
+      `⚛️  success in claiming ${totalClaimableInDisplayUnits.toString()} ${assetInfo.symbol
       } rewards`
     );
     printTransactionResponse(result, chain);
 
   } else {
     console.log(
-      `${minAmount} not available (${totalClaimable.toString()} < minAmount)`
+      `minAmount not available (${totalClaimableInDisplayUnits.toString()} < ${minAmount})`
     );
   }
 };
