@@ -85,7 +85,8 @@ export default async (argv) => {
       break;
   }
 
-  const coins = [gammTokens.find((gamm) => gamm.poolId === poolId)].map(
+  // don't use ===, instead use == for string or num...
+  const coins = [gammTokens.find((gamm) => gamm.poolId == poolId)].map(
     ({ denom, amount }) => ({ amount, denom })
   );
 
