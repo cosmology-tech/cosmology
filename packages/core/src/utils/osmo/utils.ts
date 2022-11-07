@@ -1032,15 +1032,10 @@ export const getSellableBalanceTelescopeVersion = async ({ client, address, sell
     .filter(Boolean);
 };
 
-
-
-
 export const makeLcdPoolPretty = (
   prices: PriceHash,
   pool: LcdPool
 ): PrettyPool => {
-
-  let unsupported = false;
 
   const tokens = pool.poolAssets.map(asset => {
     const denom: CoinDenom = asset.token.denom;
@@ -1048,11 +1043,14 @@ export const makeLcdPoolPretty = (
     const symbol: CoinSymbol = osmoDenomToSymbol(denom) || denom;
     const price = prices[asset.token.denom] || 0;
     if (!price && !prices.hasOwnProperty(asset.token.denom)) {
-      // console.log(denom + ' not supported!');
-      unsupported = true;
       return null;
     }
-    const value = baseUnitsToDollarValueByDenom(prices, denom, amount);
+    let value;
+    try {
+      value = baseUnitsToDollarValueByDenom(prices, denom, amount);
+    } catch (e) {
+      value = '0.0'
+    }
     return {
       price,
       weight: asset.weight,
@@ -1062,9 +1060,7 @@ export const makeLcdPoolPretty = (
       ratio: new Dec(asset.weight).quo(new Dec(pool.totalWeight)).toString(),
       value
     };
-  });
-
-  if (unsupported) return null;
+  }).filter(Boolean);
 
   const liquidity = tokens.reduce((m, v) => {
     return m.add(new Dec(v.value))
