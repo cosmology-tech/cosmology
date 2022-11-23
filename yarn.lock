@@ -3697,10 +3697,10 @@ caseless@~0.12.0:
   resolved "https://registry.npmjs.org/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==
 
-chain-registry@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.npmjs.org/chain-registry/-/chain-registry-1.3.1.tgz#21f252909506cb8b341e5a79ea511f74c5d9619a"
-  integrity sha512-/3rHkZiO4Q0Sah6gtYiIpPn4PCCat+eZDkbDkgtK6g4dzcUeZFcZXfsO6YhmGDfc5HSMC63CWUNjkLD2AG78Kw==
+chain-registry@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/chain-registry/-/chain-registry-1.5.0.tgz#ba6996f8346c5b8644f91a5d5528cf0608077242"
+  integrity sha512-moCAZfKxIS/qNw04FMpoZjVzcYbi7LAvZpkkkqXJX5+G1ecFH8vQXr7vI5bimw/tk8JOEoMUaD23Vm1LiWf2mg==
   dependencies:
     "@babel/runtime" "^7.19.4"
     "@chain-registry/types" "^0.13.1"
@@ -7114,10 +7114,10 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-osmojs@0.36.0:
-  version "0.36.0"
-  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.36.0.tgz#cae601b820057a32c850bc5218c0b5c4eb408af4"
-  integrity sha512-VKRMi1j7S3g1MmI9AurtioR3XOb9LSkhSRnfFs29CYKdIWx2QK8GIhkR8q1b80bJQvgpKnphcDKGPJGTedTuXA==
+osmojs@0.37.0:
+  version "0.37.0"
+  resolved "https://registry.npmjs.org/osmojs/-/osmojs-0.37.0.tgz#c5c1e332e6e5e165b59447d1a519a9cdc19f0780"
+  integrity sha512-Xc+JbdrA2hRXNMkP4Ib8pCSJUA50L/CuEjn75rZFYJcQwVs7MvbDG2qwSwDzwMbF3BRt+E9r5kLL1YnutgOLXA==
   dependencies:
     "@babel/runtime" "^7.19.0"
     "@cosmjs/amino" "0.29.3"
