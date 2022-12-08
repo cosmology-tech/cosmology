@@ -4,7 +4,8 @@ import {
   printOsmoTransactionResponse,
   promptMnemonic,
   promptChain,
-  promptRpcEndpoint
+  promptRpcEndpoint,
+  getPoolsDecoded
 } from '../utils';
 import {
   calculateShareOutAmount,
@@ -36,18 +37,7 @@ export default async (argv) => {
   const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
   const signer = await getOfflineSignerAmino({ mnemonic, chain });
 
-  const rpcPools = await client.osmosis.gamm.v1beta1.pools({
-    pagination: {
-      key: new Uint8Array(),
-      offset: Long.fromNumber(0),
-      limit: Long.fromNumber(1500),
-      countTotal: false,
-      reverse: false
-    }
-  });
-  const rawPools = rpcPools.pools.map(({ value }) => {
-    return osmosis.gamm.v1beta1.Pool.decode(value);
-  });
+  const rawPools = await getPoolsDecoded(osmosis, client);
 
   const [account] = await signer.getAccounts();
   const { address } = account;
