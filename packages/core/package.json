@@ -1,6 +1,6 @@
 {
   "name": "@cosmology/core",
-  "version": "1.14.0",
+  "version": "1.15.0-rc.0",
   "description": "cosmology",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/cosmology-tech/cosmology/tree/master/packages/core#readme",
