@@ -57,6 +57,11 @@ exports[`aminos 1`] = `
     "fromAmino": [Function],
     "toAmino": [Function],
   },
+  "/osmosis.lockup.MsgForceUnlock": {
+    "aminoType": "osmosis/lockup/force-unlock",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
   "/osmosis.lockup.MsgLockTokens": {
     "aminoType": "osmosis/lockup/lock-tokens",
     "fromAmino": [Function],
