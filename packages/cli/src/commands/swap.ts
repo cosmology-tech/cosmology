@@ -6,7 +6,8 @@ import {
   promptChain,
   promptRestEndpoint,
   promptRpcEndpoint,
-  promptMnemonic
+  promptMnemonic,
+  getPoolsDecoded
 } from '../utils';
 import {
   baseUnitsToDisplayUnits,
@@ -43,23 +44,23 @@ export default async (argv) => {
 
   const { mnemonic } = await promptMnemonic(argv);
   const chain = await promptChain(argv);
-  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
   // END PROMPTS
 
-  const client = await osmosis.ClientFactory.createLCDClient({ restEndpoint });
+  const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
   const signer = await getOfflineSignerAmino({ mnemonic, chain });
+
+  const rawPools = await getPoolsDecoded(osmosis, client);
   const prices = await getPricesFromCoinGecko();
-  const lcdPools = await client.osmosis.gamm.v1beta1.pools();
-  const prettyPools = makePoolsPretty(prices, lcdPools.pools);
+  const prettyPools = makePoolsPretty(prices, rawPools);
+
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
   const [account] = await signer.getAccounts();
   const { address } = account;
 
   const accountBalances = await client.cosmos.bank.v1beta1.allBalances({
     address: account.address
-  })
-
+  });
 
   const availableChoices = accountBalances.balances
     .map(({ denom, amount }) => {
@@ -149,7 +150,7 @@ export default async (argv) => {
 
   // get pricing and pools info...
   const pairs = makePoolPairs(prettyPools);
-  const pools = lcdPools.pools.map((pool) => prettyPool(pool));
+  const pools = rawPools.map((pool) => prettyPool(pool));
 
   const usdValue = baseUnitsToDollarValue(prices, sell, tokenInBal.amount);
 
