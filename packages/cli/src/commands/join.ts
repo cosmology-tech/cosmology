@@ -5,7 +5,6 @@ import {
   promptMnemonic,
   promptChain,
   promptRpcEndpoint,
-  getPoolsDecoded
 } from '../utils';
 import {
   calculateShareOutAmount,
@@ -15,7 +14,8 @@ import {
   makePoolsPrettyValues,
   signAndBroadcast,
   getPricesFromCoinGecko,
-  prettyPool
+  prettyPool,
+  getBalancerPools
 } from '@cosmology/core';
 
 import { FEES, osmosis, getSigningOsmosisClient } from 'osmojs';
@@ -37,13 +37,12 @@ export default async (argv) => {
   const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
   const signer = await getOfflineSignerAmino({ mnemonic, chain });
 
-  const rawPools = await getPoolsDecoded(osmosis, client);
-
+  const pools = await getBalancerPools(client);
   const [account] = await signer.getAccounts();
   const { address } = account;
   const prices = await getPricesFromCoinGecko();
 
-  const prettyPools = makePoolsPretty(prices, rawPools);
+  const prettyPools = makePoolsPretty(prices, pools);
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
   const poolListValues = makePoolsPrettyValues(
     prettyPools,

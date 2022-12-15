@@ -1105,33 +1105,3 @@ export const makePoolsPretty = (
     .map((pool) => makeLcdPoolPretty(prices, pool))
     .filter(Boolean);
 };
-
-
-export const makePoolPairs = (
-  pools: PrettyPool[],
-  liquidityLimit = 100_000
-): PrettyPair[] => {
-  return pools
-    .filter(Boolean)
-    .filter(pool => new Dec(pool.liquidity).gte(new Dec(liquidityLimit)))
-
-    .filter(pool => pool.tokens.length === 2) // only pairs
-    .map((pool) => {
-
-      const assetA = pool.tokens[0];
-      const assetAinfo = getOsmoAssetByDenom(assetA.denom);
-      const assetB = pool.tokens[1];
-      const assetBinfo = getOsmoAssetByDenom(assetB.denom);
-
-      return {
-        ...pool,
-        pool_address: pool.address,
-        base_name: assetAinfo.display,
-        base_symbol: assetAinfo.symbol,
-        base_address: assetAinfo.base,
-        quote_name: assetBinfo.display,
-        quote_symbol: assetBinfo.symbol,
-        quote_address: assetBinfo.base
-      }
-    })
-};

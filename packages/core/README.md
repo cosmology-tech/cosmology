@@ -92,24 +92,24 @@ For swaps, you'll need a `TradeRoute` for it to work:
 ```js
 import { 
   lookupRoutesForTrade,
-  prettyPool,
-  OsmosisApiClient,
+  getPoolsPricesPairs,
   calculateAmountWithSlippage
 } from '@cosmology/core';
 
-import {
-  osmosis
-} from 'osmojs';
+import { osmosis } from 'osmojs';
 
 const {
   swapExactAmountIn
 } = osmosis.gamm.v1beta1.MessageComposer.withTypeUrl;
 
-const api = new OsmosisApiClient({
-  url: restEndpoint
-});
-const lcdPools = await api.getPools();
-const pools = lcdPools.pools.map((pool) => prettyPool(pool));
+const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
+
+const {
+  pools,
+  prices,
+  pairs,
+  prettyPools
+} = await getPoolsPricesPairs(client);
 
 const routes = lookupRoutesForTrade({
   pools,

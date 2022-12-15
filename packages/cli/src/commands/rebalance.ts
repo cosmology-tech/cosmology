@@ -5,27 +5,22 @@ import {
   printOsmoTransactionResponse,
   promptMnemonic,
   promptChain,
-  promptRpcEndpoint,
-  getPoolsDecoded
+  promptRpcEndpoint
 } from '../utils';
 import {
   baseUnitsToDisplayUnits,
   calculateAmountWithSlippage,
   convertWeightsIntoCoins,
-  getPricesFromCoinGecko,
   getSellableBalanceTelescopeVersion,
   getSwaps,
   getTradesRequiredToGetBalances,
-  makePoolPairs,
-  makePoolsPretty,
   makePoolsPrettyValues,
   noDecimals,
   osmoDenomToSymbol,
-  prettyPool,
-  signAndBroadcast
+  signAndBroadcast,
+  getPoolsPricesPairs
 } from '@cosmology/core';
 import { Dec } from '@keplr-wallet/unit';
-import Long from 'long';
 
 import { FEES, osmosis, getSigningOsmosisClient } from 'osmojs';
 import { getOfflineSignerAmino } from 'cosmjs-utils';
@@ -44,10 +39,13 @@ export default async (argv) => {
   const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
   const signer = await getOfflineSignerAmino({ mnemonic, chain });
 
-  const rawPools = await getPoolsDecoded(osmosis, client);
+  const {
+    pools,
+    prices,
+    pairs,
+    prettyPools
+  } = await getPoolsPricesPairs(client);
 
-  const prices = await getPricesFromCoinGecko();
-  const prettyPools = makePoolsPretty(prices, rawPools);
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
   const poolListValues = makePoolsPrettyValues(
     prettyPools,
@@ -60,7 +58,6 @@ export default async (argv) => {
   const accountBalances = await client.cosmos.bank.v1beta1.allBalances({
     address
   });
-
 
   const display = accountBalances.balances
     .map(({ denom, amount }) => {
@@ -189,9 +186,6 @@ export default async (argv) => {
     })
   ];
 
-  // get pricing and pools info...
-  const pairs = makePoolPairs(prettyPools);
-  const pools = rawPools.map((pool) => prettyPool(pool));
   const result = convertWeightsIntoCoins({ weights, pools, prices, balances });
 
   // pools
