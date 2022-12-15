@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/cosmology-tech/cosmology/compare/cosmology@2.14.0...cosmology@2.15.0) (2022-12-15)
+
+**Note:** Version bump only for package cosmology
+
+
+
+
+
 # [2.14.0](https://github.com/cosmology-tech/cosmology/compare/cosmology@2.13.0...cosmology@2.14.0) (2022-12-12)
 
 **Note:** Version bump only for package cosmology
