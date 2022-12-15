@@ -4,10 +4,8 @@ import {
   printOsmoTransactionResponse,
   prompt,
   promptChain,
-  promptRestEndpoint,
   promptRpcEndpoint,
-  promptMnemonic,
-  getPoolsDecoded
+  promptMnemonic
 } from '../utils';
 import {
   baseUnitsToDisplayUnits,
@@ -16,13 +14,10 @@ import {
   getPrice,
   lookupRoutesForTrade,
   calculateAmountWithSlippage,
-  makePoolPairs,
-  makePoolsPretty,
   osmoDenomToSymbol,
   symbolToOsmoDenom,
-  prettyPool,
   noDecimals,
-  getPricesFromCoinGecko
+  getPoolsPricesPairs
 } from '@cosmology/core';
 import { Dec } from '@keplr-wallet/unit';
 
@@ -50,9 +45,11 @@ export default async (argv) => {
   const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
   const signer = await getOfflineSignerAmino({ mnemonic, chain });
 
-  const rawPools = await getPoolsDecoded(osmosis, client);
-  const prices = await getPricesFromCoinGecko();
-  const prettyPools = makePoolsPretty(prices, rawPools);
+  const {
+    pools,
+    prices,
+    pairs
+  } = await getPoolsPricesPairs(client);
 
   if (!argv['liquidity-limit']) argv['liquidity-limit'] = 100_000;
   const [account] = await signer.getAccounts();
@@ -148,10 +145,6 @@ export default async (argv) => {
     return osmoDenomToSymbol(denom) == sell;
   });
 
-  // get pricing and pools info...
-  const pairs = makePoolPairs(prettyPools);
-  const pools = rawPools.map((pool) => prettyPool(pool));
-
   const usdValue = baseUnitsToDollarValue(prices, sell, tokenInBal.amount);
 
   // stub
@@ -161,7 +154,8 @@ export default async (argv) => {
       {
         type: 'number',
         name: 'value',
-        message: `how much ${sell} to sell in USD? $USD (${usdValue})`
+        message: `how much ${sell} to sell in USD? $USD (${usdValue})`,
+        default: usdValue
       }
     ],
     argv

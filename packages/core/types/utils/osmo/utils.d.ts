@@ -138,4 +138,3 @@ export declare const getSellableBalanceTelescopeVersion: ({ client, address, sel
 export declare const makeLcdPoolPretty: (prices: PriceHash, pool: LcdPool) => PrettyPool;
 export declare const makePoolsPrettyValues: (pools: PrettyPool[], liquidityLimit?: number) => PromptValue[];
 export declare const makePoolsPretty: (prices: PriceHash, pools: LcdPool[]) => PrettyPool[];
-export declare const makePoolPairs: (pools: PrettyPool[], liquidityLimit?: number) => PrettyPair[];
