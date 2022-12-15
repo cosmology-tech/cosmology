@@ -96,17 +96,13 @@ import {
   calculateAmountWithSlippage
 } from '@cosmology/core';
 
-import {
-  osmosis
-} from 'osmojs';
+import { osmosis } from 'osmojs';
 
 const {
   swapExactAmountIn
 } = osmosis.gamm.v1beta1.MessageComposer.withTypeUrl;
 
 const client = await osmosis.ClientFactory.createRPCQueryClient({ rpcEndpoint });
-
-
 
 const {
   pools,
