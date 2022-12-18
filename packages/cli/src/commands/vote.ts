@@ -3,7 +3,6 @@ import {
   printTransactionResponse,
   promptChain,
   promptMnemonic,
-  promptRestEndpoint,
   promptRpcEndpoint
 } from '../utils';
 import {
@@ -13,6 +12,7 @@ import {
 } from '@cosmology/core';
 
 import { cosmos, getSigningCosmosClient } from 'osmojs'
+import Long from 'long';
 
 const {
   vote: createVoteMsg
@@ -21,18 +21,18 @@ const {
 export default async (argv) => {
   argv = await promptMnemonic(argv);
   const chain = await promptChain(argv);
-  const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
 
-  const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
+  const client = await cosmos.ClientFactory.createRPCQueryClient({ rpcEndpoint });
   const proposalReponse = await client.cosmos.gov.v1beta1.proposals({
-    proposalStatus: 2 // PROPOSAL_STATUS_VOTING_PERIOD
+    proposalStatus: cosmos.gov.v1beta1.ProposalStatus.PROPOSAL_STATUS_VOTING_PERIOD,
+    depositor: "",
+    voter: ""
   });
-
   const propIds = proposalReponse.proposals.map(prop => {
     return {
-      name: `(${prop.proposal_id}) ${prop.content.title}`,
-      value: prop.proposal_id
+      name: `(${prop.proposalId}) ${prop.content.title}`,
+      value: prop.proposalId.toString()
     }
   });
   const { proposalId } = await prompt(
@@ -99,8 +99,8 @@ export default async (argv) => {
 
   voteMessages.push(createVoteMsg({
     voter: address,
-    proposalId,
-    option: vote
+    proposalId: Long.fromValue(proposalId),
+    option: vote,
   }));
 
   const fee = await gasEstimation(

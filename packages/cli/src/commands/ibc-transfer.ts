@@ -69,7 +69,6 @@ export default async (argv) => {
     }
 
     const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
-    const restEndpoint = await promptRestEndpoint(chain.apis.rest.map((e) => e.address), argv);
 
     const signer = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain });
     const signer2 = await getOfflineSignerAmino({ mnemonic: argv.mnemonic, chain: chain2 });
@@ -81,7 +80,7 @@ export default async (argv) => {
         rpcEndpoint,
         signer
     });
-    const client = await cosmos.ClientFactory.createLCDClient({ restEndpoint });
+    const client = await cosmos.ClientFactory.createRPCQueryClient({ rpcEndpoint });
     const accountBalances = await client.cosmos.bank.v1beta1.allBalances({
         address
     })
@@ -200,6 +199,7 @@ export default async (argv) => {
         sender: account.address,
         receiver: toAccount.address,
         timeoutHeight: undefined,
+        // timeoutHeight: {}, // previously worked
         // timeoutHeight: {
         //     revisionNumber: "1",
         //     revisionHeight: "3670610"

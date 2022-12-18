@@ -45,19 +45,9 @@ export const getPoolsDecoded = async (client) => {
             reverse: false
         }
     });
-    const rawPools = rpcPools.pools.map((data) => {
-        switch (data.typeUrl) {
-            case '/osmosis.gamm.poolmodels.stableswap.v1beta1.Pool':
-                // return osmosis.gamm.poolmodels.stableswap.v1beta1.Pool.decode(data.value);
-                // we need to fix `makeLcdPoolPretty()` and other calc's
-                return null;
-            case '/osmosis.gamm.v1beta1.Pool':
-                return osmosis.gamm.v1beta1.Pool.decode(data.value);
-            default:
-                throw new Error('unknown pool type')
-        }
-    }).filter(Boolean)
-
+    const rawPools = rpcPools.pools.filter((pool) =>
+        pool.$typeUrl === '/osmosis.gamm.v1beta1.Pool'
+    );
     return rawPools;
 };
 

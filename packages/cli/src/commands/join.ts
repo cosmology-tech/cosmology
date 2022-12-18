@@ -97,7 +97,7 @@ export default async (argv) => {
     poolId: Long.fromValue(poolId)
   });
 
-  const pool = osmosis.gamm.v1beta1.Pool.decode(poolResponse.pool.value);
+  const pool = poolResponse.pool
 
   const poolInfo = prettyPool(pool, { includeDetails: false });
   let coinsNeeded;

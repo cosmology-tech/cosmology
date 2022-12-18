@@ -5,7 +5,7 @@ import {
   promptMnemonic,
   promptRpcEndpoint,
 } from '../utils';
-
+import Long from 'long';
 import { signAndBroadcast, getOfflineSignerAmino } from 'cosmjs-utils';
 import { FEES, osmosis, getSigningOsmosisClient } from 'osmojs';
 
@@ -94,7 +94,10 @@ export default async (argv) => {
   const msg = lockTokens({
     owner: account.address,
     coins,
-    duration
+    duration: {
+      nanos: 0,
+      seconds: Long.fromValue(duration)
+    }
   });
 
   if (argv.verbose) {
