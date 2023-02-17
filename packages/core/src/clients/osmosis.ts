@@ -1,9 +1,14 @@
-import { assets } from "../assets";
-import { CosmosApiClient } from "./cosmos";
-import autobind from "class-autobind";
-import { Dec } from "@keplr-wallet/unit";
+import { assets } from '../assets';
+import { CosmosApiClient } from './cosmos';
+import autobind from 'class-autobind';
+import { Dec } from '@keplr-wallet/unit';
 
-import { LcdPool, Pool, PoolDisplay, PoolPretty } from "../types";
+import {
+  LcdPool,
+  Pool,
+  PoolDisplay,
+  PoolPretty
+} from '../types'
 
 const assetHashMap = assets.reduce((m, asset) => {
   m[asset.base] = asset;
@@ -19,15 +24,15 @@ export interface PoolsResponse {
 }
 
 export class OsmosisApiClient extends CosmosApiClient {
-  constructor({ url = "https://osmosis.stakesystems.io/" } = {}) {
+  constructor({ url = 'https://osmosis.stakesystems.io/' } = {}) {
     super({ url });
-    this._clientType = "Osmosis API";
+    this._clientType = 'Osmosis API';
     autobind(this); // React ES6 doesn't bind this -> meaning we get 'unable to read property 'request' of undefined
   }
 
   async getPools(): Promise<PoolsResponse> {
     const endpoint = `osmosis/gamm/v1beta1/pools?pagination.limit=2000`;
-    return await this.request(endpoint, { "Cache-Control": "max-age=60" });
+    return await this.request(endpoint, { 'Cache-Control': 'max-age=60' });
   }
 
   async getPool(poolId) {
@@ -105,10 +110,7 @@ export class OsmosisApiClient extends CosmosApiClient {
   }
 }
 
-export const prettyPool = (
-  pool: LcdPool | Pool | PoolDisplay,
-  { includeDetails = false } = {}
-): PoolPretty => {
+export const prettyPool = (pool: LcdPool | Pool | PoolDisplay, { includeDetails = false } = {}): PoolPretty => {
   const totalWeight = new Dec(pool.totalWeight);
   const tokens = pool.poolAssets.map(({ token, weight }) => {
     const asset = assetHashMap?.[token.denom];
@@ -120,7 +122,7 @@ export const prettyPool = (
       denom: token.denom,
       amount: token.amount,
       ratio,
-      info: undefined,
+      info: undefined
     };
     if (includeDetails) {
       obj.info = asset;
@@ -128,8 +130,8 @@ export const prettyPool = (
     return obj;
   });
   const value = {
-    nickname: tokens.map((t) => t.symbol).join("/"),
-    images: undefined,
+    nickname: tokens.map((t) => t.symbol).join('/'),
+    images: undefined
   };
   if (includeDetails) {
     value.images = tokens
@@ -138,7 +140,7 @@ export const prettyPool = (
         if (imgs) {
           return {
             token: t.symbol,
-            images: imgs,
+            images: imgs
           };
         }
       })
@@ -147,6 +149,6 @@ export const prettyPool = (
   return {
     ...value,
     ...pool,
-    poolAssetsPretty: tokens,
+    poolAssetsPretty: tokens
   };
 };
