@@ -32,7 +32,7 @@ export class OsmosisApiClient extends CosmosApiClient {
 
   async getPools(): Promise<PoolsResponse> {
     const endpoint = `osmosis/gamm/v1beta1/pools?pagination.limit=2000`;
-    return await this.request(endpoint);
+    return await this.request(endpoint, { 'Cache-Control': 'max-age=60' });
   }
 
   async getPool(poolId) {
