@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/cosmology-tech/cosmology/compare/@cosmology/core@1.17.0...@cosmology/core@1.18.0) (2023-02-22)
+
+
+### Features
+
+* add cache-control 60s header to getPools query ([4f86e1c](https://github.com/cosmology-tech/cosmology/commit/4f86e1c7007d2fba1fc01c9fa394ba8d34ac1d48))
+
+
+
+
+
 # [1.17.0](https://github.com/cosmology-tech/cosmology/compare/@cosmology/core@1.16.1...@cosmology/core@1.17.0) (2023-02-16)
 
 
