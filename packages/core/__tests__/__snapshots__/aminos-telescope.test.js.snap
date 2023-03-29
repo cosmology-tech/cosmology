@@ -87,8 +87,18 @@ exports[`aminos 1`] = `
     "fromAmino": [Function],
     "toAmino": [Function],
   },
+  "/osmosis.superfluid.MsgSuperfluidUndelegateAndUnbondLock": {
+    "aminoType": "osmosis/superfluid-undelegate-and-unbond-lock",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
   "/osmosis.superfluid.MsgUnPoolWhitelistedPool": {
     "aminoType": "osmosis/unpool-whitelisted-pool",
+    "fromAmino": [Function],
+    "toAmino": [Function],
+  },
+  "/osmosis.superfluid.MsgUnlockAndMigrateSharesToFullRangeConcentratedPosition": {
+    "aminoType": "osmosis/unlock-and-migrate-shares-to-full-range-concentrated-position",
     "fromAmino": [Function],
     "toAmino": [Function],
   },
