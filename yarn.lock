@@ -1309,10 +1309,10 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@chain-registry/osmosis@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.npmjs.org/@chain-registry/osmosis/-/osmosis-1.6.0.tgz#2a8e85a2edba4e47af6741cb46e602c53c646f76"
-  integrity sha512-EZBKmCVlEryvxvAaj21gCVocbscGJuEcdJxM/zVPEDUpbzEVT7ZK/pmr+yGjKqXvYIoKSXtL6NqK2QpZdKDkiQ==
+"@chain-registry/osmosis@1.11.0":
+  version "1.11.0"
+  resolved "https://registry.npmjs.org/@chain-registry/osmosis/-/osmosis-1.11.0.tgz#db33e56d91ce6bac509409130be1adfa2bcf7a47"
+  integrity sha512-tvA1VYZ70AYrxcdNLIfcpb6/+agBdy1qWA0h9qkoy6rQSFh3PIGSk/wuwUO7MUSiCY5hgCk0B2+FFWHDmd+41A==
   dependencies:
     "@babel/runtime" "^7.19.4"
     "@chain-registry/types" "^0.14.0"
@@ -3813,10 +3813,10 @@ caseless@~0.12.0:
   resolved "https://registry.npmjs.org/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==
 
-chain-registry@1.6.0:
-  version "1.6.0"
-  resolved "https://registry.npmjs.org/chain-registry/-/chain-registry-1.6.0.tgz#2f26ea2af66f0c48ff6716f00d3ea4c7e881560a"
-  integrity sha512-1eZpMNoYwiwH8xmhfcAaa5wbY1bKdEQtUJrjUdWcBZvpwUPJTSAZ8UbCvuA/NP4Mwcrkko5kFcgqWDcxG2+w3w==
+chain-registry@1.10.0:
+  version "1.10.0"
+  resolved "https://registry.npmjs.org/chain-registry/-/chain-registry-1.10.0.tgz#b0afb3d0919fee40bafccea465ac19117ad9ed7c"
+  integrity sha512-JfdJufFq2F5tRpw1PMO32pv199xnZvwoSLKpW/wlbVOdpyLka7s4GwxgqYK+CPOdfCj5v6GiaGfWTq7slUemXg==
   dependencies:
     "@babel/runtime" "^7.19.4"
     "@chain-registry/types" "^0.14.0"
@@ -7230,10 +7230,10 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-osmojs@13.0.0-rc.0:
-  version "13.0.0-rc.0"
-  resolved "https://registry.npmjs.org/osmojs/-/osmojs-13.0.0-rc.0.tgz#318c083bbabe793a620955429fd961a68c4853aa"
-  integrity sha512-CucpaeowajwljzFgcBnf2LoHIy7+iN/DqFxAeSOFXBpuelny7FfGecBH8E2ZrDpA8LwdpKv99SX7R8jSWYHAaA==
+osmojs@15.0.2:
+  version "15.0.2"
+  resolved "https://registry.npmjs.org/osmojs/-/osmojs-15.0.2.tgz#b4212ceb4d659240d091a35d0c4d27214fabf654"
+  integrity sha512-C4CDdaSnne6h0Ty9dyHl5CINcJ2s5GXh2oVasGVA2+Fmlyp/IYC4iWpgnOFbwxU4YEjyPMtnY6rG+q60KVMRMQ==
   dependencies:
     "@babel/runtime" "^7.19.0"
     "@cosmjs/amino" "0.29.3"

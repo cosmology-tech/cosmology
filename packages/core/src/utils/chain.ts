@@ -206,7 +206,7 @@ export const baseUnitsToDisplayUnitsByDenom = (denom, amount) => {
 export const getChain = async ({ token }) => {
   const chainFromAssets = assets.find(({ assets }) => {
     const found = assets.find(({ symbol }) => symbol === token);
-    if (found) return true;
+    if (found && found.type_asset !== 'ics20') return true;
   });
   const chain = chains.find(
     ({ chain_name }) => chain_name == chainFromAssets.chain_name
