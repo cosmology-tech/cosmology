@@ -113,8 +113,6 @@ export default async (argv) => {
       }
       return bal;
     });
-    console.log(JSON.stringify({ maxBalances }, null, 2))
-    console.log(JSON.stringify({ balances }, null, 2))
     coinsNeeded = calculateMaxCoinsForPool(prices, poolInfo, maxBalances);
   }
 
