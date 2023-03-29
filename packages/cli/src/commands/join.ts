@@ -104,10 +104,21 @@ export default async (argv) => {
   if (!max) {
     coinsNeeded = calculateCoinsNeededInPoolForValue(prices, poolInfo, value);
   } else {
-    coinsNeeded = calculateMaxCoinsForPool(prices, poolInfo, balances);
+    const maxBalances = balances.map(bal => {
+      if (bal.denom === 'uosmo') {
+        return {
+          ...bal,
+          amount: String(Number(bal.amount) - 25000) // save 25000 for gas
+        }
+      }
+      return bal;
+    });
+    console.log(JSON.stringify({ maxBalances }, null, 2))
+    console.log(JSON.stringify({ balances }, null, 2))
+    coinsNeeded = calculateMaxCoinsForPool(prices, poolInfo, maxBalances);
   }
-  const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
 
+  const shareOutAmount = calculateShareOutAmount(poolInfo, coinsNeeded);
 
   const fee = FEES.osmosis.joinPool(argv.fee || 'low');
   const msg = joinPool({
