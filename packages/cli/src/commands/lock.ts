@@ -6,6 +6,7 @@ import {
   promptRpcEndpoint,
 } from '../utils';
 
+import { coins as aminoCoins } from '@cosmjs/amino';
 import { signAndBroadcast, getOfflineSignerAmino } from 'cosmjs-utils';
 import { FEES, osmosis, getSigningOsmosisClient } from 'osmojs';
 
@@ -90,7 +91,17 @@ export default async (argv) => {
     ({ denom, amount }) => ({ amount, denom })
   );
 
-  const fee = FEES.osmosis.lockTokens(argv.fee || 'low');
+  let fee;
+
+  if (/^[0-9]+$/.test(argv.fee)) {
+    fee = {
+      amount: aminoCoins(argv.fee, 'uosmo'),
+      gas: String(argv.gas)
+    }
+  } else {
+    fee = FEES.osmosis.lockTokens(argv.fee || 'low');
+  }
+
   const msg = lockTokens({
     owner: account.address,
     coins,
