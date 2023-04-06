@@ -1,5 +1,7 @@
 import { coins } from '@cosmjs/amino';
 import Long from 'long';
+import { coins as aminoCoins } from '@cosmjs/amino';
+
 import {
     prompt,
     promptRpcEndpoint,
@@ -208,10 +210,19 @@ export default async (argv) => {
         timeoutTimestamp: Long.fromString(timeoutInNanos + '')
     });
 
-    const fee = {
-        amount: coins(0, 'uosmo'),
-        gas: '250000'
-    };
+    let fee;
+
+    if (/^[0-9]+$/.test(argv.fee)) {
+        fee = {
+            amount: aminoCoins(argv.fee, 'uosmo'),
+            gas: String(argv.gas)
+        }
+    } else {
+        fee = {
+            amount: coins(650, 'uosmo'),
+            gas: '250000'
+        }
+    }
 
     const res = await signAndBroadcast({
         client: ibcClient,
