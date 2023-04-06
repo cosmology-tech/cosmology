@@ -8,7 +8,12 @@ import {
 
 import { coins as aminoCoins } from '@cosmjs/amino';
 import { signAndBroadcast, getOfflineSignerAmino } from 'cosmjs-utils';
-import { FEES, osmosis, getSigningOsmosisClient } from 'osmojs';
+import { FEES, osmosis, google, getSigningOsmosisClient } from 'osmojs';
+import Long from 'long';
+
+const Duration = google.protobuf.Duration;
+
+
 
 const {
   lockTokens
@@ -105,7 +110,10 @@ export default async (argv) => {
   const msg = lockTokens({
     owner: account.address,
     coins,
-    duration
+    duration: Duration.fromPartial({
+      seconds: Long.fromString(duration),
+      nanos: 0
+    })
   });
 
   if (argv.verbose) {
