@@ -39,7 +39,7 @@ export default async (argv) => {
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
   const client = await cosmos.ClientFactory.createRPCQueryClient({ rpcEndpoint });
 
-  const assetList = assets.find((a) => !!a.assets.find((i) => i.symbol === argv.chainToken));
+  const assetList = assets.find((a) => !!a.assets.find((i) => i.symbol === argv.chainToken && i.type_asset !== 'ics20'));
   const assetInfo = assetList.assets.find(a => a.symbol === argv.chainToken);
 
   if (!assetInfo) throw new Error('cannot find asset base unit');

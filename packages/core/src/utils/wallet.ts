@@ -15,7 +15,7 @@ export function makeHdPath(coinType = 118, account = 0) {
 
 export const getWalletFromMnemonic = async ({ mnemonic, token }): Promise<Secp256k1HdWallet> => {
   const chainFromAssets = assets.find(({ assets }) => {
-    const found = assets.find(({ symbol }) => symbol === token);
+    const found = assets.find(({ symbol, type_asset }) => symbol === token && type_asset !== 'ics20');
     if (found) return true;
   });
   const chain = chains.find(

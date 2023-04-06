@@ -30,6 +30,7 @@ export default async (argv) => {
 
   const denom = getCosmosAssetInfo(argv.chainToken).assets.find(
     (a) => a.symbol === argv.chainToken
+      && a.type_asset !== 'ics20'
   ).base;
   if (!denom) throw new Error('cannot find asset base unit');
 
