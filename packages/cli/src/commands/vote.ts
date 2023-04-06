@@ -64,10 +64,10 @@ export default async (argv) => {
     argv
   );
 
-  // check re-stake (w display or base?)
   const denom = getCosmosAssetInfo(argv.chainToken).assets.find(
-    (a) => a.symbol === argv.chainToken
+    (a) => a.symbol === argv.chainToken && a.type_asset !== 'ics20'
   ).base;
+
   if (!denom) throw new Error('cannot find asset base unit');
 
   const signer = await getWalletFromMnemonic({

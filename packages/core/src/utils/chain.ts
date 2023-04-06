@@ -4,16 +4,21 @@ import { symbolToOsmoDenom } from './osmo';
 import { Dec, IntPretty } from '@keplr-wallet/unit';
 
 export const getCosmosAssetInfo = (symbol) =>
-  assets.find((a) => !!a.assets.find((i) => i.symbol === symbol));
+  assets.find((a) =>
+    !!a.assets.find((i) => i.symbol === symbol && i.type_asset !== 'ics20')
+  );
 
 export const getOsmosisAssetInfo = (symbol) =>
-  osmosisAssets.find((a) => a.symbol === symbol);
+  osmosisAssets.find((a) => a.symbol === symbol && a.type_asset !== 'ics20');
 
 export const getCosmosAssetInfoByDenom = (denom) =>
   assets.find(
     (a) =>
       !!a.assets.find(
-        (asset) => !!asset.denom_units.find((unit) => unit.denom === denom)
+        (asset) =>
+          !!asset.denom_units.find((unit) => unit.denom === denom)
+          &&
+          asset.type_asset !== 'ics20'
       )
   );
 
@@ -21,7 +26,8 @@ export const getOsmosisAssetInfoByDenom = (denom) => osmosisAssets.find(
   (a) =>
     !!a.denom_units.find(
       (unit) => unit.denom === denom
-    ));
+    ) && a.type_asset !== 'ics20')
+
 
 
 export const getOsmosisAssetIbcInfo = (symbol) => {
