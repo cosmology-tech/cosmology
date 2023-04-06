@@ -43,12 +43,12 @@ exports[`aminos 1`] = `
     "toAmino": [Function],
   },
   "/osmosis.lockup.MsgBeginUnlocking": {
-    "aminoType": "osmosis/lockup/begin-unlocking",
+    "aminoType": "osmosis/lockup/begin-unlock-period-lock",
     "fromAmino": [Function],
     "toAmino": [Function],
   },
   "/osmosis.lockup.MsgBeginUnlockingAll": {
-    "aminoType": "osmosis/lockup/begin-unlocking-all",
+    "aminoType": "osmosis/lockup/begin-unlock-tokens",
     "fromAmino": [Function],
     "toAmino": [Function],
   },
