@@ -17,6 +17,7 @@
       "name": "Osmosis",
       "display": "osmo",
       "symbol": "OSMO",
+      "traces": [],
       "logo_URIs": {
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmo.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmo.svg"
@@ -29,7 +30,9 @@
         "osmosis-frontier",
         "osmosis-info",
         "ATOM:1",
-        "USDC.axl:678"
+        "USDC.axl:678",
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:678",
+        "osmosis-info_2"
       ]
     },
     {
@@ -47,6 +50,7 @@
       "name": "Ion",
       "display": "ion",
       "symbol": "ION",
+      "traces": [],
       "logo_URIs": {
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/ion.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/ion.svg"
@@ -57,7 +61,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:2"
+        "OSMO:2",
+        "osmosis-price:uosmo:2",
+        "osmosis-info_2"
       ]
     },
     {
@@ -75,11 +81,20 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858",
       "name": "USD Coin",
       "display": "usdc",
       "symbol": "USDC",
       "traces": [
+        {
+          "type": "synthetic",
+          "counterparty": {
+            "chain_name": "forex",
+            "base_denom": "USD"
+          },
+          "provider": "Circle"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -105,12 +120,12 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/usdc.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/usdc.svg"
       },
-      "coingecko_id": "usd-coin",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:678"
+        "OSMO:678",
+        "osmosis-info_2"
       ]
     },
     {
@@ -128,11 +143,20 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/EA1D43981D5C9A1C4AAEA9C23BB1D4FA126BA9BC7020A25E0AE4AA841EA25DC5",
       "name": "Wrapped Ether",
       "display": "weth",
-      "symbol": "wETH",
+      "symbol": "ETH",
       "traces": [
+        {
+          "type": "wrapped",
+          "counterparty": {
+            "chain_name": "ethereum",
+            "base_denom": "wei"
+          },
+          "provider": "Ethereum"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -157,12 +181,13 @@
       "logo_URIs": {
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/eth-white.png"
       },
-      "coingecko_id": "weth",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:704"
+        "OSMO:704",
+        "osmosis-price:uosmo:704",
+        "osmosis-info_2"
       ]
     },
     {
@@ -180,11 +205,20 @@
           "exponent": 8
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/D1542AA8762DB13087D8364F3EA6509FD6F009A34F00426AF9E4F9FA85CBBF1F",
       "name": "Wrapped Bitcoin",
       "display": "wbtc",
       "symbol": "WBTC",
       "traces": [
+        {
+          "type": "bridge",
+          "counterparty": {
+            "chain_name": "bitcoin",
+            "base_denom": "sat"
+          },
+          "provider": "BitGo, Kyber, and Ren"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -209,12 +243,13 @@
       "logo_URIs": {
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/wbtc.png"
       },
-      "coingecko_id": "wrapped-bitcoin",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:712"
+        "OSMO:712",
+        "osmosis-price:uosmo:712",
+        "osmosis-info_2"
       ]
     },
     {
@@ -232,11 +267,20 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/8242AD24008032E457D2E12D46588FD39FB54FB29680C6C7663D296B383C37C4",
       "name": "Tether USD",
       "display": "usdt",
       "symbol": "USDT",
       "traces": [
+        {
+          "type": "synthetic",
+          "counterparty": {
+            "chain_name": "forex",
+            "base_denom": "USD"
+          },
+          "provider": "Tether"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -262,11 +306,14 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/usdt.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/usdt.svg"
       },
-      "coingecko_id": "tether",
       "keywords": [
+        "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "USDC.axl:877"
+        "USDC.axl:939",
+        "OSMO:831",
+        "osmosis-price:uosmo:831",
+        "osmosis-info_2"
       ]
     },
     {
@@ -284,11 +331,20 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/0CD3A0285E1341859B5E86B6AB7682F023D03E97607CCC1DC95706411D866DF7",
       "name": "Dai Stablecoin",
       "display": "dai",
       "symbol": "DAI",
       "traces": [
+        {
+          "type": "synthetic",
+          "counterparty": {
+            "chain_name": "forex",
+            "base_denom": "USD"
+          },
+          "provider": "MakerDAO"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -314,12 +370,13 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/dai.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/dai.svg"
       },
-      "coingecko_id": "dai",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:674"
+        "OSMO:674",
+        "osmosis-price:uosmo:674",
+        "osmosis-info_2"
       ]
     },
     {
@@ -337,6 +394,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/6329DD8CF31A334DD5BE3F68C846C9FE313281362B37686A62343BAC1EB1546D",
       "name": "Binance USD",
       "display": "busd",
@@ -366,11 +424,12 @@
       "logo_URIs": {
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/busd.png"
       },
-      "coingecko_id": "binance-usd",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "USDC.axl:877"
+        "USDC.axl:877",
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:877",
+        "osmosis-info_2"
       ]
     },
     {
@@ -388,6 +447,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
       "name": "Cosmos Hub Atom",
       "display": "atom",
@@ -415,7 +475,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:1"
+        "OSMO:1",
+        "osmosis-price:uosmo:1",
+        "osmosis-info_2"
       ]
     },
     {
@@ -433,6 +495,7 @@
           "exponent": 8
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1",
       "name": "Cronos",
       "display": "cro",
@@ -452,14 +515,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/cronos/images/cronos.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/cronos/images/cronos.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/cronos/images/cro.svg"
       },
       "coingecko_id": "crypto-com-chain",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:9"
+        "OSMO:9",
+        "osmosis-price:uosmo:9",
+        "osmosis-info_2"
       ]
     },
     {
@@ -477,11 +543,23 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/F4A070A6D78496D53127EA85C094A9EC87DFC1F36071B8CCDDBD020F933D213D",
       "name": "Wrapped BNB",
       "display": "wbnb",
-      "symbol": "wBNB",
+      "symbol": "BNB",
       "traces": [
+        {
+          "type": "wrapped",
+          "counterparty": {
+            "chain_name": "binancesmartchain",
+            "base_denom": "wei"
+          },
+          "chain": {
+            "contract": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+          },
+          "provider": "Binance"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -507,12 +585,13 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/binancesmartchain/images/wbnb.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/binancesmartchain/images/wbnb.svg"
       },
-      "coingecko_id": "wbnb",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:840"
+        "OSMO:840",
+        "osmosis-price:uosmo:840",
+        "osmosis-info_2"
       ]
     },
     {
@@ -530,11 +609,20 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/AB589511ED0DD5FA56171A39978AFBF1371DB986EC1C3526CE138A16377E39BB",
       "name": "Wrapped Matic",
       "display": "wmatic",
-      "symbol": "wMATIC",
+      "symbol": "MATIC",
       "traces": [
+        {
+          "type": "wrapped",
+          "counterparty": {
+            "chain_name": "polygon",
+            "base_denom": "wei"
+          },
+          "provider": "Polygon"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -559,12 +647,13 @@
       "logo_URIs": {
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/polygon/images/matic-purple.png"
       },
-      "coingecko_id": "matic-network",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:789"
+        "OSMO:789",
+        "osmosis-price:uosmo:789",
+        "osmosis-info_2"
       ]
     },
     {
@@ -582,11 +671,20 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/6F62F01D913E3FFE472A38C78235B8F021B511BC6596ADFF02615C8F83D3B373",
       "name": "Wrapped AVAX",
       "display": "avax",
-      "symbol": "wAVAX",
+      "symbol": "AVAX",
       "traces": [
+        {
+          "type": "wrapped",
+          "counterparty": {
+            "chain_name": "avalanche",
+            "base_denom": "wei"
+          },
+          "provider": "Avalanche"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -612,9 +710,12 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/avalanche/images/avax.png"
       },
       "keywords": [
+        "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:899"
+        "OSMO:899",
+        "osmosis-price:uosmo:899",
+        "osmosis-info_2"
       ]
     },
     {
@@ -643,6 +744,7 @@
           ]
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
       "name": "Luna Classic",
       "display": "luna",
@@ -669,7 +771,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:800"
+        "OSMO:800",
+        "osmosis-price:uosmo:561",
+        "osmosis-info_2"
       ]
     },
     {
@@ -687,6 +791,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED",
       "name": "Juno",
       "display": "juno",
@@ -714,7 +819,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:497"
+        "OSMO:497",
+        "osmosis-price:uosmo:497",
+        "osmosis-info_2"
       ]
     },
     {
@@ -732,11 +839,20 @@
           "exponent": 10
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/3FF92D26B407FD61AE95D975712A7C319CDE28DE4D80BDC9978D935932B991D7",
       "name": "Wrapped Polkadot",
       "display": "dot",
       "symbol": "DOT",
       "traces": [
+        {
+          "type": "bridge",
+          "counterparty": {
+            "chain_name": "polkadot",
+            "base_denom": "Planck"
+          },
+          "provider": "Polkadot Parachain"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -762,12 +878,13 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/polkadot/images/dot.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/polkadot/images/dot.svg"
       },
-      "coingecko_id": "polkadot",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:773"
+        "OSMO:773",
+        "osmosis-price:uosmo:773",
+        "osmosis-info_2"
       ]
     },
     {
@@ -785,6 +902,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/6AE98883D4D5D5FF9E50D7130F1305DA2FFA0C652D1DD9C123657C6B4EB2DF8A",
       "name": "Evmos",
       "display": "evmos",
@@ -812,7 +930,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:722"
+        "OSMO:722",
+        "osmosis-price:uosmo:722",
+        "osmosis-info_2"
       ]
     },
     {
@@ -830,6 +950,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/57AA1A70A4BC9769C525EBF6386F7A21536E04A79D62E1981EFCEF9428EBB205",
       "name": "Kava",
       "display": "kava",
@@ -849,14 +970,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kava/images/kava.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kava/images/kava.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kava/images/kava.svg"
       },
       "coingecko_id": "kava",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:730"
+        "OSMO:730",
+        "osmosis-price:uosmo:730",
+        "osmosis-info_2"
       ]
     },
     {
@@ -874,6 +998,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/0954E1C28EB7AF5B72D24F3BC2B47BBB2FDF91BDDFD57B74B99E133AED40972A",
       "name": "Secret Network",
       "display": "scrt",
@@ -901,7 +1026,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:584"
+        "OSMO:584",
+        "osmosis-price:uosmo:584",
+        "osmosis-info_2"
       ]
     },
     {
@@ -930,6 +1057,7 @@
           ]
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
       "name": "TerraClassicUSD",
       "display": "ust",
@@ -956,7 +1084,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:560"
+        "OSMO:560",
+        "osmosis-price:uosmo:560",
+        "osmosis-info_2"
       ]
     },
     {
@@ -974,6 +1104,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4",
       "name": "Stargaze",
       "display": "stars",
@@ -993,14 +1124,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stargaze/images/stars.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stargaze/images/stars.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stargaze/images/stars.svg"
       },
       "coingecko_id": "stargaze",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:604"
+        "OSMO:604",
+        "osmosis-price:uosmo:604",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1018,6 +1152,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/B9E0A1A524E98BB407D3CED8720EFEFD186002F90C1B1B7964811DD0CCC12228",
       "name": "Chihuahua",
       "display": "huahua",
@@ -1045,7 +1180,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:605"
+        "OSMO:605",
+        "osmosis-price:uosmo:605",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1063,6 +1200,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/A0CC0CF735BFB30E730C70019D4218A1244FF383503FF7579C9201AB93CA9293",
       "name": "Persistence",
       "display": "xprt",
@@ -1090,7 +1228,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:15"
+        "OSMO:15",
+        "osmosis-price:uosmo:15",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1110,19 +1250,12 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/8061A06D3BD4D52C4A28FFECF7150D370393AF0BA661C3776C54FF32836C3961",
       "name": "pSTAKE Finance",
       "display": "pstake",
       "symbol": "PSTAKE",
       "traces": [
-        {
-          "type": "liquid-stake",
-          "counterparty": {
-            "chain_name": "persistence",
-            "base_denom": "XPRT"
-          },
-          "provider": "Persistence"
-        },
         {
           "type": "bridge",
           "counterparty": {
@@ -1160,12 +1293,14 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/persistence/images/pstake.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/persistence/images/pstake.svg"
       },
-      "coingecko_id": "pstake-finance",
       "keywords": [
+        "canon",
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:648"
+        "OSMO:648",
+        "osmosis-price:uosmo:648",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1183,6 +1318,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4",
       "name": "Akash Network",
       "display": "akt",
@@ -1210,7 +1346,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:3"
+        "OSMO:3",
+        "osmosis-price:uosmo:3",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1228,6 +1366,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/1DCC8A6CB5689018431323953344A9F6CC4D0BFB261E88C9F7777372C10CD076",
       "name": "Regen Network",
       "display": "regen",
@@ -1247,14 +1386,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/regen/images/regen.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/regen/images/regen.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/regen/images/regen.svg"
       },
       "coingecko_id": "regen",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:42"
+        "OSMO:42",
+        "osmosis-price:uosmo:42",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1272,6 +1414,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/9712DBB13B9631EDFA9BF61B55F1B2D290B2ADB67E3A4EB3A875F3B6081B3B84",
       "name": "Sentinel",
       "display": "dvpn",
@@ -1291,14 +1434,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/sentinel/images/dvpn.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/sentinel/images/dvpn.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/sentinel/images/dvpn.svg"
       },
       "coingecko_id": "sentinel",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:5"
+        "OSMO:5",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:6",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1316,6 +1462,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/7C4D60AA95E5A7558B0A364860979CA34B7FF8AAF255B87AF9E879374470CEC0",
       "name": "IRISnet",
       "display": "iris",
@@ -1343,7 +1490,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:7"
+        "OSMO:7",
+        "osmosis-price:uosmo:7",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1361,6 +1510,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/52B1AA623B34EB78FD767CEA69E8D7FA6C9CFE1FBF49C5406268FD325E2CC2AC",
       "name": "Starname",
       "display": "iov",
@@ -1388,7 +1538,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:197"
+        "OSMO:197",
+        "osmosis-price:uosmo:197",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1406,6 +1558,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/1DC495FCEFDA068A3820F903EDBD78B942FBD204D7E93D3BA2B432E9669D1A59",
       "name": "e-Money",
       "display": "ngm",
@@ -1425,14 +1578,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/emoney/images/ngm.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/emoney/images/ngm.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/emoney/images/ngm.svg"
       },
       "coingecko_id": "e-money",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:463"
+        "OSMO:463",
+        "osmosis-price:uosmo:463",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1450,6 +1606,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/5973C068568365FFF40DEDCF1A1CB7582B6116B731CD31A12231AE25E20B871F",
       "name": "e-Money EUR",
       "display": "eur",
@@ -1469,14 +1626,16 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/emoney/images/eeur.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/emoney/images/eeur.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/emoney/images/eeur.svg"
       },
       "coingecko_id": "e-money-eur",
       "keywords": [
-        "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:481"
+        "OSMO:481",
+        "osmosis-price:uosmo:481",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1494,6 +1653,7 @@
           "exponent": 9
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/9989AD6CCA39D1131523DB0617B50F6442081162294B4795E26746292467B525",
       "name": "LikeCoin",
       "display": "like",
@@ -1521,7 +1681,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:553"
+        "OSMO:553",
+        "osmosis-price:uosmo:553",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1539,6 +1701,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/F3FF7A84A73B62921538642F9797C423D2B4C4ACB3C7FCFFCE7F12AA69909C4B",
       "name": "IXO",
       "display": "ixo",
@@ -1558,13 +1721,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/impacthub/images/ixo.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/impacthub/images/ixo.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/impacthub/images/ixo.svg"
       },
       "coingecko_id": "ixo",
       "keywords": [
+        "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:557"
+        "OSMO:557",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:558",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1582,6 +1749,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/D805F1DA50D31B96E4282C1D4181EDDFB1A44A598BFF5666F4B43E4B8BEA95A5",
       "name": "BitCanna",
       "display": "bcna",
@@ -1609,7 +1777,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:571"
+        "OSMO:571",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:572",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1627,7 +1797,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "sdk.coin",
+      "type_asset": "ics20",
       "base": "ibc/4E5444C35610CC76FC94E7F7886B93121175C28262DDFDDE6F84E82BF2425452",
       "name": "BitSong",
       "display": "btsg",
@@ -1655,7 +1825,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:573"
+        "OSMO:573",
+        "osmosis-price:uosmo:573",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1673,6 +1845,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/B547DC9B897E7C3AA5B824696110B8E3D2C31E3ED3F02FF363DCBAD82457E07E",
       "name": "Ki",
       "display": "xki",
@@ -1700,7 +1873,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:577"
+        "OSMO:577",
+        "osmosis-price:uosmo:577",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1718,6 +1893,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/3BCCC93AD5DF58D11A6F8A05FA8BC801CBA0BA61A981F57E91B8B598BF8061CB",
       "name": "MediBloc",
       "display": "med",
@@ -1737,14 +1913,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/panacea/images/med.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/panacea/images/med.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/panacea/images/med.svg"
       },
       "coingecko_id": "medibloc",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:586"
+        "OSMO:586",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:587",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1758,6 +1937,7 @@
           ]
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/FE2CD1E6828EC0FAB8AF39BAC45BC25B965BA67CCBC50C13A14BD610B0D1E2C4",
       "name": "Bostrom",
       "display": "boot",
@@ -1777,12 +1957,15 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/bostrom/images/boot.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/bostrom/images/boot.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/bostrom/images/boot.svg"
       },
       "coingecko_id": "bostrom",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:597"
+        "OSMO:597",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:596",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1800,6 +1983,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/EA3E1640F9B1532AB129A571203A0B9F789A7F14BB66E350DCBFA18E1A1931F0",
       "name": "Comdex",
       "display": "cmdx",
@@ -1827,7 +2011,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:601"
+        "OSMO:601",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:600",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1845,6 +2031,7 @@
           "exponent": 9
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/7A08C6F11EF0F59EB841B9F788A87EC9F2361C7D9703157EC13D940DC53031FA",
       "name": "cheqd",
       "display": "cheq",
@@ -1872,7 +2059,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:602"
+        "OSMO:602",
+        "osmosis-price:uosmo:602",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1890,6 +2079,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/8A34AF0C1943FD0DFCDE9ADBF0B2C9959C45E87E6088EA2FC6ADACD59261B8A2",
       "name": "Lum",
       "display": "lum",
@@ -1917,7 +2107,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:608"
+        "OSMO:608",
+        "osmosis-price:uosmo:608",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1935,6 +2127,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/E7B35499CFBEB0FF5778127ABA4FB2C4B79A6B8D3D831D4379C4048C238796BD",
       "name": "Vidulum",
       "display": "vdl",
@@ -1962,7 +2155,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:613"
+        "OSMO:613",
+        "osmosis-price:uosmo:613",
+        "osmosis-info_2"
       ]
     },
     {
@@ -1980,6 +2175,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/EA4C0A9F72E2CEDF10D0E7A9A6A22954DB3444910DB5BE980DF59B05A46DAD1C",
       "name": "Desmos",
       "display": "dsm",
@@ -2007,7 +2203,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:619"
+        "OSMO:619",
+        "osmosis-price:uosmo:619",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2025,6 +2223,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/307E5C96C8F60D1CBEE269A9A86C0834E1DB06F2B3788AE4F716EDB97A48B97D",
       "name": "Dig Chain",
       "display": "dig",
@@ -2051,7 +2250,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:621"
+        "OSMO:621",
+        "osmosis-price:uosmo:621",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2077,6 +2278,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/9BBA9A1C257E971E38C1422780CE6F0B0686F0A3085E2D61118D904BFE0F5F5E",
       "name": "Somm",
       "display": "somm",
@@ -2104,7 +2306,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:627"
+        "OSMO:627",
+        "osmosis-price:uosmo:627",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2122,6 +2326,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/F867AE2112EFE646EC71A25CD2DFABB8927126AC1E19F1BBF0FF693A4ECA05DE",
       "name": "Band Protocol",
       "display": "band",
@@ -2149,7 +2354,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:626"
+        "OSMO:626",
+        "osmosis-price:uosmo:626",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2167,6 +2374,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/346786EA82F41FE55FAD14BF69AD8BA9B36985406E43F3CB23E6C45A285A9593",
       "name": "DARC",
       "display": "darc",
@@ -2193,7 +2401,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:637"
+        "OSMO:637",
+        "osmosis-price:uosmo:637",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2211,6 +2421,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/67795E528DF67C5606FC20F824EA39A6EF55BA133F4DC79C90A8C47A0901E17C",
       "name": "Umee",
       "display": "umee",
@@ -2230,14 +2441,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/umee/images/umee.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/umee/images/umee.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/umee/images/umee.svg"
       },
       "coingecko_id": "umee",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:641"
+        "OSMO:641",
+        "osmosis-price:uosmo:641",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2255,6 +2469,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/E97634A40119F1898989C2A23224ED83FDD0A57EA46B3A094E287288D1672B44",
       "name": "Graviton",
       "display": "graviton",
@@ -2282,7 +2497,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:625"
+        "OSMO:625",
+        "osmosis-price:uosmo:625",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2300,6 +2517,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/9BCB27203424535B6230D594553F1659C77EC173E36D9CF4759E7186EE747E84",
       "name": "Decentr",
       "display": "dec",
@@ -2327,7 +2545,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:644"
+        "OSMO:644",
+        "osmosis-price:uosmo:644",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2345,7 +2565,7 @@
           "exponent": 3
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1g2g7ucurum66d42g8k5twk34yegdq8c82858gz0tq2fc75zy7khssgnhjl",
       "base": "ibc/F6B691D5F7126579DDC87357B09D653B47FDCE0A3383FF33C8D8B544FE29A8A6",
       "name": "Marble",
@@ -2375,11 +2595,13 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:649"
+        "OSMO:649",
+        "osmosis-price:uosmo:649",
+        "osmosis-info_2"
       ]
     },
     {
-      "description": "The native token of Carbon",
+      "description": "The native governance token of Carbon",
       "denom_units": [
         {
           "denom": "ibc/8FEFAE6AECF6E2A255585617F781F35A8D5709A545A804482A261C0C9548A9D3",
@@ -2396,6 +2618,7 @@
           ]
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/8FEFAE6AECF6E2A255585617F781F35A8D5709A545A804482A261C0C9548A9D3",
       "name": "Carbon",
       "display": "dswth",
@@ -2423,7 +2646,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:651"
+        "OSMO:651",
+        "osmosis-price:uosmo:651",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2441,6 +2666,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/41999DF04D9441DAC0DF5D8291DF4333FBCBA810FFD63FDCE34FDF41EF37B6F7",
       "name": "Cerberus",
       "display": "crbrus",
@@ -2460,13 +2686,16 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/cerberus/images/crbrus.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/cerberus/images/crbrus.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/cerberus/images/crbrus.svg"
       },
       "coingecko_id": "cerberus-2",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:662"
+        "OSMO:662",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:664",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2484,6 +2713,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/5D1F516200EE8C6B2354102143B78A2DEDA25EDE771AC0F8DC3C1837C8FD4447",
       "name": "fetch-ai",
       "display": "fet",
@@ -2511,7 +2741,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:681"
+        "OSMO:681",
+        "osmosis-price:uosmo:681",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2529,6 +2761,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/CBA34207E969623D95D057D9B11B0C8B32B89A71F170577D982FDDE623813FFC",
       "name": "AssetMantle",
       "display": "mntl",
@@ -2548,14 +2781,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/assetmantle/images/mntl.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/assetmantle/images/mntl.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/assetmantle/images/mntl.svg"
       },
       "coingecko_id": "assetmantle",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:690"
+        "OSMO:690",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:686",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2573,7 +2809,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno168ctmpyppk90d34p3jjy658zf5a5l3w8wk35wht6ccqj4mr0yv8s4j5awr",
       "base": "ibc/297C64CC42B5A8D8F82FE2EBE208A6FE8F94B86037FA28C4529A23701C228F7A",
       "name": "Neta",
@@ -2603,7 +2839,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:631"
+        "OSMO:631",
+        "osmosis-price:uosmo:631",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2621,6 +2859,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273",
       "name": "Injective",
       "display": "INJ",
@@ -2647,7 +2886,9 @@
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
-        "OSMO:725"
+        "OSMO:725",
+        "osmosis-price:uosmo:725",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2676,6 +2917,7 @@
           ]
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/204A582244FC241613DBB50B04D1D454116C58C4AF7866C186AA0D6EEAD42780",
       "name": "TerraClassicKRW",
       "display": "krt",
@@ -2698,7 +2940,10 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/terra/images/krt.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/terra/images/krt.svg"
       },
-      "coingecko_id": "terrakrw"
+      "coingecko_id": "terrakrw",
+      "keywords": [
+        "osmosis-price:ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC:581"
+      ]
     },
     {
       "description": "TICK coin is the token for the Microtick Price Discovery & Oracle App",
@@ -2715,6 +2960,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/655BCEF3CDEBE32863FF281DBBE3B06160339E9897DC9C9C9821932A5F8BA6F8",
       "name": "Microtick",
       "display": "tick",
@@ -2740,7 +2986,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "ATOM:547"
+        "ATOM:547",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:547",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2758,6 +3006,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/8318FD63C42203D16DDCAF49FE10E8590669B3219A3E87676AC9DA50722687FB",
       "name": "Sifchain Rowan",
       "display": "ROWAN",
@@ -2784,7 +3033,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:629"
+        "OSMO:629",
+        "osmosis-price:uosmo:629",
+        "osmosis-info_2"
       ]
     },
     {
@@ -2802,6 +3053,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/7ED954CFFFC06EE8419387F3FC688837FF64EF264DE14219935F724EEEDBF8D3",
       "name": "Shentu",
       "display": "ctk",
@@ -2821,9 +3073,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/shentu/images/ctk.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/shentu/images/ctk.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/shentu/images/ctk.svg"
       },
-      "coingecko_id": "certik"
+      "coingecko_id": "certik",
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:1020",
+        "osmosis-price:uosmo:1020",
+        "osmosis-info_2"
+      ]
     },
     {
       "description": "Hope Galaxy is an NFT collection based on its own native Token $HOPE, a cw20 token on Juno chain.",
@@ -2840,7 +3100,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1re3x67ppxap48ygndmrc7har2cnc7tcxtm9nplcas4v0gc3wnmvs3s807z",
       "base": "ibc/C2A2E9CA95DDD4828B75124B5E27B8401C7D8493BC48353D418CBFC04565899B",
       "name": "Hope Galaxy",
@@ -2869,7 +3129,8 @@
       "coingecko_id": "hope-galaxy",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:653"
+        "OSMO:653",
+        "osmosis-price:uosmo:653"
       ]
     },
     {
@@ -2887,7 +3148,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1r4pzw8f9z0sypct5l9j906d47z998ulwvhvqe5xdwgy8wf84583sxwh0pa",
       "base": "ibc/6BDB4C8CCD45033F9604E4B93ED395008A753E01EECD6992E7D1EA23D9D3B788",
       "name": "Racoon",
@@ -2916,7 +3177,8 @@
       "coingecko_id": "racoon",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:669"
+        "OSMO:669",
+        "osmosis-price:uosmo:669"
       ]
     },
     {
@@ -2934,11 +3196,20 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/0E43EDE2E2A3AFA36D0CD38BDDC0B49FECA64FA426A82E102F304E430ECF46EE",
       "name": "Frax",
       "display": "frax",
       "symbol": "FRAX",
       "traces": [
+        {
+          "type": "synthetic",
+          "counterparty": {
+            "chain_name": "forex",
+            "base_denom": "USD"
+          },
+          "provider": "Frax Protocol"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -2961,10 +3232,12 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/frax.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/frax.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/frax.svg"
       },
-      "coingecko_id": "frax"
+      "keywords": [
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:679",
+        "osmosis-info_2"
+      ]
     },
     {
       "description": "Gravity Bridge WBTC",
@@ -2981,6 +3254,7 @@
           "exponent": 8
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/C9B0D48FD2C5B91135F118FF2484551888966590D7BDC20F6A87308DBA670796",
       "name": "Wrapped Bitcoin",
       "display": "gwbtc",
@@ -3016,8 +3290,11 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gwbtc.png"
-      }
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/wbtc.grv.svg"
+      },
+      "keywords": [
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:694"
+      ]
     },
     {
       "description": "Gravity Bridge WETH",
@@ -3034,6 +3311,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/65381C5F3FD21442283D56925E62EA524DED8B6927F0FF94E21E0020954C40B5",
       "name": "Wrapped Ethereum",
       "display": "gweth",
@@ -3069,12 +3347,14 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gweth.png"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/weth.grv.svg"
       },
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:634"
+        "OSMO:634",
+        "osmosis-price:uosmo:634",
+        "osmosis-info_2"
       ]
     },
     {
@@ -3092,6 +3372,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/9F9B07EF9AD291167CF5700628145DE1DEB777C2CFC7907553B24446515F6D0E",
       "name": "USD Coin",
       "display": "gusdc",
@@ -3127,12 +3408,15 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gusdc.png"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/usdc.grv.svg"
       },
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:633"
+        "OSMO:633",
+        "USDC.axl:872",
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:872",
+        "osmosis-info_2"
       ]
     },
     {
@@ -3150,6 +3434,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/F292A17CF920E3462C816CBE6B042E779F676CAB59096904C4C1C966413E3DF5",
       "name": "Dai Stablecoin",
       "display": "gdai",
@@ -3185,8 +3470,11 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gdai.png"
-      }
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/dai.grv.svg"
+      },
+      "keywords": [
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:702"
+      ]
     },
     {
       "description": "Gravity Bridge USDT",
@@ -3203,6 +3491,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/71B441E27F1BBB44DD0891BCD370C2794D404D60A4FFE5AECCD9B1E28BC89805",
       "name": "Tether USD",
       "display": "gusdt",
@@ -3238,13 +3527,15 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gusdt.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gusdt.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/usdt.grv.svg"
       },
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:818"
+        "OSMO:818",
+        "USDT.axl:873",
+        "osmosis-price:ibc/8242AD24008032E457D2E12D46588FD39FB54FB29680C6C7663D296B383C37C4:873",
+        "osmosis-info_2"
       ]
     },
     {
@@ -3262,7 +3553,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1y9rf7ql6ffwkv02hsgd4yruz23pn4w97p75e2slsnkm0mnamhzysvqnxaq",
       "base": "ibc/DB9755CB6FE55192948AE074D18FA815E1429D3D374D5BDA8D89623C6CF235C3",
       "name": "Block",
@@ -3290,7 +3581,8 @@
       },
       "keywords": [
         "osmosis-frontier",
-        "OSMO:691"
+        "OSMO:691",
+        "osmosis-price:uosmo:691"
       ]
     },
     {
@@ -3308,6 +3600,7 @@
           "exponent": 9
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/CE5BFF1D9BADA03BB5CCA5F56939392A761B53A10FBD03B37506669C3218D3B2",
       "name": "Hash",
       "display": "hash",
@@ -3327,14 +3620,16 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/provenance/images/hash.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/provenance/images/hash.svg"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/provenance/images/prov.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/provenance/images/prov.svg"
       },
       "coingecko_id": "provenance-blockchain",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:693"
+        "OSMO:693",
+        "osmosis-price:uosmo:693",
+        "osmosis-info_2"
       ]
     },
     {
@@ -3352,6 +3647,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/F49DE040EBA5AB2FAD5F660C2A1DDF98A68470FAE82229818BE775EBF3EE79F2",
       "name": "Galaxy",
       "display": "glx",
@@ -3376,7 +3672,8 @@
       },
       "keywords": [
         "osmosis-frontier",
-        "OSMO:697"
+        "OSMO:697",
+        "osmosis-price:uosmo:697"
       ]
     },
     {
@@ -3391,7 +3688,7 @@
           ]
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1tdjwrqmnztn2j3sj2ln9xnyps5hs48q3ddwjrz7jpv6mskappjys5czd49",
       "base": "ibc/52E12CF5CA2BB903D84F5298B4BFD725D66CAB95E09AA4FC75B2904CA5485FEB",
       "name": "DHK",
@@ -3420,7 +3717,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:695"
+        "OSMO:695",
+        "osmosis-price:uosmo:695",
+        "osmosis-info_2"
       ]
     },
     {
@@ -3438,7 +3737,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno15u3dt79t6sxxa3x3kpkhzsy56edaa5a66wvt3kxmukqjz2sx0hes5sn38g",
       "base": "ibc/00B6E60AD3D65CBEF5579AC8AF609527C0B57535B6E32D96C80A735344FD9DCC",
       "name": "JunoSwap",
@@ -3461,12 +3760,14 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/raw.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/raw.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/raw.svg"
       },
       "coingecko_id": "junoswap-raw-dao",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:700"
+        "OSMO:700",
+        "osmosis-price:uosmo:700"
       ]
     },
     {
@@ -3484,6 +3785,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/67C89B8B0A70C08F093C909A4DD996DD10E0494C87E28FD9A551697BF173D4CA",
       "name": "MEME",
       "display": "meme",
@@ -3506,10 +3808,13 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/meme/images/meme.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/meme/images/meme.svg"
       },
+      "coingecko_id": "meme-network",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:701"
+        "OSMO:701",
+        "osmosis-price:uosmo:701",
+        "osmosis-info_2"
       ]
     },
     {
@@ -3527,7 +3832,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno17wzaxtfdw5em7lc94yed4ylgjme63eh73lm3lutp2rhcxttyvpwsypjm4w",
       "base": "ibc/AA1C80225BCA7B32ED1FC6ABF8B8E899BEB48ECDB4B417FD69873C6D715F97E7",
       "name": "Another.Software Validator Token",
@@ -3551,7 +3856,10 @@
       ],
       "logo_URIs": {
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/asvt.png"
-      }
+      },
+      "keywords": [
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:771"
+      ]
     },
     {
       "description": "DAO dedicated to building tools on the Juno Network",
@@ -3568,7 +3876,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1n7n7d5088qlzlj37e9mgmkhx6dfgtvt02hqxq66lcap4dxnzdhwqfmgng3",
       "base": "ibc/0CB9DB3441D0D50F35699DEE22B9C965487E83FB2D9F483D1CC5CA34E856C484",
       "name": "JoeDAO",
@@ -3596,7 +3904,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:718"
+        "OSMO:718",
+        "osmosis-price:uosmo:718",
+        "osmosis-info_2"
       ]
     },
     {
@@ -3614,6 +3924,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/785AFEC6B3741100D15E7AF01374E3C4C36F24888E96479B1C33F5C71F364EF9",
       "name": "Luna",
       "display": "luna",
@@ -3633,13 +3944,16 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/terra2/images/luna.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/terra2/images/luna.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/terra2/images/luna.svg"
       },
       "coingecko_id": "terra-luna-2",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:726"
+        "OSMO:726",
+        "osmosis-price:uosmo:726",
+        "osmosis-info_2"
       ]
     },
     {
@@ -3657,6 +3971,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/2716E3F2E146664BEFA9217F1A03BFCEDBCD5178B3C71CACB1A0D7584451D219",
       "name": "Rizon Chain",
       "display": "atolo",
@@ -3679,7 +3994,10 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/rizon/images/atolo.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/rizon/images/atolo.svg"
       },
-      "coingecko_id": "rizon"
+      "coingecko_id": "rizon",
+      "keywords": [
+        "osmosis-price:uosmo:729"
+      ]
     },
     {
       "description": "Governance token of Kava Lend Protocol",
@@ -3696,6 +4014,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/D6C28E07F7343360AC41E15DDD44D79701DDCA2E0C2C41279739C8D4AE5264BC",
       "name": "Hard",
       "display": "HARD",
@@ -3735,6 +4054,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/70CF1A54E23EA4E480DEDA9E12082D3FD5684C3483CBDCE190C5C807227688C5",
       "name": "Swap",
       "display": "SWP",
@@ -3774,6 +4094,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/D3327A763C23F01EC43D1F0DB3CEFEC390C362569B6FD191F40A5192F8960049",
       "name": "Chainlink",
       "display": "link",
@@ -3804,12 +4125,13 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/link.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/link.svg"
       },
-      "coingecko_id": "chainlink",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:731"
+        "OSMO:731",
+        "osmosis-price:uosmo:731",
+        "osmosis-info_2"
       ]
     },
     {
@@ -3827,6 +4149,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/F16FDC11A7662B86BC0B9CE61871CBACF7C20606F95E86260FD38915184B75B4",
       "name": "GenesisL1",
       "display": "l1",
@@ -3852,7 +4175,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:732"
+        "OSMO:732",
+        "osmosis-price:uosmo:732",
+        "osmosis-info_2"
       ]
     },
     {
@@ -3870,6 +4195,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/384E5DD50BDE042E1AAF51F312B55F08F95BC985C503880189258B4D9374CBBE",
       "name": "Aave",
       "display": "aave",
@@ -3898,8 +4224,7 @@
       ],
       "logo_URIs": {
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/aave.svg"
-      },
-      "coingecko_id": "aave"
+      }
     },
     {
       "description": "ApeCoin on Axelar",
@@ -3916,6 +4241,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/F83CC6471DA4D4B508F437244F10B9E4C68975344E551A2DEB6B8617AB08F0D4",
       "name": "ApeCoin",
       "display": "ape",
@@ -3944,8 +4270,7 @@
       ],
       "logo_URIs": {
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/ape.svg"
-      },
-      "coingecko_id": "apecoin"
+      }
     },
     {
       "description": "Axie Infinity Shard on Axelar",
@@ -3962,6 +4287,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/6C0CB8653012DC2BC1820FD0B6B3AFF8A07D18630BDAEE066FEFB2D92F477C24",
       "name": "Axie Infinity Shard",
       "display": "axs",
@@ -3990,8 +4316,7 @@
       ],
       "logo_URIs": {
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/axs.svg"
-      },
-      "coingecko_id": "axie-infinity"
+      }
     },
     {
       "description": "Maker on Axelar",
@@ -4008,6 +4333,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/D27DDDF34BB47E5D5A570742CC667DE53277867116CCCA341F27785E899A70F3",
       "name": "Maker",
       "display": "mkr",
@@ -4037,11 +4363,12 @@
       "logo_URIs": {
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/mkr.svg"
       },
-      "coingecko_id": "maker",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
-        "OSMO:733"
+        "OSMO:733",
+        "osmosis-price:uosmo:733",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4059,11 +4386,20 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/BD796662F8825327D41C96355DF62045A5BA225BAE31C0A86289B9D88ED3F44E",
       "name": "Rai Reflex Index",
       "display": "rai",
       "symbol": "RAI",
       "traces": [
+        {
+          "type": "synthetic",
+          "counterparty": {
+            "chain_name": "forex",
+            "base_denom": "USD"
+          },
+          "provider": "RAI Finance"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -4087,8 +4423,7 @@
       ],
       "logo_URIs": {
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/rai.svg"
-      },
-      "coingecko_id": "rai"
+      }
     },
     {
       "description": "Shiba Inu on Axelar",
@@ -4105,6 +4440,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/19305E20681911F14D1FB275E538CDE524C3BF88CF9AE5D5F78F4D4DA05E85B2",
       "name": "Shiba Inu",
       "display": "shib",
@@ -4134,11 +4470,11 @@
       "logo_URIs": {
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/shib.svg"
       },
-      "coingecko_id": "shiba-inu",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:880"
+        "OSMO:880",
+        "osmosis-price:uosmo:880"
       ]
     },
     {
@@ -4156,6 +4492,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/AE2719773D6FCDD05AC17B1ED63F672F5F9D84144A61965F348C86C2A83AD161",
       "name": "Uniswap",
       "display": "uni",
@@ -4184,8 +4521,7 @@
       ],
       "logo_URIs": {
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/uni.svg"
-      },
-      "coingecko_id": "uniswap"
+      }
     },
     {
       "description": "Chain on Axelar",
@@ -4202,6 +4538,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/B901BEC1B71D0573E6EE874FEC39E2DF4C2BDB1DB74CB3DA0A9CACC4A435B0EC",
       "name": "Chain",
       "display": "xcn",
@@ -4230,8 +4567,7 @@
       ],
       "logo_URIs": {
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/xcn.svg"
-      },
-      "coingecko_id": "chain-2"
+      }
     },
     {
       "description": "The native staking and governance token of the Kujira chain.",
@@ -4248,6 +4584,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/BB6BCDB515050BAE97516111873CCD7BCF1FD0CCB723CC12F3C4F704D6C646CE",
       "name": "Kuji",
       "display": "kuji",
@@ -4267,14 +4604,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kujira/images/kuji.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kujira/images/kuji.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kujira/images/kuji.svg"
       },
       "coingecko_id": "kujira",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:744"
+        "OSMO:744",
+        "osmosis-price:uosmo:744",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4292,6 +4632,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/1E09CB0F506ACF12FDE4683FB6B34DA62FB4BE122641E0D93AAF98A87675676C",
       "name": "Tgrade",
       "display": "tgd",
@@ -4319,7 +4660,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:769"
+        "OSMO:769",
+        "osmosis-price:uosmo:769",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4337,6 +4680,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/47EE224A9B33CF0ABEAC82106E52F0F6E8D8CEC5BA80B9D9A6F55172CBB0177D",
       "name": "Echelon",
       "display": "echelon",
@@ -4356,13 +4700,14 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/echelon/images/logo.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/echelon/images/echelon.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/echelon/images/ech.svg"
       },
       "coingecko_id": "echelon",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:848"
+        "OSMO:848",
+        "osmosis-price:uosmo:848",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4380,6 +4725,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/C360EF34A86D334F625E4CBB7DA3223AEA97174B61F35BB3758081A8160F7D9B",
       "name": "ODIN",
       "display": "odin",
@@ -4406,7 +4752,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:777"
+        "OSMO:777",
+        "osmosis-price:uosmo:777",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4424,6 +4772,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/9B6FBABA36BB4A3BF127AE5E96B572A5197FD9F3111D895D8919B07BC290764A",
       "name": "GEO",
       "display": "geo",
@@ -4449,7 +4798,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:787"
+        "OSMO:787",
+        "osmosis-price:uosmo:787",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4467,6 +4818,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/0CD46223FEABD2AEAAAF1F057D01E63BCA79B7D4BD6B68F1EB973A987344695D",
       "name": "O9W",
       "display": "O9W",
@@ -4491,7 +4843,9 @@
       },
       "keywords": [
         "osmosis-frontier",
-        "OSMO:805"
+        "OSMO:805",
+        "osmosis-price:uosmo:805",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4509,7 +4863,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "ki1dt3lk455ed360pna38fkhqn0p8y44qndsr77qu73ghyaz2zv4whq83mwdy",
       "base": "ibc/AD185F62399F770CCCE8A36A180A77879FF6C26A0398BD3D2A74E087B0BFA121",
       "name": "LVN",
@@ -4538,7 +4892,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:774"
+        "OSMO:774",
+        "osmosis-price:ibc/B547DC9B897E7C3AA5B824696110B8E3D2C31E3ED3F02FF363DCBAD82457E07E:772",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4556,11 +4912,20 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/1E26DB0E5122AED464D98462BD384FCCB595732A66B3970AE6CE0B58BAE0FC49",
       "name": "Wrapped Moonbeam",
       "display": "wglmr",
-      "symbol": "wGLMR",
+      "symbol": "GLMR",
       "traces": [
+        {
+          "type": "wrapped",
+          "counterparty": {
+            "chain_name": "moonbeam",
+            "base_denom": "Wei"
+          },
+          "provider": "Moonbeam"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -4586,7 +4951,9 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/moonbeam/images/glmr.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/moonbeam/images/glmr.svg"
       },
-      "coingecko_id": "wrapped-moonbeam"
+      "keywords": [
+        "osmosis-price:uosmo:825"
+      ]
     },
     {
       "description": "DeFi gaming platform built on Juno",
@@ -4603,7 +4970,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1j0a9ymgngasfn3l5me8qpd53l5zlm9wurfdk7r65s5mg6tkxal3qpgf5se",
       "base": "ibc/52C57FCA7D6854AA178E7A183DDBE4EF322B904B1D719FC485F6FFBC1F72A19E",
       "name": "Gelotto",
@@ -4632,7 +4999,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:778"
+        "OSMO:778",
+        "osmosis-price:uosmo:778",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4650,7 +5019,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1gz8cf86zr4vw9cjcyyv432vgdaecvr9n254d3uwwkx9rermekddsxzageh",
       "base": "ibc/7C781B4C2082CD62129A972D47486D78EC17155C299270E3C89348EA026BEAF8",
       "name": "GKey",
@@ -4679,7 +5048,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:790"
+        "OSMO:790",
+        "osmosis-price:uosmo:790",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4697,6 +5068,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/5A7C219BA5F7582B99629BA3B2A01A61BFDA0F6FD1FE95B5366F7334C4BC0580",
       "name": "Crescent",
       "display": "cre",
@@ -4723,11 +5095,13 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:786"
+        "OSMO:786",
+        "osmosis-price:uosmo:786",
+        "osmosis-info_2"
       ]
     },
     {
-      "description": "The native token of Lumen Network",
+      "description": "The native token of LumenX Network",
       "denom_units": [
         {
           "denom": "ibc/FFA652599C77E853F017193E36B5AB2D4D9AFC4B54721A74904F80C9236BF3B7",
@@ -4741,6 +5115,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/FFA652599C77E853F017193E36B5AB2D4D9AFC4B54721A74904F80C9236BF3B7",
       "name": "LUMEN",
       "display": "lumen",
@@ -4760,11 +5135,14 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/lumenx/images/lumen.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/lumenx/images/lumen.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/lumenx/images/lumen.svg"
       },
       "keywords": [
         "osmosis-frontier",
-        "OSMO:788"
+        "osmosis-info",
+        "OSMO:788",
+        "osmosis-price:uosmo:788"
       ]
     },
     {
@@ -4782,6 +5160,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/161D7D62BAB3B9C39003334F1671208F43C06B643CC9EDBBE82B64793C857F1D",
       "name": "Oraichain",
       "display": "ORAI",
@@ -4804,7 +5183,14 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/oraichain/images/orai-white.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/oraichain/images/orai-white.svg"
       },
-      "coingecko_id": "oraichain-token"
+      "coingecko_id": "oraichain-token",
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:799",
+        "osmosis-price:uosmo:799",
+        "osmosis-info_2"
+      ]
     },
     {
       "description": "The native token of the Cudos blockchain",
@@ -4822,6 +5208,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/E09ED39F390EC51FA9F3F69BEA08B5BBE6A48B3057B2B1C3467FAAE9E58B021B",
       "name": "Cudos",
       "display": "cudos",
@@ -4848,7 +5235,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:796"
+        "OSMO:796",
+        "osmosis-price:uosmo:796",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4866,6 +5255,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/C78F65E1648A3DFE0BAEB6C4CDA69CC2A75437F1793C0E6386DFDA26393790AE",
       "name": "USDX",
       "display": "USDX",
@@ -4885,9 +5275,13 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kava/images/usdx.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kava/images/usdx.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kava/images/usdx.svg"
       },
-      "coingecko_id": "usdx"
+      "coingecko_id": "usdx",
+      "keywords": [
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:792"
+      ]
     },
     {
       "description": "BLD is the token used to secure the Agoric chain through staking and to backstop Inter Protocol.",
@@ -4904,6 +5298,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/2DA9C149E9AD2BD27FEFA635458FB37093C256C1A940392634A16BEA45262604",
       "name": "Agoric",
       "display": "bld",
@@ -4923,14 +5318,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/agoric/images/bld.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/agoric/images/bld.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/agoric/images/bld.svg"
       },
       "coingecko_id": "agoric",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:795"
+        "OSMO:795",
+        "osmosis-price:uosmo:795",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4948,6 +5346,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/92BE0717F4678905E53F4E45B2DED18BC0CB97BF1F8B6A25AFEDF3D5A879B4D5",
       "name": "Inter Stable Token",
       "display": "ist",
@@ -4967,13 +5366,16 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/agoric/images/ist.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/agoric/images/ist.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/agoric/images/ist.svg"
       },
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:837"
+        "OSMO:837",
+        "osmosis-price:uosmo:837",
+        "osmosis-info_2"
       ]
     },
     {
@@ -4991,7 +5393,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1dd0k0um5rqncfueza62w9sentdfh3ec4nw4aq4lk5hkjl63vljqscth9gv",
       "base": "ibc/C6B6BFCB6EE49A7CAB1A7E7B021DE35B99D525AC660844952F0F6C78DCB2A57B",
       "name": "StakeEasy seJUNO",
@@ -5021,7 +5423,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:793"
+        "OSMO:793",
+        "osmosis-price:ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED:807",
+        "osmosis-info_2"
       ]
     },
     {
@@ -5039,7 +5443,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1wwnhkagvcd3tjz6f8vsdsw5plqnw8qy2aj3rrhqr2axvktzv9q2qz8jxn3",
       "base": "ibc/C2DF5C3949CA835B221C575625991F09BAB4E48FB9C11A4EE357194F736111E3",
       "name": "StakeEasy bJUNO",
@@ -5082,6 +5486,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/A8CA5EE328FA10C9519DF6057DA1F69682D28F7D0F5CCC7ECB72E3DCA2D157A4",
       "name": "Stride",
       "display": "strd",
@@ -5109,10 +5514,13 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:806"
+        "OSMO:806",
+        "osmosis-price:uosmo:806",
+        "osmosis-info_2"
       ]
     },
     {
+      "description": "The native staking and governance token of the Cosmos Hub.",
       "denom_units": [
         {
           "denom": "ibc/C140AFD542AE77BD7DCC83F13FDD8C5E5BB8C4929785E6EC2F4C636F98F17901",
@@ -5126,6 +5534,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/C140AFD542AE77BD7DCC83F13FDD8C5E5BB8C4929785E6EC2F4C636F98F17901",
       "name": "stATOM",
       "display": "statom",
@@ -5161,10 +5570,13 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "ATOM:803"
+        "ATOM:803",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:803",
+        "osmosis-info_2"
       ]
     },
     {
+      "description": "The native token of Stargaze",
       "denom_units": [
         {
           "denom": "ibc/5DD1F95ED336014D00CE2520977EC71566D282F9749170ADC83A392E0EA7426A",
@@ -5178,6 +5590,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/5DD1F95ED336014D00CE2520977EC71566D282F9749170ADC83A392E0EA7426A",
       "name": "stSTARS",
       "display": "ststars",
@@ -5209,9 +5622,12 @@
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/ststars.svg"
       },
       "keywords": [
+        "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "STARS:810"
+        "STARS:810",
+        "osmosis-price:ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4:810",
+        "osmosis-info_2"
       ]
     },
     {
@@ -5229,7 +5645,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno159q8t5g02744lxq8lfmcn6f78qqulq9wn3y9w7lxjgkz4e0a6kvsfvapse",
       "base": "ibc/C3FC4DED273E7D1DD2E7BAA3317EC9A53CD3252B577AA33DC00D9DF2BDF3ED5C",
       "name": "Solarbank DAO",
@@ -5254,7 +5670,14 @@
       "logo_URIs": {
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/solar.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/solar.svg"
-      }
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:941",
+        "osmosis-price:uosmo:941",
+        "osmosis-info_2"
+      ]
     },
     {
       "description": "StakeEasy governance token",
@@ -5271,7 +5694,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno19rqljkh95gh40s7qdx40ksx3zq5tm4qsmsrdz9smw668x9zdr3lqtg33mf",
       "base": "ibc/18A676A074F73B9B42DA4F9DFC8E5AEF334C9A6636DDEC8D34682F52F1DECDF6",
       "name": "StakeEasy SEASY",
@@ -5300,7 +5723,8 @@
       "coingecko_id": "seasy",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:808"
+        "OSMO:808",
+        "osmosis-price:uosmo:808"
       ]
     },
     {
@@ -5318,6 +5742,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/903A61A498756EA560B85A85132D3AEE21B5DEDD41213725D22ABF276EA6945E",
       "name": "Axelar",
       "display": "axl",
@@ -5345,7 +5770,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:812"
+        "OSMO:812",
+        "osmosis-price:uosmo:812",
+        "osmosis-info_2"
       ]
     },
     {
@@ -5363,6 +5790,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/A1AC7F9EE2F643A68E3A35BCEB22040120BEA4059773BB56985C76BDFEBC71D9",
       "name": "Rebus",
       "display": "rebus",
@@ -5385,10 +5813,13 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/rebus/images/rebus.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/rebus/images/rebus.svg"
       },
+      "coingecko_id": "rebus",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:813"
+        "OSMO:813",
+        "osmosis-price:uosmo:813",
+        "osmosis-info_2"
       ]
     },
     {
@@ -5406,6 +5837,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/EB7FB9C8B425F289B63703413327C2051030E848CE4EAAEA2E51199D6D39D3EC",
       "name": "Teritori",
       "display": "tori",
@@ -5432,10 +5864,13 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:816"
+        "OSMO:816",
+        "osmosis-price:uosmo:816",
+        "osmosis-info_2"
       ]
     },
     {
+      "description": "The native token of JUNO Chain",
       "denom_units": [
         {
           "denom": "ibc/84502A75BCA4A5F68D464C00B3F610CE2585847D59B52E5FFB7C3C9D2DDCD3FE",
@@ -5449,6 +5884,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/84502A75BCA4A5F68D464C00B3F610CE2585847D59B52E5FFB7C3C9D2DDCD3FE",
       "name": "stJUNO",
       "display": "stjuno",
@@ -5480,12 +5916,16 @@
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/stjuno.svg"
       },
       "keywords": [
+        "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "JUNO:817"
+        "JUNO:817",
+        "osmosis-price:ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED:817",
+        "osmosis-info_2"
       ]
     },
     {
+      "description": "The native token of Osmosis",
       "denom_units": [
         {
           "denom": "ibc/D176154B0C63D1F9C6DCFB4F70349EBF2E2B5A87A05902F57A6AE92B863E9AEC",
@@ -5499,6 +5939,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/D176154B0C63D1F9C6DCFB4F70349EBF2E2B5A87A05902F57A6AE92B863E9AEC",
       "name": "stOSMO",
       "display": "stosmo",
@@ -5533,7 +5974,9 @@
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:833"
+        "OSMO:833",
+        "osmosis-price:uosmo:833",
+        "osmosis-info_2"
       ]
     },
     {
@@ -5551,7 +5994,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1p8x807f6h222ur0vssqy3qk6mcpa40gw2pchquz5atl935t7kvyq894ne3",
       "base": "ibc/6B982170CE024689E8DD0E7555B129B488005130D4EDA426733D552D10B36D8F",
       "name": "MuseDAO",
@@ -5592,6 +6035,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/80825E8F04B12D914ABEADB1F4D39C04755B12C8402F6876EE3168450C0A90BB",
       "name": "Lambda",
       "display": "lamb",
@@ -5611,13 +6055,16 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/lambda/images/lambda.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/lambda/images/lambda.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/lambda/images/lambda.svg"
       },
       "coingecko_id": "lambda",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:826"
+        "OSMO:826",
+        "osmosis-price:uosmo:826",
+        "osmosis-info_2"
       ]
     },
     {
@@ -5635,6 +6082,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/44492EAB24B72E3FB59B9FA619A22337FB74F95D8808FE6BC78CC0E6C18DC2EC",
       "name": "USK",
       "display": "USK",
@@ -5654,12 +6102,14 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kujira/images/usk.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kujira/images/usk.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/kujira/images/usk.svg"
       },
       "coingecko_id": "usk",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:819"
+        "OSMO:819",
+        "osmosis-price:uosmo:827"
       ]
     },
     {
@@ -5677,6 +6127,7 @@
           "exponent": 9
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/608EF5C0CE64FEA097500DB39657BDD36CA708CC5DCC2E250A024B6981DD36BC",
       "name": "Unification Network",
       "display": "FUND",
@@ -5696,12 +6147,15 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/unification/images/fund.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/unification/images/fund.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/unification/images/fund.svg"
       },
       "coingecko_id": "unification",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:830"
+        "OSMO:830",
+        "osmosis-price:uosmo:830",
+        "osmosis-info_2"
       ]
     },
     {
@@ -5719,6 +6173,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/8E697BDABE97ACE8773C6DF7402B2D1D5104DD1EEABE12608E3469B7F64C15BA",
       "name": "Jackal",
       "display": "jkl",
@@ -5743,9 +6198,12 @@
       },
       "coingecko_id": "jackal-protocol",
       "keywords": [
+        "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:832"
+        "OSMO:832",
+        "osmosis-price:uosmo:832",
+        "osmosis-info_2"
       ]
     },
     {
@@ -5763,6 +6221,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/A6383B6CF5EA23E067666C06BC34E2A96869927BD9744DC0C1643E589C710AA3",
       "name": "Alter",
       "display": "alter",
@@ -5791,7 +6250,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:845"
+        "OSMO:845",
+        "osmosis-price:uosmo:845",
+        "osmosis-info_2"
       ]
     },
     {
@@ -5809,7 +6270,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "snip20",
+      "type_asset": "ics20",
       "address": "secret1yxcexylwyxlq58umhgsjgstgcg2a0ytfy4d9lt",
       "base": "ibc/1FBA9E763B8679BEF7BAAAF2D16BCA78C3B297D226C3F31312C769D7B8F992D8",
       "name": "Button",
@@ -5835,7 +6296,10 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/butt.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/butt.svg"
       },
-      "coingecko_id": "buttcoin-2"
+      "coingecko_id": "buttcoin-2",
+      "keywords": [
+        "osmosis-price:uosmo:985"
+      ]
     },
     {
       "description": "The native token cw20 for Shade on Secret Network",
@@ -5852,12 +6316,12 @@
           "exponent": 8
         }
       ],
-      "type_asset": "snip20",
+      "type_asset": "ics20",
       "address": "secret1qfql357amn448duf5gvp9gr48sxx9tsnhupu3d",
       "base": "ibc/71055835C7639739EAE03AACD1324FE162DBA41D09F197CB72D966D014225B1C",
-      "name": "Shade",
+      "name": "Shade (old)",
       "display": "shd",
-      "symbol": "SHD",
+      "symbol": "SHD(old)",
       "traces": [
         {
           "type": "ibc-cw20",
@@ -5875,14 +6339,13 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/shd.png",
-        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/shd.svg"
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/shdold.svg"
       },
-      "coingecko_id": "shade-protocol",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:846"
+        "OSMO:846",
+        "osmosis-price:uosmo:846"
       ]
     },
     {
@@ -5900,7 +6363,7 @@
           "exponent": 18
         }
       ],
-      "type_asset": "snip20",
+      "type_asset": "ics20",
       "address": "secret1rgm2m5t530tdzyd99775n6vzumxa5luxcllml4",
       "base": "ibc/9A8A93D04917A149C8AC7C16D3DA8F470D59E8D867499C4DA97450E1D7363213",
       "name": "SIENNA",
@@ -5929,7 +6392,8 @@
       "coingecko_id": "sienna",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:853"
+        "OSMO:853",
+        "osmosis-price:uosmo:853"
       ]
     },
     {
@@ -5947,7 +6411,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "snip20",
+      "type_asset": "ics20",
       "address": "secret1k6u0cy4feepm6pehnz804zmwakuwdapm69tuc4",
       "base": "ibc/D0E5BF2940FB58D9B283A339032DE88111407AAD7D94A7F1F3EB78874F8616D4",
       "name": "SCRT Staking Derivatives",
@@ -5976,7 +6440,8 @@
       "coingecko_id": "stkd-scrt",
       "keywords": [
         "osmosis-frontier",
-        "SCRT:854"
+        "SCRT:854",
+        "osmosis-price:ibc/0954E1C28EB7AF5B72D24F3BC2B47BBB2FDF91BDDFD57B74B99E133AED40972A:854"
       ]
     },
     {
@@ -5994,6 +6459,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/C822645522FC3EECF817609AA38C24B64D04F5C267A23BCCF8F2E3BC5755FA88",
       "name": "BeeZee",
       "display": "bze",
@@ -6020,7 +6486,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:856"
+        "OSMO:856",
+        "osmosis-price:uosmo:856",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6038,7 +6506,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1cltgm8v842gu54srmejewghnd6uqa26lzkpa635wzra9m9xuudkqa2gtcz",
       "base": "ibc/7CE5F388D661D82A0774E47B5129DA51CC7129BD1A70B5FA6BCEBB5B0A2FAEAF",
       "name": "Fanfury",
@@ -6080,6 +6548,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/BB936517F7E5D77A63E0ADB05217A6608B0C4CF8FBA7EA2F4BAE4107A7238F06",
       "name": "Acre",
       "display": "acre",
@@ -6105,7 +6574,9 @@
       "coingecko_id": "arable-protocol",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:858"
+        "OSMO:858",
+        "osmosis-price:uosmo:858",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6123,6 +6594,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/23CA6C8D1AB2145DD13EB1E089A2E3F960DC298B468CCE034E19E5A78B61136E",
       "name": "CMST",
       "display": "cmst",
@@ -6142,12 +6614,17 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/comdex/images/cmst.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/comdex/images/cmst.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/comdex/images/cmst.svg"
       },
       "coingecko_id": "composite",
       "keywords": [
+        "osmosis-main",
         "osmosis-frontier",
-        "OSMO:857"
+        "osmosis-info",
+        "OSMO:857",
+        "osmosis-price:ibc/0CD3A0285E1341859B5E86B6AB7682F023D03E97607CCC1DC95706411D866DF7:908",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6165,6 +6642,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/92B223EBFA74DB99BEA92B23DEAA6050734FEEAABB84689CB8E1AE8F9C9F9AF4",
       "name": "IMV",
       "display": "imv",
@@ -6190,7 +6668,8 @@
       "coingecko_id": "imv",
       "keywords": [
         "osmosis-frontier",
-        "USDC.axl:866"
+        "USDC.axl:866",
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:866"
       ]
     },
     {
@@ -6208,6 +6687,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/01E94A5FF29B8DDEFC86F412CC3927F7330E9B523CC63A6194B1108F5276025C",
       "name": "Medas Digital",
       "display": "medas",
@@ -6234,7 +6714,8 @@
         "medas",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:859"
+        "OSMO:859",
+        "osmosis-price:ibc/9712DBB13B9631EDFA9BF61B55F1B2D290B2ADB67E3A4EB3A875F3B6081B3B84:910"
       ]
     },
     {
@@ -6252,7 +6733,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1rws84uz7969aaa7pej303udhlkt3j9ca0l3egpcae98jwak9quzq8szn2l",
       "base": "ibc/D3B574938631B0A1BA704879020C696E514CFADAA7643CDE4BD5EB010BDE327B",
       "name": "POSTHUMAN",
@@ -6282,7 +6763,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "ATOM:867"
+        "ATOM:867",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:867",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6300,7 +6783,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "snip20",
+      "type_asset": "ics20",
       "address": "secret1s09x2xvfd2lp2skgzm29w2xtena7s8fq98v852",
       "base": "ibc/18A1B70E3205A48DE8590C0D11030E7146CDBF1048789261D53FFFD7527F8B55",
       "name": "Amber",
@@ -6325,7 +6808,10 @@
       "logo_URIs": {
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/amber.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/amber.svg"
-      }
+      },
+      "keywords": [
+        "osmosis-price:uosmo:984"
+      ]
     },
     {
       "description": "The native token of Onomy Protocol",
@@ -6342,6 +6828,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/B9606D347599F0F2FDF82BA3EE339000673B7D274EA50F59494DC51EFCD42163",
       "name": "Nom",
       "display": "nom",
@@ -6361,8 +6848,10 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/onomy/images/nom.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/onomy/images/nom.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/onomy/images/nom.svg"
       },
+      "coingecko_id": "onomy-protocol",
       "keywords": [
         "dex",
         "stablecoin",
@@ -6371,7 +6860,8 @@
         "osmosis-frontier",
         "osmosis-info",
         "OSMO:882",
-        "ATOM:885"
+        "ATOM:885",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:885"
       ]
     },
     {
@@ -6392,6 +6882,7 @@
           ]
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/CAA179E40F0266B0B29FB5EAA288FB9212E628822265D4141EBD1C47C3CBFCBC",
       "name": "PSTAKE staked ATOM",
       "display": "stkatom",
@@ -6414,10 +6905,14 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/persistence/images/stkatom.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/persistence/images/stkatom.svg"
       },
+      "coingecko_id": "stkatom",
       "keywords": [
+        "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "ATOM:886"
+        "ATOM:886",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:886",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6431,6 +6926,7 @@
           ]
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/E27CD305D33F150369AB526AEB6646A76EC3FFB1A6CA58A663B5DE657A89D55D",
       "name": "Dys",
       "display": "dys",
@@ -6456,7 +6952,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:905"
+        "OSMO:905",
+        "osmosis-price:uosmo:905",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6474,7 +6972,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1u45shlp0q4gcckvsj06ss4xuvsu0z24a0d0vr9ce6r24pht4e5xq7q995n",
       "base": "ibc/D3ADAF73F84CDF205BCB72C142FDAEEA2C612AB853CEE6D6C06F184FA38B1099",
       "name": "Hopers",
@@ -6497,13 +6995,16 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/hopers.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/hopers.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/hopers.svg"
       },
       "coingecko_id": "hopers-io ",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:894"
+        "OSMO:894",
+        "osmosis-price:uosmo:894",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6521,6 +7022,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/5D270A584B1078FBE07D14570ED5E88EC1FEDA8518B76C322606291E6FD8286F",
       "name": "Arable USD",
       "display": "arusd",
@@ -6540,13 +7042,16 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/acrechain/images/arusd.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/acrechain/images/arusd.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/acrechain/images/arusd.svg"
       },
       "coingecko_id": "arable-usd",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "USDC.axl:895"
+        "USDC.axl:895",
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:895",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6564,6 +7069,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/B1E0166EA0D759FDF4B207D1F5F12210D8BFE36F2345CEFC76948CE2B36DFBAF",
       "name": "Planq",
       "display": "planq",
@@ -6586,10 +7092,13 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/planq/images/planq.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/planq/images/planq.svg"
       },
+      "coingecko_id": "planq",
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:898"
+        "OSMO:898",
+        "osmosis-price:uosmo:898",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6607,11 +7116,23 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/5E2DFDF1734137302129EA1C1BA21A580F96F778D4F021815EA4F6DB378DA1A4",
       "name": "Wrapped FTM",
       "display": "ftm",
-      "symbol": "wFTM",
+      "symbol": "FTM",
       "traces": [
+        {
+          "type": "wrapped",
+          "counterparty": {
+            "chain_name": "fantom",
+            "base_denom": "wei"
+          },
+          "chain": {
+            "contract": "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"
+          },
+          "provider": "Fantom"
+        },
         {
           "type": "bridge",
           "counterparty": {
@@ -6639,7 +7160,9 @@
       "keywords": [
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:900"
+        "OSMO:900",
+        "osmosis-price:uosmo:900",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6657,6 +7180,7 @@
           "exponent": 18
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/47CAF2DB8C016FAC960F33BC492FD8E454593B65CC59D70FA9D9F30424F9C32F",
       "name": "Canto",
       "display": "canto",
@@ -6676,12 +7200,14 @@
         }
       ],
       "logo_URIs": {
-        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/canto/images/canto.png"
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/canto/images/canto.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/canto/images/canto.svg"
       },
       "coingecko_id": "canto",
       "keywords": [
         "osmosis-frontier",
-        "OSMO:901"
+        "OSMO:901",
+        "osmosis-price:uosmo:901"
       ]
     },
     {
@@ -6700,6 +7226,7 @@
           "aliases": []
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/46C83BB054E12E189882B5284542DB605D94C99827E367C9192CF0579CD5BC83",
       "name": "Quicksilver Liquid Staked STARS",
       "display": "qstars",
@@ -6732,7 +7259,10 @@
       },
       "keywords": [
         "osmosis-frontier",
-        "STARS:903"
+        "osmosis-info",
+        "STARS:903",
+        "osmosis-price:ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4:903",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6750,7 +7280,7 @@
           "exponent": 6
         }
       ],
-      "type_asset": "cw20",
+      "type_asset": "ics20",
       "address": "juno1mkw83sv6c7sjdvsaplrzc8yaes9l42p4mhy0ssuxjnyzl87c9eps7ce3m9",
       "base": "ibc/2FBAC4BF296D7844796844B35978E5899984BA5A6314B2DD8F83C215550010B3",
       "name": "Wynd DAO Governance Token",
@@ -6777,8 +7307,134 @@
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/wynd.svg"
       },
       "keywords": [
+        "osmosis-main",
         "osmosis-frontier",
-        "OSMO:902"
+        "osmosis-info",
+        "OSMO:902",
+        "osmosis-price:uosmo:902",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Circle's stablecoin from Polygon on Axelar",
+      "denom_units": [
+        {
+          "denom": "ibc/231FD77ECCB2DB916D314019DA30FE013202833386B1908A191D16989AD80B5A",
+          "exponent": 0,
+          "aliases": [
+            "polygon-uusdc"
+          ]
+        },
+        {
+          "denom": "polygon-usdc",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/231FD77ECCB2DB916D314019DA30FE013202833386B1908A191D16989AD80B5A",
+      "name": "USD Coin from Polygon",
+      "display": "polygon-usdc",
+      "symbol": "polygon.USDC",
+      "traces": [
+        {
+          "type": "synthetic",
+          "counterparty": {
+            "chain_name": "forex",
+            "base_denom": "USD"
+          },
+          "provider": "Circle"
+        },
+        {
+          "type": "bridge",
+          "counterparty": {
+            "chain_name": "polygon",
+            "base_denom": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174"
+          },
+          "provider": "Axelar"
+        },
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "axelar",
+            "base_denom": "polygon-uusdc",
+            "channel_id": "channel-3"
+          },
+          "chain": {
+            "channel_id": "channel-208",
+            "path": "transfer/channel-208/polygon-uusdc"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/polygon.usdc.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "USDC.axl:938",
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:938",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Circle's stablecoin from Avalanche on Axelar",
+      "denom_units": [
+        {
+          "denom": "ibc/F17C9CA112815613C5B6771047A093054F837C3020CBA59DFFD9D780A8B2984C",
+          "exponent": 0,
+          "aliases": [
+            "avalanche-uusdc"
+          ]
+        },
+        {
+          "denom": "avalanche-usdc",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/F17C9CA112815613C5B6771047A093054F837C3020CBA59DFFD9D780A8B2984C",
+      "name": "USD Coin from Avalanche",
+      "display": "avalanche-usdc",
+      "symbol": "avalanche.USDC",
+      "traces": [
+        {
+          "type": "synthetic",
+          "counterparty": {
+            "chain_name": "forex",
+            "base_denom": "USD"
+          },
+          "provider": "Circle"
+        },
+        {
+          "type": "bridge",
+          "counterparty": {
+            "chain_name": "avalanche",
+            "base_denom": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"
+          },
+          "provider": "Axelar"
+        },
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "axelar",
+            "base_denom": "avalanche-uusdc",
+            "channel_id": "channel-3"
+          },
+          "chain": {
+            "channel_id": "channel-208",
+            "path": "transfer/channel-208/avalanche-uusdc"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/avalanche.usdc.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "USDC.axl:938",
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:938",
+        "osmosis-info_2"
       ]
     },
     {
@@ -6796,6 +7452,7 @@
           "exponent": 6
         }
       ],
+      "type_asset": "ics20",
       "base": "ibc/573FCD90FACEE750F55A8864EF7D38265F07E5A9273FA0E8DAFD39951332B580",
       "name": "Mars",
       "display": "mars",
@@ -6818,11 +7475,2087 @@
         "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/mars/images/mars-token.png",
         "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/mars/images/mars-token.svg"
       },
+      "coingecko_id": "mars-protocol-a7fcbcfb-fd61-4017-92f0-7ee9f9cc6da3",
       "keywords": [
         "osmosis-main",
         "osmosis-frontier",
         "osmosis-info",
-        "OSMO:907"
+        "OSMO:907",
+        "osmosis-price:uosmo:907",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Ciento Exchange Token",
+      "denom_units": [
+        {
+          "denom": "ibc/D38BB3DD46864694F009AF01DA5A815B3A875F8CC52FF5679BFFCC35DC7451D5",
+          "exponent": 0,
+          "aliases": [
+            "erc20/0xAE6D3334989a22A65228732446731438672418F2"
+          ]
+        },
+        {
+          "denom": "cnto",
+          "exponent": 18
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/D38BB3DD46864694F009AF01DA5A815B3A875F8CC52FF5679BFFCC35DC7451D5",
+      "name": "Ciento Token",
+      "display": "cnto",
+      "symbol": "CNTO",
+      "traces": [
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "acrechain",
+            "base_denom": "erc20/0xAE6D3334989a22A65228732446731438672418F2",
+            "channel_id": "channel-0"
+          },
+          "chain": {
+            "channel_id": "channel-490",
+            "path": "transfer/channel-490/erc20/0xAE6D3334989a22A65228732446731438672418F2"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/acrechain/images/cnto.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/acrechain/images/cnto.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "USDC.axl:909",
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:909",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "The native staking token of Terra.",
+      "denom_units": [
+        {
+          "denom": "ibc/C491E7582E94AE921F6A029790083CDE1106C28F3F6C4AD7F1340544C13EC372",
+          "exponent": 0,
+          "aliases": [
+            "stuluna"
+          ]
+        },
+        {
+          "denom": "stluna",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/C491E7582E94AE921F6A029790083CDE1106C28F3F6C4AD7F1340544C13EC372",
+      "name": "stLUNA",
+      "display": "stluna",
+      "symbol": "stLUNA",
+      "traces": [
+        {
+          "type": "liquid-stake",
+          "counterparty": {
+            "chain_name": "terra2",
+            "base_denom": "uluna"
+          },
+          "provider": "Stride"
+        },
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "stride",
+            "base_denom": "stuluna",
+            "channel_id": "channel-5"
+          },
+          "chain": {
+            "channel_id": "channel-326",
+            "path": "transfer/channel-326/stuluna"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/stluna.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/stluna.svg"
+      },
+      "keywords": [
+        "osmosis-main",
+        "osmosis-frontier",
+        "LUNA:913",
+        "osmosis-price:ibc/785AFEC6B3741100D15E7AF01374E3C4C36F24888E96479B1C33F5C71F364EF9:913"
+      ]
+    },
+    {
+      "denom_units": [
+        {
+          "denom": "ibc/C5579A9595790017C600DD726276D978B9BF314CF82406CE342720A9C7911A01",
+          "exponent": 0,
+          "aliases": [
+            "staevmos"
+          ]
+        },
+        {
+          "denom": "stevmos",
+          "exponent": 18
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/C5579A9595790017C600DD726276D978B9BF314CF82406CE342720A9C7911A01",
+      "name": "stEVMOS",
+      "display": "stevmos",
+      "symbol": "stEVMOS",
+      "traces": [
+        {
+          "type": "liquid-stake",
+          "counterparty": {
+            "chain_name": "evmos",
+            "base_denom": "uaevmos"
+          },
+          "provider": "Stride"
+        },
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "stride",
+            "base_denom": "staevmos",
+            "channel_id": "channel-5"
+          },
+          "chain": {
+            "channel_id": "channel-326",
+            "path": "transfer/channel-326/staevmos"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/stevmos.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/stevmos.svg"
+      },
+      "keywords": [
+        "osmosis-main",
+        "osmosis-frontier",
+        "osmosis-info",
+        "EVMOS:922",
+        "osmosis-price:ibc/6AE98883D4D5D5FF9E50D7130F1305DA2FFA0C652D1DD9C123657C6B4EB2DF8A:922",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "nRide Token",
+      "denom_units": [
+        {
+          "denom": "ibc/E750D31033DC1CF4A044C3AA0A8117401316DC918FBEBC4E3D34F91B09D5F54C",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1qmlchtmjpvu0cr7u0tad2pq8838h6farrrjzp39eqa9xswg7teussrswlq"
+          ]
+        },
+        {
+          "denom": "nride",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1qmlchtmjpvu0cr7u0tad2pq8838h6farrrjzp39eqa9xswg7teussrswlq",
+      "base": "ibc/E750D31033DC1CF4A044C3AA0A8117401316DC918FBEBC4E3D34F91B09D5F54C",
+      "name": "nRide Token",
+      "display": "nride",
+      "symbol": "NRIDE",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1qmlchtmjpvu0cr7u0tad2pq8838h6farrrjzp39eqa9xswg7teussrswlq",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1qmlchtmjpvu0cr7u0tad2pq8838h6farrrjzp39eqa9xswg7teussrswlq"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/nride.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/nride.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:924",
+        "osmosis-price:uosmo:924",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "The native staking token of 8ball.",
+      "denom_units": [
+        {
+          "denom": "ibc/8BE73A810E22F80E5E850531A688600D63AE7392E7C2770AE758CAA4FD921B7F",
+          "exponent": 0,
+          "aliases": [
+            "uebl"
+          ]
+        },
+        {
+          "denom": "ebl",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/8BE73A810E22F80E5E850531A688600D63AE7392E7C2770AE758CAA4FD921B7F",
+      "name": "8ball",
+      "display": "ebl",
+      "symbol": "EBL",
+      "traces": [
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "8ball",
+            "base_denom": "uebl",
+            "channel_id": "channel-16"
+          },
+          "chain": {
+            "channel_id": "channel-641",
+            "path": "transfer/channel-641/uebl"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/8ball/images/8ball.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/8ball/images/8ball.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:935",
+        "osmosis-price:uosmo:935",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Quicksilver Liquid Staked ATOM",
+      "denom_units": [
+        {
+          "denom": "ibc/FA602364BEC305A696CBDF987058E99D8B479F0318E47314C49173E8838C5BAC",
+          "exponent": 0,
+          "aliases": [
+            "uqatom"
+          ]
+        },
+        {
+          "denom": "qatom",
+          "exponent": 6,
+          "aliases": []
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/FA602364BEC305A696CBDF987058E99D8B479F0318E47314C49173E8838C5BAC",
+      "name": "Quicksilver Liquid Staked ATOM",
+      "display": "qatom",
+      "symbol": "qATOM",
+      "traces": [
+        {
+          "type": "liquid-stake",
+          "counterparty": {
+            "chain_name": "cosmoshub",
+            "base_denom": "uatom"
+          },
+          "provider": "Quicksilver"
+        },
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "quicksilver",
+            "base_denom": "uqatom",
+            "channel_id": "channel-2"
+          },
+          "chain": {
+            "channel_id": "channel-522",
+            "path": "transfer/channel-522/uqatom"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/quicksilver/images/qatom.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/quicksilver/images/qatom.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "ATOM:944",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:944",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Governance Token of Harbor protocol on Comdex network",
+      "denom_units": [
+        {
+          "denom": "ibc/AD4DEA52408EA07C0C9E19444EC8DA84A274A70AD2687A710EFDDEB28BB2986A",
+          "exponent": 0,
+          "aliases": [
+            "uharbor"
+          ]
+        },
+        {
+          "denom": "harbor",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/AD4DEA52408EA07C0C9E19444EC8DA84A274A70AD2687A710EFDDEB28BB2986A",
+      "name": "Harbor",
+      "display": "harbor",
+      "symbol": "HARBOR",
+      "traces": [
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "comdex",
+            "base_denom": "uharbor",
+            "channel_id": "channel-1"
+          },
+          "chain": {
+            "channel_id": "channel-87",
+            "path": "transfer/channel-87/uharbor"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/comdex/images/harbor.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/comdex/images/harbor.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:951",
+        "osmosis-price:uosmo:967"
+      ]
+    },
+    {
+      "description": "Quicksilver Liquid Staked REGEN",
+      "denom_units": [
+        {
+          "denom": "ibc/79A676508A2ECA1021EDDC7BB9CF70CEEC9514C478DA526A5A8B3E78506C2206",
+          "exponent": 0,
+          "aliases": [
+            "uqregen"
+          ]
+        },
+        {
+          "denom": "qregen",
+          "exponent": 6,
+          "aliases": []
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/79A676508A2ECA1021EDDC7BB9CF70CEEC9514C478DA526A5A8B3E78506C2206",
+      "name": "Quicksilver Liquid Staked Regen",
+      "display": "qregen",
+      "symbol": "qREGEN",
+      "traces": [
+        {
+          "type": "liquid-stake",
+          "counterparty": {
+            "chain_name": "regen",
+            "base_denom": "uregen"
+          },
+          "provider": "Quicksilver"
+        },
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "quicksilver",
+            "base_denom": "uqregen",
+            "channel_id": "channel-2"
+          },
+          "chain": {
+            "channel_id": "channel-522",
+            "path": "transfer/channel-522/uqregen"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/quicksilver/images/qregen.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/quicksilver/images/qregen.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "REGEN:948",
+        "osmosis-price:ibc/1DCC8A6CB5689018431323953344A9F6CC4D0BFB261E88C9F7777372C10CD076:948",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Inspired by Bonk. A community project to celebrate the settlers of JunoNetwork.",
+      "denom_units": [
+        {
+          "denom": "ibc/4F24D904BAB5FFBD3524F2DE3EC3C7A9E687A2408D9A985E57B356D9FA9201C6",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1u8cr3hcjvfkzxcaacv9q75uw9hwjmn8pucc93pmy6yvkzz79kh3qncca8x"
+          ]
+        },
+        {
+          "denom": "fox",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1u8cr3hcjvfkzxcaacv9q75uw9hwjmn8pucc93pmy6yvkzz79kh3qncca8x",
+      "base": "ibc/4F24D904BAB5FFBD3524F2DE3EC3C7A9E687A2408D9A985E57B356D9FA9201C6",
+      "name": "Juno Fox",
+      "display": "fox",
+      "symbol": "FOX",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1u8cr3hcjvfkzxcaacv9q75uw9hwjmn8pucc93pmy6yvkzz79kh3qncca8x",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1u8cr3hcjvfkzxcaacv9q75uw9hwjmn8pucc93pmy6yvkzz79kh3qncca8x"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/fox.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:949",
+        "osmosis-price:uosmo:949",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "QCK - native token of Quicksilver",
+      "denom_units": [
+        {
+          "denom": "ibc/635CB83EF1DFE598B10A3E90485306FD0D47D34217A4BE5FD9977FA010A5367D",
+          "exponent": 0,
+          "aliases": [
+            "uqck"
+          ]
+        },
+        {
+          "denom": "qck",
+          "exponent": 6,
+          "aliases": []
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/635CB83EF1DFE598B10A3E90485306FD0D47D34217A4BE5FD9977FA010A5367D",
+      "name": "Quicksilver",
+      "display": "qck",
+      "symbol": "QCK",
+      "traces": [
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "quicksilver",
+            "base_denom": "uqck",
+            "channel_id": "channel-2"
+          },
+          "chain": {
+            "channel_id": "channel-522",
+            "path": "transfer/channel-522/uqck"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/quicksilver/images/qck.png"
+      },
+      "coingecko_id": "quicksilver",
+      "keywords": [
+        "osmosis-main",
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:952",
+        "osmosis-price:uosmo:952",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "The native token of Arkhadian",
+      "denom_units": [
+        {
+          "denom": "ibc/0F91EE8B98AAE3CF393D94CD7F89A10F8D7758C5EC707E721899DFE65C164C28",
+          "exponent": 0,
+          "aliases": [
+            "arkh"
+          ]
+        },
+        {
+          "denom": "ARKH",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/0F91EE8B98AAE3CF393D94CD7F89A10F8D7758C5EC707E721899DFE65C164C28",
+      "name": "Arkh",
+      "display": "ARKH",
+      "symbol": "ARKH",
+      "traces": [
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "arkh",
+            "base_denom": "arkh",
+            "channel_id": "channel-12"
+          },
+          "chain": {
+            "channel_id": "channel-648",
+            "path": "transfer/channel-648/arkh"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/arkh/images/arkh.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/arkh/images/arkh.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:954",
+        "osmosis-price:uosmo:954"
+      ]
+    },
+    {
+      "description": "Quicksilver Liquid Staked OSMO",
+      "denom_units": [
+        {
+          "denom": "ibc/42D24879D4569CE6477B7E88206ADBFE47C222C6CAD51A54083E4A72594269FC",
+          "exponent": 0,
+          "aliases": [
+            "uqosmo"
+          ]
+        },
+        {
+          "denom": "qosmo",
+          "exponent": 6,
+          "aliases": []
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/42D24879D4569CE6477B7E88206ADBFE47C222C6CAD51A54083E4A72594269FC",
+      "name": "Quicksilver Liquid Staked OSMO",
+      "display": "qosmo",
+      "symbol": "qOSMO",
+      "traces": [
+        {
+          "type": "liquid-stake",
+          "counterparty": {
+            "chain_name": "osmosis",
+            "base_denom": "uosmo"
+          },
+          "provider": "Quicksilver"
+        },
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "quicksilver",
+            "base_denom": "uqosmo",
+            "channel_id": "channel-2"
+          },
+          "chain": {
+            "channel_id": "channel-522",
+            "path": "transfer/channel-522/uqosmo"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/quicksilver/images/qosmo.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/quicksilver/images/qosmo.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:956",
+        "osmosis-price:uosmo:956",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Frienzies are an IBC token redeemable exclusively for a physical asset issued by the Noble entity.",
+      "denom_units": [
+        {
+          "denom": "ibc/7FA7EC64490E3BDE5A1A28CBE73CC0AD22522794957BC891C46321E3A6074DB9",
+          "exponent": 0,
+          "aliases": [
+            "microfrienzies",
+            "ufrienzies"
+          ]
+        },
+        {
+          "denom": "frienzies",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/7FA7EC64490E3BDE5A1A28CBE73CC0AD22522794957BC891C46321E3A6074DB9",
+      "name": "Frienzies",
+      "display": "frienzies",
+      "symbol": "FRNZ",
+      "traces": [
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "noble",
+            "base_denom": "ufrienzies",
+            "channel_id": "channel-1"
+          },
+          "chain": {
+            "channel_id": "channel-750",
+            "path": "transfer/channel-750/ufrienzies"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/noble/images/frnz.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/noble/images/frnz.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "ATOM:958",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:1012",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "The native token of Migaloo Chain",
+      "denom_units": [
+        {
+          "denom": "ibc/EDD6F0D66BCD49C1084FB2C35353B4ACD7B9191117CE63671B61320548F7C89D",
+          "exponent": 0,
+          "aliases": [
+            "uwhale"
+          ]
+        },
+        {
+          "denom": "whale",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/EDD6F0D66BCD49C1084FB2C35353B4ACD7B9191117CE63671B61320548F7C89D",
+      "name": "Whale",
+      "display": "whale",
+      "symbol": "WHALE",
+      "traces": [
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "migaloo",
+            "base_denom": "uwhale",
+            "channel_id": "channel-5"
+          },
+          "chain": {
+            "channel_id": "channel-642",
+            "path": "transfer/channel-642/uwhale"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/migaloo/images/white-whale.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/migaloo/images/white-whale.svg"
+      },
+      "coingecko_id": "white-whale",
+      "keywords": [
+        "osmosis-main",
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:960",
+        "osmosis-price:uosmo:960",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Evmos Guardians governance token.",
+      "denom_units": [
+        {
+          "denom": "ibc/BAC9C6998F1F5C316D3353622EAEDAF8BD00FAABEB374FECDF8C9BC475172CFA",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1xekkh27punj0uxruv3gvuydyt856fax0nu750xns99t2qcxp7xmsqwhfma"
+          ]
+        },
+        {
+          "denom": "grdn",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1xekkh27punj0uxruv3gvuydyt856fax0nu750xns99t2qcxp7xmsqwhfma",
+      "base": "ibc/BAC9C6998F1F5C316D3353622EAEDAF8BD00FAABEB374FECDF8C9BC475172CFA",
+      "name": "Guardian",
+      "display": "grdn",
+      "symbol": "GRDN",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1xekkh27punj0uxruv3gvuydyt856fax0nu750xns99t2qcxp7xmsqwhfma",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1xekkh27punj0uxruv3gvuydyt856fax0nu750xns99t2qcxp7xmsqwhfma"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/guardian.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:959",
+        "osmosis-price:uosmo:959",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Mini Punks Token",
+      "denom_units": [
+        {
+          "denom": "ibc/DC0D3303BBE739E073224D0314385B88B247F56D71D726A91414CCA244FFFE7E",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno166heaxlyntd33a5euh4rrz26svhean4klzw594esmd02l4atan6sazy2my"
+          ]
+        },
+        {
+          "denom": "mnpu",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno166heaxlyntd33a5euh4rrz26svhean4klzw594esmd02l4atan6sazy2my",
+      "base": "ibc/DC0D3303BBE739E073224D0314385B88B247F56D71D726A91414CCA244FFFE7E",
+      "name": "Mini Punks",
+      "display": "mnpu",
+      "symbol": "MNPU",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno166heaxlyntd33a5euh4rrz26svhean4klzw594esmd02l4atan6sazy2my",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno166heaxlyntd33a5euh4rrz26svhean4klzw594esmd02l4atan6sazy2my"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/mnpu.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/mnpu.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:961",
+        "osmosis-price:uosmo:961",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Shiba Cosmos",
+      "denom_units": [
+        {
+          "denom": "ibc/447A0DCE83691056289503DDAB8EB08E52E167A73629F2ACC59F056B92F51CE8",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1x5qt47rw84c4k6xvvywtrd40p8gxjt8wnmlahlqg07qevah3f8lqwxfs7z"
+          ]
+        },
+        {
+          "denom": "shibac",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1x5qt47rw84c4k6xvvywtrd40p8gxjt8wnmlahlqg07qevah3f8lqwxfs7z",
+      "base": "ibc/447A0DCE83691056289503DDAB8EB08E52E167A73629F2ACC59F056B92F51CE8",
+      "name": "ShibaCosmos",
+      "display": "shibac",
+      "symbol": "SHIBAC",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1x5qt47rw84c4k6xvvywtrd40p8gxjt8wnmlahlqg07qevah3f8lqwxfs7z",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1x5qt47rw84c4k6xvvywtrd40p8gxjt8wnmlahlqg07qevah3f8lqwxfs7z"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/shibacosmos.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:962",
+        "osmosis-price:uosmo:962"
+      ]
+    },
+    {
+      "description": "Sikoba Governance Token",
+      "denom_units": [
+        {
+          "denom": "ibc/71066B030D8FC6479E638580E1BA9C44925E8C1F6E45036669D22017CFDC8C5E",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1qqwf3lkfjhp77yja7gmg3y95pda0e5xctqrdhf3wvwdd79flagvqfgrgxp"
+          ]
+        },
+        {
+          "denom": "sikoba",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1qqwf3lkfjhp77yja7gmg3y95pda0e5xctqrdhf3wvwdd79flagvqfgrgxp",
+      "base": "ibc/71066B030D8FC6479E638580E1BA9C44925E8C1F6E45036669D22017CFDC8C5E",
+      "name": "Sikoba Token",
+      "display": "sikoba",
+      "symbol": "SKOJ",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1qqwf3lkfjhp77yja7gmg3y95pda0e5xctqrdhf3wvwdd79flagvqfgrgxp",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1qqwf3lkfjhp77yja7gmg3y95pda0e5xctqrdhf3wvwdd79flagvqfgrgxp"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/sikoba.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/sikoba.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:964",
+        "osmosis-price:uosmo:964",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Nature Carbon Ton (NCT) is a carbon token standard backed 1:1 by carbon credits issued by Verra, a global leader in the voluntary carbon market. NCT credits on Regen Network have been tokenized by Toucan.earth.",
+      "denom_units": [
+        {
+          "denom": "ibc/A76EB6ECF4E3E2D4A23C526FD1B48FDD42F171B206C9D2758EF778A7826ADD68",
+          "exponent": 0,
+          "aliases": [
+            "eco.uC.NCT"
+          ]
+        },
+        {
+          "denom": "nct",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/A76EB6ECF4E3E2D4A23C526FD1B48FDD42F171B206C9D2758EF778A7826ADD68",
+      "name": "Nature Carbon Ton",
+      "display": "nct",
+      "symbol": "NCT",
+      "traces": [
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "regen",
+            "base_denom": "eco.uC.NCT",
+            "channel_id": "channel-1"
+          },
+          "chain": {
+            "channel_id": "channel-8",
+            "path": "transfer/channel-8/eco.uC.NCT"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/regen/images/nct.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/regen/images/nct.svg"
+      },
+      "coingecko_id": "toucan-protocol-nature-carbon-tonne",
+      "keywords": [
+        "osmosis-main",
+        "osmosis-frontier",
+        "osmosis-info",
+        "REGEN:972",
+        "osmosis-price:ibc/1DCC8A6CB5689018431323953344A9F6CC4D0BFB261E88C9F7777372C10CD076:972",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Celestims",
+      "denom_units": [
+        {
+          "denom": "ibc/0E4FA664327BD40B32803EE84A77F145834C0281B7F82B65521333B3669FA0BA",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1ngww7zxak55fql42wmyqrr4rhzpne24hhs4p3w4cwhcdgqgr3hxsmzl9zg"
+          ]
+        },
+        {
+          "denom": "clst",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1ngww7zxak55fql42wmyqrr4rhzpne24hhs4p3w4cwhcdgqgr3hxsmzl9zg",
+      "base": "ibc/0E4FA664327BD40B32803EE84A77F145834C0281B7F82B65521333B3669FA0BA",
+      "name": "Celestims",
+      "display": "clst",
+      "symbol": "CLST",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1ngww7zxak55fql42wmyqrr4rhzpne24hhs4p3w4cwhcdgqgr3hxsmzl9zg",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1ngww7zxak55fql42wmyqrr4rhzpne24hhs4p3w4cwhcdgqgr3hxsmzl9zg"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/celestims.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:974",
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:980"
+      ]
+    },
+    {
+      "description": "The First Doge on Osmosis",
+      "denom_units": [
+        {
+          "denom": "ibc/8AEEA9B9304392070F72611076C0E328CE3F2DECA1E18557E36F9DB4F09C0156",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1ytymtllllsp3hfmndvcp802p2xmy5s8m59ufel8xv9ahyxyfs4hs4kd4je"
+          ]
+        },
+        {
+          "denom": "osdoge",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1ytymtllllsp3hfmndvcp802p2xmy5s8m59ufel8xv9ahyxyfs4hs4kd4je",
+      "base": "ibc/8AEEA9B9304392070F72611076C0E328CE3F2DECA1E18557E36F9DB4F09C0156",
+      "name": "Osmosis Doge",
+      "display": "osdoge",
+      "symbol": "OSDOGE",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1ytymtllllsp3hfmndvcp802p2xmy5s8m59ufel8xv9ahyxyfs4hs4kd4je",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1ytymtllllsp3hfmndvcp802p2xmy5s8m59ufel8xv9ahyxyfs4hs4kd4je"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/osdoge.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:975",
+        "osmosis-price:uosmo:975"
+      ]
+    },
+    {
+      "description": "Apemos",
+      "denom_units": [
+        {
+          "denom": "ibc/1EB03F13F29FEA73444586FC4E88A8C14ACE9291501E9658E3BEF951EA4AC85D",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1jrr0tuuzxrrwcg6hgeqhw5wqpck2y55734e7zcrp745aardlp0qqg8jz06"
+          ]
+        },
+        {
+          "denom": "apemos",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1jrr0tuuzxrrwcg6hgeqhw5wqpck2y55734e7zcrp745aardlp0qqg8jz06",
+      "base": "ibc/1EB03F13F29FEA73444586FC4E88A8C14ACE9291501E9658E3BEF951EA4AC85D",
+      "name": "Apemos",
+      "display": "apemos",
+      "symbol": "APEMOS",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1jrr0tuuzxrrwcg6hgeqhw5wqpck2y55734e7zcrp745aardlp0qqg8jz06",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1jrr0tuuzxrrwcg6hgeqhw5wqpck2y55734e7zcrp745aardlp0qqg8jz06"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/apemos.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:977",
+        "osmosis-price:uosmo:977"
+      ]
+    },
+    {
+      "description": "Evmos Guardians' Invaders DAO token.",
+      "denom_units": [
+        {
+          "denom": "ibc/3DB1721541C94AD19D7735FECED74C227E13F925BDB814392980B40A19C1ED54",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1jwdy7v4egw36pd84aeks3ww6n8k7zhsumd4ac8q5lts83ppxueus4626e8"
+          ]
+        },
+        {
+          "denom": "invdrs",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1jwdy7v4egw36pd84aeks3ww6n8k7zhsumd4ac8q5lts83ppxueus4626e8",
+      "base": "ibc/3DB1721541C94AD19D7735FECED74C227E13F925BDB814392980B40A19C1ED54",
+      "name": "Invaders",
+      "display": "invdrs",
+      "symbol": "INVDRS",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1jwdy7v4egw36pd84aeks3ww6n8k7zhsumd4ac8q5lts83ppxueus4626e8",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1jwdy7v4egw36pd84aeks3ww6n8k7zhsumd4ac8q5lts83ppxueus4626e8"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/invdrs.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:969",
+        "osmosis-price:uosmo:969"
+      ]
+    },
+    {
+      "description": "Doge Apr",
+      "denom_units": [
+        {
+          "denom": "ibc/04BE4E9C825ED781F9684A1226114BB49607500CAD855F1E3FEEC18532297250",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1k2ruzzvvwwtwny6gq6kcwyfhkzahaunp685wmz4hafplduekj98q9hgs6d"
+          ]
+        },
+        {
+          "denom": "doga",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1k2ruzzvvwwtwny6gq6kcwyfhkzahaunp685wmz4hafplduekj98q9hgs6d",
+      "base": "ibc/04BE4E9C825ED781F9684A1226114BB49607500CAD855F1E3FEEC18532297250",
+      "name": "Doge Apr",
+      "display": "doga",
+      "symbol": "DOGA",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1k2ruzzvvwwtwny6gq6kcwyfhkzahaunp685wmz4hafplduekj98q9hgs6d",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1k2ruzzvvwwtwny6gq6kcwyfhkzahaunp685wmz4hafplduekj98q9hgs6d"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/doga.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:978",
+        "osmosis-price:uosmo:978",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Osmo Pepe",
+      "denom_units": [
+        {
+          "denom": "ibc/00BC6883C29D45EAA021A55CFDD5884CA8EFF9D39F698A9FEF79E13819FF94F8",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1zqrj3ta4u7ylv0wqzd8t8q3jrr9rdmn43zuzp9zemeunecnhy8fss778g7"
+          ]
+        },
+        {
+          "denom": "pepe",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1zqrj3ta4u7ylv0wqzd8t8q3jrr9rdmn43zuzp9zemeunecnhy8fss778g7",
+      "base": "ibc/00BC6883C29D45EAA021A55CFDD5884CA8EFF9D39F698A9FEF79E13819FF94F8",
+      "name": "Osmo Pepe",
+      "display": "pepe",
+      "symbol": "PEPE",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1zqrj3ta4u7ylv0wqzd8t8q3jrr9rdmn43zuzp9zemeunecnhy8fss778g7",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1zqrj3ta4u7ylv0wqzd8t8q3jrr9rdmn43zuzp9zemeunecnhy8fss778g7"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/pepe.png"
+      },
+      "keywords": [
+        "OSMO:979",
+        "osmosis-price:uosmo:979"
+      ]
+    },
+    {
+      "description": "Catmos",
+      "denom_units": [
+        {
+          "denom": "ibc/F4A07138CAEF0BFB4889E03C44C57956A48631061F1C8AB80421C1F229C1B835",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1f5datjdse3mdgrapwuzs3prl7pvxxht48ns6calnn0t77v2s9l8s0qu488"
+          ]
+        },
+        {
+          "denom": "catmos",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1f5datjdse3mdgrapwuzs3prl7pvxxht48ns6calnn0t77v2s9l8s0qu488",
+      "base": "ibc/F4A07138CAEF0BFB4889E03C44C57956A48631061F1C8AB80421C1F229C1B835",
+      "name": "Catmos",
+      "display": "catmos",
+      "symbol": "CATMOS",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1f5datjdse3mdgrapwuzs3prl7pvxxht48ns6calnn0t77v2s9l8s0qu488",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1f5datjdse3mdgrapwuzs3prl7pvxxht48ns6calnn0t77v2s9l8s0qu488"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/catmos.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:981",
+        "osmosis-price:uosmo:981"
+      ]
+    },
+    {
+      "description": "Social Impact DAO providing showers, meals, and vehicles to the homeless",
+      "denom_units": [
+        {
+          "denom": "ibc/56B988C4D934FB7503F5EA9B440C75D489C8AD5D193715B477BEC4F84B8BBA2A",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1j4ux0f6gt7e82z7jdpm25v4g2gts880ap64rdwa49989wzhd0dfqed6vqm"
+          ]
+        },
+        {
+          "denom": "summit",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1j4ux0f6gt7e82z7jdpm25v4g2gts880ap64rdwa49989wzhd0dfqed6vqm",
+      "base": "ibc/56B988C4D934FB7503F5EA9B440C75D489C8AD5D193715B477BEC4F84B8BBA2A",
+      "name": "Summit",
+      "display": "summit",
+      "symbol": "SUMMIT",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1j4ux0f6gt7e82z7jdpm25v4g2gts880ap64rdwa49989wzhd0dfqed6vqm",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1j4ux0f6gt7e82z7jdpm25v4g2gts880ap64rdwa49989wzhd0dfqed6vqm"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/summit.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:982",
+        "osmosis-price:uosmo:982"
+      ]
+    },
+    {
+      "description": "Social Impact DAO providing showers, meals, and vehicles to the homeless",
+      "denom_units": [
+        {
+          "denom": "ibc/56B988C4D934FB7503F5EA9B440C75D489C8AD5D193715B477BEC4F84B8BBA2A",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1j4ux0f6gt7e82z7jdpm25v4g2gts880ap64rdwa49989wzhd0dfqed6vqm"
+          ]
+        },
+        {
+          "denom": "summit",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1j4ux0f6gt7e82z7jdpm25v4g2gts880ap64rdwa49989wzhd0dfqed6vqm",
+      "base": "ibc/56B988C4D934FB7503F5EA9B440C75D489C8AD5D193715B477BEC4F84B8BBA2A",
+      "name": "Summit",
+      "display": "summit",
+      "symbol": "SUMMIT",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1j4ux0f6gt7e82z7jdpm25v4g2gts880ap64rdwa49989wzhd0dfqed6vqm",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1j4ux0f6gt7e82z7jdpm25v4g2gts880ap64rdwa49989wzhd0dfqed6vqm"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/summit.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:982",
+        "osmosis-price:uosmo:982"
+      ]
+    },
+    {
+      "description": "The native staking token of OmniFlix Hub.",
+      "denom_units": [
+        {
+          "denom": "ibc/CEE970BB3D26F4B907097B6B660489F13F3B0DA765B83CC7D9A0BC0CE220FA6F",
+          "exponent": 0,
+          "aliases": [
+            "uflix"
+          ]
+        },
+        {
+          "denom": "flix",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/CEE970BB3D26F4B907097B6B660489F13F3B0DA765B83CC7D9A0BC0CE220FA6F",
+      "name": "Flix",
+      "display": "flix",
+      "symbol": "FLIX",
+      "traces": [
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "omniflixhub",
+            "base_denom": "uflix",
+            "channel_id": "channel-1"
+          },
+          "chain": {
+            "channel_id": "channel-199",
+            "path": "transfer/channel-199/uflix"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/omniflixhub/images/flix.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/omniflixhub/images/flix.svg"
+      },
+      "coingecko_id": "omniflix-network",
+      "keywords": [
+        "osmosis-main",
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:992",
+        "osmosis-price:ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2:1019",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Spacer",
+      "denom_units": [
+        {
+          "denom": "ibc/7A496DB7C2277D4B74EC4428DDB5AC8A62816FBD0DEBE1CFE094935D746BE19C",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1dyyf7pxeassxvftf570krv7fdf5r8e4r04mp99h0mllsqzp3rs4q7y8yqg"
+          ]
+        },
+        {
+          "denom": "spacer",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1dyyf7pxeassxvftf570krv7fdf5r8e4r04mp99h0mllsqzp3rs4q7y8yqg",
+      "base": "ibc/7A496DB7C2277D4B74EC4428DDB5AC8A62816FBD0DEBE1CFE094935D746BE19C",
+      "name": "Spacer",
+      "display": "spacer",
+      "symbol": "SPACER",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1dyyf7pxeassxvftf570krv7fdf5r8e4r04mp99h0mllsqzp3rs4q7y8yqg",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1dyyf7pxeassxvftf570krv7fdf5r8e4r04mp99h0mllsqzp3rs4q7y8yqg"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/spacer.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:993",
+        "osmosis-price:uosmo:993"
+      ]
+    },
+    {
+      "description": "Light: LumenX community DAO treasury token",
+      "denom_units": [
+        {
+          "denom": "ibc/3DC08BDF2689978DBCEE28C7ADC2932AA658B2F64B372760FBC5A0058669AD29",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1dpany8c0lj526lsa02sldv7shzvnw5dt5ues72rk35hd69rrydxqeraz8l"
+          ]
+        },
+        {
+          "denom": "light",
+          "exponent": 9
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1dpany8c0lj526lsa02sldv7shzvnw5dt5ues72rk35hd69rrydxqeraz8l",
+      "base": "ibc/3DC08BDF2689978DBCEE28C7ADC2932AA658B2F64B372760FBC5A0058669AD29",
+      "name": "LIGHT",
+      "display": "light",
+      "symbol": "LIGHT",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1dpany8c0lj526lsa02sldv7shzvnw5dt5ues72rk35hd69rrydxqeraz8l",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1dpany8c0lj526lsa02sldv7shzvnw5dt5ues72rk35hd69rrydxqeraz8l"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/light.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:1009",
+        "osmosis-price:ibc/FFA652599C77E853F017193E36B5AB2D4D9AFC4B54721A74904F80C9236BF3B7:995"
+      ]
+    },
+    {
+      "description": "The native token cw20 for Silk on Secret Network",
+      "denom_units": [
+        {
+          "denom": "ibc/8A025A1E70101E39DE0C0F153E582A30806D3DA16795F6D868A3AA247D2DEDF7",
+          "exponent": 0,
+          "aliases": [
+            "cw20:secret1fl449muk5yq8dlad7a22nje4p5d2pnsgymhjfd"
+          ]
+        },
+        {
+          "denom": "silk",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "secret1fl449muk5yq8dlad7a22nje4p5d2pnsgymhjfd",
+      "base": "ibc/8A025A1E70101E39DE0C0F153E582A30806D3DA16795F6D868A3AA247D2DEDF7",
+      "name": "Silk",
+      "display": "silk",
+      "symbol": "SILK",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "secretnetwork",
+            "base_denom": "cw20:secret1fl449muk5yq8dlad7a22nje4p5d2pnsgymhjfd",
+            "port": "wasm.secret1tqmms5awftpuhalcv5h5mg76fa0tkdz4jv9ex4",
+            "channel_id": "channel-44"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-476",
+            "path": "transfer/channel-476/cw20:secret1fl449muk5yq8dlad7a22nje4p5d2pnsgymhjfd"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/silk.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/silk.svg"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:1005",
+        "osmosis-price:uosmo:1005",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Mille: the 1000th token on osmosis",
+      "denom_units": [
+        {
+          "denom": "ibc/912275A63A565BFD80734AEDFFB540132C51E446EAC41483B26EDE8A557C71CF",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1llg7q2d5dqlrqzh5dxv8c7kzzjszld34s5vktqmlmaaxqjssz43sxyhq0d"
+          ]
+        },
+        {
+          "denom": "mile",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1llg7q2d5dqlrqzh5dxv8c7kzzjszld34s5vktqmlmaaxqjssz43sxyhq0d",
+      "base": "ibc/912275A63A565BFD80734AEDFFB540132C51E446EAC41483B26EDE8A557C71CF",
+      "name": "Mille",
+      "display": "mile",
+      "symbol": "MILE",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1llg7q2d5dqlrqzh5dxv8c7kzzjszld34s5vktqmlmaaxqjssz43sxyhq0d",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1llg7q2d5dqlrqzh5dxv8c7kzzjszld34s5vktqmlmaaxqjssz43sxyhq0d"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/mille.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:1000",
+        "osmosis-price:uosmo:1000"
+      ]
+    },
+    {
+      "description": "Social Impact DAO dedicated to combatting food insecurity and malnutrition",
+      "denom_units": [
+        {
+          "denom": "ibc/980A2748F37C938AD129B92A51E2ABA8CFFC6862ADD61EC1B291125535DBE30B",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno13ca2g36ng6etcfhr9qxx352uw2n5e92np54thfkm3w3nzlhsgvwsjaqlyq"
+          ]
+        },
+        {
+          "denom": "manna",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno13ca2g36ng6etcfhr9qxx352uw2n5e92np54thfkm3w3nzlhsgvwsjaqlyq",
+      "base": "ibc/980A2748F37C938AD129B92A51E2ABA8CFFC6862ADD61EC1B291125535DBE30B",
+      "name": "Manna",
+      "display": "manna",
+      "symbol": "MANNA",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno13ca2g36ng6etcfhr9qxx352uw2n5e92np54thfkm3w3nzlhsgvwsjaqlyq",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno13ca2g36ng6etcfhr9qxx352uw2n5e92np54thfkm3w3nzlhsgvwsjaqlyq"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/manna.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:997",
+        "osmosis-price:uosmo:997"
+      ]
+    },
+    {
+      "description": "Wrapped FIL on Axelar",
+      "denom_units": [
+        {
+          "denom": "ibc/18FB5C09D9D2371F659D4846A956FA56225E377EE3C3652A2BF3542BF809159D",
+          "exponent": 0,
+          "aliases": [
+            "wfil-wei"
+          ]
+        },
+        {
+          "denom": "fil",
+          "exponent": 18
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/18FB5C09D9D2371F659D4846A956FA56225E377EE3C3652A2BF3542BF809159D",
+      "name": "Wrapped FIL from Filecoin",
+      "display": "fil",
+      "symbol": "axlFIL",
+      "traces": [
+        {
+          "type": "wrapped",
+          "counterparty": {
+            "chain_name": "filecoin",
+            "base_denom": "attoFIL"
+          },
+          "provider": "Filecoin"
+        },
+        {
+          "type": "bridge",
+          "counterparty": {
+            "chain_name": "filecoin",
+            "base_denom": "0x60E1773636CF5E4A227d9AC24F20fEca034ee25A"
+          },
+          "provider": "Axelar"
+        },
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "axelar",
+            "base_denom": "wfil-wei",
+            "channel_id": "channel-3"
+          },
+          "chain": {
+            "channel_id": "channel-208",
+            "path": "transfer/channel-208/wfil-wei"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/filecoin/images/wfil.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/filecoin/images/wfil.svg"
+      },
+      "keywords": [
+        "osmosis-main",
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:1006",
+        "osmosis-price:uosmo:1006",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Void",
+      "denom_units": [
+        {
+          "denom": "ibc/593F820ECE676A3E0890C734EC4F3A8DE16EC10A54EEDFA8BDFEB40EEA903960",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1lpvx3mv2a6ddzfjc7zzz2v2cm5gqgqf0hx67hc5p5qwn7hz4cdjsnznhu8"
+          ]
+        },
+        {
+          "denom": "void",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1lpvx3mv2a6ddzfjc7zzz2v2cm5gqgqf0hx67hc5p5qwn7hz4cdjsnznhu8",
+      "base": "ibc/593F820ECE676A3E0890C734EC4F3A8DE16EC10A54EEDFA8BDFEB40EEA903960",
+      "name": "Void",
+      "display": "void",
+      "symbol": "VOID",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1lpvx3mv2a6ddzfjc7zzz2v2cm5gqgqf0hx67hc5p5qwn7hz4cdjsnznhu8",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1lpvx3mv2a6ddzfjc7zzz2v2cm5gqgqf0hx67hc5p5qwn7hz4cdjsnznhu8"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/void.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:1003",
+        "osmosis-price:uosmo:1003"
+      ]
+    },
+    {
+      "description": "The native token cw20 for Shade on Secret Network",
+      "denom_units": [
+        {
+          "denom": "ibc/0B3D528E74E3DEAADF8A68F393887AC7E06028904D02173561B0D27F6E751D0A",
+          "exponent": 0,
+          "aliases": [
+            "cw20:secret153wu605vvp934xhd4k9dtd640zsep5jkesstdm"
+          ]
+        },
+        {
+          "denom": "shd",
+          "exponent": 8
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "secret153wu605vvp934xhd4k9dtd640zsep5jkesstdm",
+      "base": "ibc/0B3D528E74E3DEAADF8A68F393887AC7E06028904D02173561B0D27F6E751D0A",
+      "name": "Shade",
+      "display": "shd",
+      "symbol": "SHD",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "secretnetwork",
+            "base_denom": "cw20:secret153wu605vvp934xhd4k9dtd640zsep5jkesstdm",
+            "port": "wasm.secret1tqmms5awftpuhalcv5h5mg76fa0tkdz4jv9ex4",
+            "channel_id": "channel-44"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-476",
+            "path": "transfer/channel-476/cw20:secret153wu605vvp934xhd4k9dtd640zsep5jkesstdm"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/shd.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/images/shd.svg"
+      },
+      "coingecko_id": "shade-protocol",
+      "keywords": [
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:1004",
+        "osmosis-price:uosmo:1004",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "The native token of Bluzelle",
+      "denom_units": [
+        {
+          "denom": "ibc/63CDD51098FD99E04E5F5610A3882CBE7614C441607BA6FCD7F3A3C1CD5325F8",
+          "exponent": 0,
+          "aliases": [
+            "ubnt"
+          ]
+        },
+        {
+          "denom": "bnt",
+          "exponent": 6,
+          "aliases": [
+            "blz"
+          ]
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/63CDD51098FD99E04E5F5610A3882CBE7614C441607BA6FCD7F3A3C1CD5325F8",
+      "name": "Bluzelle",
+      "display": "bnt",
+      "symbol": "BLZ",
+      "traces": [
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "bluzelle",
+            "base_denom": "ubnt",
+            "channel_id": "channel-0"
+          },
+          "chain": {
+            "channel_id": "channel-763",
+            "path": "transfer/channel-763/ubnt"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/bluzelle/images/bluzelle.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/bluzelle/images/bluzelle.svg"
+      },
+      "coingecko_id": "bluzelle",
+      "keywords": [
+        "bluzelle",
+        "game",
+        "osmosis-frontier",
+        "osmosis-info",
+        "USDC.axl:1007",
+        "osmosis-price:ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858:1007",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Arbitrum on Axelar",
+      "denom_units": [
+        {
+          "denom": "ibc/10E5E5B06D78FFBB61FD9F89209DEE5FD4446ED0550CBB8E3747DA79E10D9DC6",
+          "exponent": 0,
+          "aliases": [
+            "arb-wei"
+          ]
+        },
+        {
+          "denom": "arb",
+          "exponent": 18
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/10E5E5B06D78FFBB61FD9F89209DEE5FD4446ED0550CBB8E3747DA79E10D9DC6",
+      "name": "Arbitrum",
+      "display": "arb",
+      "symbol": "ARB",
+      "traces": [
+        {
+          "type": "bridge",
+          "counterparty": {
+            "chain_name": "arbitrum",
+            "base_denom": "0x912CE59144191C1204E64559FE8253a0e49E6548"
+          },
+          "provider": "Axelar"
+        },
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "axelar",
+            "base_denom": "arb-wei",
+            "channel_id": "channel-3"
+          },
+          "chain": {
+            "channel_id": "channel-208",
+            "path": "transfer/channel-208/arb-wei"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/arbitrum/images/arb.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/arbitrum/images/arb.svg"
+      },
+      "keywords": [
+        "osmosis-main",
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:1011",
+        "osmosis-price:uosmo:1011",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Silica",
+      "denom_units": [
+        {
+          "denom": "ibc/5164ECF584AD7DC27DA9E6A89E75DAB0F7C4FCB0A624B69215B8BC6A2C40CD07",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno10vgf2u03ufcf25tspgn05l7j3tfg0j63ljgpffy98t697m5r5hmqaw95ux"
+          ]
+        },
+        {
+          "denom": "silica",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno10vgf2u03ufcf25tspgn05l7j3tfg0j63ljgpffy98t697m5r5hmqaw95ux",
+      "base": "ibc/5164ECF584AD7DC27DA9E6A89E75DAB0F7C4FCB0A624B69215B8BC6A2C40CD07",
+      "name": "Silica",
+      "display": "silica",
+      "symbol": "SLCA",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno10vgf2u03ufcf25tspgn05l7j3tfg0j63ljgpffy98t697m5r5hmqaw95ux",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno10vgf2u03ufcf25tspgn05l7j3tfg0j63ljgpffy98t697m5r5hmqaw95ux"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/silica.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:983",
+        "osmosis-price:uosmo:983",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "description": "Pepec",
+      "denom_units": [
+        {
+          "denom": "ibc/C00B17F74C94449A62935B4C886E6F0F643249A270DEF269D53CE6741ECCDB93",
+          "exponent": 0,
+          "aliases": [
+            "cw20:juno1epxnvge53c4hkcmqzlxryw5fp7eae2utyk6ehjcfpwajwp48km3sgxsh9k"
+          ]
+        },
+        {
+          "denom": "pepec",
+          "exponent": 6
+        }
+      ],
+      "type_asset": "ics20",
+      "address": "juno1epxnvge53c4hkcmqzlxryw5fp7eae2utyk6ehjcfpwajwp48km3sgxsh9k",
+      "base": "ibc/C00B17F74C94449A62935B4C886E6F0F643249A270DEF269D53CE6741ECCDB93",
+      "name": "Pepec",
+      "display": "pepec",
+      "symbol": "PEPEC",
+      "traces": [
+        {
+          "type": "ibc-cw20",
+          "counterparty": {
+            "chain_name": "juno",
+            "base_denom": "cw20:juno1epxnvge53c4hkcmqzlxryw5fp7eae2utyk6ehjcfpwajwp48km3sgxsh9k",
+            "port": "wasm.juno1v4887y83d6g28puzvt8cl0f3cdhd3y6y9mpysnsp3k8krdm7l6jqgm0rkn",
+            "channel_id": "channel-47"
+          },
+          "chain": {
+            "port": "transfer",
+            "channel_id": "channel-169",
+            "path": "transfer/channel-169/cw20:juno1epxnvge53c4hkcmqzlxryw5fp7eae2utyk6ehjcfpwajwp48km3sgxsh9k"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/pepec.png"
+      },
+      "keywords": [
+        "osmosis-frontier",
+        "OSMO:1016",
+        "osmosis-price:uosmo:1016",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "denom_units": [
+        {
+          "denom": "ibc/E47F4E97C534C95B942729E1B25DBDE111EA791411CFF100515050BEA0AC0C6B",
+          "exponent": 0,
+          "aliases": [
+            "0x6982508145454Ce325dDbE47a25d4ec3d2311933",
+            "pepe-wei"
+          ]
+        },
+        {
+          "denom": "pepe",
+          "exponent": 18
+        }
+      ],
+      "type_asset": "ics20",
+      "base": "ibc/E47F4E97C534C95B942729E1B25DBDE111EA791411CFF100515050BEA0AC0C6B",
+      "name": "Pepe",
+      "display": "pepe",
+      "symbol": "PEPE",
+      "traces": [
+        {
+          "type": "bridge",
+          "counterparty": {
+            "chain_name": "ethereum",
+            "base_denom": "0x6982508145454Ce325dDbE47a25d4ec3d2311933"
+          },
+          "provider": "Axelar"
+        },
+        {
+          "type": "ibc",
+          "counterparty": {
+            "chain_name": "axelar",
+            "base_denom": "pepe-wei",
+            "channel_id": "channel-3"
+          },
+          "chain": {
+            "channel_id": "channel-208",
+            "path": "transfer/channel-208/pepe-wei"
+          }
+        }
+      ],
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/pepe.png",
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/_non-cosmos/ethereum/images/pepe.svg"
+      },
+      "keywords": [
+        "osmosis-main",
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:1018",
+        "osmosis-price:uosmo:1018",
+        "osmosis-info_2"
+      ]
+    },
+    {
+      "denom_units": [
+        {
+          "denom": "factory/osmo14klwqgkmackvx2tqa0trtg69dmy0nrg4ntq4gjgw2za4734r5seqjqm4gm/uibcx",
+          "exponent": 0
+        },
+        {
+          "denom": "ibcx",
+          "exponent": 6
+        }
+      ],
+      "base": "factory/osmo14klwqgkmackvx2tqa0trtg69dmy0nrg4ntq4gjgw2za4734r5seqjqm4gm/uibcx",
+      "name": "IBCX",
+      "display": "ibcx",
+      "symbol": "IBCX",
+      "traces": [],
+      "logo_URIs": {
+        "svg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/ibcx.svg"
+      },
+      "keywords": [
+        "osmosis-main",
+        "osmosis-frontier",
+        "osmosis-info",
+        "OSMO:1022",
+        "osmosis-price:uosmo:1022"
       ]
     }
   ]
