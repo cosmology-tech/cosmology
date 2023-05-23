@@ -1,4 +1,10 @@
+# THIS LIBRARY IS DEPRECATED
+# [see this issue for migrating](https://github.com/cosmology-tech/cosmology/issues/34)
+
+
+
 # cosmology
+
 
 <p align="center" width="100%">
   <a href="https://github.com/cosmology-tech/cosmology/actions/workflows/run-tests.yml">
