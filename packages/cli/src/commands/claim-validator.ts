@@ -3,6 +3,8 @@ import {
   gasEstimation,
   getCosmosAssetInfo,
 } from '@cosmology/core';
+import { coins as aminoCoins } from '@cosmjs/amino';
+
 import {
   prompt,
   promptChain,
@@ -17,7 +19,7 @@ import {
   assertIsDeliverTxSuccess
 } from '@cosmjs/stargate';
 import { cosmos, getSigningCosmosClient } from 'osmojs';
-import { signAndBroadcast, getOfflineSignerAmino } from 'cosmjs-utils';
+import { signAndBroadcast, getOfflineSignerAmino, getOfflineSignerProto } from 'cosmjs-utils';
 
 // TODO research why Amino does not work — likely not enabled on backend?
 const {
@@ -37,7 +39,7 @@ export default async (argv) => {
   const { mnemonic } = await promptMnemonic(argv);
   const rpcEndpoint = await promptRpcEndpoint(chain.apis.rpc.map((e) => e.address), argv);
   const client = await cosmos.ClientFactory.createRPCQueryClient({ rpcEndpoint });
-  const signer = await getOfflineSignerAmino({ mnemonic, chain });
+  const signer = await getOfflineSignerProto({ mnemonic, chain });
   const stargateClient = await getSigningCosmosClient({
     rpcEndpoint,
     signer
@@ -82,7 +84,12 @@ export default async (argv) => {
     validatorAddress: validator_address
   });
 
-  const fee = await gasEstimation(
+  let estGasMult = 1.3;
+  if (argv.estGasMult) {
+    estGasMult = Number(argv.estGasMult);
+  }
+
+  let fee = await gasEstimation(
     denom,
     stargateClient,
     address,
@@ -90,6 +97,22 @@ export default async (argv) => {
     '',
     1.3
   );
+
+  // yarn dev claim-validator --chainToken JUNO --keychain your-val --gas 200000 --fee 15254 --feeDenom ujuno 
+
+  if (/^[0-9]+$/.test(argv.fee)) {
+    console.log('found a fee!');
+    if (!argv.feeDenom) {
+      throw new Error('requires --feeDenom')
+    }
+    if (!argv.gas) {
+      throw new Error('requires --gas')
+    }
+    fee = {
+      amount: aminoCoins(argv.fee, argv.feeDenom),
+      gas: String(argv.gas)
+    }
+  }
 
   if (argv.simulate) {
     console.log(JSON.stringify(msg, null, 2));
