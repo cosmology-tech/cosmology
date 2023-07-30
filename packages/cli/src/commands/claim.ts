@@ -89,7 +89,7 @@ export default async (argv) => {
         // question for later: why does reward array have other coins like ATOM in it? (for OSMO).
         const rewardWeWant = reward.find((r) => r.denom === denom);
         if (!rewardWeWant) return;
-        // https://github.com/osmosis-labs/telescope/issues/247
+        // https://github.com/cosmology-tech/telescope/issues/247
         totalClaimable = totalClaimable.add(new Dec(decodeCosmosSdkDecFromProto(rewardWeWant.amount).toString()));
         messagesToClaim.push(
           withdrawDelegatorReward({

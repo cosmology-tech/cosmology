@@ -30,7 +30,7 @@ https://www.npmjs.com/package/@cosmology/core
 
 Code built with the help of these related projects:
 
-* [@osmonauts/telescope](https://github.com/osmosis-labs/telescope) a "babel for the Cosmos", Telescope is a TypeScript Transpiler for Cosmos Protobufs.
+* [@cosmology/telescope](https://github.com/cosmology-tech/telescope) a "babel for the Cosmos", Telescope is a TypeScript Transpiler for Cosmos Protobufs.
 * [osmojs](https://github.com/osmosis-labs/osmojs) OsmosJS makes it easy to compose and broadcast Osmosis and Cosmos messages.
 
 ## Disclaimer
